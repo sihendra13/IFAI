@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>IFAI — Indonesia Future Arts &amp; Intelligence</title>
+<!-- Tailwind CSS CDN with forms & container queries plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            cosmic: {
+              950: '#050507',
+              900: '#0a0a0c',
+              850: '#101116',
+              800: '#161820',
+              700: '#222533',
+            },
+            neon: {
+              emerald: '#00FF9D',
+              cyan: '#00E5FF',
+              purple: '#A855F7',
+            }
+          },
+          fontFamily: {
+            sans: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+            jakarta: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<!-- Google Fonts: Space Grotesk & JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style data-purpose="custom-typography-and-scroll">
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background-color: #0a0a0c;
+      color: #f3f4f6;
+      overflow-x: hidden;
+    }
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    /* Custom subtle futuristic glow effects */
+    .glow-cyan {
+      box-shadow: 0 0 25px -4px rgba(0, 229, 255, 0.35);
+    }
+    .glow-emerald {
+      box-shadow: 0 0 25px -4px rgba(0, 255, 157, 0.35);
+    }
+    .text-glow-neon {
+      text-shadow: 0 0 16px rgba(0, 255, 157, 0.45);
+    }
+    /* Hide scrollbars in showcase reels while maintaining touch scroll */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-cosmic-900 text-zinc-100 antialiased selection:bg-neon-emerald selection:text-black">
+<!-- BEGIN: MainHeader -->
+<header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-transparent border-b border-transparent transition-all duration-500">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+<!-- Brand Logo -->
+<a class="flex items-center group focus:outline-none rounded" href="#">
+<img src="image/logo.png" alt="IFAI Future Arts Logo" class="h-4 sm:h-5 object-contain" />
+</a>
+<!-- Primary Navigation Links -->
+<nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide font-jakarta">
+<a class="text-zinc-300 hover:text-neon-emerald transition-colors" href="#showcase">Showcase</a>
+<a class="text-zinc-300 hover:text-neon-emerald transition-colors" href="#programs">Programs</a>
+<a class="text-zinc-300 hover:text-neon-emerald transition-colors" href="#manifesto">Creator Hub</a>
+<a class="text-zinc-300 hover:text-neon-emerald transition-colors" href="#manifesto">Journal</a>
+<a class="text-zinc-300 hover:text-neon-emerald transition-colors" href="#manifesto">About</a>
+</nav>
+<!-- Action Buttons -->
+<div class="flex items-center gap-4">
+<a class="hidden sm:inline-block text-xs font-mono text-zinc-300 hover:text-white uppercase tracking-wider transition-colors" href="#">
+          Log In
+        </a>
+<a class="relative group px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase overflow-hidden border border-neon-emerald/50 text-white bg-cosmic-800/80 hover:bg-neon-emerald hover:text-black transition-all duration-300 glow-emerald" href="#programs">
+<span class="relative z-10">Join Community</span>
+<div class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-neon-emerald transition-transform duration-300 ease-out"></div>
+</a>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<main>
+<!-- BEGIN: HeroSection -->
+<section class="relative min-h-screen flex flex-col justify-center overflow-hidden bg-cosmic-950">
+<!-- Full Screen AI Video Background -->
+<video src="image/hero-video.mp4" autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover opacity-80 pointer-events-none" style="z-index: 0;"></video>
+<!-- Background Ambient Grid & Radial Gradients (Overlaying the video) -->
+<div class="absolute inset-0 bg-gradient-to-b from-cosmic-950/40 via-cosmic-900/60 to-cosmic-950 z-0 pointer-events-none"></div>
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(0,255,157,0.12),transparent_60%)] pointer-events-none z-0"></div>
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_80%_60%,rgba(0,229,255,0.08),transparent_50%)] pointer-events-none"></div>
+<div class="absolute inset-0 bg-[linear-gradient(to_right,#161820_1px,transparent_1px),linear-gradient(to_bottom,#161820_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-30 pointer-events-none"></div>
+<!-- Hero Visual Art Frame Backdrop Simulation -->
+<div class="relative z-10 w-full px-4 mt-auto mb-16 flex flex-col items-center text-center">
+  <div class="max-w-4xl mx-auto flex flex-col items-center">
+    <h2 class="text-xl sm:text-2xl font-bold tracking-wide mb-4 drop-shadow-md text-transparent bg-clip-text bg-gradient-to-r from-neon-emerald via-neon-cyan to-white">
+      Indonesia Future Arts &amp; Intelligence
+    </h2>
+    <p class="text-sm sm:text-base text-zinc-300 font-light leading-relaxed mb-6 max-w-2xl drop-shadow-md">
+      Where Art and Intelligence Converge. A creative movement redefining Indonesia's visual narrative, cinematic storytelling, and digital sound through synthetic computation.
+    </p>
+    <a href="#showcase" class="relative group px-8 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase overflow-hidden border border-neon-emerald/50 text-white bg-cosmic-800/80 backdrop-blur-md hover:text-black transition-all duration-300 glow-emerald">
+      <span class="relative z-10">Explore</span>
+      <div class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-neon-emerald transition-transform duration-300 ease-out"></div>
+    </a>
+  </div>
+</div>
+<!-- Bottom gradient for blending into the next section -->
+<div class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-cosmic-950 to-transparent z-0 pointer-events-none"></div>
+</section>
+
+<!-- BEGIN: Next Content Section -->
+<section class="bg-cosmic-950 relative z-10">
+<!-- Industry & Technology Partner Brands -->
+<div class="relative z-10 pt-4 pb-12 text-center bg-cosmic-950">
+<p class="text-sm tracking-wide text-zinc-400 mb-8">Supported by:</p>
+<div class="flex flex-wrap items-center justify-center gap-8 sm:gap-14 opacity-70 grayscale hover:grayscale-0 transition-all duration-300">
+<span class="text-sm sm:text-base font-mono font-bold tracking-tighter text-zinc-300 hover:text-white">OpenAI</span>
+<span class="text-sm sm:text-base font-sans font-bold tracking-tight text-zinc-300 hover:text-white">Adobe Firefly</span>
+<span class="text-sm sm:text-base font-mono font-bold tracking-wider text-zinc-300 hover:text-white">Runway</span>
+<span class="text-sm sm:text-base font-mono font-bold tracking-wider text-zinc-300 hover:text-white">NVIDIA</span>
+<span class="text-sm sm:text-base font-serif italic text-zinc-300 hover:text-white">Midjourney</span>
+<span class="text-sm sm:text-base font-sans font-medium text-zinc-300 hover:text-white">Google Cloud</span>
+<span class="text-sm sm:text-base font-mono text-zinc-300 hover:text-white">Azure AI</span>
+<span class="text-sm sm:text-base font-sans font-bold tracking-wider text-zinc-300 hover:text-white">EKRAF</span>
+</div>
+</div>
+<!-- Metric KPI Stats Bar -->
+<div class="relative z-10 bg-cosmic-950 px-4 pb-20 pt-8 border-b border-zinc-800">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-7xl mx-auto">
+    <div class="bg-cosmic-850/70 backdrop-blur border border-zinc-800/80 p-6 rounded-xl hover:border-zinc-700 transition">
+      <div class="text-3xl sm:text-4xl font-mono font-bold text-neon-emerald mb-1">4</div>
+      <div class="text-xs uppercase font-mono tracking-wider text-zinc-400">Core Disciplines</div>
+      <p class="text-xs text-zinc-500 mt-2">Film, Commercial, Digital Canvas, &amp; Neural Audio</p>
+    </div>
+    <div class="bg-cosmic-850/70 backdrop-blur border border-zinc-800/80 p-6 rounded-xl hover:border-zinc-700 transition">
+      <div class="text-3xl sm:text-4xl font-mono font-bold text-neon-cyan mb-1">90%</div>
+      <div class="text-xs uppercase font-mono tracking-wider text-zinc-400">Creators Empowered</div>
+      <p class="text-xs text-zinc-500 mt-2">Pioneering new synthetic workflows across archipelago</p>
+    </div>
+    <div class="bg-cosmic-850/70 backdrop-blur border border-zinc-800/80 p-6 rounded-xl hover:border-zinc-700 transition">
+      <div class="text-3xl sm:text-4xl font-mono font-bold text-white mb-1">200+</div>
+      <div class="text-xs uppercase font-mono tracking-wider text-zinc-400">AI Works Showcased</div>
+      <p class="text-xs text-zinc-500 mt-2">Archived in IFAI permanent national intelligence repository</p>
+    </div>
+    <div class="bg-gradient-to-br from-cosmic-800 to-cosmic-950 border border-zinc-700 p-6 rounded-xl flex flex-col justify-between">
+      <div>
+        <span class="text-xs font-mono uppercase text-neon-cyan tracking-wider">Curated Archive</span>
+        <p class="text-xs text-zinc-300 mt-1">Explore the fusion of generative computation, culture, and human direction.</p>
+      </div>
+      <a class="mt-4 inline-flex items-center text-xs font-mono text-white hover:text-neon-cyan" href="#showcase">
+        View Curations →
+      </a>
+    </div>
+  </div>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: FilmShowcaseSection -->
+<section class="pt-24 pb-12 relative bg-cosmic-950" id="showcase">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Section Header -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+<div>
+<div class="flex items-center gap-3">
+<span class="text-xs font-mono px-2 py-0.5 rounded bg-neon-emerald/15 text-neon-emerald border border-neon-emerald/30">CATEGORY // 01</span>
+<span class="text-zinc-500 text-xs font-mono">NEURAL CINEMATICS</span>
+</div>
+<h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-2">AI Film Showcase</h2>
+</div>
+<div class="flex items-center gap-4">
+<a class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-neon-emerald flex items-center gap-1.5 transition-colors" href="#">
+              View Full Collection →
+            </a>
+<!-- Carousel Control Arrows -->
+<div class="hidden sm:flex items-center gap-2">
+<button aria-label="Previous Slide" class="w-9 h-9 rounded-full border border-zinc-800 bg-cosmic-850 hover:border-zinc-600 flex items-center justify-center text-zinc-400 hover:text-white transition">
+                ←
+              </button>
+<button aria-label="Next Slide" class="w-9 h-9 rounded-full border border-zinc-800 bg-cosmic-850 hover:border-zinc-600 flex items-center justify-center text-zinc-400 hover:text-white transition">
+                →
+              </button>
+</div>
+</div>
+</div>
+<!-- Film Showcase Grid Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<article class="group relative rounded-2xl overflow-hidden bg-cosmic-850 border border-zinc-800/80 hover:border-neon-emerald/50 transition-all duration-300 flex flex-col">
+<div class="relative aspect-[3/4] w-full overflow-hidden bg-zinc-900">
+<img alt="Cosmic Horizon Film Poster" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGDGk7K_iyqyKh6ADXkqC4EUsmAaAaFFMcFcQG_1vqTCNgI2pofWNxFdEo8fuwPyR3w6xBJh2jCymDtiU97ey6f0DuXsjr21Z2a2mD2pKmU2ljrg-0c63xMmJg5FcClLpK3lJP4qCO2MscKv__zGYpX5005C0ipQ31QpAfsy2rAJqakrM0EigVPQEkVW5UbeKQug6I5z1iZAjybmmYX-4SbsCu-5i2pWpEyqSD3C83twkU0coUn9f3Wg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-cosmic-950 via-transparent to-black/30"></div>
+<span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/60 backdrop-blur border border-white/10 text-white">Film</span>
+<a href="detail.html" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-emerald hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
+                Explore Reel →
+              </a>
+</div>
+<div class="p-4 flex flex-col justify-between flex-grow">
+<div>
+<h3 class="text-base font-semibold text-white group-hover:text-neon-emerald transition-colors">Cosmic Horizon</h3>
+<p class="text-xs text-zinc-400 mt-1 font-mono">Genre: Sci-Fi / Synthetic Animation</p>
+</div>
+<div class="mt-4 pt-3 border-t border-zinc-800/60 flex items-center justify-between text-[11px] text-zinc-400">
+<span>By Studio 101</span>
+<span class="text-neon-emerald font-mono">08:42 min</span>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="group relative rounded-2xl overflow-hidden bg-cosmic-850 border border-zinc-800/80 hover:border-neon-cyan/50 transition-all duration-300 flex flex-col">
+<div class="relative aspect-[3/4] w-full overflow-hidden bg-zinc-900">
+<img alt="Parallel Hearts Film Poster" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqiXWsHvkvsG29540ElWEAjoS1mbGVOeniDgMRJ-owR9tRd26kCrggdgKebRn4mS38j2vwtFp6YZObhswElzdFlp4apNkPq6q3xWKuZSrVT9M3HCLWcyvPT1giampRhuWgmc2iD-4ubjr_wjDIIu_EiDHjbWQvRtRkFkVUTq6HYRNZcjR0xDr3_krJfMA4UxOnBkuucna3PRKGoRXy5uPxbJmN398Zxx9OtsssjUtBJLfFWgzeyQjqZg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-cosmic-950 via-transparent to-black/30"></div>
+<span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/60 backdrop-blur border border-white/10 text-white">Film</span>
+<a href="detail.html" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-cyan hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
+                Explore Reel →
+              </a>
+</div>
+<div class="p-4 flex flex-col justify-between flex-grow">
+<div>
+<h3 class="text-base font-semibold text-white group-hover:text-neon-cyan transition-colors">Parallel Hearts</h3>
+<p class="text-xs text-zinc-400 mt-1 font-mono">Genre: Drama / Psychological Sci-Fi</p>
+</div>
+<div class="mt-4 pt-3 border-t border-zinc-800/60 flex items-center justify-between text-[11px] text-zinc-400">
+<span>By Neon Heart</span>
+<span class="text-neon-cyan font-mono">14:15 min</span>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="group relative rounded-2xl overflow-hidden bg-cosmic-850 border border-zinc-800/80 hover:border-neon-emerald/50 transition-all duration-300 flex flex-col">
+<div class="relative aspect-[3/4] w-full overflow-hidden bg-zinc-900">
+<img alt="Digital Bloom Film Poster" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo-J6EbC8hXm0-0ha7LCIzTDm34Qvxx2rSQy59dVNZrXXXM4BASQseq8StoBo1buieyTLVMLBKoEeRCkyflpayvJE1Hiqhe7bHeTD2Hj6AGYcW2hxIqHmPIwpARUo-bc8qguzuJEME9Sup1kvAjaRTROcWejQyBrcZV4WGVLma6b9Ce9Zznur0Z8RaJvHlJvhjItcaqr1-p9Zo2Oywbf68q2_ja7BofE26R8Rylz__J3PIp4CFWdneSg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-cosmic-950 via-transparent to-black/30"></div>
+<span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/60 backdrop-blur border border-white/10 text-white">Film</span>
+<a href="detail.html" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-emerald hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
+                Explore Reel →
+              </a>
+</div>
+<div class="p-4 flex flex-col justify-between flex-grow">
+<div>
+<h3 class="text-base font-semibold text-white group-hover:text-neon-emerald transition-colors">Digital Bloom</h3>
+<p class="text-xs text-zinc-400 mt-1 font-mono">Genre: Animation / Storytelling</p>
+</div>
+<div class="mt-4 pt-3 border-t border-zinc-800/60 flex items-center justify-between text-[11px] text-zinc-400">
+<span>By Halcyon Lab</span>
+<span class="text-neon-emerald font-mono">06:50 min</span>
+</div>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="group relative rounded-2xl overflow-hidden bg-cosmic-850 border border-zinc-800/80 hover:border-neon-cyan/50 transition-all duration-300 flex flex-col">
+<div class="relative aspect-[3/4] w-full overflow-hidden bg-zinc-900">
+<img alt="The Memory Loop Film Poster" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFCLMFaSyTcHeWTlu2odB8_0Rkl74QByYpkzslABhNPUOgjZNdll0eII39VxuGCLIiGwyDfhJ4o2TYIR9EC7CxFUArd8HOUmCbrsVt9ev-wX2y6xAilCjeCHkhHuy5Mkfmyns5Q2V-VE0muKWz42yqWn7wMF4ScuAR289FpjmakCbZzPpRak4QuQf6WRVchwpdFfPquOnre_ZsbZ0Zbt-9oZce6z6t4k_jiSgypW_XcHCZNSU66pNCrA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-cosmic-950 via-transparent to-black/30"></div>
+<span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/60 backdrop-blur border border-white/10 text-white">Film</span>
+<a href="detail.html" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-cyan hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
+                Explore Reel →
+              </a>
+</div>
+<div class="p-4 flex flex-col justify-between flex-grow">
+<div>
+<h3 class="text-base font-semibold text-white group-hover:text-neon-cyan transition-colors">The Memory Loop</h3>
+<p class="text-xs text-zinc-400 mt-1 font-mono">Genre: Art Film / Neural Sci-Fi</p>
+</div>
+<div class="mt-4 pt-3 border-t border-zinc-800/60 flex items-center justify-between text-[11px] text-zinc-400">
+<span>By NovaWorks</span>
+<span class="text-neon-cyan font-mono">11:03 min</span>
+</div>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- END: FilmShowcaseSection -->
+<!-- BEGIN: CommercialAndMusicShowcase -->
+<section class="pt-12 pb-24 bg-cosmic-950">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
+<!-- 02 Video Commercial Showcase -->
+<div>
+<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+<div>
+<div class="flex items-center gap-3">
+<span class="text-xs font-mono px-2 py-0.5 rounded bg-neon-cyan/15 text-neon-cyan border border-neon-cyan/30">CATEGORY // 02</span>
+<span class="text-zinc-500 text-xs font-mono">SYNTHETIC BRAND IDENTITIES</span>
+</div>
+<h2 class="text-3xl font-bold tracking-tight text-white mt-2">Video Commercial Showcase</h2>
+</div>
+<a class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-neon-cyan flex items-center gap-1.5 transition-colors" href="#">
+              View Commercials →
+            </a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Commercial Item 1 -->
+<div class="rounded-2xl overflow-hidden bg-cosmic-850 border border-zinc-800 group hover:border-zinc-600 transition">
+<div class="relative aspect-square overflow-hidden">
+<img alt="Electric Joy Commercial" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDH38eMsoAKSOkgy5KQINhpkVHChFRXg9Yq20ROKv_ocq16FZzi0L6K5cW-DVfSKC4UgAQDlBoQ70h4ZsXGWvTIo8BwZ8ZrfWsAeP7SPZaDhK23J8CH21Tmerv8M7WwhkqP2XRh_d7K_Vj7qa9Fmy8Rx0yzO_n7vcZUXqutmo38ohmPKHUS0yofVF_M2vp2Ca4SX_6QYToAJw-hE5njg-1p3jZkWcDz2RpeeS3uY6eSytYEG9BtuSFUzw"/>
+<span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/60 backdrop-blur text-white border border-white/10">Commercial AI</span>
+</div>
+<div class="p-4">
+<h3 class="font-semibold text-white text-base">Electric Joy</h3>
+<p class="text-xs text-zinc-400 font-mono mt-1">Lifestyle / AI Motion Ad</p>
+<p class="text-[11px] text-zinc-500 mt-2">By Neon Pixel Studio</p>
+</div>
+</div>
+<!-- Commercial Item 2 -->
+<div class="rounded-2xl overflow-hidden bg-cosmic-850 border border-zinc-800 group hover:border-zinc-600 transition">
+<div class="relative aspect-square overflow-hidden">
+<img alt="Liquid Summer Commercial" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzGY_L8TZOIOZcgnYdZBJB6OBqBoBkFCIDuLtxW1kIK3ulZ24LwDwMy4l5jtrjUY5aUvjrPXFDsCzqNePIO_C2yLd02hTbvP0FEsmykRd1tzN1fPqiUXab_Bdh986HUq7vDzT98f0nlNvqqUtTpTvnZ1ii9Z4m54Z7kQOhb3xlGdcshh79JUpLJtNmaDsTyiQNNxmbO03PB_pbfR4DypUoDPdx8xKyAh-AkWVb6S9SPTIGx8LT4v03Rw"/>
+<span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/60 backdrop-blur text-white border border-white/10">Commercial AI</span>
+</div>
+<div class="p-4">
+<h3 class="font-semibold text-white text-base">Liquid Summer</h3>
+<p class="text-xs text-zinc-400 font-mono mt-1">Beverage / Diffusion Render</p>
+<p class="text-[11px] text-zinc-500 mt-2">By Horizon Studio</p>
+</div>
+</div>
+<!-- Commercial Item 3 -->
+<div class="rounded-2xl overflow-hidden bg-cosmic-850 border border-zinc-800 group hover:border-zinc-600 transition">
+<div class="relative aspect-square overflow-hidden">
+<img alt="Infinite Loop Commercial" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDHfcyPaS_O3caeXi59QFwU51ZW7_qZoVEEPnzX6xe1JEL4CMl8_VWwPFY0-tJT5RmEhjsIPhtGubiAfYVYP2oN6lvtUuBi8eKn0V3EZhByDadY_jiWKbBuWrjoAcUD32-bZOmdQizrnj-fBSOMTZHYAtJWbHuCfIdz6FmmgnyhrcsYPn1xGhvSAWI60Wv4pwMqImki_TgWBe2PTYjjENTXN-pmoH-E5Yq6z6TEArB4Bwseo0_Xb15CA"/>
+<span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/60 backdrop-blur text-white border border-white/10">Commercial AI</span>
+</div>
+<div class="p-4">
+<h3 class="font-semibold text-white text-base">Infinite Loop</h3>
+<p class="text-xs text-zinc-400 font-mono mt-1">Haute Fashion / Surrealism</p>
+<p class="text-[11px] text-zinc-500 mt-2">By Halcyon Motion</p>
+</div>
+</div>
+<!-- Commercial Item 4 -->
+<div class="rounded-2xl overflow-hidden bg-cosmic-850 border border-zinc-800 group hover:border-zinc-600 transition">
+<div class="relative aspect-square overflow-hidden">
+<img alt="Motion Study Commercial" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJTLI8Ip-JEFTn7aFSHrPE03vIxNJevAoN7rrqN2rEqurbQ--cMjOMVQYmzJyPvKVC-DUB8dW6yId9-2GjPJ64k6BJfNTp8fHkpIMMKh700kdsjxKiPK9mhykGt5jQ_o2K_iUGbnylKXDCDOkaqTSZjTYkNXtWO4uPsQDIBLl-IgIIUvwlnHaibWmV2C4CQ3sXsJ72so7tgNXCzyE0w2sWTO5Rjh-NcayPyEIcyvjv1IT2ou5FOeGTZw"/>
+<span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/60 backdrop-blur text-white border border-white/10">Commercial AI</span>
+</div>
+<div class="p-4">
+<h3 class="font-semibold text-white text-base">Motion Study 01</h3>
+<p class="text-xs text-zinc-400 font-mono mt-1">Urban Lifestyle / Dynamic</p>
+<p class="text-[11px] text-zinc-500 mt-2">By NovaWorks</p>
+</div>
+</div>
+</div>
+</div>
+<!-- 03 Music & Audio Neural Showcase -->
+<div>
+<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+<div>
+<div class="flex items-center gap-3">
+<span class="text-xs font-mono px-2 py-0.5 rounded bg-neon-purple/20 text-purple-300 border border-purple-500/30">CATEGORY // 03</span>
+<span class="text-zinc-500 text-xs font-mono">NEURAL ACOUSTICS &amp; COMPOSITION</span>
+</div>
+<h2 class="text-3xl font-bold tracking-tight text-white mt-2">Music &amp; Sound Showcase</h2>
+</div>
+<a class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-purple-300 flex items-center gap-1.5 transition-colors" href="#">
+              Listen Full Tracks →
+            </a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Music 1 -->
+<div class="rounded-2xl overflow-hidden bg-cosmic-850 border border-zinc-800 group hover:border-purple-500/40 transition">
+<div class="relative aspect-square overflow-hidden">
+<img alt="Synthetic Pulse Track Cover" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQeimA7FlSM9Q3JL22Rg9IQGf_tZBiiNzl65H528KqJOq_fcaOf0IizHeZ7Y2R0vN4LFUVXTJjY77qmCz5bawd6rjkB-vCHzHKuYDqTrEBkPLkokGXboCEYn1LSbHkmze6DEsmBVyjDOl0O9K0aju8ZyqKw2T2I2uy8348f0HWWPBPk13dDM1SQa-Q8CRXZHRzrHw7xGDUM4FZwGEkUIG8FiKdNlg6DZN5Pu0wijbwMOIzT8lv1eSubw"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<div class="w-12 h-12 rounded-full bg-purple-500 text-black flex items-center justify-center font-bold text-lg">►</div>
+</div>
+<span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/70 backdrop-blur text-purple-300 border border-purple-500/20">Audio • Spatial</span>
+</div>
+<div class="p-4">
+<h3 class="font-semibold text-white text-base">Synthetic Pulse</h3>
+<p class="text-xs text-zinc-400 font-mono mt-1">Electronic / Ambient Synth</p>
+<p class="text-[11px] text-zinc-500 mt-2">By Aural Systems</p>
+</div>
+</div>
+<!-- Music 2 -->
+<div class="rounded-2xl overflow-hidden bg-cosmic-850 border border-zinc-800 group hover:border-purple-500/40 transition">
+<div class="relative aspect-square overflow-hidden">
+<img alt="Neon Reverie Track Cover" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDabz7mllfgNYFZZIGR5W6l6oqkV6tdvHlBevYs_0IucSDizjdxsez45jRaJPECySjVPWDzzBiZMVBKmB9s41rv06_paxRXTxmGFrYLE3x4K_DOKuAfePfvD1Jri-vWGANtSkt5o9GvyPFVXJuL4xHYn_1yqkPL23xc2KLPgp6Xunt0RShkYP5To8rr03ud6xoK3GBT0pVZKynEjQMcsvR3Zxair_AoyHIgkDwfViqMiBsSrSmbrzlpcg"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<div class="w-12 h-12 rounded-full bg-purple-500 text-black flex items-center justify-center font-bold text-lg">►</div>
+</div>
+<span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/70 backdrop-blur text-purple-300 border border-purple-500/20">Audio • Vocal AI</span>
+</div>
+<div class="p-4">
+<h3 class="font-semibold text-white text-base">Neon Reverie</h3>
+<p class="text-xs text-zinc-400 font-mono mt-1">Dream Pop / Waveform</p>
+<p class="text-[11px] text-zinc-500 mt-2">By MIRA AI</p>
+</div>
+</div>
+<!-- Music 3 -->
+<div class="rounded-2xl overflow-hidden bg-cosmic-850 border border-zinc-800 group hover:border-purple-500/40 transition">
+<div class="relative aspect-square overflow-hidden">
+<img alt="Digital Bloom OST Track Cover" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0KbC0Gg7_A9KybE7-466oLi-5vY6M6e5ON5OI9z41vhB6glgusVEViGt49aNjDmoX43PpVUMo_TbNYpFO1SCziQC_70HtuEuyp0lf_gYGB7e-4-qcp2qmKco5b9YCKw-RfPXhE6D3h7X22wu__VGEDp6aA9CIECUZhLBhmetUUmsvRY00vnIascQL-easyZ33hxHuaV4bVJhlSMPPfVOW2FGpy1WJrAoBHhxAmsE3EzXc0ESDuHGdeQ"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<div class="w-12 h-12 rounded-full bg-purple-500 text-black flex items-center justify-center font-bold text-lg">►</div>
+</div>
+<span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/70 backdrop-blur text-purple-300 border border-purple-500/20">Original Score</span>
+</div>
+<div class="p-4">
+<h3 class="font-semibold text-white text-base">Digital Bloom Score</h3>
+<p class="text-xs text-zinc-400 font-mono mt-1">Experimental / IDM</p>
+<p class="text-[11px] text-zinc-500 mt-2">By Halcyon Lab</p>
+</div>
+</div>
+<!-- Music 4 -->
+<div class="rounded-2xl overflow-hidden bg-cosmic-850 border border-zinc-800 group hover:border-purple-500/40 transition">
+<div class="relative aspect-square overflow-hidden">
+<img alt="Glass Memory Track Cover" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCs1CFg48--z72WShl90mUL7uisWGNm8a5-7JW7PVD9zPWPYaSahhC7qrJ_ZxLdPlw1SmFpkxI4DBzGeJQiUZc0o76Yo1lt7_abhpSEsYjH8XBIDiqjf4UILejL8D85CoSug9P67bpb4BTCtHg7QqoXVOvMcawYYppLYSXMO9RGcraSjuB1jylKEcroeNB60-3pL8kIPSZPJcxJdgmUQaQBGVqyaPBYG1wzU_mWhnr9YOZDq6ETGle3BA"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<div class="w-12 h-12 rounded-full bg-purple-500 text-black flex items-center justify-center font-bold text-lg">►</div>
+</div>
+<span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/70 backdrop-blur text-purple-300 border border-purple-500/20">Audio • Granular</span>
+</div>
+<div class="p-4">
+<h3 class="font-semibold text-white text-base">Glass Memory</h3>
+<p class="text-xs text-zinc-400 font-mono mt-1">Future Soul / Neural Beat</p>
+<p class="text-[11px] text-zinc-500 mt-2">By NovaWorks</p>
+</div>
+</div>
+</div>
+</div>
+<!-- 04 Visual Art Showcase -->
+<div>
+  <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+    <div>
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">CATEGORY // 04</span>
+        <span class="text-zinc-500 text-xs font-mono">NEURAL CANVAS &amp; GENERATIVE ART</span>
+      </div>
+      <h2 class="text-3xl font-bold tracking-tight text-white mt-2">Visual Art Showcase</h2>
+    </div>
+    <a class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-amber-300 flex items-center gap-1.5 transition-colors" href="#">
+      View Artworks →
+    </a>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Art 1 -->
+    <div class="rounded-2xl overflow-hidden bg-cosmic-850 border border-zinc-800 group hover:border-amber-500/40 transition">
+      <div class="relative aspect-square overflow-hidden">
+        <img alt="Neural Portrait" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzGY_L8TZOIOZcgnYdZBJB6OBqBoBkFCIDuLtxW1kIK3ulZ24LwDwMy4l5jtrjUY5aUvjrPXFDsCzqNePIO_C2yLd02hTbvP0FEsmykRd1tzN1fPqiUXab_Bdh986HUq7vDzT98f0nlNvqqUtTpTvnZ1ii9Z4m54Z7kQOhb3xlGdcshh79JUpLJtNmaDsTyiQNNxmbO03PB_pbfR4DypUoDPdx8xKyAh-AkWVb6S9SPTIGx8LT4v03Rw"/>
+        <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/70 backdrop-blur text-amber-300 border border-amber-500/20">Digital Canvas</span>
+      </div>
+      <div class="p-4">
+        <h3 class="font-semibold text-white text-base">Neural Portrait 01</h3>
+        <p class="text-xs text-zinc-400 font-mono mt-1">Portrait / Diffusion</p>
+        <p class="text-[11px] text-zinc-500 mt-2">By Studio 101</p>
+      </div>
+    </div>
+    <!-- Art 2 -->
+    <div class="rounded-2xl overflow-hidden bg-cosmic-850 border border-zinc-800 group hover:border-amber-500/40 transition">
+      <div class="relative aspect-square overflow-hidden">
+        <img alt="Abstract Data" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCs1CFg48--z72WShl90mUL7uisWGNm8a5-7JW7PVD9zPWPYaSahhC7qrJ_ZxLdPlw1SmFpkxI4DBzGeJQiUZc0o76Yo1lt7_abhpSEsYjH8XBIDiqjf4UILejL8D85CoSug9P67bpb4BTCtHg7QqoXVOvMcawYYppLYSXMO9RGcraSjuB1jylKEcroeNB60-3pL8kIPSZPJcxJdgmUQaQBGVqyaPBYG1wzU_mWhnr9YOZDq6ETGle3BA"/>
+        <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/70 backdrop-blur text-amber-300 border border-amber-500/20">Generative</span>
+      </div>
+      <div class="p-4">
+        <h3 class="font-semibold text-white text-base">Abstract Data</h3>
+        <p class="text-xs text-zinc-400 font-mono mt-1">Abstract / Math Art</p>
+        <p class="text-[11px] text-zinc-500 mt-2">By Neon Heart</p>
+      </div>
+    </div>
+    <!-- Art 3 -->
+    <div class="rounded-2xl overflow-hidden bg-cosmic-850 border border-zinc-800 group hover:border-amber-500/40 transition">
+      <div class="relative aspect-square overflow-hidden">
+        <img alt="Synthetic Landscape" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0KbC0Gg7_A9KybE7-466oLi-5vY6M6e5ON5OI9z41vhB6glgusVEViGt49aNjDmoX43PpVUMo_TbNYpFO1SCziQC_70HtuEuyp0lf_gYGB7e-4-qcp2qmKco5b9YCKw-RfPXhE6D3h7X22wu__VGEDp6aA9CIECUZhLBhmetUUmsvRY00vnIascQL-easyZ33hxHuaV4bVJhlSMPPfVOW2FGpy1WJrAoBHhxAmsE3EzXc0ESDuHGdeQ"/>
+        <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/70 backdrop-blur text-amber-300 border border-amber-500/20">Landscape AI</span>
+      </div>
+      <div class="p-4">
+        <h3 class="font-semibold text-white text-base">Synthetic Landscape</h3>
+        <p class="text-xs text-zinc-400 font-mono mt-1">Environment / 3D Gen</p>
+        <p class="text-[11px] text-zinc-500 mt-2">By Halcyon Lab</p>
+      </div>
+    </div>
+    <!-- Art 4 -->
+    <div class="rounded-2xl overflow-hidden bg-cosmic-850 border border-zinc-800 group hover:border-amber-500/40 transition">
+      <div class="relative aspect-square overflow-hidden">
+        <img alt="Algorithmic Symmetry" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDabz7mllfgNYFZZIGR5W6l6oqkV6tdvHlBevYs_0IucSDizjdxsez45jRaJPECySjVPWDzzBiZMVBKmB9s41rv06_paxRXTxmGFrYLE3x4K_DOKuAfePfvD1Jri-vWGANtSkt5o9GvyPFVXJuL4xHYn_1yqkPL23xc2KLPgp6Xunt0RShkYP5To8rr03ud6xoK3GBT0pVZKynEjQMcsvR3Zxair_AoyHIgkDwfViqMiBsSrSmbrzlpcg"/>
+        <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/70 backdrop-blur text-amber-300 border border-amber-500/20">Vector Gen</span>
+      </div>
+      <div class="p-4">
+        <h3 class="font-semibold text-white text-base">Algorithmic Symmetry</h3>
+        <p class="text-xs text-zinc-400 font-mono mt-1">Vector / Parametric</p>
+        <p class="text-[11px] text-zinc-500 mt-2">By NovaWorks</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+<!-- END: CommercialAndMusicShowcase -->
+<!-- BEGIN: ProgramsAndEventsSection -->
+<section class="py-24 border-b border-zinc-800 bg-cosmic-950" id="programs">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+<div>
+<span class="text-xs font-mono text-neon-emerald tracking-widest uppercase">Incubation &amp; Keynotes</span>
+<h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-1">IFAI Programs &amp; Summits</h2>
+</div>
+<a class="text-xs font-mono uppercase tracking-wider px-4 py-2 rounded-lg border border-zinc-700 bg-cosmic-850 hover:border-neon-emerald transition text-zinc-300 hover:text-white" href="#">
+            View All Events →
+          </a>
+</div>
+<!-- 2-Column Bento Box Events -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Event Card 1 -->
+<div class="group relative rounded-3xl overflow-hidden border border-zinc-800 bg-cosmic-850 p-3 sm:p-4 hover:border-neon-emerald/60 transition duration-300 flex flex-col justify-between">
+<div class="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-6">
+<img alt="Synthetic Realities AI Film Showcase Exhibition" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB06rJitX5YWAUH-7hmEQlNjImOMWzSuwousFeQP6NLFXhcukjImSqyo5bEFNcJIVk7IqI5eJCVa7LzfcHkhCXDpCUSss15MrevmzwOd7tfyrVMLG6J9JzIf7J2RHDJ9vgg1tpLxnHMznww1cPh4ftE0wLlBGBj1CK0D63XCwSM1bqrIXBPczUtx8wGA222PNskv9EdGWICzxIft-bkHHUfIzON2mzU6OqUBjUiKGmvq9w1rV7XYPW8yw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-cosmic-950 via-transparent to-transparent"></div>
+<span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-mono uppercase bg-black/70 backdrop-blur border border-neon-emerald/40 text-neon-emerald">
+                Physical Exhibition
+              </span>
+</div>
+<div class="px-2 pb-2">
+<div class="flex items-center gap-3 text-xs font-mono text-zinc-400 mb-2">
+<span>Jakarta Cultural Center</span>
+<span>•</span>
+<span class="text-neon-emerald">May 21, 2025</span>
+</div>
+<h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Synthetic Realities: The AI Film Showcase</h3>
+<p class="text-zinc-400 text-sm mb-6 leading-relaxed">
+                A 3-day immersive screening and live prompt battle featuring Indonesia's premiere digital artists, interactive neural screen walls, and panel discussions with global directors.
+              </p>
+<div class="flex items-center justify-between pt-4 border-t border-zinc-800/80">
+<span class="text-xs font-mono text-zinc-400">Pass: Free with RSVP</span>
+<a class="px-5 py-2 rounded-full text-xs font-mono font-semibold bg-white text-black hover:bg-neon-emerald transition-colors" href="#">
+                  Register Seat →
+                </a>
+</div>
+</div>
+</div>
+<!-- Event Card 2 -->
+<div class="group relative rounded-3xl overflow-hidden border border-zinc-800 bg-cosmic-850 p-3 sm:p-4 hover:border-neon-cyan/60 transition duration-300 flex flex-col justify-between">
+<div class="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-6">
+<img alt="The Art of Prompting Keynote and Workshop Stage" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRCq4OAeLzvtSItFxPFOpJedUD2MtZQBPtYC53C_67QOt3XuJEmN9c81fP-r6EQv4KReVdSXN58Vrz1GCqeHu_441hKipa0FlD5U-1KKJHmM_Kb2aOEbMGSkMxo0MnM2ISc1FMjRKPTVY8YHs6N4faMsRaPEoDDCH8Y3zw_q-4ScL_-klGhGOOrt5V51Y2qOHcPF1HhazqYJheuOOyPRHkYuGd_FxZnzlReHP376lQ5m7WDGDf0KW5BA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-cosmic-950 via-transparent to-transparent"></div>
+<span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-mono uppercase bg-black/70 backdrop-blur border border-neon-cyan/40 text-neon-cyan">
+                Summit &amp; Masterclass
+              </span>
+</div>
+<div class="px-2 pb-2">
+<div class="flex items-center gap-3 text-xs font-mono text-zinc-400 mb-2">
+<span>Main Auditorium &amp; Online Stream</span>
+<span>•</span>
+<span class="text-neon-cyan">June 14, 2025</span>
+</div>
+<h3 class="text-xl sm:text-2xl font-bold text-white mb-2">The Art of Prompting: Architectural Minds</h3>
+<p class="text-zinc-400 text-sm mb-6 leading-relaxed">
+                Intensive masterclass diving deep into generative latent spaces, custom LoRA model training for local Indonesian indigenous motifs, and ethical AI copyright frameworks.
+              </p>
+<div class="flex items-center justify-between pt-4 border-t border-zinc-800/80">
+<span class="text-xs font-mono text-zinc-400">Limited Capacity: 150 Seats</span>
+<a class="px-5 py-2 rounded-full text-xs font-mono font-semibold bg-white text-black hover:bg-neon-cyan transition-colors" href="#">
+                  Apply for Masterclass →
+                </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: ProgramsAndEventsSection -->
+<!-- BEGIN: ManifestoAndAboutSection -->
+<section class="py-24 bg-cosmic-900 border-b border-zinc-800 relative" id="manifesto">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Manifesto Header -->
+<div class="max-w-3xl mb-16">
+<span class="text-xs font-mono uppercase tracking-widest text-neon-emerald">Manifesto &amp; Ecosystem</span>
+<h2 class="text-3xl sm:text-5xl font-bold text-white tracking-tight mt-3 leading-tight">
+            Where Art and Intelligence Converge.
+          </h2>
+<p class="mt-4 text-base sm:text-lg text-zinc-400 font-light leading-relaxed">
+            Indonesia Future Arts &amp; Intelligence (IFAI) is a non-profit foundation and movement creating a sanctuary for local creators to showcase, learn, and sculpt tomorrow's digital heritage. We believe artificial intelligence is not a replacement for human soul, but an infinitely expandable medium.
+          </p>
+</div>
+<!-- 4 Pillars Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Vision -->
+<div class="p-8 rounded-2xl bg-cosmic-850/60 border border-zinc-800 hover:border-zinc-700 transition">
+<div class="w-10 h-10 rounded-lg bg-neon-emerald/10 border border-neon-emerald/30 flex items-center justify-center text-neon-emerald font-mono mb-6">
+              01
+            </div>
+<h3 class="text-xl font-bold text-white mb-2">Our Vision</h3>
+<p class="text-sm text-zinc-400 leading-relaxed">
+              Redefining creativity in Indonesia through the seamless fusion of art and AI. Inspiring creators to see algorithms not as competitors, but as high-velocity collaborator brushes in imagination.
+            </p>
+</div>
+<!-- Mission -->
+<div class="p-8 rounded-2xl bg-cosmic-850/60 border border-zinc-800 hover:border-zinc-700 transition">
+<div class="w-10 h-10 rounded-lg bg-neon-cyan/10 border border-neon-cyan/30 flex items-center justify-center text-neon-cyan font-mono mb-6">
+              02
+            </div>
+<h3 class="text-xl font-bold text-white mb-2">Our Mission</h3>
+<p class="text-sm text-zinc-400 leading-relaxed">
+              Build a thriving, interconnected ecosystem for AI creators across all islands. Showcase groundbreaking works combining art and deep intelligence, offering incubation grants and global stages.
+            </p>
+</div>
+<!-- Curators & Jury -->
+<div class="p-8 rounded-2xl bg-cosmic-850/60 border border-zinc-800 hover:border-zinc-700 transition">
+<div class="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-white font-mono mb-6">
+              03
+            </div>
+<h3 class="text-xl font-bold text-white mb-2">Curators &amp; Jury</h3>
+<p class="text-sm text-zinc-400 leading-relaxed">
+              A diverse council of visionary creative directors, neural technologists, and cultural anthropologists who ensure every piece showcased reflects innovation, technical depth, and artistic integrity.
+            </p>
+</div>
+<!-- The Story -->
+<div class="p-8 rounded-2xl bg-cosmic-850/60 border border-zinc-800 hover:border-zinc-700 transition">
+<div class="w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-300 font-mono mb-6">
+              04
+            </div>
+<h3 class="text-xl font-bold text-white mb-2">The Story of IFAI</h3>
+<p class="text-sm text-zinc-400 leading-relaxed">
+              Founded in 2025, IFAI was born from a shared vision among creators who saw AI as a brand-new semantic language of expression. Today, we bridge creators, brands, and public audiences together.
+            </p>
+</div>
+</div>
+<!-- Call to action pill -->
+<div class="mt-16 p-8 rounded-3xl bg-gradient-to-r from-cosmic-800 via-cosmic-850 to-cosmic-800 border border-zinc-700 flex flex-col md:flex-row items-center justify-between gap-6">
+<div>
+<h4 class="text-xl font-bold text-white">Join the Indonesian AI Vanguard</h4>
+<p class="text-xs sm:text-sm text-zinc-400 mt-1">Submit your autonomous films, commercial work, or neural compositions for upcoming seasonal curations.</p>
+</div>
+<a class="px-8 py-3.5 rounded-full text-xs font-mono font-bold tracking-wider uppercase bg-neon-emerald text-black hover:bg-neon-cyan transition-colors whitespace-nowrap" href="#">
+            Submit Your Creation →
+          </a>
+</div>
+</div>
+</section>
+<!-- END: ManifestoAndAboutSection -->
+</main>
+<!-- BEGIN: MainFooter -->
+<footer class="bg-cosmic-950 text-zinc-400 text-xs border-t border-zinc-800 pt-16 pb-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Top Grid -->
+<div class="grid grid-cols-1 md:grid-cols-5 gap-12 pb-12 border-b border-zinc-850">
+<!-- Brand Info -->
+<div class="md:col-span-2 space-y-4">
+<a class="flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-emerald rounded" href="#">
+<img src="image/logo.png" alt="IFAI Future Arts Logo" class="h-4 sm:h-5 object-contain" />
+</a>
+<p class="text-xs text-zinc-400 leading-relaxed max-w-sm">
+            Indonesia Future Arts &amp; Intelligence is Indonesia's leading platform for AI-driven creativity, bridging art, technology, and human imagination through films, visuals, and synthetic music.
+          </p>
+<div class="text-[11px] text-zinc-500 font-mono pt-2">
+            Based in Jakarta, Indonesia • Empowering Nationwide Creators
+          </div>
+</div>
+<!-- Links Column 1 -->
+<div>
+<h5 class="text-white font-mono uppercase text-xs tracking-wider mb-4">Explore</h5>
+<ul class="space-y-2.5">
+<li><a class="hover:text-neon-emerald transition-colors" href="#showcase">AI Film Showcase</a></li>
+<li><a class="hover:text-neon-emerald transition-colors" href="#showcase">Commercial Video</a></li>
+<li><a class="hover:text-neon-emerald transition-colors" href="#showcase">Neural Soundscapes</a></li>
+<li><a class="hover:text-neon-emerald transition-colors" href="#programs">Summits &amp; Events</a></li>
+<li><a class="hover:text-neon-emerald transition-colors" href="#">Archive 2025</a></li>
+</ul>
+</div>
+<!-- Links Column 2 -->
+<div>
+<h5 class="text-white font-mono uppercase text-xs tracking-wider mb-4">Resources</h5>
+<ul class="space-y-2.5">
+<li><a class="hover:text-neon-cyan transition-colors" href="#">Journal &amp; Essays</a></li>
+<li><a class="hover:text-neon-cyan transition-colors" href="#">Prompt Tutorials</a></li>
+<li><a class="hover:text-neon-cyan transition-colors" href="#">AI Tools Directory</a></li>
+<li><a class="hover:text-neon-cyan transition-colors" href="#">Case Studies</a></li>
+<li><a class="hover:text-neon-cyan transition-colors" href="#">Press Kit &amp; Brand</a></li>
+</ul>
+</div>
+<!-- Links Column 3 -->
+<div>
+<h5 class="text-white font-mono uppercase text-xs tracking-wider mb-4">Connect</h5>
+<ul class="space-y-2.5">
+<li><a class="hover:text-white transition-colors" href="#">Contact Curators</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Join Discord Community</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Partner With Us</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Newsletter Signup</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Terms &amp; Privacy</a></li>
+</ul>
+</div>
+</div>
+<!-- Bottom Credits & Social -->
+<div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-zinc-500 text-[11px] font-mono">
+<div>
+          © 2025 IFAI (Indonesia Future Arts &amp; Intelligence). All rights reserved.
+        </div>
+<div class="flex items-center gap-6">
+<a class="hover:text-white transition-colors" href="#">LinkedIn</a>
+<a class="hover:text-white transition-colors" href="#">Instagram</a>
+<a class="hover:text-white transition-colors" href="#">YouTube</a>
+<a class="hover:text-white transition-colors" href="#">Telegram</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: MainFooter -->
+<!-- Scroll JS for Header -->
+<script>
+  window.addEventListener('scroll', () => {
+    const header = document.getElementById('main-header');
+    if (window.scrollY > 50) {
+      header.classList.remove('bg-transparent', 'border-transparent');
+      header.classList.add('bg-cosmic-950/80', 'backdrop-blur-xl', 'border-zinc-800/80');
+    } else {
+      header.classList.add('bg-transparent', 'border-transparent');
+      header.classList.remove('bg-cosmic-950/80', 'backdrop-blur-xl', 'border-zinc-800/80');
+    }
+  });
+</script>
+</body>
+</html>
