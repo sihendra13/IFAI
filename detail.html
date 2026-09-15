@@ -174,32 +174,43 @@
 <span class="material-symbols-outlined text-[18px] text-primary-container">verified</span>
 </div>
 <span class="font-label-meta text-label-meta text-outline">Bandung, West Java // ID</span>
-<span class="font-label-code text-label-code text-secondary-container mt-0.5">14.8k Archive Followers</span>
 </div>
 </div>
 <p class="font-body-sm text-body-sm text-on-surface-variant">
               Independent AI cinematic collective pioneering the fusion of speculative sci-fi with local Nusantara myth ontology. Based in a Bandung computational research lab.
             </p>
-<div class="flex items-center gap-space-xs pt-space-xs">
-<button class="flex-1 py-2 rounded-lg bg-[#00f5a0] text-[#002111] font-title-sm text-body-sm font-semibold hover:shadow-[0_0_18px_rgba(0,245,160,0.4)] transition-all">Follow Collective</button>
-<a class="p-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors" href="https://artstation.com" target="_blank" title="ArtStation">
-<span class="material-symbols-outlined text-[20px]">palette</span>
+<!-- FIELD: creator_social_links (all optional — admin checks which platforms the creator has) -->
+<div class="flex items-center flex-wrap gap-space-xs pt-space-xs">
+<a class="p-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors" href="https://instagram.com" target="_blank" title="Instagram">
+<span class="material-symbols-outlined text-[20px]">photo_camera</span>
 </a>
-<a class="p-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors" href="https://behance.net" target="_blank" title="Behance">
-<span class="material-symbols-outlined text-[20px]">language</span>
+<a class="p-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors" href="https://facebook.com" target="_blank" title="Facebook">
+<span class="material-symbols-outlined text-[20px]">thumb_up</span>
 </a>
-<a class="p-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-error transition-colors" href="https://youtube.com" target="_blank" title="YouTube Channel">
+<a class="p-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-error transition-colors" href="https://youtube.com" target="_blank" title="YouTube">
 <span class="material-symbols-outlined text-[20px]">smart_display</span>
 </a>
+<a class="p-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors" href="https://tiktok.com" target="_blank" title="TikTok">
+<span class="material-symbols-outlined text-[20px]">music_note</span>
+</a>
+<a class="p-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors" href="https://behance.net" target="_blank" title="Behance">
+<span class="material-symbols-outlined text-[20px]">palette</span>
+</a>
+<a class="p-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors" href="https://linkedin.com" target="_blank" title="LinkedIn">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+</a>
 </div>
 </div>
-<!-- Contact / Follow-up CTA -->
+<!-- Share CTA -->
 <div class="p-space-lg rounded-2xl bg-gradient-to-br from-surface-container to-surface-container-high flex flex-col gap-space-sm">
 <h4 class="font-title-sm text-title-sm text-on-surface">Suka dengan karya ini?</h4>
 <p class="font-body-sm text-body-sm text-on-surface-variant">
-              Hubungi kolektif kreator untuk kolaborasi, lisensi penggunaan, atau sekadar memberi apresiasi.
+              Bagikan karya ini ke teman atau komunitas kamu.
             </p>
-<a class="mt-space-xs py-2 px-space-md text-center rounded-lg bg-[#00f5a0]/10 hover:bg-[#00f5a0]/20 text-[#00f5a0] border border-[#00f5a0]/30 font-label-code text-label-code transition-all font-semibold" data-path="creator-hub" href="#">Hubungi Kreator →</a>
+<button class="mt-space-xs py-2 px-space-md text-center rounded-lg bg-[#00f5a0]/10 hover:bg-[#00f5a0]/20 text-[#00f5a0] border border-[#00f5a0]/30 font-label-code text-label-code transition-all font-semibold flex items-center justify-center gap-1.5" onclick="shareWork()">
+<span class="material-symbols-outlined text-[18px]">share</span>
+              Bagikan Karya →
+            </button>
 </div>
 </aside>
 </div>
@@ -324,6 +335,21 @@
 </div>
 </div>
 <script>
+  // Share this work (native share sheet, falls back to copy link)
+  function shareWork() {
+    const shareData = {
+      title: document.title,
+      text: 'Lihat karya ini di IFAI',
+      url: window.location.href
+    };
+    if (navigator.share) {
+      navigator.share(shareData).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      alert('Tautan disalin ke clipboard!');
+    }
+  }
+
   // Like button micro-interaction
   let isLiked = false;
   function toggleLike(btn) {
