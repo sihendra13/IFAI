@@ -86,7 +86,7 @@
 </div>
 <!-- Video Embed Frame — FIELD: youtube_url (admin pastes a YouTube link, this ID is extracted from it) -->
 <div class="aspect-video w-full relative bg-surface-container-lowest">
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" class="w-full h-full object-cover" id="cinema-player" src="https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ?autoplay=0&amp;rel=0&amp;modestbranding=1&amp;controls=1&amp;showinfo=0" title="Cosmic Horizon - AI Cinematic Film">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" class="w-full h-full object-cover transition-opacity duration-300" id="cinema-player" src="https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ?autoplay=0&amp;rel=0&amp;modestbranding=1&amp;controls=1&amp;showinfo=0" title="Cosmic Horizon - AI Cinematic Film">
 </iframe>
 </div>
 </div>
@@ -450,6 +450,18 @@
   const SUPABASE_ANON_KEY = 'sb_publishable_qf2j0vC_6D63ziteKUflCQ_u-rYaIgd';
   const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+  // Hide the hardcoded fallback video immediately (before the Supabase fetch
+  // resolves) so visitors never see a flash of the wrong video when a real
+  // work id is in the URL.
+  const initialWorkId = new URLSearchParams(window.location.search).get('id');
+  const cinemaPlayer = document.getElementById('cinema-player');
+  const fallbackPlayerSrc = cinemaPlayer ? cinemaPlayer.src : '';
+  if (initialWorkId && cinemaPlayer) {
+    cinemaPlayer.style.opacity = '0';
+    cinemaPlayer.src = '';
+    cinemaPlayer.parentElement.classList.add('animate-pulse');
+  }
+
   function extractYouTubeId(url) {
     const match = (url || '').match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([A-Za-z0-9_-]{11})/);
     return match ? match[1] : null;
@@ -480,6 +492,12 @@
 
     if (error || !work) {
       console.warn('IFAI: work not found for id', workId, error);
+      // restore the fallback video/reveal it since there's no real data to show instead
+      if (cinemaPlayer) {
+        cinemaPlayer.src = fallbackPlayerSrc;
+        cinemaPlayer.style.opacity = '1';
+        cinemaPlayer.parentElement.classList.remove('animate-pulse');
+      }
       return; // keep hardcoded fallback content
     }
 
@@ -537,6 +555,8 @@
     if (player && videoId) {
       player.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=0&rel=0&modestbranding=1&controls=1&showinfo=0`;
       player.title = title;
+      player.style.opacity = '1';
+      player.parentElement.classList.remove('animate-pulse');
     }
 
     // Creator card
