@@ -101,18 +101,15 @@
 <span class="hidden sm:inline">Fullscreen</span>
 </button>
 <div class="h-6 w-px bg-surface-variant mx-1"></div>
-<button class="flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-on-surface font-title-sm text-body-sm transition-all" id="btn-share" onclick="navigator.clipboard.writeText(window.location.href); alert('Artwork link copied to clipboard!');">
+<button class="flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-on-surface font-title-sm text-body-sm transition-all" id="btn-share" onclick="shareWork()">
 <span class="material-symbols-outlined text-[18px]">share</span>
 <span class="hidden sm:inline">Share</span>
 </button>
 </div>
 <div class="flex items-center gap-space-xs">
 <button class="flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface transition-all font-label-code text-label-code" id="btn-like" onclick="toggleLike(this)">
-<span class="material-symbols-outlined text-[18px] text-error" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span id="like-icon" class="material-symbols-outlined text-[18px] text-on-surface-variant" style="font-variation-settings: 'FILL' 0;">favorite</span>
 <span id="like-count" class="">1.4k</span>
-</button>
-<button class="p-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-all" id="btn-bookmark" onclick="toggleBookmark(this)">
-<span class="material-symbols-outlined text-[18px]">bookmark</span>
 </button>
 </div>
 </div>
@@ -356,29 +353,17 @@
   let isLiked = false;
   function toggleLike(btn) {
     const countSpan = document.getElementById('like-count');
+    const icon = document.getElementById('like-icon');
     if (!isLiked) {
       countSpan.innerText = '1,401';
-      btn.classList.add('bg-primary-container/20');
+      icon.style.fontVariationSettings = "'FILL' 1";
+      icon.style.color = '#ffb4ab';
       isLiked = true;
     } else {
       countSpan.innerText = '1.4k';
-      btn.classList.remove('bg-primary-container/20');
-      isLiked = false;
-    }
-  }
-
-  // Bookmark toggle
-  let isBookmarked = false;
-  function toggleBookmark(btn) {
-    const icon = btn.querySelector('.material-symbols-outlined');
-    if (!isBookmarked) {
-      icon.style.fontVariationSettings = "'FILL' 1";
-      icon.classList.add('text-primary-container');
-      isBookmarked = true;
-    } else {
       icon.style.fontVariationSettings = "'FILL' 0";
-      icon.classList.remove('text-primary-container');
-      isBookmarked = false;
+      icon.style.color = '';
+      isLiked = false;
     }
   }
 
