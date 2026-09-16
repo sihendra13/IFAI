@@ -413,6 +413,14 @@
   const btnToggleNewCreator = document.getElementById('btn-toggle-new-creator');
   const creatorEditActions = document.getElementById('creator-edit-actions');
   const CREATOR_FIELD_IDS = ['creator-name','creator-location','creator-bio','creator-instagram','creator-facebook','creator-youtube','creator-tiktok','creator-behance','creator-linkedin'];
+
+  // Auto-prefix social links with https:// if admin forgets it — a
+  // link saved as "www.tiktok.com/@x" would otherwise resolve as a
+  // relative path on the live site instead of an external URL.
+  function normalizeSocialUrl(value) {
+    if (!value) return null;
+    return /^https?:\/\//i.test(value) ? value : 'https://' + value;
+  }
   const avatarPreview = document.getElementById('creator-avatar-preview');
   const avatarPlaceholder = document.getElementById('creator-avatar-placeholder');
   const avatarFileInput = document.getElementById('creator-avatar-file');
@@ -546,12 +554,12 @@
       location: document.getElementById('creator-location').value.trim() || null,
       avatar_url: avatarUrl,
       bio: document.getElementById('creator-bio').value.trim() || null,
-      social_instagram: document.getElementById('creator-instagram').value.trim() || null,
-      social_facebook: document.getElementById('creator-facebook').value.trim() || null,
-      social_youtube: document.getElementById('creator-youtube').value.trim() || null,
-      social_tiktok: document.getElementById('creator-tiktok').value.trim() || null,
-      social_behance: document.getElementById('creator-behance').value.trim() || null,
-      social_linkedin: document.getElementById('creator-linkedin').value.trim() || null
+      social_instagram: normalizeSocialUrl(document.getElementById('creator-instagram').value.trim()),
+      social_facebook: normalizeSocialUrl(document.getElementById('creator-facebook').value.trim()),
+      social_youtube: normalizeSocialUrl(document.getElementById('creator-youtube').value.trim()),
+      social_tiktok: normalizeSocialUrl(document.getElementById('creator-tiktok').value.trim()),
+      social_behance: normalizeSocialUrl(document.getElementById('creator-behance').value.trim()),
+      social_linkedin: normalizeSocialUrl(document.getElementById('creator-linkedin').value.trim())
     };
     const { error } = await sb.from('creators').update(payload).eq('id', editingCreatorId);
     if (error) {
@@ -608,12 +616,12 @@
       location: document.getElementById('creator-location').value.trim() || null,
       avatar_url: avatarUrl,
       bio: document.getElementById('creator-bio').value.trim() || null,
-      social_instagram: document.getElementById('creator-instagram').value.trim() || null,
-      social_facebook: document.getElementById('creator-facebook').value.trim() || null,
-      social_youtube: document.getElementById('creator-youtube').value.trim() || null,
-      social_tiktok: document.getElementById('creator-tiktok').value.trim() || null,
-      social_behance: document.getElementById('creator-behance').value.trim() || null,
-      social_linkedin: document.getElementById('creator-linkedin').value.trim() || null
+      social_instagram: normalizeSocialUrl(document.getElementById('creator-instagram').value.trim()),
+      social_facebook: normalizeSocialUrl(document.getElementById('creator-facebook').value.trim()),
+      social_youtube: normalizeSocialUrl(document.getElementById('creator-youtube').value.trim()),
+      social_tiktok: normalizeSocialUrl(document.getElementById('creator-tiktok').value.trim()),
+      social_behance: normalizeSocialUrl(document.getElementById('creator-behance').value.trim()),
+      social_linkedin: normalizeSocialUrl(document.getElementById('creator-linkedin').value.trim())
     };
     const { data, error } = await sb.from('creators').insert(payload).select().single();
     if (error) {
