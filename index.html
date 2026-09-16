@@ -96,7 +96,7 @@
 </head>
 <body class="bg-cosmic-900 text-zinc-100 antialiased selection:bg-neon-emerald selection:text-black">
 <!-- BEGIN: MainHeader -->
-<header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-transparent border-b border-transparent transition-all duration-500">
+<header id="main-header" class="fixed top-4 left-4 right-4 sm:left-6 sm:right-6 lg:left-8 lg:right-8 z-50 bg-transparent border border-transparent rounded-full transition-all duration-500">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
 <!-- Brand Logo -->
 <a class="flex items-center group focus:outline-none rounded" href="index.html">
@@ -986,10 +986,10 @@
     const header = document.getElementById('main-header');
     if (window.scrollY > 50) {
       header.classList.remove('bg-transparent', 'border-transparent');
-      header.classList.add('bg-cosmic-950/80', 'backdrop-blur-xl', 'border-zinc-700');
+      header.classList.add('bg-cosmic-950/80', 'backdrop-blur-xl', 'border-zinc-700', 'shadow-lg', 'shadow-black/40');
     } else {
       header.classList.add('bg-transparent', 'border-transparent');
-      header.classList.remove('bg-cosmic-950/80', 'backdrop-blur-xl', 'border-zinc-700');
+      header.classList.remove('bg-cosmic-950/80', 'backdrop-blur-xl', 'border-zinc-700', 'shadow-lg', 'shadow-black/40');
     }
   });
 </script>
