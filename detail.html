@@ -46,9 +46,28 @@
 <span data-i18n="nav.join" class="relative z-10" style="font-family: 'Space Grotesk', sans-serif;">Join Community</span>
 <div class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-[#f75500] transition-transform duration-300 ease-out"></div>
 </a>
+<button type="button" id="mobile-menu-toggle" class="md:hidden flex items-center justify-center w-9 h-9 rounded-full border border-zinc-700 hover:border-zinc-500 text-zinc-300 hover:text-white transition-colors focus:outline-none" aria-label="Open menu" aria-expanded="false">
+<svg id="mobile-menu-icon-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+<svg id="mobile-menu-icon-close" class="hidden w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+</button>
 </div>
 </div>
 </header>
+<!-- Mobile Menu Panel -->
+<div id="mobile-menu-panel" class="hidden md:hidden fixed top-24 left-4 right-4 sm:left-6 sm:right-6 z-40 bg-cosmic-950/95 backdrop-blur-xl border border-zinc-700 rounded-3xl shadow-lg shadow-black/40 p-6 flex flex-col gap-4">
+<a data-i18n="nav.showcase" class="text-zinc-200 hover:text-neon-emerald transition-colors text-base font-medium" href="index.html#showcase">Showcase</a>
+<a data-i18n="nav.programs" class="text-zinc-200 hover:text-neon-emerald transition-colors text-base font-medium" href="index.html#programs">Programs</a>
+<a data-i18n="nav.about" class="text-zinc-200 hover:text-neon-emerald transition-colors text-base font-medium" href="index.html#manifesto">About</a>
+<div class="h-px bg-zinc-800 my-1"></div>
+<div class="flex items-center justify-between">
+<button type="button" id="lang-toggle-mobile" class="flex items-center gap-1 text-xs font-mono text-zinc-400 hover:text-white uppercase tracking-wider transition-colors border border-zinc-700 hover:border-zinc-500 rounded-full px-3 py-1.5 focus:outline-none" aria-label="Switch language">
+<span data-lang-btn="en" class="px-1">EN</span>
+<span class="text-zinc-600">/</span>
+<span data-lang-btn="id" class="px-1">ID</span>
+</button>
+<a data-i18n="nav.login" class="text-xs font-mono text-zinc-300 hover:text-white uppercase tracking-wider transition-colors" href="#">Log In</a>
+</div>
+</div>
 <!-- END: MainHeader --><main class="w-full pt-20 bg-background"><div class="flex flex-col w-full">
 <!-- Subtle Spatial Background Atmosphere -->
 <div class="relative w-full overflow-hidden">
@@ -511,12 +530,37 @@
 
   window.IFAI_I18N = { getLang, setLang, applyLanguage, dict: DICT };
 
-  const toggleBtn = document.getElementById('lang-toggle');
-  if (toggleBtn) {
-    toggleBtn.addEventListener('click', () => setLang(getLang() === 'en' ? 'id' : 'en'));
-  }
+  document.querySelectorAll('#lang-toggle, #lang-toggle-mobile').forEach((btn) => {
+    btn.addEventListener('click', () => setLang(getLang() === 'en' ? 'id' : 'en'));
+  });
 
   applyLanguage(getLang());
+
+  // ---------- Mobile menu toggle ----------
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+  const mobileMenuIconOpen = document.getElementById('mobile-menu-icon-open');
+  const mobileMenuIconClose = document.getElementById('mobile-menu-icon-close');
+  function closeMobileMenu() {
+    mobileMenuPanel.classList.add('hidden');
+    mobileMenuIconOpen.classList.remove('hidden');
+    mobileMenuIconClose.classList.add('hidden');
+    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+  }
+  if (mobileMenuToggle && mobileMenuPanel) {
+    mobileMenuToggle.addEventListener('click', () => {
+      const isHidden = mobileMenuPanel.classList.contains('hidden');
+      if (isHidden) {
+        mobileMenuPanel.classList.remove('hidden');
+        mobileMenuIconOpen.classList.add('hidden');
+        mobileMenuIconClose.classList.remove('hidden');
+        mobileMenuToggle.setAttribute('aria-expanded', 'true');
+      } else {
+        closeMobileMenu();
+      }
+    });
+    mobileMenuPanel.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMobileMenu));
+  }
 })();
 </script>
 
