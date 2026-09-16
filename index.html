@@ -62,6 +62,9 @@
     .glow-orange {
       box-shadow: 0 0 25px -4px rgba(247, 85, 0, 0.45);
     }
+    .glow-white {
+      box-shadow: 0 0 25px -4px rgba(255, 255, 255, 0.35);
+    }
     .text-glow-neon {
       text-shadow: 0 0 16px rgba(0, 255, 157, 0.45);
     }
@@ -145,8 +148,9 @@
     <p data-i18n="hero.subtitle" class="text-sm sm:text-base text-zinc-300 font-light leading-relaxed mb-6 max-w-2xl drop-shadow-md">
       Indonesia's Premier Stage for AI-Driven Arts &amp; Intelligence.
     </p>
-    <a href="#showcase" class="relative px-8 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase overflow-hidden bg-white/10 hover:bg-white hover:text-black backdrop-blur-md border border-white/20 text-white transition-colors duration-200">
+    <a href="#showcase" class="relative group px-8 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase overflow-hidden border border-white/50 text-white bg-cosmic-800/80 hover:text-black transition-all duration-300 glow-white">
       <span data-i18n="hero.cta" class="relative z-10">Explore</span>
+      <div class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-white transition-transform duration-300 ease-out"></div>
     </a>
   </div>
 </div>
