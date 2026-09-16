@@ -23,19 +23,24 @@
 </a>
 <!-- Primary Navigation Links -->
 <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide font-body-md">
-<a class="text-zinc-300 hover:text-neon-emerald transition-colors" href="index.html#showcase">Showcase</a>
-<a class="text-zinc-300 hover:text-neon-emerald transition-colors" href="index.html#programs">Programs</a>
+<a data-i18n="nav.showcase" class="text-zinc-300 hover:text-neon-emerald transition-colors" href="index.html#showcase">Showcase</a>
+<a data-i18n="nav.programs" class="text-zinc-300 hover:text-neon-emerald transition-colors" href="index.html#programs">Programs</a>
 <a class="hidden text-zinc-300 hover:text-neon-emerald transition-colors" href="index.html#manifesto">Creator Hub</a>
 <a class="hidden text-zinc-300 hover:text-neon-emerald transition-colors" href="index.html#manifesto">Journal</a>
-<a class="text-zinc-300 hover:text-neon-emerald transition-colors" href="index.html#manifesto">About</a>
+<a data-i18n="nav.about" class="text-zinc-300 hover:text-neon-emerald transition-colors" href="index.html#manifesto">About</a>
 </nav>
 <!-- Action Buttons -->
 <div class="flex items-center gap-4">
-<a class="hidden sm:inline-block text-xs font-mono text-zinc-300 hover:text-white uppercase tracking-wider transition-colors" href="#">
+<button type="button" id="lang-toggle" class="hidden sm:flex items-center gap-1 text-[11px] font-mono text-zinc-400 hover:text-white uppercase tracking-wider transition-colors border border-zinc-700 hover:border-zinc-500 rounded-full px-2.5 py-1" aria-label="Switch language">
+<span data-lang-btn="en" class="px-1">EN</span>
+<span class="text-zinc-600">/</span>
+<span data-lang-btn="id" class="px-1">ID</span>
+</button>
+<a data-i18n="nav.login" class="hidden sm:inline-block text-xs font-mono text-zinc-300 hover:text-white uppercase tracking-wider transition-colors" href="#">
           Log In
         </a>
 <a class="relative group px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase overflow-hidden border border-neon-emerald/50 text-white bg-cosmic-800/80 hover:bg-neon-emerald hover:text-black transition-all duration-300 glow-emerald" href="index.html#programs">
-<span class="relative z-10" style="font-family: 'Space Grotesk', sans-serif;">Join Community</span>
+<span data-i18n="nav.join" class="relative z-10" style="font-family: 'Space Grotesk', sans-serif;">Join Community</span>
 <div class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-neon-emerald transition-transform duration-300 ease-out"></div>
 </a>
 </div>
@@ -52,7 +57,7 @@
 <div class="flex flex-wrap items-center gap-space-xs font-label-code text-label-code text-on-surface-variant">
 <a class="hover:text-primary transition-colors flex items-center gap-1" data-path="showcase" href="index.html">
 <span class="material-symbols-outlined text-[16px] text-outline">database</span>
-<span class="">Archive</span>
+<span data-i18n="detail.archive">Archive</span>
 </a>
 <span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
 <!-- FIELD: category -->
@@ -93,15 +98,15 @@
 <!-- Quick Action Bar -->
 <div class="mt-space-sm w-full p-space-sm rounded-xl bg-surface-container-low flex flex-wrap items-center justify-between gap-space-md shadow-lg">
 <div class="flex flex-wrap items-center gap-space-xs sm:gap-space-sm">
-<button class="flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-[#00f5a0] text-[#002111] font-title-sm text-body-sm font-semibold hover:shadow-[0_0_20px_rgba(0,245,160,0.5)] transition-all" id="btn-cinema-mode"><span class="material-symbols-outlined text-[18px]">theater_comedy</span><span class="">Cinema Mode</span></button>
+<button class="flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-[#00f5a0] text-[#002111] font-title-sm text-body-sm font-semibold hover:shadow-[0_0_20px_rgba(0,245,160,0.5)] transition-all" id="btn-cinema-mode"><span class="material-symbols-outlined text-[18px]">theater_comedy</span><span data-i18n="detail.cinemaMode">Cinema Mode</span></button>
 <button class="flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-title-sm text-body-sm transition-all" onclick="document.getElementById('cinema-player').requestFullscreen()">
 <span class="material-symbols-outlined text-[18px]">fullscreen</span>
-<span class="hidden sm:inline">Fullscreen</span>
+<span data-i18n="detail.fullscreen" class="hidden sm:inline">Fullscreen</span>
 </button>
 <div class="h-6 w-px bg-surface-variant mx-1"></div>
 <button class="flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-on-surface font-title-sm text-body-sm transition-all" id="btn-share" onclick="shareWork()">
 <span class="material-symbols-outlined text-[18px]">share</span>
-<span class="hidden sm:inline">Share</span>
+<span data-i18n="detail.share" class="hidden sm:inline">Share</span>
 </button>
 </div>
 <div class="flex items-center gap-space-xs">
@@ -131,7 +136,7 @@
 <article class="p-space-lg rounded-xl bg-surface-container-low flex flex-col gap-space-md relative overflow-hidden">
 <div class="flex items-center gap-space-xs">
 <span class="material-symbols-outlined text-primary-container text-[20px]">auto_stories</span>
-<h2 class="font-title-sm text-title-sm uppercase tracking-wider text-on-surface">Synopsis &amp; Curatorial Concept</h2>
+<h2 data-i18n="detail.synopsisHeader" class="font-title-sm text-title-sm uppercase tracking-wider text-on-surface">Synopsis &amp; Curatorial Concept</h2>
 </div>
 <div id="dp-description">
 <p class="text-[14px] leading-relaxed text-on-surface-variant leading-relaxed">
@@ -200,13 +205,13 @@
 </div>
 <!-- Share CTA -->
 <div class="p-space-lg rounded-2xl bg-gradient-to-br from-surface-container to-surface-container-high flex flex-col gap-space-sm">
-<h4 class="font-title-sm text-title-sm text-on-surface">Suka dengan karya ini?</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant">
-              Bagikan karya ini ke teman atau komunitas kamu.
+<h4 data-i18n="detail.likeTitle" class="font-title-sm text-title-sm text-on-surface">Like this work?</h4>
+<p data-i18n="detail.likeSubtitle" class="font-body-sm text-body-sm text-on-surface-variant">
+              Share it with your friends or community.
             </p>
 <button class="mt-space-xs py-2 px-space-md text-center rounded-lg bg-[#00f5a0]/10 hover:bg-[#00f5a0]/20 text-[#00f5a0] border border-[#00f5a0]/30 font-label-code text-label-code transition-all font-semibold flex items-center justify-center gap-1.5" onclick="shareWork()">
 <span class="material-symbols-outlined text-[18px]">share</span>
-              Bagikan Karya →
+<span data-i18n="detail.shareWork">Share Work →</span>
             </button>
 </div>
 </aside>
@@ -217,12 +222,12 @@
 <div class="flex flex-col gap-space-xxs">
 <div class="flex items-center gap-space-xs">
 <span class="w-2 h-2 rounded-full bg-secondary-container"></span>
-<span class="font-label-code text-label-code uppercase tracking-wider text-secondary-container">UP NEXT</span>
+<span data-i18n="detail.upNext" class="font-label-code text-label-code uppercase tracking-wider text-secondary-container">UP NEXT</span>
 </div>
-<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight">More to Explore</h2>
+<h2 data-i18n="detail.moreToExplore" class="font-headline-md text-headline-md text-on-surface tracking-tight">More to Explore</h2>
 </div>
 <a class="font-label-code text-label-code text-primary hover:text-primary-container flex items-center gap-1 transition-colors" data-path="showcase" href="#">
-<span class="">View Full Cinema Archive</span>
+<span data-i18n="detail.viewArchive">View Full Cinema Archive</span>
 <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
 </a>
 </div>
@@ -381,50 +386,50 @@
 <a class="flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-emerald rounded" href="index.html">
 <img src="image/logo.png" alt="IFAI Future Arts Logo" class="h-4 sm:h-5 object-contain" />
 </a>
-<p class="text-xs text-zinc-400 leading-relaxed max-w-sm">
+<p data-i18n="footer.brandDesc" class="text-xs text-zinc-400 leading-relaxed max-w-sm">
             Indonesia Future Arts &amp; Intelligence is Indonesia's leading platform for AI-driven creativity, bridging art, technology, and human imagination through films, visuals, and synthetic music.
           </p>
-<div class="text-[11px] text-zinc-500 font-mono pt-2">
+<div data-i18n="footer.location" class="text-[11px] text-zinc-500 font-mono pt-2">
             Based in Jakarta, Indonesia • Empowering Nationwide Creators
           </div>
 </div>
 <!-- Links Column 1 -->
 <div>
-<h5 class="text-white font-mono uppercase text-xs tracking-wider mb-4">Explore</h5>
+<h5 data-i18n="footer.col1.title" class="text-white font-mono uppercase text-xs tracking-wider mb-4">Explore</h5>
 <ul class="space-y-2.5">
-<li><a class="hover:text-neon-emerald transition-colors" href="index.html#showcase">AI Film Showcase</a></li>
-<li><a class="hover:text-neon-emerald transition-colors" href="index.html#showcase">Commercial Video</a></li>
-<li><a class="hover:text-neon-emerald transition-colors" href="index.html#showcase">Neural Soundscapes</a></li>
-<li><a class="hover:text-neon-emerald transition-colors" href="index.html#programs">Summits &amp; Events</a></li>
-<li><a class="hover:text-neon-emerald transition-colors" href="index.html">Archive 2025</a></li>
+<li><a data-i18n="footer.col1.link1" class="hover:text-neon-emerald transition-colors" href="index.html#showcase">AI Film Showcase</a></li>
+<li><a data-i18n="footer.col1.link2" class="hover:text-neon-emerald transition-colors" href="index.html#showcase">Commercial Video</a></li>
+<li><a data-i18n="footer.col1.link3" class="hover:text-neon-emerald transition-colors" href="index.html#showcase">Neural Soundscapes</a></li>
+<li><a data-i18n="footer.col1.link4" class="hover:text-neon-emerald transition-colors" href="index.html#programs">Summits &amp; Events</a></li>
+<li><a data-i18n="footer.col1.link5" class="hover:text-neon-emerald transition-colors" href="index.html">Archive 2025</a></li>
 </ul>
 </div>
 <!-- Links Column 2 -->
 <div>
-<h5 class="text-white font-mono uppercase text-xs tracking-wider mb-4">Resources</h5>
+<h5 data-i18n="footer.col2.title" class="text-white font-mono uppercase text-xs tracking-wider mb-4">Resources</h5>
 <ul class="space-y-2.5">
-<li><a class="hover:text-neon-cyan transition-colors" href="#">Journal &amp; Essays</a></li>
-<li><a class="hover:text-neon-cyan transition-colors" href="#">Prompt Tutorials</a></li>
-<li><a class="hover:text-neon-cyan transition-colors" href="#">AI Tools Directory</a></li>
-<li><a class="hover:text-neon-cyan transition-colors" href="#">Case Studies</a></li>
-<li><a class="hover:text-neon-cyan transition-colors" href="#">Press Kit &amp; Brand</a></li>
+<li><a data-i18n="footer.col2.link1" class="hover:text-neon-cyan transition-colors" href="#">Journal &amp; Essays</a></li>
+<li><a data-i18n="footer.col2.link2" class="hover:text-neon-cyan transition-colors" href="#">Prompt Tutorials</a></li>
+<li><a data-i18n="footer.col2.link3" class="hover:text-neon-cyan transition-colors" href="#">AI Tools Directory</a></li>
+<li><a data-i18n="footer.col2.link4" class="hover:text-neon-cyan transition-colors" href="#">Case Studies</a></li>
+<li><a data-i18n="footer.col2.link5" class="hover:text-neon-cyan transition-colors" href="#">Press Kit &amp; Brand</a></li>
 </ul>
 </div>
 <!-- Links Column 3 -->
 <div>
-<h5 class="text-white font-mono uppercase text-xs tracking-wider mb-4">Connect</h5>
+<h5 data-i18n="footer.col3.title" class="text-white font-mono uppercase text-xs tracking-wider mb-4">Connect</h5>
 <ul class="space-y-2.5">
-<li><a class="hover:text-white transition-colors" href="#">Contact Curators</a></li>
-<li><a class="hover:text-white transition-colors" href="#">Join Discord Community</a></li>
-<li><a class="hover:text-white transition-colors" href="#">Partner With Us</a></li>
-<li><a class="hover:text-white transition-colors" href="#">Newsletter Signup</a></li>
-<li><a class="hover:text-white transition-colors" href="#">Terms &amp; Privacy</a></li>
+<li><a data-i18n="footer.col3.link1" class="hover:text-white transition-colors" href="#">Contact Curators</a></li>
+<li><a data-i18n="footer.col3.link2" class="hover:text-white transition-colors" href="#">Join Discord Community</a></li>
+<li><a data-i18n="footer.col3.link3" class="hover:text-white transition-colors" href="#">Partner With Us</a></li>
+<li><a data-i18n="footer.col3.link4" class="hover:text-white transition-colors" href="#">Newsletter Signup</a></li>
+<li><a data-i18n="footer.col3.link5" class="hover:text-white transition-colors" href="#">Terms &amp; Privacy</a></li>
 </ul>
 </div>
 </div>
 <!-- Bottom Credits & Social -->
 <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-zinc-500 text-[11px] font-mono">
-<div>
+<div data-i18n="footer.copyright">
           © 2025 IFAI (Indonesia Future Arts &amp; Intelligence). All rights reserved.
         </div>
 <div class="flex items-center gap-6">
@@ -438,6 +443,81 @@
 </footer>
 
 <!-- ============================================================
+     LANGUAGE SWITCHER (EN default / ID) — static UI text only.
+     Dynamic work content picks its language separately below.
+     ============================================================ -->
+<script>
+(function () {
+  const LANG_KEY = 'ifai_lang';
+  const DICT = {
+    en: {
+      'nav.showcase': 'Showcase', 'nav.programs': 'Programs', 'nav.about': 'About',
+      'nav.login': 'Log In', 'nav.join': 'Join Community',
+      'footer.brandDesc': "Indonesia Future Arts & Intelligence is Indonesia's leading platform for AI-driven creativity, bridging art, technology, and human imagination through films, visuals, and synthetic music.",
+      'footer.location': 'Based in Jakarta, Indonesia • Empowering Nationwide Creators',
+      'footer.col1.title': 'Explore', 'footer.col1.link1': 'AI Film Showcase', 'footer.col1.link2': 'Commercial Video', 'footer.col1.link3': 'Neural Soundscapes', 'footer.col1.link4': 'Summits & Events', 'footer.col1.link5': 'Archive 2025',
+      'footer.col2.title': 'Resources', 'footer.col2.link1': 'Journal & Essays', 'footer.col2.link2': 'Prompt Tutorials', 'footer.col2.link3': 'AI Tools Directory', 'footer.col2.link4': 'Case Studies', 'footer.col2.link5': 'Press Kit & Brand',
+      'footer.col3.title': 'Connect', 'footer.col3.link1': 'Contact Curators', 'footer.col3.link2': 'Join Discord Community', 'footer.col3.link3': 'Partner With Us', 'footer.col3.link4': 'Newsletter Signup', 'footer.col3.link5': 'Terms & Privacy',
+      'footer.copyright': '© 2025 IFAI (Indonesia Future Arts & Intelligence). All rights reserved.',
+      'detail.archive': 'Archive',
+      'detail.cinemaMode': 'Cinema Mode', 'detail.fullscreen': 'Fullscreen', 'detail.share': 'Share',
+      'detail.synopsisHeader': 'Synopsis & Curatorial Concept',
+      'detail.likeTitle': 'Like this work?', 'detail.likeSubtitle': 'Share it with your friends or community.', 'detail.shareWork': 'Share Work →',
+      'detail.upNext': 'UP NEXT', 'detail.moreToExplore': 'More to Explore', 'detail.viewArchive': 'View Full Cinema Archive',
+      'detail.noSynopsis': 'No synopsis available for this work yet.',
+    },
+    id: {
+      'nav.showcase': 'Etalase', 'nav.programs': 'Program', 'nav.about': 'Tentang',
+      'nav.login': 'Masuk', 'nav.join': 'Gabung Komunitas',
+      'footer.brandDesc': 'Indonesia Future Arts & Intelligence adalah platform terdepan Indonesia untuk kreativitas berbasis AI, menjembatani seni, teknologi, dan imajinasi manusia lewat film, visual, dan musik sintetis.',
+      'footer.location': 'Berbasis di Jakarta, Indonesia • Memberdayakan Kreator Seluruh Nusantara',
+      'footer.col1.title': 'Jelajahi', 'footer.col1.link1': 'Etalase Film AI', 'footer.col1.link2': 'Video Iklan', 'footer.col1.link3': 'Lanskap Suara Neural', 'footer.col1.link4': 'Summit & Acara', 'footer.col1.link5': 'Arsip 2025',
+      'footer.col2.title': 'Sumber Daya', 'footer.col2.link1': 'Jurnal & Esai', 'footer.col2.link2': 'Tutorial Prompt', 'footer.col2.link3': 'Direktori Alat AI', 'footer.col2.link4': 'Studi Kasus', 'footer.col2.link5': 'Press Kit & Brand',
+      'footer.col3.title': 'Terhubung', 'footer.col3.link1': 'Hubungi Kurator', 'footer.col3.link2': 'Gabung Discord', 'footer.col3.link3': 'Jadi Mitra Kami', 'footer.col3.link4': 'Daftar Newsletter', 'footer.col3.link5': 'Ketentuan & Privasi',
+      'footer.copyright': '© 2025 IFAI (Indonesia Future Arts & Intelligence). Hak cipta dilindungi.',
+      'detail.archive': 'Arsip',
+      'detail.cinemaMode': 'Mode Sinema', 'detail.fullscreen': 'Layar Penuh', 'detail.share': 'Bagikan',
+      'detail.synopsisHeader': 'Sinopsis & Konsep Kuratorial',
+      'detail.likeTitle': 'Suka dengan karya ini?', 'detail.likeSubtitle': 'Bagikan karya ini ke teman atau komunitas kamu.', 'detail.shareWork': 'Bagikan Karya →',
+      'detail.upNext': 'BERIKUTNYA', 'detail.moreToExplore': 'Jelajahi Lebih Lanjut', 'detail.viewArchive': 'Lihat Arsip Sinema Lengkap',
+      'detail.noSynopsis': 'Belum ada sinopsis untuk karya ini.',
+    },
+  };
+
+  function getLang() { return localStorage.getItem(LANG_KEY) || 'en'; }
+
+  function applyLanguage(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    const dict = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach((el) => {
+      const val = dict[el.getAttribute('data-i18n')];
+      if (val != null) el.textContent = val;
+    });
+    document.querySelectorAll('[data-lang-btn]').forEach((btn) => {
+      const active = btn.getAttribute('data-lang-btn') === lang;
+      btn.classList.toggle('text-white', active);
+      btn.classList.toggle('text-zinc-600', !active);
+    });
+    window.dispatchEvent(new CustomEvent('ifai:langchange', { detail: { lang } }));
+  }
+
+  function setLang(lang) {
+    localStorage.setItem(LANG_KEY, lang);
+    applyLanguage(lang);
+  }
+
+  window.IFAI_I18N = { getLang, setLang, applyLanguage, dict: DICT };
+
+  const toggleBtn = document.getElementById('lang-toggle');
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => setLang(getLang() === 'en' ? 'id' : 'en'));
+  }
+
+  applyLanguage(getLang());
+})();
+</script>
+
+<!-- ============================================================
      DYNAMIC DETAIL LOADER — if the URL has ?id=<work id>, fetch that
      work from Supabase and populate the page. If there is no id, or
      the work can't be found, the hardcoded Cosmic Horizon content
@@ -449,6 +529,7 @@
   const SUPABASE_URL = 'https://qayckglxfmtrjqtghitx.supabase.co';
   const SUPABASE_ANON_KEY = 'sb_publishable_qf2j0vC_6D63ziteKUflCQ_u-rYaIgd';
   const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  let currentWork = null;
 
   // Hide the hardcoded fallback video immediately (before the Supabase fetch
   // resolves) so visitors never see a flash of the wrong video when a real
@@ -501,10 +582,24 @@
       return; // keep hardcoded fallback content
     }
 
-    const title = work.title_en || work.title_id || '(Untitled)';
-    const description = work.description_en || work.description_id || '';
+    currentWork = work;
+    renderWork(work, window.IFAI_I18N ? window.IFAI_I18N.getLang() : 'en');
+  }
+
+  function renderWork(work, lang) {
+    const isId = lang === 'id';
+    const title = isId
+      ? (work.title_id || work.title_en || '(Tanpa judul)')
+      : (work.title_en || work.title_id || '(Untitled)');
+    const description = isId
+      ? (work.description_id || work.description_en || '')
+      : (work.description_en || work.description_id || '');
     const creator = work.creators || {};
-    const categoryName = work.categories?.name_en || work.categories?.name_id || 'Showcase';
+    const categoryName = isId
+      ? (work.categories?.name_id || work.categories?.name_en || 'Showcase')
+      : (work.categories?.name_en || work.categories?.name_id || 'Showcase');
+    const noSynopsisText = (window.IFAI_I18N && window.IFAI_I18N.dict[lang] && window.IFAI_I18N.dict[lang]['detail.noSynopsis'])
+      || 'No synopsis available for this work yet.';
 
     document.title = title + ' | IFAI';
     const metaDesc = document.querySelector('meta[name="description"]');
@@ -545,7 +640,7 @@
           .map(p => `<p class="text-[14px] leading-relaxed text-on-surface-variant leading-relaxed">${escapeHtmlDp(p)}</p>`)
           .join('');
       } else {
-        descEl.innerHTML = '<p class="text-[14px] leading-relaxed text-on-surface-variant">Belum ada sinopsis untuk karya ini.</p>';
+        descEl.innerHTML = `<p class="text-[14px] leading-relaxed text-on-surface-variant">${escapeHtmlDp(noSynopsisText)}</p>`;
       }
     }
 
@@ -583,6 +678,10 @@
     div.textContent = str ?? '';
     return div.innerHTML;
   }
+
+  window.addEventListener('ifai:langchange', (e) => {
+    if (currentWork) renderWork(currentWork, e.detail.lang);
+  });
 
   loadWorkFromUrl();
 })();

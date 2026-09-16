@@ -98,19 +98,24 @@
 </a>
 <!-- Primary Navigation Links -->
 <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide font-jakarta">
-<a class="text-zinc-300 hover:text-neon-emerald transition-colors" href="#showcase">Showcase</a>
-<a class="text-zinc-300 hover:text-neon-emerald transition-colors" href="#programs">Programs</a>
+<a data-i18n="nav.showcase" class="text-zinc-300 hover:text-neon-emerald transition-colors" href="#showcase">Showcase</a>
+<a data-i18n="nav.programs" class="text-zinc-300 hover:text-neon-emerald transition-colors" href="#programs">Programs</a>
 <a class="hidden text-zinc-300 hover:text-neon-emerald transition-colors" href="#manifesto">Creator Hub</a>
 <a class="hidden text-zinc-300 hover:text-neon-emerald transition-colors" href="#manifesto">Journal</a>
-<a class="text-zinc-300 hover:text-neon-emerald transition-colors" href="#manifesto">About</a>
+<a data-i18n="nav.about" class="text-zinc-300 hover:text-neon-emerald transition-colors" href="#manifesto">About</a>
 </nav>
 <!-- Action Buttons -->
 <div class="flex items-center gap-4">
-<a class="hidden sm:inline-block text-xs font-mono text-zinc-300 hover:text-white uppercase tracking-wider transition-colors" href="#">
+<button type="button" id="lang-toggle" class="hidden sm:flex items-center gap-1 text-[11px] font-mono text-zinc-400 hover:text-white uppercase tracking-wider transition-colors border border-zinc-700 hover:border-zinc-500 rounded-full px-2.5 py-1" aria-label="Switch language">
+<span data-lang-btn="en" class="px-1">EN</span>
+<span class="text-zinc-600">/</span>
+<span data-lang-btn="id" class="px-1">ID</span>
+</button>
+<a data-i18n="nav.login" class="hidden sm:inline-block text-xs font-mono text-zinc-300 hover:text-white uppercase tracking-wider transition-colors" href="#">
           Log In
         </a>
 <a class="relative group px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase overflow-hidden border border-neon-emerald/50 text-white bg-cosmic-800/80 hover:bg-neon-emerald hover:text-black transition-all duration-300 glow-emerald" href="#programs">
-<span class="relative z-10">Join Community</span>
+<span data-i18n="nav.join" class="relative z-10" style="font-family: 'Space Grotesk', sans-serif;">Join Community</span>
 <div class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-neon-emerald transition-transform duration-300 ease-out"></div>
 </a>
 </div>
@@ -131,14 +136,14 @@
 <!-- Hero Visual Art Frame Backdrop Simulation -->
 <div class="relative z-10 w-full px-4 mt-auto mb-16 flex flex-col items-center text-center">
   <div class="max-w-4xl mx-auto flex flex-col items-center">
-    <h2 class="text-xl sm:text-2xl font-bold tracking-wide mb-4 drop-shadow-md text-white">
+    <h2 data-i18n="hero.title" class="text-xl sm:text-2xl font-bold tracking-wide mb-4 drop-shadow-md text-white">
       Indonesia Future Arts &amp; Intelligence
     </h2>
-    <p class="text-sm sm:text-base text-zinc-300 font-light leading-relaxed mb-6 max-w-2xl drop-shadow-md">
+    <p data-i18n="hero.subtitle" class="text-sm sm:text-base text-zinc-300 font-light leading-relaxed mb-6 max-w-2xl drop-shadow-md">
       Indonesia's Premier Stage for AI-Driven Arts &amp; Intelligence.
     </p>
     <a href="#showcase" class="relative group px-8 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase overflow-hidden border border-neon-emerald/50 text-white bg-cosmic-800/80 backdrop-blur-md hover:text-black transition-all duration-300 glow-emerald">
-      <span class="relative z-10">Explore</span>
+      <span data-i18n="hero.cta" class="relative z-10">Explore</span>
       <div class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-neon-emerald transition-transform duration-300 ease-out"></div>
     </a>
   </div>
@@ -151,7 +156,7 @@
 <section class="bg-cosmic-950 relative z-10">
 <!-- Industry & Technology Partner Brands -->
 <div class="relative z-10 pt-4 pb-12 text-center bg-cosmic-950">
-<p class="text-sm tracking-wide text-zinc-400 mb-8">AI Translation Related</p>
+<p data-i18n="partners.label" class="text-sm tracking-wide text-zinc-400 mb-8">AI Translation Related</p>
 <div class="relative overflow-hidden w-full max-w-full flex">
 <div class="animate-marquee flex items-center gap-12 sm:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-300 whitespace-nowrap">
 <span class="text-sm sm:text-base font-mono font-bold tracking-tighter text-zinc-300 hover:text-white whitespace-nowrap">OpenAI</span>
@@ -179,25 +184,25 @@
   <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-7xl mx-auto">
     <div class="bg-cosmic-850/70 backdrop-blur border border-zinc-700 p-6 rounded-xl hover:border-zinc-600 transition">
       <div class="text-3xl sm:text-4xl font-mono font-bold text-neon-emerald mb-1">4</div>
-      <div class="text-xs uppercase font-mono tracking-wider text-zinc-400">Core Disciplines</div>
-      <p class="text-xs text-zinc-500 mt-2">Film, Commercial, Digital Canvas, &amp; Neural Audio</p>
+      <div data-i18n="kpi.1.label" class="text-xs uppercase font-mono tracking-wider text-zinc-400">Core Disciplines</div>
+      <p data-i18n="kpi.1.desc" class="text-xs text-zinc-500 mt-2">Film, Commercial, Digital Canvas, &amp; Neural Audio</p>
     </div>
     <div class="bg-cosmic-850/70 backdrop-blur border border-zinc-700 p-6 rounded-xl hover:border-zinc-600 transition">
       <div class="text-3xl sm:text-4xl font-mono font-bold text-neon-cyan mb-1">90%</div>
-      <div class="text-xs uppercase font-mono tracking-wider text-zinc-400">Creators Empowered</div>
-      <p class="text-xs text-zinc-500 mt-2">Pioneering new synthetic workflows across archipelago</p>
+      <div data-i18n="kpi.2.label" class="text-xs uppercase font-mono tracking-wider text-zinc-400">Creators Empowered</div>
+      <p data-i18n="kpi.2.desc" class="text-xs text-zinc-500 mt-2">Pioneering new synthetic workflows across archipelago</p>
     </div>
     <div class="bg-cosmic-850/70 backdrop-blur border border-zinc-700 p-6 rounded-xl hover:border-zinc-600 transition">
       <div class="text-3xl sm:text-4xl font-mono font-bold text-white mb-1">200+</div>
-      <div class="text-xs uppercase font-mono tracking-wider text-zinc-400">AI Works Showcased</div>
-      <p class="text-xs text-zinc-500 mt-2">Archived in IFAI permanent national intelligence repository</p>
+      <div data-i18n="kpi.3.label" class="text-xs uppercase font-mono tracking-wider text-zinc-400">AI Works Showcased</div>
+      <p data-i18n="kpi.3.desc" class="text-xs text-zinc-500 mt-2">Archived in IFAI permanent national intelligence repository</p>
     </div>
     <div class="bg-gradient-to-br from-cosmic-800 to-cosmic-950 border border-zinc-700 p-6 rounded-xl flex flex-col justify-between">
       <div>
-        <span class="text-xs font-mono uppercase text-neon-cyan tracking-wider">Curated Archive</span>
-        <p class="text-xs text-zinc-300 mt-1">Explore the fusion of generative computation, culture, and human direction.</p>
+        <span data-i18n="kpi.4.label" class="text-xs font-mono uppercase text-neon-cyan tracking-wider">Curated Archive</span>
+        <p data-i18n="kpi.4.desc" class="text-xs text-zinc-300 mt-1">Explore the fusion of generative computation, culture, and human direction.</p>
       </div>
-      <a class="mt-4 inline-flex items-center text-xs font-mono text-white hover:text-neon-cyan" href="#showcase">
+      <a data-i18n="kpi.4.cta" class="mt-4 inline-flex items-center text-xs font-mono text-white hover:text-neon-cyan" href="#showcase">
         View Curations →
       </a>
     </div>
@@ -215,11 +220,11 @@
 <span class="text-xs font-mono px-2 py-0.5 rounded bg-neon-emerald/15 text-neon-emerald border border-neon-emerald/30">CATEGORY // 01</span>
 <span class="text-zinc-500 text-xs font-mono">NEURAL CINEMATICS</span>
 </div>
-<h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-2">AI Film Showcase</h2>
+<h2 data-i18n="cat.film.title" class="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-2">AI Film Showcase</h2>
 </div>
 <div class="flex items-center gap-4">
 <a class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-neon-emerald flex items-center gap-1.5 transition-colors" href="#">
-              View Full Collection →
+              <span data-i18n="cat.film.view">View Full Collection →</span>
             </a>
 <!-- Carousel Control Arrows -->
 <div class="hidden sm:flex items-center gap-2">
@@ -241,7 +246,7 @@
 <div class="absolute inset-0 bg-gradient-to-t from-cosmic-950 via-transparent to-black/30"></div>
 <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/60 backdrop-blur border border-white/10 text-white">Film</span>
 <a href="detail.html" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-emerald hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
-                Explore Reel →
+                <span data-i18n="card.exploreReel">Explore Reel →</span>
               </a>
 </div>
 <div class="p-4 flex flex-col justify-between flex-grow">
@@ -262,7 +267,7 @@
 <div class="absolute inset-0 bg-gradient-to-t from-cosmic-950 via-transparent to-black/30"></div>
 <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/60 backdrop-blur border border-white/10 text-white">Film</span>
 <a href="detail.html" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-emerald hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
-                Explore Reel →
+                <span data-i18n="card.exploreReel">Explore Reel →</span>
               </a>
 </div>
 <div class="p-4 flex flex-col justify-between flex-grow">
@@ -283,7 +288,7 @@
 <div class="absolute inset-0 bg-gradient-to-t from-cosmic-950 via-transparent to-black/30"></div>
 <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/60 backdrop-blur border border-white/10 text-white">Film</span>
 <a href="detail.html" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-emerald hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
-                Explore Reel →
+                <span data-i18n="card.exploreReel">Explore Reel →</span>
               </a>
 </div>
 <div class="p-4 flex flex-col justify-between flex-grow">
@@ -304,7 +309,7 @@
 <div class="absolute inset-0 bg-gradient-to-t from-cosmic-950 via-transparent to-black/30"></div>
 <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/60 backdrop-blur border border-white/10 text-white">Film</span>
 <a href="detail.html" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-emerald hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
-                Explore Reel →
+                <span data-i18n="card.exploreReel">Explore Reel →</span>
               </a>
 </div>
 <div class="p-4 flex flex-col justify-between flex-grow">
@@ -333,10 +338,10 @@
 <span class="text-xs font-mono px-2 py-0.5 rounded bg-neon-cyan/15 text-neon-cyan border border-neon-cyan/30">CATEGORY // 02</span>
 <span class="text-zinc-500 text-xs font-mono">SYNTHETIC BRAND IDENTITIES</span>
 </div>
-<h2 class="text-3xl font-bold tracking-tight text-white mt-2">Video Commercial Showcase</h2>
+<h2 data-i18n="cat.commercial.title" class="text-3xl font-bold tracking-tight text-white mt-2">Video Commercial Showcase</h2>
 </div>
 <a class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-neon-cyan flex items-center gap-1.5 transition-colors" href="#">
-              View Commercials →
+              <span data-i18n="cat.commercial.view">View Commercials →</span>
             </a>
 </div>
 <div id="grid-commercial" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -346,7 +351,7 @@
 <img alt="Electric Joy Commercial" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDH38eMsoAKSOkgy5KQINhpkVHChFRXg9Yq20ROKv_ocq16FZzi0L6K5cW-DVfSKC4UgAQDlBoQ70h4ZsXGWvTIo8BwZ8ZrfWsAeP7SPZaDhK23J8CH21Tmerv8M7WwhkqP2XRh_d7K_Vj7qa9Fmy8Rx0yzO_n7vcZUXqutmo38ohmPKHUS0yofVF_M2vp2Ca4SX_6QYToAJw-hE5njg-1p3jZkWcDz2RpeeS3uY6eSytYEG9BtuSFUzw"/>
 <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/60 backdrop-blur text-white border border-white/10">Commercial AI</span>
 <a href="detail.html" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-emerald hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
-                Explore Reel →
+                <span data-i18n="card.exploreReel">Explore Reel →</span>
               </a>
 </div>
 <div class="p-4 flex flex-col justify-between flex-grow">
@@ -361,7 +366,7 @@
 <img alt="Liquid Summer Commercial" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzGY_L8TZOIOZcgnYdZBJB6OBqBoBkFCIDuLtxW1kIK3ulZ24LwDwMy4l5jtrjUY5aUvjrPXFDsCzqNePIO_C2yLd02hTbvP0FEsmykRd1tzN1fPqiUXab_Bdh986HUq7vDzT98f0nlNvqqUtTpTvnZ1ii9Z4m54Z7kQOhb3xlGdcshh79JUpLJtNmaDsTyiQNNxmbO03PB_pbfR4DypUoDPdx8xKyAh-AkWVb6S9SPTIGx8LT4v03Rw"/>
 <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/60 backdrop-blur text-white border border-white/10">Commercial AI</span>
 <a href="detail.html" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-emerald hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
-                Explore Reel →
+                <span data-i18n="card.exploreReel">Explore Reel →</span>
               </a>
 </div>
 <div class="p-4 flex flex-col justify-between flex-grow">
@@ -376,7 +381,7 @@
 <img alt="Infinite Loop Commercial" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDHfcyPaS_O3caeXi59QFwU51ZW7_qZoVEEPnzX6xe1JEL4CMl8_VWwPFY0-tJT5RmEhjsIPhtGubiAfYVYP2oN6lvtUuBi8eKn0V3EZhByDadY_jiWKbBuWrjoAcUD32-bZOmdQizrnj-fBSOMTZHYAtJWbHuCfIdz6FmmgnyhrcsYPn1xGhvSAWI60Wv4pwMqImki_TgWBe2PTYjjENTXN-pmoH-E5Yq6z6TEArB4Bwseo0_Xb15CA"/>
 <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/60 backdrop-blur text-white border border-white/10">Commercial AI</span>
 <a href="detail.html" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-emerald hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
-                Explore Reel →
+                <span data-i18n="card.exploreReel">Explore Reel →</span>
               </a>
 </div>
 <div class="p-4 flex flex-col justify-between flex-grow">
@@ -391,7 +396,7 @@
 <img alt="Motion Study Commercial" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJTLI8Ip-JEFTn7aFSHrPE03vIxNJevAoN7rrqN2rEqurbQ--cMjOMVQYmzJyPvKVC-DUB8dW6yId9-2GjPJ64k6BJfNTp8fHkpIMMKh700kdsjxKiPK9mhykGt5jQ_o2K_iUGbnylKXDCDOkaqTSZjTYkNXtWO4uPsQDIBLl-IgIIUvwlnHaibWmV2C4CQ3sXsJ72so7tgNXCzyE0w2sWTO5Rjh-NcayPyEIcyvjv1IT2ou5FOeGTZw"/>
 <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/60 backdrop-blur text-white border border-white/10">Commercial AI</span>
 <a href="detail.html" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-emerald hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
-                Explore Reel →
+                <span data-i18n="card.exploreReel">Explore Reel →</span>
               </a>
 </div>
 <div class="p-4 flex flex-col justify-between flex-grow">
@@ -410,10 +415,10 @@
 <span class="text-xs font-mono px-2 py-0.5 rounded bg-fuchsia-500/20 text-fuchsia-300 border border-fuchsia-500/30">CATEGORY // 03</span>
 <span class="text-zinc-500 text-xs font-mono">SYNTHETIC MOTION CRAFT</span>
 </div>
-<h2 class="text-3xl font-bold tracking-tight text-white mt-2">Animation Showcase</h2>
+<h2 data-i18n="cat.animation.title" class="text-3xl font-bold tracking-tight text-white mt-2">Animation Showcase</h2>
 </div>
 <a class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-fuchsia-300 flex items-center gap-1.5 transition-colors" href="#">
-              View Animations →
+              <span data-i18n="cat.animation.view">View Animations →</span>
             </a>
 </div>
 <div id="grid-animation" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -423,7 +428,7 @@
 <svg class="w-24 h-24 text-fuchsia-400/30 group-hover:scale-105 transition duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z"/></svg>
 <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/60 backdrop-blur text-white border border-white/10">Animation AI</span>
 <a href="detail.html" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-emerald hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
-                Explore Reel →
+                <span data-i18n="card.exploreReel">Explore Reel →</span>
               </a>
 </div>
 <div class="p-4 flex flex-col justify-between flex-grow">
@@ -438,7 +443,7 @@
 <svg class="w-24 h-24 text-fuchsia-400/30 group-hover:scale-105 transition duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5 10.5 3v7.5h9L9.75 21v-7.5h-6Z"/></svg>
 <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/60 backdrop-blur text-white border border-white/10">Animation AI</span>
 <a href="detail.html" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-emerald hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
-                Explore Reel →
+                <span data-i18n="card.exploreReel">Explore Reel →</span>
               </a>
 </div>
 <div class="p-4 flex flex-col justify-between flex-grow">
@@ -453,7 +458,7 @@
 <svg class="w-24 h-24 text-fuchsia-400/30 group-hover:scale-105 transition duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M15.75 3v1.5M8.25 19.5V21M15.75 19.5V21M3 8.25H1.5M3 12H1.5M3 15.75H1.5M22.5 8.25H21M22.5 12H21M22.5 15.75H21M6.75 19.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-3h9v-9h-9v9Z"/></svg>
 <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/60 backdrop-blur text-white border border-white/10">Animation AI</span>
 <a href="detail.html" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-emerald hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
-                Explore Reel →
+                <span data-i18n="card.exploreReel">Explore Reel →</span>
               </a>
 </div>
 <div class="p-4 flex flex-col justify-between flex-grow">
@@ -468,7 +473,7 @@
 <svg class="w-24 h-24 text-fuchsia-400/30 group-hover:scale-105 transition duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5 12 2.25 3 7.5m18 0-9 5.25M21 7.5v9L12 21.75M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"/></svg>
 <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/60 backdrop-blur text-white border border-white/10">Animation AI</span>
 <a href="detail.html" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-emerald hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
-                Explore Reel →
+                <span data-i18n="card.exploreReel">Explore Reel →</span>
               </a>
 </div>
 <div class="p-4 flex flex-col justify-between flex-grow">
@@ -487,10 +492,10 @@
 <span class="text-xs font-mono px-2 py-0.5 rounded bg-neon-purple/20 text-purple-300 border border-purple-500/30">CATEGORY // 04</span>
 <span class="text-zinc-500 text-xs font-mono">NEURAL ACOUSTICS &amp; COMPOSITION</span>
 </div>
-<h2 class="text-3xl font-bold tracking-tight text-white mt-2">Music &amp; Sound Showcase</h2>
+<h2 data-i18n="cat.music.title" class="text-3xl font-bold tracking-tight text-white mt-2">Music &amp; Sound Showcase</h2>
 </div>
 <a class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-purple-300 flex items-center gap-1.5 transition-colors" href="#">
-              Listen Full Tracks →
+              <span data-i18n="cat.music.view">Listen Full Tracks →</span>
             </a>
 </div>
 <div id="grid-music" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -503,7 +508,7 @@
 </div>
 <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/70 backdrop-blur text-purple-300 border border-purple-500/20">Audio • Spatial</span>
 <a href="detail.html" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-emerald hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
-                Explore Reel →
+                <span data-i18n="card.exploreReel">Explore Reel →</span>
               </a>
 </div>
 <div class="p-4 flex flex-col justify-between flex-grow">
@@ -521,7 +526,7 @@
 </div>
 <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/70 backdrop-blur text-purple-300 border border-purple-500/20">Audio • Vocal AI</span>
 <a href="detail.html" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-emerald hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
-                Explore Reel →
+                <span data-i18n="card.exploreReel">Explore Reel →</span>
               </a>
 </div>
 <div class="p-4 flex flex-col justify-between flex-grow">
@@ -539,7 +544,7 @@
 </div>
 <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/70 backdrop-blur text-purple-300 border border-purple-500/20">Original Score</span>
 <a href="detail.html" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-emerald hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
-                Explore Reel →
+                <span data-i18n="card.exploreReel">Explore Reel →</span>
               </a>
 </div>
 <div class="p-4 flex flex-col justify-between flex-grow">
@@ -557,7 +562,7 @@
 </div>
 <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/70 backdrop-blur text-purple-300 border border-purple-500/20">Audio • Granular</span>
 <a href="detail.html" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-emerald hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
-                Explore Reel →
+                <span data-i18n="card.exploreReel">Explore Reel →</span>
               </a>
 </div>
 <div class="p-4 flex flex-col justify-between flex-grow">
@@ -576,10 +581,10 @@
         <span class="text-xs font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">CATEGORY // 05</span>
         <span class="text-zinc-500 text-xs font-mono">NEURAL CANVAS &amp; GENERATIVE ART</span>
       </div>
-      <h2 class="text-3xl font-bold tracking-tight text-white mt-2">Visual Art Showcase</h2>
+      <h2 data-i18n="cat.visualart.title" class="text-3xl font-bold tracking-tight text-white mt-2">Visual Art Showcase</h2>
     </div>
     <a class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-amber-300 flex items-center gap-1.5 transition-colors" href="#">
-      View Artworks →
+      <span data-i18n="cat.visualart.view">View Artworks →</span>
     </a>
   </div>
   <div id="grid-visual-art" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -589,7 +594,7 @@
         <img alt="Neural Portrait" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzGY_L8TZOIOZcgnYdZBJB6OBqBoBkFCIDuLtxW1kIK3ulZ24LwDwMy4l5jtrjUY5aUvjrPXFDsCzqNePIO_C2yLd02hTbvP0FEsmykRd1tzN1fPqiUXab_Bdh986HUq7vDzT98f0nlNvqqUtTpTvnZ1ii9Z4m54Z7kQOhb3xlGdcshh79JUpLJtNmaDsTyiQNNxmbO03PB_pbfR4DypUoDPdx8xKyAh-AkWVb6S9SPTIGx8LT4v03Rw"/>
         <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/70 backdrop-blur text-amber-300 border border-amber-500/20">Digital Canvas</span>
 <a href="detail.html" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-emerald hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
-                Explore Reel →
+                <span data-i18n="card.exploreReel">Explore Reel →</span>
               </a>
 </div>
       <div class="p-4 flex flex-col justify-between flex-grow">
@@ -604,7 +609,7 @@
         <img alt="Abstract Data" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCs1CFg48--z72WShl90mUL7uisWGNm8a5-7JW7PVD9zPWPYaSahhC7qrJ_ZxLdPlw1SmFpkxI4DBzGeJQiUZc0o76Yo1lt7_abhpSEsYjH8XBIDiqjf4UILejL8D85CoSug9P67bpb4BTCtHg7QqoXVOvMcawYYppLYSXMO9RGcraSjuB1jylKEcroeNB60-3pL8kIPSZPJcxJdgmUQaQBGVqyaPBYG1wzU_mWhnr9YOZDq6ETGle3BA"/>
         <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/70 backdrop-blur text-amber-300 border border-amber-500/20">Generative</span>
 <a href="detail.html" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-emerald hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
-                Explore Reel →
+                <span data-i18n="card.exploreReel">Explore Reel →</span>
               </a>
 </div>
       <div class="p-4 flex flex-col justify-between flex-grow">
@@ -619,7 +624,7 @@
         <img alt="Synthetic Landscape" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0KbC0Gg7_A9KybE7-466oLi-5vY6M6e5ON5OI9z41vhB6glgusVEViGt49aNjDmoX43PpVUMo_TbNYpFO1SCziQC_70HtuEuyp0lf_gYGB7e-4-qcp2qmKco5b9YCKw-RfPXhE6D3h7X22wu__VGEDp6aA9CIECUZhLBhmetUUmsvRY00vnIascQL-easyZ33hxHuaV4bVJhlSMPPfVOW2FGpy1WJrAoBHhxAmsE3EzXc0ESDuHGdeQ"/>
         <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/70 backdrop-blur text-amber-300 border border-amber-500/20">Landscape AI</span>
 <a href="detail.html" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-emerald hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
-                Explore Reel →
+                <span data-i18n="card.exploreReel">Explore Reel →</span>
               </a>
 </div>
       <div class="p-4 flex flex-col justify-between flex-grow">
@@ -634,7 +639,7 @@
         <img alt="Algorithmic Symmetry" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDabz7mllfgNYFZZIGR5W6l6oqkV6tdvHlBevYs_0IucSDizjdxsez45jRaJPECySjVPWDzzBiZMVBKmB9s41rv06_paxRXTxmGFrYLE3x4K_DOKuAfePfvD1Jri-vWGANtSkt5o9GvyPFVXJuL4xHYn_1yqkPL23xc2KLPgp6Xunt0RShkYP5To8rr03ud6xoK3GBT0pVZKynEjQMcsvR3Zxair_AoyHIgkDwfViqMiBsSrSmbrzlpcg"/>
         <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/70 backdrop-blur text-amber-300 border border-amber-500/20">Vector Gen</span>
 <a href="detail.html" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-emerald hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
-                Explore Reel →
+                <span data-i18n="card.exploreReel">Explore Reel →</span>
               </a>
 </div>
       <div class="p-4 flex flex-col justify-between flex-grow">
@@ -653,10 +658,10 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
 <div>
-<span class="text-xs font-mono text-neon-emerald tracking-widest uppercase">Incubation &amp; Keynotes</span>
+<span data-i18n="programs.eyebrow" class="text-xs font-mono text-neon-emerald tracking-widest uppercase">Incubation &amp; Keynotes</span>
 <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-1">IFAI SIGNALS</h2>
 </div>
-<a class="text-xs font-mono uppercase tracking-wider px-4 py-2 rounded-lg border border-zinc-700 bg-cosmic-850 hover:border-neon-emerald transition text-zinc-300 hover:text-white" href="#">
+<a data-i18n="programs.viewAll" class="text-xs font-mono uppercase tracking-wider px-4 py-2 rounded-lg border border-zinc-700 bg-cosmic-850 hover:border-neon-emerald transition text-zinc-300 hover:text-white" href="#">
             View All Events →
           </a>
 </div>
@@ -725,11 +730,11 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <!-- Manifesto Header -->
 <div class="max-w-3xl mb-16">
-<span class="text-xs font-mono uppercase tracking-widest text-neon-emerald">Manifesto &amp; Ecosystem</span>
-<h2 class="text-3xl sm:text-5xl font-bold text-white tracking-tight mt-3 leading-tight">
+<span data-i18n="manifesto.eyebrow" class="text-xs font-mono uppercase tracking-widest text-neon-emerald">Manifesto &amp; Ecosystem</span>
+<h2 data-i18n="manifesto.title" class="text-3xl sm:text-5xl font-bold text-white tracking-tight mt-3 leading-tight">
             Where Art and Intelligence Converge.
           </h2>
-<p class="mt-4 text-base sm:text-lg text-zinc-400 font-light leading-relaxed">
+<p data-i18n="manifesto.body" class="mt-4 text-base sm:text-lg text-zinc-400 font-light leading-relaxed">
             Indonesia Future Arts &amp; Intelligence (IFAI) is a non-profit foundation and movement creating a sanctuary for local creators to showcase, learn, and sculpt tomorrow's digital heritage. We believe artificial intelligence is not a replacement for human soul, but an infinitely expandable medium.
           </p>
 </div>
@@ -779,10 +784,10 @@
 <!-- Call to action pill -->
 <div class="mt-16 p-8 rounded-3xl bg-gradient-to-r from-cosmic-800 via-cosmic-850 to-cosmic-800 border border-zinc-700 flex flex-col md:flex-row items-center justify-between gap-6">
 <div>
-<h4 class="text-xl font-bold text-white">Join the Indonesian AI Vanguard</h4>
-<p class="text-xs sm:text-sm text-zinc-400 mt-1">Submit your autonomous films, commercial work, or neural compositions for upcoming seasonal curations.</p>
+<h4 data-i18n="cta.title" class="text-xl font-bold text-white">Join the Indonesian AI Vanguard</h4>
+<p data-i18n="cta.subtitle" class="text-xs sm:text-sm text-zinc-400 mt-1">Submit your autonomous films, commercial work, or neural compositions for upcoming seasonal curations.</p>
 </div>
-<a class="px-8 py-3.5 rounded-full text-xs font-mono font-bold tracking-wider uppercase bg-neon-emerald text-black hover:bg-neon-emerald transition-colors whitespace-nowrap" href="#">
+<a data-i18n="cta.button" class="px-8 py-3.5 rounded-full text-xs font-mono font-bold tracking-wider uppercase bg-neon-emerald text-black hover:bg-neon-emerald transition-colors whitespace-nowrap" href="#">
             Submit Your Creation →
           </a>
 </div>
@@ -800,50 +805,50 @@
 <a class="flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-emerald rounded" href="#">
 <img src="image/logo.png" alt="IFAI Future Arts Logo" class="h-4 sm:h-5 object-contain" />
 </a>
-<p class="text-xs text-zinc-400 leading-relaxed max-w-sm">
+<p data-i18n="footer.brandDesc" class="text-xs text-zinc-400 leading-relaxed max-w-sm">
             Indonesia Future Arts &amp; Intelligence is Indonesia's leading platform for AI-driven creativity, bridging art, technology, and human imagination through films, visuals, and synthetic music.
           </p>
-<div class="text-[11px] text-zinc-500 font-mono pt-2">
+<div data-i18n="footer.location" class="text-[11px] text-zinc-500 font-mono pt-2">
             Based in Jakarta, Indonesia • Empowering Nationwide Creators
           </div>
 </div>
 <!-- Links Column 1 -->
 <div>
-<h5 class="text-white font-mono uppercase text-xs tracking-wider mb-4">Explore</h5>
+<h5 data-i18n="footer.col1.title" class="text-white font-mono uppercase text-xs tracking-wider mb-4">Explore</h5>
 <ul class="space-y-2.5">
-<li><a class="hover:text-neon-emerald transition-colors" href="#showcase">AI Film Showcase</a></li>
-<li><a class="hover:text-neon-emerald transition-colors" href="#showcase">Commercial Video</a></li>
-<li><a class="hover:text-neon-emerald transition-colors" href="#showcase">Neural Soundscapes</a></li>
-<li><a class="hover:text-neon-emerald transition-colors" href="#programs">Summits &amp; Events</a></li>
-<li><a class="hover:text-neon-emerald transition-colors" href="#">Archive 2025</a></li>
+<li><a data-i18n="footer.col1.link1" class="hover:text-neon-emerald transition-colors" href="#showcase">AI Film Showcase</a></li>
+<li><a data-i18n="footer.col1.link2" class="hover:text-neon-emerald transition-colors" href="#showcase">Commercial Video</a></li>
+<li><a data-i18n="footer.col1.link3" class="hover:text-neon-emerald transition-colors" href="#showcase">Neural Soundscapes</a></li>
+<li><a data-i18n="footer.col1.link4" class="hover:text-neon-emerald transition-colors" href="#programs">Summits &amp; Events</a></li>
+<li><a data-i18n="footer.col1.link5" class="hover:text-neon-emerald transition-colors" href="#">Archive 2025</a></li>
 </ul>
 </div>
 <!-- Links Column 2 -->
 <div>
-<h5 class="text-white font-mono uppercase text-xs tracking-wider mb-4">Resources</h5>
+<h5 data-i18n="footer.col2.title" class="text-white font-mono uppercase text-xs tracking-wider mb-4">Resources</h5>
 <ul class="space-y-2.5">
-<li><a class="hover:text-neon-cyan transition-colors" href="#">Journal &amp; Essays</a></li>
-<li><a class="hover:text-neon-cyan transition-colors" href="#">Prompt Tutorials</a></li>
-<li><a class="hover:text-neon-cyan transition-colors" href="#">AI Tools Directory</a></li>
-<li><a class="hover:text-neon-cyan transition-colors" href="#">Case Studies</a></li>
-<li><a class="hover:text-neon-cyan transition-colors" href="#">Press Kit &amp; Brand</a></li>
+<li><a data-i18n="footer.col2.link1" class="hover:text-neon-cyan transition-colors" href="#">Journal &amp; Essays</a></li>
+<li><a data-i18n="footer.col2.link2" class="hover:text-neon-cyan transition-colors" href="#">Prompt Tutorials</a></li>
+<li><a data-i18n="footer.col2.link3" class="hover:text-neon-cyan transition-colors" href="#">AI Tools Directory</a></li>
+<li><a data-i18n="footer.col2.link4" class="hover:text-neon-cyan transition-colors" href="#">Case Studies</a></li>
+<li><a data-i18n="footer.col2.link5" class="hover:text-neon-cyan transition-colors" href="#">Press Kit &amp; Brand</a></li>
 </ul>
 </div>
 <!-- Links Column 3 -->
 <div>
-<h5 class="text-white font-mono uppercase text-xs tracking-wider mb-4">Connect</h5>
+<h5 data-i18n="footer.col3.title" class="text-white font-mono uppercase text-xs tracking-wider mb-4">Connect</h5>
 <ul class="space-y-2.5">
-<li><a class="hover:text-white transition-colors" href="#">Contact Curators</a></li>
-<li><a class="hover:text-white transition-colors" href="#">Join Discord Community</a></li>
-<li><a class="hover:text-white transition-colors" href="#">Partner With Us</a></li>
-<li><a class="hover:text-white transition-colors" href="#">Newsletter Signup</a></li>
-<li><a class="hover:text-white transition-colors" href="#">Terms &amp; Privacy</a></li>
+<li><a data-i18n="footer.col3.link1" class="hover:text-white transition-colors" href="#">Contact Curators</a></li>
+<li><a data-i18n="footer.col3.link2" class="hover:text-white transition-colors" href="#">Join Discord Community</a></li>
+<li><a data-i18n="footer.col3.link3" class="hover:text-white transition-colors" href="#">Partner With Us</a></li>
+<li><a data-i18n="footer.col3.link4" class="hover:text-white transition-colors" href="#">Newsletter Signup</a></li>
+<li><a data-i18n="footer.col3.link5" class="hover:text-white transition-colors" href="#">Terms &amp; Privacy</a></li>
 </ul>
 </div>
 </div>
 <!-- Bottom Credits & Social -->
 <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-zinc-500 text-[11px] font-mono">
-<div>
+<div data-i18n="footer.copyright">
           © 2025 IFAI (Indonesia Future Arts &amp; Intelligence). All rights reserved.
         </div>
 <div class="flex items-center gap-6">
@@ -856,6 +861,117 @@
 </div>
 </footer>
 <!-- END: MainFooter -->
+<!-- ============================================================
+     LANGUAGE SWITCHER (EN default / ID) — static UI text only.
+     Dynamic content from Supabase picks its language separately
+     inside the showcase-loading script below.
+     ============================================================ -->
+<script>
+(function () {
+  const LANG_KEY = 'ifai_lang';
+  const DICT = {
+    en: {
+      'nav.showcase': 'Showcase', 'nav.programs': 'Programs', 'nav.about': 'About',
+      'nav.login': 'Log In', 'nav.join': 'Join Community',
+      'hero.title': 'Indonesia Future Arts & Intelligence',
+      'hero.subtitle': "Indonesia's Premier Stage for AI-Driven Arts & Intelligence.",
+      'hero.cta': 'Explore',
+      'partners.label': 'AI Translation Related',
+      'kpi.1.label': 'Core Disciplines', 'kpi.1.desc': 'Film, Commercial, Digital Canvas, & Neural Audio',
+      'kpi.2.label': 'Creators Empowered', 'kpi.2.desc': 'Pioneering new synthetic workflows across archipelago',
+      'kpi.3.label': 'AI Works Showcased', 'kpi.3.desc': 'Archived in IFAI permanent national intelligence repository',
+      'kpi.4.label': 'Curated Archive', 'kpi.4.desc': 'Explore the fusion of generative computation, culture, and human direction.',
+      'kpi.4.cta': 'View Curations →',
+      'cat.film.title': 'AI Film Showcase', 'cat.film.view': 'View Full Collection →',
+      'cat.commercial.title': 'Video Commercial Showcase', 'cat.commercial.view': 'View Commercials →',
+      'cat.animation.title': 'Animation Showcase', 'cat.animation.view': 'View Animations →',
+      'cat.music.title': 'Music & Sound Showcase', 'cat.music.view': 'Listen Full Tracks →',
+      'cat.visualart.title': 'Visual Art Showcase', 'cat.visualart.view': 'View Artworks →',
+      'card.exploreReel': 'Explore Reel →', 'card.genre': 'Genre:', 'card.by': 'By',
+      'cta.title': 'Join the Indonesian AI Vanguard',
+      'cta.subtitle': 'Submit your autonomous films, commercial work, or neural compositions for upcoming seasonal curations.',
+      'cta.button': 'Submit Your Creation →',
+      'programs.eyebrow': 'Incubation & Keynotes', 'programs.viewAll': 'View All Events →',
+      'manifesto.eyebrow': 'Manifesto & Ecosystem', 'manifesto.title': 'Where Art and Intelligence Converge.',
+      'manifesto.body': "Indonesia Future Arts & Intelligence (IFAI) is a non-profit foundation and movement creating a sanctuary for local creators to showcase, learn, and sculpt tomorrow's digital heritage. We believe artificial intelligence is not a replacement for human soul, but an infinitely expandable medium.",
+      'footer.brandDesc': "Indonesia Future Arts & Intelligence is Indonesia's leading platform for AI-driven creativity, bridging art, technology, and human imagination through films, visuals, and synthetic music.",
+      'footer.location': 'Based in Jakarta, Indonesia • Empowering Nationwide Creators',
+      'footer.col1.title': 'Explore', 'footer.col1.link1': 'AI Film Showcase', 'footer.col1.link2': 'Commercial Video', 'footer.col1.link3': 'Neural Soundscapes', 'footer.col1.link4': 'Summits & Events', 'footer.col1.link5': 'Archive 2025',
+      'footer.col2.title': 'Resources', 'footer.col2.link1': 'Journal & Essays', 'footer.col2.link2': 'Prompt Tutorials', 'footer.col2.link3': 'AI Tools Directory', 'footer.col2.link4': 'Case Studies', 'footer.col2.link5': 'Press Kit & Brand',
+      'footer.col3.title': 'Connect', 'footer.col3.link1': 'Contact Curators', 'footer.col3.link2': 'Join Discord Community', 'footer.col3.link3': 'Partner With Us', 'footer.col3.link4': 'Newsletter Signup', 'footer.col3.link5': 'Terms & Privacy',
+      'footer.copyright': '© 2025 IFAI (Indonesia Future Arts & Intelligence). All rights reserved.',
+    },
+    id: {
+      'nav.showcase': 'Etalase', 'nav.programs': 'Program', 'nav.about': 'Tentang',
+      'nav.login': 'Masuk', 'nav.join': 'Gabung Komunitas',
+      'hero.title': 'Indonesia Future Arts & Intelligence',
+      'hero.subtitle': 'Panggung Utama Indonesia untuk Seni & Kecerdasan Berbasis AI.',
+      'hero.cta': 'Jelajahi',
+      'partners.label': 'Terkait Kecerdasan Buatan',
+      'kpi.1.label': 'Disiplin Utama', 'kpi.1.desc': 'Film, Iklan, Kanvas Digital, & Audio Neural',
+      'kpi.2.label': 'Kreator Diberdayakan', 'kpi.2.desc': 'Merintis alur kerja sintetis baru di seluruh nusantara',
+      'kpi.3.label': 'Karya AI Ditampilkan', 'kpi.3.desc': 'Diarsipkan secara permanen di repositori kecerdasan nasional IFAI',
+      'kpi.4.label': 'Arsip Terkurasi', 'kpi.4.desc': 'Jelajahi perpaduan komputasi generatif, budaya, dan arahan manusia.',
+      'kpi.4.cta': 'Lihat Kurasi →',
+      'cat.film.title': 'Etalase Film', 'cat.film.view': 'Lihat Koleksi Lengkap →',
+      'cat.commercial.title': 'Etalase Iklan Video', 'cat.commercial.view': 'Lihat Iklan →',
+      'cat.animation.title': 'Etalase Animasi', 'cat.animation.view': 'Lihat Animasi →',
+      'cat.music.title': 'Etalase Musik & Suara', 'cat.music.view': 'Dengarkan Lagu Penuh →',
+      'cat.visualart.title': 'Etalase Seni Visual', 'cat.visualart.view': 'Lihat Karya Seni →',
+      'card.exploreReel': 'Jelajahi Karya →', 'card.genre': 'Genre:', 'card.by': 'Oleh',
+      'cta.title': 'Bergabung dengan Garda Depan AI Indonesia',
+      'cta.subtitle': 'Kirim film otonom, karya iklan, atau komposisi neural kamu untuk kurasi musiman mendatang.',
+      'cta.button': 'Kirim Karya Kamu →',
+      'programs.eyebrow': 'Inkubasi & Sesi Utama', 'programs.viewAll': 'Lihat Semua Acara →',
+      'manifesto.eyebrow': 'Manifesto & Ekosistem', 'manifesto.title': 'Tempat Seni dan Kecerdasan Bertemu.',
+      'manifesto.body': 'Indonesia Future Arts & Intelligence (IFAI) adalah yayasan nirlaba dan gerakan yang menciptakan ruang bagi kreator lokal untuk menampilkan karya, belajar, dan membentuk warisan digital masa depan. Kami percaya kecerdasan buatan bukan pengganti jiwa manusia, melainkan medium yang dapat berkembang tanpa batas.',
+      'footer.brandDesc': 'Indonesia Future Arts & Intelligence adalah platform terdepan Indonesia untuk kreativitas berbasis AI, menjembatani seni, teknologi, dan imajinasi manusia lewat film, visual, dan musik sintetis.',
+      'footer.location': 'Berbasis di Jakarta, Indonesia • Memberdayakan Kreator Seluruh Nusantara',
+      'footer.col1.title': 'Jelajahi', 'footer.col1.link1': 'Etalase Film AI', 'footer.col1.link2': 'Video Iklan', 'footer.col1.link3': 'Lanskap Suara Neural', 'footer.col1.link4': 'Summit & Acara', 'footer.col1.link5': 'Arsip 2025',
+      'footer.col2.title': 'Sumber Daya', 'footer.col2.link1': 'Jurnal & Esai', 'footer.col2.link2': 'Tutorial Prompt', 'footer.col2.link3': 'Direktori Alat AI', 'footer.col2.link4': 'Studi Kasus', 'footer.col2.link5': 'Press Kit & Brand',
+      'footer.col3.title': 'Terhubung', 'footer.col3.link1': 'Hubungi Kurator', 'footer.col3.link2': 'Gabung Discord', 'footer.col3.link3': 'Jadi Mitra Kami', 'footer.col3.link4': 'Daftar Newsletter', 'footer.col3.link5': 'Ketentuan & Privasi',
+      'footer.copyright': '© 2025 IFAI (Indonesia Future Arts & Intelligence). Hak cipta dilindungi.',
+    },
+  };
+
+  function getLang() { return localStorage.getItem(LANG_KEY) || 'en'; }
+
+  function applyLanguage(lang, opts) {
+    opts = opts || {};
+    document.documentElement.setAttribute('lang', lang);
+    const dict = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach((el) => {
+      const val = dict[el.getAttribute('data-i18n')];
+      if (val != null) el.textContent = val;
+    });
+    document.querySelectorAll('[data-lang-btn]').forEach((btn) => {
+      const active = btn.getAttribute('data-lang-btn') === lang;
+      btn.classList.toggle('text-white', active);
+      btn.classList.toggle('text-zinc-600', !active);
+    });
+    // silent: true re-translates newly-injected elements (e.g. after a
+    // Supabase re-render) without re-dispatching langchange, which would
+    // otherwise loop back into the listener that triggered this call.
+    if (!opts.silent) {
+      window.dispatchEvent(new CustomEvent('ifai:langchange', { detail: { lang } }));
+    }
+  }
+
+  function setLang(lang) {
+    localStorage.setItem(LANG_KEY, lang);
+    applyLanguage(lang);
+  }
+
+  window.IFAI_I18N = { getLang, setLang, applyLanguage, dict: DICT };
+
+  const toggleBtn = document.getElementById('lang-toggle');
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => setLang(getLang() === 'en' ? 'id' : 'en'));
+  }
+
+  applyLanguage(getLang());
+})();
+</script>
 <!-- Scroll JS for Header -->
 <script>
   window.addEventListener('scroll', () => {
@@ -901,13 +1017,19 @@
     return div.innerHTML;
   }
 
-  function workCardHtml(work, slug) {
+  function pickTitle(work, lang) {
+    return lang === 'id'
+      ? (work.title_id || work.title_en || '(Tanpa judul)')
+      : (work.title_en || work.title_id || '(Untitled)');
+  }
+
+  function workCardHtml(work, slug, lang) {
     const style = CATEGORY_STYLE[slug] || { label: slug, badgeClass: 'bg-black/60 border-white/10 text-white' };
     const videoId = extractYouTubeId(work.youtube_url);
     const thumb = videoId
       ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
       : 'https://placehold.co/640x360/161820/666?text=No+Thumbnail';
-    const title = work.title_en || work.title_id || '(Untitled)';
+    const title = pickTitle(work, lang);
     const genre = (work.tags || []).slice(0, 3).join(' / ');
     const creatorName = work.creators?.name || 'Unknown';
     const duration = work.duration ? `${escapeHtml(work.duration)} min` : '';
@@ -919,20 +1041,33 @@
 <div class="absolute inset-0 bg-gradient-to-t from-cosmic-950 via-transparent to-black/30"></div>
 <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full backdrop-blur border ${style.badgeClass}">${escapeHtml(style.label)}</span>
 <a href="detail.html?id=${encodeURIComponent(work.id)}" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-neon-emerald hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white">
-Explore Reel →
+<span data-i18n="card.exploreReel">Explore Reel →</span>
 </a>
 </div>
 <div class="p-4 flex flex-col justify-between flex-grow">
 <div>
 <h3 class="text-base font-semibold text-white group-hover:text-neon-emerald transition-colors">${escapeHtml(title)}</h3>
-<p class="text-xs text-zinc-400 mt-1 font-mono">${genre ? 'Genre: ' + escapeHtml(genre) : ''}</p>
+<p class="text-xs text-zinc-400 mt-1 font-mono">${genre ? '<span data-i18n=\"card.genre\">Genre:</span> ' + escapeHtml(genre) : ''}</p>
 </div>
 <div class="mt-4 pt-3 border-t border-zinc-800/60 flex items-center justify-between text-[11px] text-zinc-400">
-<span>By ${escapeHtml(creatorName)}</span>
+<span><span data-i18n="card.by">By</span> ${escapeHtml(creatorName)}</span>
 <span class="text-neon-emerald font-mono">${duration}</span>
 </div>
 </div>
 </article>`;
+  }
+
+  const cachedShowcase = [];
+
+  function renderShowcase(lang) {
+    for (const entry of cachedShowcase) {
+      if (entry.works && entry.works.length > 0) {
+        const realCardsHtml = entry.works.map(w => workCardHtml(w, entry.slug, lang));
+        const remainingSlots = Math.max(0, 4 - realCardsHtml.length);
+        entry.grid.innerHTML = realCardsHtml.join('') + entry.demoCardsHtml.slice(0, remainingSlots).join('');
+      }
+    }
+    if (window.IFAI_I18N) window.IFAI_I18N.applyLanguage(lang, { silent: true });
   }
 
   async function wireShowcase() {
@@ -960,14 +1095,13 @@ Explore Reel →
         .limit(4);
 
       if (error) { console.error('IFAI: failed to load works for', cat.slug, error); continue; }
-      if (works && works.length > 0) {
-        const realCardsHtml = works.map(w => workCardHtml(w, cat.slug));
-        const remainingSlots = Math.max(0, 4 - realCardsHtml.length);
-        grid.innerHTML = realCardsHtml.join('') + demoCardsHtml.slice(0, remainingSlots).join('');
-      }
       // If there are zero approved works for this category, the
       // hardcoded demo cards already in the HTML stay as-is.
+      cachedShowcase.push({ slug: cat.slug, grid, demoCardsHtml, works });
     }
+
+    renderShowcase(window.IFAI_I18N ? window.IFAI_I18N.getLang() : 'en');
+    window.addEventListener('ifai:langchange', (e) => renderShowcase(e.detail.lang));
   }
 
   wireShowcase();
