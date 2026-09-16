@@ -637,16 +637,34 @@
     return data.id;
   }
 
-  // ---------- TRANSLATE (placeholder until DeepL key is wired up) ----------
+  // ---------- TRANSLATE (via /api/translate — DeepL key stays server-side) ----------
   document.querySelectorAll('.btn-translate').forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', async () => {
       const fromEl = document.getElementById(btn.dataset.translateFrom);
       const toEl = document.getElementById(btn.dataset.translateTo);
-      if (!fromEl.value.trim()) {
+      const text = fromEl.value.trim();
+      if (!text) {
         alert('Isi dulu teks yang mau diterjemahkan.');
         return;
       }
-      alert('Fitur translate otomatis belum aktif (menunggu setup API DeepL). Silakan isi manual dulu untuk sekarang.');
+      const originalLabel = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Menerjemahkan...';
+      try {
+        const res = await fetch('/api/translate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text, source_lang: 'ID', target_lang: 'EN-US' }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Translate gagal.');
+        toEl.value = data.translated;
+      } catch (err) {
+        alert('Gagal menerjemahkan: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = originalLabel;
+      }
     });
   });
 
