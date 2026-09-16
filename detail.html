@@ -56,10 +56,10 @@
 </a>
 <span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
 <!-- FIELD: category -->
-<a class="hover:text-primary transition-colors" data-path="programs" href="index.html#showcase">AI Film Showcase</a>
+<a id="dp-category" class="hover:text-primary transition-colors" data-path="programs" href="index.html#showcase">AI Film Showcase</a>
 <span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
 <!-- FIELD: title -->
-<span class="text-[#00f5a0] font-medium">Cosmic Horizon</span>
+<span id="dp-title-crumb" class="text-[#00f5a0] font-medium">Cosmic Horizon</span>
 </div>
 <div class="flex items-center gap-space-xs font-label-meta text-label-meta">
 <div class="flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-surface-container-high text-[#00f5a0]"><span class="w-1.5 h-1.5 rounded-full bg-[#00f5a0] animate-ping"></span><span class="">CURATED 2025</span></div>
@@ -124,13 +124,13 @@
 <!-- Title & Meta Tags -->
 <div class="flex flex-col gap-space-xs">
 <!-- FIELD: tags (array, admin-defined) + FIELD: duration -->
-<div class="flex flex-wrap items-center gap-space-xs mb-space-xxs"><span class="font-label-meta text-label-meta px-space-xs py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30">SPECULATIVE SCI-FI</span><span class="font-label-meta text-label-meta px-space-xs py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30">SYNTHETIC CINEMA</span><span class="font-label-meta text-label-meta px-space-xs py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30">NUSANTARA MYTHOS</span><span class="font-label-meta text-label-meta px-space-xs py-1 rounded bg-surface-container-high text-outline">08:42 MIN</span></div>
+<div id="dp-tags" class="flex flex-wrap items-center gap-space-xs mb-space-xxs"><span class="font-label-meta text-label-meta px-space-xs py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30">SPECULATIVE SCI-FI</span><span class="font-label-meta text-label-meta px-space-xs py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30">SYNTHETIC CINEMA</span><span class="font-label-meta text-label-meta px-space-xs py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30">NUSANTARA MYTHOS</span><span class="font-label-meta text-label-meta px-space-xs py-1 rounded bg-surface-container-high text-outline">08:42 MIN</span></div>
 <!-- FIELD: title -->
-<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight leading-tight">
+<h1 id="dp-title" class="font-headline-lg text-headline-lg text-on-surface tracking-tight leading-tight">
               Cosmic Horizon: Odyssey Ruang Latent Nusantara
             </h1>
 <!-- FIELD: archive_id (optional) -->
-<p class="font-label-code text-label-code text-[#00f5a0]">IFAI BIENNALE 2025 RESIDENCY // GENERATIVE CINEMA ARCHIVE ID-884</p>
+<p id="dp-archive-line" class="font-label-code text-label-code text-[#00f5a0]">IFAI BIENNALE 2025 RESIDENCY // GENERATIVE CINEMA ARCHIVE ID-884</p>
 </div>
 <!-- Synopsis / Description — FIELD: description -->
 <article class="p-space-lg rounded-xl bg-surface-container-low flex flex-col gap-space-md relative overflow-hidden">
@@ -138,14 +138,16 @@
 <span class="material-symbols-outlined text-primary-container text-[20px]">auto_stories</span>
 <h2 class="font-title-sm text-title-sm uppercase tracking-wider text-on-surface">Synopsis &amp; Curatorial Concept</h2>
 </div>
+<div id="dp-description">
 <p class="text-[14px] leading-relaxed text-on-surface-variant leading-relaxed">
               At the cosmic cycle's end in the 32nd century, the <span class="text-primary font-medium">Suryakanta-7</span> navigation station traverses a latent space topological anomaly known as the <em class="text-on-surface italic">Aethel Cloud Valley</em>. Fusing the mandala geometry of Borobudur Temple with hyperdimensional wormhole physics, this expedition tests the limits of star-sailors' consciousness, guided by an archaic AI based on ancient Sundanese hymns.
             </p>
 <p class="text-[14px] leading-relaxed text-on-surface-variant leading-relaxed">
               This work is a cinematic meditation on Nusantara spirituality amidst quantum computational mechanics. The ever-mutating visuals challenge the viewer's perception of temporal continuity, where every temple artifact, neon gas nebula, and ancient relic intertwines through probabilistic mathematical tensors.
             </p>
+</div>
 <!-- FIELD: curators (optional) -->
-<div class="mt-space-xs pt-space-md flex flex-wrap items-center justify-between gap-space-sm bg-surface-container/60 p-space-sm rounded-lg">
+<div id="dp-curators" class="mt-space-xs pt-space-md flex flex-wrap items-center justify-between gap-space-sm bg-surface-container/60 p-space-sm rounded-lg">
 <div class="flex items-center gap-space-xs">
 <span class="material-symbols-outlined text-secondary-container text-[18px]">verified</span>
 <span class="font-label-code text-label-code text-on-surface">IFAI Curatorial Board:</span>
@@ -162,7 +164,7 @@
 <div class="flex items-center gap-space-md">
 <div class="relative">
 <div class="w-16 h-16 rounded-full overflow-hidden bg-surface-container-highest p-0.5">
-<img class="w-full h-full object-cover rounded-full" alt="Studio 101 creator avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDo8c1hdUrRcowabeMUoj-QB93FDulYgNFwtKc3i4hC7fM1CvMvjiamHMfP9MCPR7DhOCqslCwoaZgqjWG2Kyl0rNq20_yNx0qoJXDPMTtCeHkVvmvR0KqoZFQHVUlpp1rIJSRfi7fcGIbBO8IELwm_6qCxcBWzSYGO5TZvs9McEjJKZkkPbji8OEGi_o7_6Lv0S2Q8g8ttiBC2ql_pTQx2FtIepLaxO6XasGu20JZDx2-eSs2GAlA14w">
+<img id="dp-creator-avatar" class="w-full h-full object-cover rounded-full" alt="Studio 101 creator avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDo8c1hdUrRcowabeMUoj-QB93FDulYgNFwtKc3i4hC7fM1CvMvjiamHMfP9MCPR7DhOCqslCwoaZgqjWG2Kyl0rNq20_yNx0qoJXDPMTtCeHkVvmvR0KqoZFQHVUlpp1rIJSRfi7fcGIbBO8IELwm_6qCxcBWzSYGO5TZvs9McEjJKZkkPbji8OEGi_o7_6Lv0S2Q8g8ttiBC2ql_pTQx2FtIepLaxO6XasGu20JZDx2-eSs2GAlA14w">
 </div>
 <span class="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary text-[10px]">
 <span class="material-symbols-outlined text-[11px] font-bold">check</span>
@@ -170,33 +172,33 @@
 </div>
 <div class="flex flex-col">
 <div class="flex items-center gap-1">
-<h3 class="font-title-sm text-title-sm text-on-surface">Studio 101</h3>
+<h3 id="dp-creator-name" class="font-title-sm text-title-sm text-on-surface">Studio 101</h3>
 <span class="material-symbols-outlined text-[18px] text-primary-container">verified</span>
 </div>
-<span class="font-label-meta text-label-meta text-outline">Bandung, West Java // ID</span>
+<span id="dp-creator-location" class="font-label-meta text-label-meta text-outline">Bandung, West Java // ID</span>
 </div>
 </div>
-<p class="font-body-sm text-body-sm text-on-surface-variant">
+<p id="dp-creator-bio" class="font-body-sm text-body-sm text-on-surface-variant">
               Independent AI cinematic collective pioneering the fusion of speculative sci-fi with local Nusantara myth ontology. Based in a Bandung computational research lab.
             </p>
 <!-- FIELD: creator_social_links (all optional — admin checks which platforms the creator has) -->
 <div class="flex items-center flex-wrap gap-space-xs pt-space-xs">
-<a class="p-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors" href="https://instagram.com" target="_blank" title="Instagram">
+<a id="dp-social-instagram" class="p-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors" href="https://instagram.com" target="_blank" title="Instagram">
 <i class="fa-brands fa-instagram text-[18px] w-[20px] text-center inline-block"></i>
 </a>
-<a class="p-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors" href="https://facebook.com" target="_blank" title="Facebook">
+<a id="dp-social-facebook" class="p-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors" href="https://facebook.com" target="_blank" title="Facebook">
 <i class="fa-brands fa-facebook-f text-[18px] w-[20px] text-center inline-block"></i>
 </a>
-<a class="p-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-error transition-colors" href="https://youtube.com" target="_blank" title="YouTube">
+<a id="dp-social-youtube" class="p-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-error transition-colors" href="https://youtube.com" target="_blank" title="YouTube">
 <i class="fa-brands fa-youtube text-[18px] w-[20px] text-center inline-block"></i>
 </a>
-<a class="p-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors" href="https://tiktok.com" target="_blank" title="TikTok">
+<a id="dp-social-tiktok" class="p-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors" href="https://tiktok.com" target="_blank" title="TikTok">
 <i class="fa-brands fa-tiktok text-[18px] w-[20px] text-center inline-block"></i>
 </a>
-<a class="p-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors" href="https://behance.net" target="_blank" title="Behance">
+<a id="dp-social-behance" class="p-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors" href="https://behance.net" target="_blank" title="Behance">
 <i class="fa-brands fa-behance text-[18px] w-[20px] text-center inline-block"></i>
 </a>
-<a class="p-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors" href="https://linkedin.com" target="_blank" title="LinkedIn">
+<a id="dp-social-linkedin" class="p-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-primary transition-colors" href="https://linkedin.com" target="_blank" title="LinkedIn">
 <i class="fa-brands fa-linkedin-in text-[18px] w-[20px] text-center inline-block"></i>
 </a>
 </div>
@@ -389,4 +391,129 @@
   });
 </script></main><footer class="w-full bg-surface-container-lowest py-space-3xl mt-space-3xl"><div class="max-w-container-max mx-auto px-gutter-mobile lg:px-gutter-desktop"><div class="grid grid-cols-1 md:grid-cols-12 gap-space-2xl mb-space-2xl"><div class="md:col-span-5 flex flex-col gap-space-md"><div class="flex items-center gap-space-xs"><span class="font-headline-md text-headline-md uppercase tracking-tight text-on-surface">IFAI</span><span class="w-2 h-2 rounded-full bg-[#00f5a0] shadow-[0_0_10px_rgba(0,245,160,0.8)]"></span></div><p class="text-[14px] leading-relaxed text-on-surface-variant max-w-md">Indonesia Future Arts &amp; Intelligence adalah institusi riset dan ekosistem terapan kurasi sinema generatif, seni komputasional, dan lanskap suara sintetis Nusantara.</p><div class="flex items-center gap-space-md pt-space-xs"><a aria-label="YouTube" class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" href="https://youtube.com"><span class="material-symbols-outlined text-[20px]">smart_display</span></a><a aria-label="Instagram" class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" href="https://instagram.com"><span class="material-symbols-outlined text-[20px]">photo_camera</span></a><a aria-label="Discord" class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" href="https://discord.com"><span class="material-symbols-outlined text-[20px]">forum</span></a><a aria-label="LinkedIn" class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" href="https://linkedin.com"><span class="material-symbols-outlined text-[20px]">hub</span></a></div></div><div class="md:col-span-2 flex flex-col gap-space-sm"><span class="font-label-code text-label-code uppercase tracking-wider text-primary-container">Arsip &amp; Karya</span><nav class="flex flex-col gap-space-xs font-body-sm text-body-sm"><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="showcase" href="#">Sinema Sintetis</a><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="showcase" href="#">Lanskap Suara</a><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="showcase" href="#">Instalasi Spasial</a><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="showcase" href="#">Katalog Artefak</a></nav></div><div class="md:col-span-2 flex flex-col gap-space-sm"><span class="font-label-code text-label-code uppercase tracking-wider text-primary-container">Inisiatif</span><nav class="flex flex-col gap-space-xs font-body-sm text-body-sm"><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="programs" href="#">Residensi Kreatif</a><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="programs" href="#">Hibah Komputasi</a><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="creator-hub" href="#">Studio Kolaborasi</a><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="journal" href="#">Publikasi Wacana</a></nav></div><div class="md:col-span-3 flex flex-col gap-space-sm"><span class="font-label-code text-label-code uppercase tracking-wider text-primary-container">Warta Komputasi</span><p class="font-body-sm text-body-sm text-on-surface-variant">Dapatkan terbitan berkala riset kuratorial dan perkembangan AI nusantara langsung di inbox Anda.</p><div class="flex items-center gap-space-xs mt-space-xs"><div class="relative flex-1"><input class="w-full bg-surface-container-low px-space-sm py-space-xs rounded-lg font-label-code text-label-code text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container" placeholder="surel@domain.id" type="email"></div><button class="px-space-md py-space-xs rounded-lg bg-surface-container-high text-primary hover:bg-primary-container hover:text-on-primary-container transition-colors font-label-code text-label-code">Daftar</button></div></div></div><div class="pt-space-xl flex flex-col sm:flex-row items-center justify-between gap-space-md font-label-meta text-label-meta text-outline"><p class="">© 2025 IFAI (Indonesia Future Arts &amp; Intelligence). Hak Cipta Dilindungi Undang-Undang.</p><div class="flex items-center gap-space-lg"><a class="hover:text-on-surface transition-colors" data-path="about" href="#">Kebijakan Privasi</a><a class="hover:text-on-surface transition-colors" data-path="about" href="#">Ketentuan Riset</a><a class="hover:text-on-surface transition-colors" data-path="about" href="#">Etika Generatif</a></div></div></div></footer>
 
+<!-- ============================================================
+     DYNAMIC DETAIL LOADER — if the URL has ?id=<work id>, fetch that
+     work from Supabase and populate the page. If there is no id, or
+     the work can't be found, the hardcoded Cosmic Horizon content
+     above stays exactly as-is (fallback).
+     ============================================================ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+(function () {
+  const SUPABASE_URL = 'https://qayckglxfmtrjqtghitx.supabase.co';
+  const SUPABASE_ANON_KEY = 'sb_publishable_qf2j0vC_6D63ziteKUflCQ_u-rYaIgd';
+  const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  function extractYouTubeId(url) {
+    const match = (url || '').match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([A-Za-z0-9_-]{11})/);
+    return match ? match[1] : null;
+  }
+
+  function setSocial(id, url) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (url) { el.href = url; el.style.display = ''; }
+    else { el.style.display = 'none'; }
+  }
+
+  async function loadWorkFromUrl() {
+    const workId = new URLSearchParams(window.location.search).get('id');
+    if (!workId) return; // no id in URL — leave the hardcoded demo content alone
+
+    const { data: work, error } = await sb
+      .from('works')
+      .select('*, creators(*), categories(name_en, name_id)')
+      .eq('id', workId)
+      .eq('status', 'approved')
+      .single();
+
+    if (error || !work) {
+      console.warn('IFAI: work not found for id', workId, error);
+      return; // keep hardcoded fallback content
+    }
+
+    const title = work.title_en || work.title_id || '(Untitled)';
+    const description = work.description_en || work.description_id || '';
+    const creator = work.creators || {};
+    const categoryName = work.categories?.name_en || work.categories?.name_id || 'Showcase';
+
+    document.title = title + ' | IFAI';
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', (description || title).slice(0, 160));
+
+    const catEl = document.getElementById('dp-category');
+    if (catEl) catEl.textContent = categoryName;
+    const crumbEl = document.getElementById('dp-title-crumb');
+    if (crumbEl) crumbEl.textContent = title;
+    const titleEl = document.getElementById('dp-title');
+    if (titleEl) titleEl.textContent = title;
+
+    // Tags + duration pills
+    const tagsEl = document.getElementById('dp-tags');
+    if (tagsEl) {
+      const tagPills = (work.tags || []).map(t =>
+        `<span class="font-label-meta text-label-meta px-space-xs py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30">${escapeHtmlDp(t.toUpperCase())}</span>`
+      ).join('');
+      const durationPill = work.duration
+        ? `<span class="font-label-meta text-label-meta px-space-xs py-1 rounded bg-surface-container-high text-outline">${escapeHtmlDp(work.duration)} MIN</span>`
+        : '';
+      tagsEl.innerHTML = tagPills + durationPill;
+    }
+
+    // Fictional/curatorial-flavor fields we don't collect from admin — hide them
+    const archiveLine = document.getElementById('dp-archive-line');
+    if (archiveLine) archiveLine.style.display = 'none';
+    const curators = document.getElementById('dp-curators');
+    if (curators) curators.style.display = 'none';
+
+    // Synopsis
+    const descEl = document.getElementById('dp-description');
+    if (descEl) {
+      if (description) {
+        descEl.innerHTML = description
+          .split('\n')
+          .filter(p => p.trim())
+          .map(p => `<p class="text-[14px] leading-relaxed text-on-surface-variant leading-relaxed">${escapeHtmlDp(p)}</p>`)
+          .join('');
+      } else {
+        descEl.innerHTML = '<p class="text-[14px] leading-relaxed text-on-surface-variant">Belum ada sinopsis untuk karya ini.</p>';
+      }
+    }
+
+    // Video embed
+    const videoId = extractYouTubeId(work.youtube_url);
+    const player = document.getElementById('cinema-player');
+    if (player && videoId) {
+      player.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=0&rel=0&modestbranding=1&controls=1&showinfo=0`;
+      player.title = title;
+    }
+
+    // Creator card
+    const nameEl = document.getElementById('dp-creator-name');
+    if (nameEl) nameEl.textContent = creator.name || 'Unknown Creator';
+    const locEl = document.getElementById('dp-creator-location');
+    if (locEl) locEl.textContent = creator.location || '';
+    if (locEl) locEl.style.display = creator.location ? '' : 'none';
+    const bioEl = document.getElementById('dp-creator-bio');
+    if (bioEl) { bioEl.textContent = creator.bio || ''; bioEl.style.display = creator.bio ? '' : 'none'; }
+    const avatarEl = document.getElementById('dp-creator-avatar');
+    if (avatarEl && creator.avatar_url) avatarEl.src = creator.avatar_url;
+
+    setSocial('dp-social-instagram', creator.social_instagram);
+    setSocial('dp-social-facebook', creator.social_facebook);
+    setSocial('dp-social-youtube', creator.social_youtube);
+    setSocial('dp-social-tiktok', creator.social_tiktok);
+    setSocial('dp-social-behance', creator.social_behance);
+    setSocial('dp-social-linkedin', creator.social_linkedin);
+  }
+
+  function escapeHtmlDp(str) {
+    const div = document.createElement('div');
+    div.textContent = str ?? '';
+    return div.innerHTML;
+  }
+
+  loadWorkFromUrl();
+})();
+</script>
 </body></html>
