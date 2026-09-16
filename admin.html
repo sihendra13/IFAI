@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Dashboard | IFAI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          cosmic: { 950: '#050507', 900: '#0a0a0c', 850: '#101116', 800: '#161820', 700: '#222533' },
+          neon: { emerald: '#00FF9D', cyan: '#00E5FF', purple: '#A855F7' }
+        },
+        fontFamily: {
+          sans: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+          mono: ['JetBrains Mono', 'monospace'],
+          jakarta: ['Plus Jakarta Sans', 'sans-serif']
+        }
+      }
+    }
+  }
+</script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<style>
+  body { font-family: 'Space Grotesk', sans-serif; background-color: #0a0a0c; color: #f3f4f6; }
+  .font-mono-code { font-family: 'JetBrains Mono', monospace; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body class="min-h-screen bg-cosmic-900 text-zinc-100">
+
+<!-- Header -->
+<header class="border-b border-zinc-800/80 bg-cosmic-950/80 backdrop-blur-xl sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <img src="image/logo.png" alt="IFAI" class="h-5 object-contain"/>
+      <span class="text-xs font-mono-code text-zinc-500 uppercase tracking-widest">Admin Dashboard</span>
+    </div>
+    <button id="btn-logout" hidden class="text-xs font-mono-code px-4 py-2 rounded-full border border-zinc-700 text-zinc-300 hover:border-[#f75500] hover:text-[#f75500] transition-colors">
+      Logout
+    </button>
+  </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+
+  <!-- LOGIN SCREEN -->
+  <section id="screen-login" class="max-w-sm mx-auto mt-16 flex flex-col gap-6">
+    <div class="text-center">
+      <h1 class="text-2xl font-bold text-white">Admin Login</h1>
+      <p class="text-sm text-zinc-500 mt-1">Khusus untuk admin IFAI.</p>
+    </div>
+    <form id="form-login" class="flex flex-col gap-4 p-6 rounded-2xl bg-cosmic-850 border border-zinc-800">
+      <div class="flex flex-col gap-1.5">
+        <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Email</label>
+        <input type="email" id="login-email" required class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+      </div>
+      <div class="flex flex-col gap-1.5">
+        <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Password</label>
+        <div class="relative">
+          <input type="password" id="login-password" required class="w-full bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 pr-10 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+          <button type="button" id="btn-toggle-password" class="absolute inset-y-0 right-0 flex items-center px-3 text-zinc-500 hover:text-zinc-300" aria-label="Tampilkan password">
+            <svg id="icon-eye-open" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+            <svg id="icon-eye-closed" hidden class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12c1.292 4.338 5.31 7.5 10.066 7.5.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0 1 12 4.5c4.756 0 8.774 3.162 10.065 7.498a10.523 10.523 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88"/></svg>
+          </button>
+        </div>
+      </div>
+      <p id="login-error" hidden class="text-xs text-red-400"></p>
+      <button type="submit" class="mt-2 py-2.5 rounded-lg bg-[#f75500] text-white font-semibold text-sm hover:shadow-[0_0_20px_rgba(247,85,0,0.5)] transition-all">
+        Masuk
+      </button>
+    </form>
+  </section>
+
+  <!-- NOT ADMIN SCREEN -->
+  <section id="screen-not-admin" hidden class="max-w-sm mx-auto mt-16 text-center flex flex-col gap-4">
+    <h1 class="text-xl font-bold text-white">Akun ini bukan admin</h1>
+    <p class="text-sm text-zinc-500">Akun kamu berhasil login tapi belum punya akses admin. Hubungi pengelola IFAI untuk minta akses.</p>
+    <button id="btn-logout-2" class="mx-auto text-xs font-mono-code px-4 py-2 rounded-full border border-zinc-700 text-zinc-300 hover:border-[#f75500] hover:text-[#f75500] transition-colors">
+      Logout
+    </button>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section id="screen-dashboard" hidden class="flex flex-col gap-10">
+
+    <!-- Post Form -->
+    <div id="form-work-container" class="p-6 rounded-2xl bg-cosmic-850 border border-zinc-800 transition-colors">
+      <div id="edit-mode-banner" hidden class="mb-5 px-4 py-3 rounded-lg bg-[#f75500]/15 border border-[#f75500] flex items-center gap-2 text-sm text-[#f75500] font-semibold">
+        <span>✏️</span>
+        <span>Mode Edit — kamu sedang mengubah karya yang sudah ada, bukan membuat karya baru.</span>
+      </div>
+      <h2 id="form-title" class="text-lg font-bold text-white mb-6">+ Post Karya Baru</h2>
+      <form id="form-work" class="flex flex-col gap-5">
+        <input type="hidden" id="work-id"/>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Kategori *</label>
+            <select id="work-category" required class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"></select>
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Creator *</label>
+            <div class="flex items-center gap-2">
+              <select id="work-creator-select" class="flex-1 bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"></select>
+              <button type="button" id="btn-edit-creator" hidden class="text-xs font-mono-code px-3 py-2.5 rounded-lg bg-cosmic-800 border border-zinc-700 text-zinc-300 hover:border-[#f75500] hover:text-[#f75500] transition-colors whitespace-nowrap">
+                Edit
+              </button>
+              <button type="button" id="btn-toggle-new-creator" class="text-xs font-mono-code px-3 py-2.5 rounded-lg bg-cosmic-800 border border-zinc-700 text-zinc-300 hover:border-[#f75500] hover:text-[#f75500] transition-colors whitespace-nowrap">
+                + Baru
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Creator detail fields — shown when "+ Creator Baru" is selected, or when editing an existing creator -->
+        <div id="panel-new-creator" hidden class="flex flex-col gap-4 p-4 rounded-xl bg-cosmic-900 border border-zinc-800">
+          <h3 id="creator-panel-title" class="text-sm font-bold text-white">Creator</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="flex flex-col gap-1.5">
+              <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Nama *</label>
+              <input type="text" id="creator-name" placeholder="Studio 101" class="bg-cosmic-850 border border-zinc-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Lokasi</label>
+              <input type="text" id="creator-location" placeholder="Bandung, Jawa Barat" class="bg-cosmic-850 border border-zinc-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+            </div>
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Foto Profil</label>
+            <div class="flex items-center gap-3">
+              <img id="creator-avatar-preview" hidden class="w-12 h-12 rounded-full object-cover border border-zinc-700"/>
+              <div id="creator-avatar-placeholder" class="w-12 h-12 rounded-full bg-cosmic-800 border border-zinc-700 flex items-center justify-center text-zinc-600 text-lg">?</div>
+              <input type="file" id="creator-avatar-file" accept="image/*" class="flex-1 text-xs text-zinc-400 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border file:border-zinc-700 file:bg-cosmic-850 file:text-zinc-300 file:text-xs hover:file:border-[#f75500] hover:file:text-[#f75500] file:cursor-pointer"/>
+            </div>
+            <input type="hidden" id="creator-avatar-current"/>
+            <p class="text-[11px] text-zinc-500">Opsional — kalau tidak diisi, akan pakai avatar default.</p>
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Bio</label>
+            <textarea id="creator-bio" rows="2" class="bg-cosmic-850 border border-zinc-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500] resize-y"></textarea>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <input type="url" id="creator-instagram" placeholder="Instagram URL" class="bg-cosmic-850 border border-zinc-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+            <input type="url" id="creator-facebook" placeholder="Facebook URL" class="bg-cosmic-850 border border-zinc-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+            <input type="url" id="creator-youtube" placeholder="YouTube URL" class="bg-cosmic-850 border border-zinc-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+            <input type="url" id="creator-tiktok" placeholder="TikTok URL" class="bg-cosmic-850 border border-zinc-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+            <input type="url" id="creator-behance" placeholder="Behance URL" class="bg-cosmic-850 border border-zinc-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+            <input type="url" id="creator-linkedin" placeholder="LinkedIn URL" class="bg-cosmic-850 border border-zinc-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+          </div>
+          <p id="creator-error" hidden class="text-xs text-red-400"></p>
+          <!-- Only shown when editing an existing creator (not while creating one inline via Post Karya) -->
+          <div id="creator-edit-actions" hidden class="flex items-center gap-3">
+            <button type="button" id="btn-save-creator-edit" class="py-2 px-5 rounded-lg bg-[#f75500] text-white text-sm font-semibold hover:shadow-[0_0_20px_rgba(247,85,0,0.4)] transition-all">
+              Simpan Perubahan
+            </button>
+            <button type="button" id="btn-cancel-creator-edit" class="py-2 px-5 rounded-lg border border-zinc-700 text-zinc-300 text-sm hover:border-zinc-500 transition-colors">
+              Batal
+            </button>
+          </div>
+        </div>
+
+        <!-- Title EN/ID -->
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Judul Karya *</label>
+          <div class="flex flex-col gap-1.5 p-3 rounded-lg bg-cosmic-900 border border-zinc-800">
+            <span class="text-[11px] text-zinc-500">🇮🇩 Judul (Bahasa Indonesia)</span>
+            <input type="text" id="work-title-id" class="bg-transparent border-b border-zinc-700 pb-1.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+          </div>
+          <div class="flex items-end gap-2 p-3 rounded-lg bg-cosmic-900 border border-zinc-800">
+            <div class="flex-1 flex flex-col gap-1.5">
+              <span class="text-[11px] text-zinc-500">🇬🇧 Title (English)</span>
+              <input type="text" id="work-title-en" class="bg-transparent border-b border-zinc-700 pb-1.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+            </div>
+            <button type="button" data-translate-from="work-title-id" data-translate-to="work-title-en" class="btn-translate text-[11px] font-mono-code px-3 py-1.5 rounded-md bg-cosmic-800 border border-zinc-700 text-[#f75500] hover:border-[#f75500] transition-colors whitespace-nowrap">
+              Translate
+            </button>
+          </div>
+        </div>
+
+        <!-- Synopsis EN/ID -->
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Sinopsis</label>
+          <div class="flex flex-col gap-1.5 p-3 rounded-lg bg-cosmic-900 border border-zinc-800">
+            <span class="text-[11px] text-zinc-500">🇮🇩 Sinopsis (Bahasa Indonesia)</span>
+            <textarea id="work-desc-id" rows="4" class="bg-transparent border-b border-zinc-700 pb-1.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500] resize-y"></textarea>
+          </div>
+          <div class="flex items-end gap-2 p-3 rounded-lg bg-cosmic-900 border border-zinc-800">
+            <div class="flex-1 flex flex-col gap-1.5">
+              <span class="text-[11px] text-zinc-500">🇬🇧 Synopsis (English)</span>
+              <textarea id="work-desc-en" rows="4" class="bg-transparent border-b border-zinc-700 pb-1.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500] resize-y"></textarea>
+            </div>
+            <button type="button" data-translate-from="work-desc-id" data-translate-to="work-desc-en" class="btn-translate text-[11px] font-mono-code px-3 py-1.5 rounded-md bg-cosmic-800 border border-zinc-700 text-[#f75500] hover:border-[#f75500] transition-colors whitespace-nowrap">
+              Translate
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <div class="flex flex-col gap-1.5 sm:col-span-2">
+            <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Link YouTube *</label>
+            <input type="url" id="work-youtube" required placeholder="https://www.youtube.com/watch?v=..." class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Durasi (otomatis)</label>
+            <input type="text" id="work-duration" placeholder="Terisi otomatis dari link" class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Tags</label>
+          <div id="work-tags-picker" class="flex flex-wrap gap-2 p-3 rounded-lg bg-cosmic-900 border border-zinc-800"></div>
+          <div class="flex items-center gap-2">
+            <input type="text" id="work-tags-custom" placeholder="Tambah tag lain..." class="flex-1 bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+            <button type="button" id="btn-add-custom-tag" class="text-xs font-mono-code px-3 py-2 rounded-lg bg-cosmic-800 border border-zinc-700 text-zinc-300 hover:border-[#f75500] hover:text-[#f75500] transition-colors">
+              + Tambah
+            </button>
+          </div>
+        </div>
+
+        <p id="work-error" hidden class="text-xs text-red-400"></p>
+        <p id="work-success" hidden class="text-xs text-[#f75500]"></p>
+
+        <div class="flex items-center gap-3">
+          <button type="submit" id="btn-submit-work" class="py-2.5 px-6 rounded-lg bg-[#f75500] text-white font-semibold text-sm hover:shadow-[0_0_20px_rgba(247,85,0,0.5)] transition-all">
+            Post Karya
+          </button>
+          <button type="button" id="btn-cancel-edit" hidden class="py-2.5 px-6 rounded-lg border border-zinc-700 text-zinc-300 text-sm hover:border-zinc-500 transition-colors">
+            Batal Edit
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Works List -->
+    <div>
+      <h2 class="text-lg font-bold text-white mb-4">Semua Karya</h2>
+      <div class="overflow-x-auto rounded-2xl border border-zinc-800">
+        <table class="w-full text-sm">
+          <thead class="bg-cosmic-850 text-zinc-400 text-xs font-mono-code uppercase tracking-wider">
+            <tr>
+              <th class="text-left px-4 py-3">Judul</th>
+              <th class="text-left px-4 py-3">Kategori</th>
+              <th class="text-left px-4 py-3">Creator</th>
+              <th class="text-left px-4 py-3">Status</th>
+              <th class="text-right px-4 py-3">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="works-table-body" class="divide-y divide-zinc-800/80"></tbody>
+        </table>
+        <p id="works-empty" hidden class="text-center text-sm text-zinc-500 py-8">Belum ada karya yang diposting.</p>
+      </div>
+    </div>
+
+  </section>
+</main>
+
+<script>
+  const SUPABASE_URL = 'https://qayckglxfmtrjqtghitx.supabase.co';
+  const SUPABASE_ANON_KEY = 'sb_publishable_qf2j0vC_6D63ziteKUflCQ_u-rYaIgd';
+  const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const screens = {
+    login: document.getElementById('screen-login'),
+    notAdmin: document.getElementById('screen-not-admin'),
+    dashboard: document.getElementById('screen-dashboard')
+  };
+  const btnLogout = document.getElementById('btn-logout');
+
+  function showScreen(name) {
+    Object.values(screens).forEach(s => s.hidden = true);
+    screens[name].hidden = false;
+    btnLogout.hidden = (name === 'login');
+  }
+
+  let currentProfile = null;
+  let categoriesCache = [];
+
+  // ---------- TAGS PICKER (chips) ----------
+  const PRESET_TAGS = [
+    'Sci-Fi', 'Synthetic Cinema', 'Nusantara Mythos', 'Drama', 'Cultural',
+    'Surrealism', 'Dynamic', 'Procedural', 'Character Animation', 'Motion Graphics',
+    'Generative', 'Ambient', 'Vocal AI', 'Original Score', 'Experimental',
+    'Portrait', 'Abstract', 'Landscape', '3D', 'Documentary'
+  ];
+  let selectedTags = [];
+  const MAX_TAGS = 5;
+
+  function renderTagsPicker() {
+    const container = document.getElementById('work-tags-picker');
+    const allTags = [...new Set([...PRESET_TAGS, ...selectedTags])];
+    const atLimit = selectedTags.length >= MAX_TAGS;
+    container.innerHTML = allTags.map(tag => {
+      const active = selectedTags.includes(tag);
+      const disabled = !active && atLimit;
+      return `<button type="button" data-tag="${escapeHtml(tag)}" ${disabled ? 'disabled' : ''} class="tag-chip text-xs font-mono-code px-3 py-1.5 rounded-full border transition-colors ${
+        active
+          ? 'bg-[#f75500] border-[#f75500] text-white'
+          : disabled
+            ? 'bg-cosmic-800 border-zinc-800 text-zinc-600 cursor-not-allowed opacity-50'
+            : 'bg-cosmic-800 border-zinc-700 text-zinc-400 hover:border-[#f75500] hover:text-[#f75500]'
+      }">${escapeHtml(tag)}</button>`;
+    }).join('');
+    container.querySelectorAll('.tag-chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tag = btn.dataset.tag;
+        if (selectedTags.includes(tag)) {
+          selectedTags = selectedTags.filter(t => t !== tag);
+        } else if (selectedTags.length < MAX_TAGS) {
+          selectedTags.push(tag);
+        }
+        renderTagsPicker();
+      });
+    });
+  }
+
+  document.getElementById('btn-add-custom-tag').addEventListener('click', () => {
+    const input = document.getElementById('work-tags-custom');
+    const tag = input.value.trim();
+    if (!tag) return;
+    if (selectedTags.length >= MAX_TAGS) {
+      alert(`Maksimal ${MAX_TAGS} tag. Lepas salah satu tag dulu untuk menambah yang baru.`);
+      return;
+    }
+    if (!selectedTags.includes(tag)) selectedTags.push(tag);
+    input.value = '';
+    renderTagsPicker();
+  });
+  document.getElementById('work-tags-custom').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      document.getElementById('btn-add-custom-tag').click();
+    }
+  });
+
+  // ---------- AUTH ----------
+  async function checkSession() {
+    const { data: { session } } = await sb.auth.getSession();
+    if (!session) { showScreen('login'); return; }
+    await loadProfileAndRoute();
+  }
+
+  async function loadProfileAndRoute() {
+    const { data: { user } } = await sb.auth.getUser();
+    if (!user) { showScreen('login'); return; }
+    const { data: profile, error } = await sb.from('profiles').select('*').eq('id', user.id).single();
+    if (error || !profile || profile.role !== 'admin') {
+      showScreen('notAdmin');
+      return;
+    }
+    currentProfile = profile;
+    showScreen('dashboard');
+    await loadCategories();
+    await loadCreators();
+    await loadWorks();
+  }
+
+  document.getElementById('btn-toggle-password').addEventListener('click', () => {
+    const input = document.getElementById('login-password');
+    const eyeOpen = document.getElementById('icon-eye-open');
+    const eyeClosed = document.getElementById('icon-eye-closed');
+    const isHidden = input.type === 'password';
+    input.type = isHidden ? 'text' : 'password';
+    eyeOpen.hidden = isHidden;
+    eyeClosed.hidden = !isHidden;
+  });
+
+  document.getElementById('form-login').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('login-email').value.trim();
+    const password = document.getElementById('login-password').value;
+    const errEl = document.getElementById('login-error');
+    errEl.hidden = true;
+    const { error } = await sb.auth.signInWithPassword({ email, password });
+    if (error) {
+      errEl.textContent = 'Login gagal: ' + error.message;
+      errEl.hidden = false;
+      return;
+    }
+    await loadProfileAndRoute();
+  });
+
+  async function doLogout() {
+    await sb.auth.signOut();
+    currentProfile = null;
+    showScreen('login');
+  }
+  document.getElementById('btn-logout').addEventListener('click', doLogout);
+  document.getElementById('btn-logout-2').addEventListener('click', doLogout);
+
+  // ---------- CATEGORIES ----------
+  async function loadCategories() {
+    const { data, error } = await sb.from('categories').select('*').order('display_order');
+    if (error) { console.error(error); return; }
+    categoriesCache = data;
+    const select = document.getElementById('work-category');
+    select.innerHTML = data.map(c => `<option value="${c.id}">${c.name_id || c.name_en}</option>`).join('');
+  }
+
+  // ---------- CREATORS ----------
+  let creatorsCache = [];
+  let editingCreatorId = null;
+
+  const panelNewCreator = document.getElementById('panel-new-creator');
+  const creatorPanelTitle = document.getElementById('creator-panel-title');
+  const btnEditCreator = document.getElementById('btn-edit-creator');
+  const btnToggleNewCreator = document.getElementById('btn-toggle-new-creator');
+  const creatorEditActions = document.getElementById('creator-edit-actions');
+  const CREATOR_FIELD_IDS = ['creator-name','creator-location','creator-bio','creator-instagram','creator-facebook','creator-youtube','creator-tiktok','creator-behance','creator-linkedin'];
+  const avatarPreview = document.getElementById('creator-avatar-preview');
+  const avatarPlaceholder = document.getElementById('creator-avatar-placeholder');
+  const avatarFileInput = document.getElementById('creator-avatar-file');
+
+  function setAvatarPreview(url) {
+    if (url) {
+      avatarPreview.src = url;
+      avatarPreview.hidden = false;
+      avatarPlaceholder.hidden = true;
+    } else {
+      avatarPreview.hidden = true;
+      avatarPlaceholder.hidden = false;
+    }
+  }
+
+  const AVATAR_MAX_BYTES = 2 * 1024 * 1024; // 2MB
+
+  avatarFileInput.addEventListener('change', () => {
+    const file = avatarFileInput.files[0];
+    if (!file) return;
+    const errEl = document.getElementById('creator-error');
+    if (file.size > AVATAR_MAX_BYTES) {
+      errEl.textContent = 'Ukuran foto maksimal 2MB. File kamu ' + (file.size / 1024 / 1024).toFixed(1) + 'MB.';
+      errEl.hidden = false;
+      avatarFileInput.value = '';
+      return;
+    }
+    errEl.hidden = true;
+    setAvatarPreview(URL.createObjectURL(file));
+  });
+
+  // Uploads the chosen file (if any) to Supabase Storage and returns its
+  // public URL. If no new file was picked, falls back to whatever avatar
+  // URL was already on the creator (kept in the hidden field) — so
+  // editing a creator without touching the photo doesn't wipe it out.
+  async function uploadAvatarIfSelected() {
+    const file = avatarFileInput.files[0];
+    const currentUrl = document.getElementById('creator-avatar-current').value || null;
+    if (!file) return currentUrl;
+    if (file.size > AVATAR_MAX_BYTES) throw new Error('Ukuran foto maksimal 2MB.');
+    const ext = file.name.split('.').pop();
+    const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+    const { error } = await sb.storage.from('creator-avatars').upload(path, file);
+    if (error) throw new Error('Gagal upload foto: ' + error.message);
+    const { data } = sb.storage.from('creator-avatars').getPublicUrl(path);
+    return data.publicUrl;
+  }
+
+  async function loadCreators() {
+    const { data, error } = await sb.from('creators').select('*').order('name');
+    if (error) { console.error(error); return; }
+    creatorsCache = data;
+    const select = document.getElementById('work-creator-select');
+    select.innerHTML = data.map(c => `<option value="${c.id}">${escapeHtml(c.name)}</option>`).join('');
+    updateCreatorControlsVisibility();
+  }
+
+  function updateCreatorControlsVisibility() {
+    const value = document.getElementById('work-creator-select').value;
+    btnEditCreator.hidden = !value;
+  }
+
+  document.getElementById('work-creator-select').addEventListener('change', () => {
+    exitCreatorEditMode();
+    panelNewCreator.hidden = true;
+    updateCreatorControlsVisibility();
+  });
+
+  btnToggleNewCreator.addEventListener('click', () => {
+    exitCreatorEditMode();
+    panelNewCreator.hidden = !panelNewCreator.hidden;
+    if (!panelNewCreator.hidden) {
+      creatorPanelTitle.textContent = 'Creator Baru';
+    }
+  });
+
+  function exitCreatorEditMode() {
+    editingCreatorId = null;
+    creatorPanelTitle.textContent = 'Creator';
+    creatorEditActions.hidden = true;
+    clearNewCreatorFields();
+  }
+
+  btnEditCreator.addEventListener('click', () => {
+    const id = document.getElementById('work-creator-select').value;
+    const creator = creatorsCache.find(c => c.id === id);
+    if (!creator) return;
+    editingCreatorId = id;
+    document.getElementById('creator-name').value = creator.name || '';
+    document.getElementById('creator-location').value = creator.location || '';
+    document.getElementById('creator-avatar-current').value = creator.avatar_url || '';
+    avatarFileInput.value = '';
+    setAvatarPreview(creator.avatar_url || null);
+    document.getElementById('creator-bio').value = creator.bio || '';
+    document.getElementById('creator-instagram').value = creator.social_instagram || '';
+    document.getElementById('creator-facebook').value = creator.social_facebook || '';
+    document.getElementById('creator-youtube').value = creator.social_youtube || '';
+    document.getElementById('creator-tiktok').value = creator.social_tiktok || '';
+    document.getElementById('creator-behance').value = creator.social_behance || '';
+    document.getElementById('creator-linkedin').value = creator.social_linkedin || '';
+    creatorPanelTitle.textContent = 'Edit Creator: ' + creator.name;
+    creatorEditActions.hidden = false;
+    panelNewCreator.hidden = false;
+  });
+
+  document.getElementById('btn-cancel-creator-edit').addEventListener('click', () => {
+    exitCreatorEditMode();
+    panelNewCreator.hidden = true;
+    updateCreatorControlsVisibility();
+  });
+
+  document.getElementById('btn-save-creator-edit').addEventListener('click', async () => {
+    const errEl = document.getElementById('creator-error');
+    errEl.hidden = true;
+    const name = document.getElementById('creator-name').value.trim();
+    if (!name) {
+      errEl.textContent = 'Nama creator wajib diisi.';
+      errEl.hidden = false;
+      return;
+    }
+    let avatarUrl;
+    try {
+      avatarUrl = await uploadAvatarIfSelected();
+    } catch (e) {
+      errEl.textContent = e.message;
+      errEl.hidden = false;
+      return;
+    }
+    const payload = {
+      name,
+      location: document.getElementById('creator-location').value.trim() || null,
+      avatar_url: avatarUrl,
+      bio: document.getElementById('creator-bio').value.trim() || null,
+      social_instagram: document.getElementById('creator-instagram').value.trim() || null,
+      social_facebook: document.getElementById('creator-facebook').value.trim() || null,
+      social_youtube: document.getElementById('creator-youtube').value.trim() || null,
+      social_tiktok: document.getElementById('creator-tiktok').value.trim() || null,
+      social_behance: document.getElementById('creator-behance').value.trim() || null,
+      social_linkedin: document.getElementById('creator-linkedin').value.trim() || null
+    };
+    const { error } = await sb.from('creators').update(payload).eq('id', editingCreatorId);
+    if (error) {
+      errEl.textContent = 'Gagal menyimpan perubahan: ' + error.message;
+      errEl.hidden = false;
+      return;
+    }
+    const keepId = editingCreatorId;
+    exitCreatorEditMode();
+    panelNewCreator.hidden = true;
+    await loadCreators();
+    document.getElementById('work-creator-select').value = keepId;
+    updateCreatorControlsVisibility();
+  });
+
+  function clearNewCreatorFields() {
+    CREATOR_FIELD_IDS.forEach(id => document.getElementById(id).value = '');
+    avatarFileInput.value = '';
+    document.getElementById('creator-avatar-current').value = '';
+    setAvatarPreview(null);
+  }
+
+  // If the "+ Baru" panel is open (and we're not mid-edit of an existing
+  // creator), creates that creator row first. Otherwise just returns the
+  // id of the existing creator already picked from the dropdown.
+  // Returns null (and sets errEl) if something required is missing.
+  async function resolveCreatorId(errEl) {
+    const select = document.getElementById('work-creator-select');
+    const creatingNew = !panelNewCreator.hidden && editingCreatorId === null;
+    if (!creatingNew) {
+      if (!select.value) {
+        errEl.textContent = 'Pilih creator dulu, atau klik "+ Baru" untuk membuat creator baru.';
+        errEl.hidden = false;
+        return null;
+      }
+      return select.value;
+    }
+    const name = document.getElementById('creator-name').value.trim();
+    if (!name) {
+      errEl.textContent = 'Nama creator wajib diisi.';
+      errEl.hidden = false;
+      return null;
+    }
+    let avatarUrl;
+    try {
+      avatarUrl = await uploadAvatarIfSelected();
+    } catch (e) {
+      errEl.textContent = e.message;
+      errEl.hidden = false;
+      return null;
+    }
+    const payload = {
+      name,
+      location: document.getElementById('creator-location').value.trim() || null,
+      avatar_url: avatarUrl,
+      bio: document.getElementById('creator-bio').value.trim() || null,
+      social_instagram: document.getElementById('creator-instagram').value.trim() || null,
+      social_facebook: document.getElementById('creator-facebook').value.trim() || null,
+      social_youtube: document.getElementById('creator-youtube').value.trim() || null,
+      social_tiktok: document.getElementById('creator-tiktok').value.trim() || null,
+      social_behance: document.getElementById('creator-behance').value.trim() || null,
+      social_linkedin: document.getElementById('creator-linkedin').value.trim() || null
+    };
+    const { data, error } = await sb.from('creators').insert(payload).select().single();
+    if (error) {
+      errEl.textContent = 'Gagal menyimpan creator: ' + error.message;
+      errEl.hidden = false;
+      return null;
+    }
+    await loadCreators();
+    document.getElementById('work-creator-select').value = data.id;
+    panelNewCreator.hidden = true;
+    updateCreatorControlsVisibility();
+    clearNewCreatorFields();
+    return data.id;
+  }
+
+  // ---------- TRANSLATE (placeholder until DeepL key is wired up) ----------
+  document.querySelectorAll('.btn-translate').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const fromEl = document.getElementById(btn.dataset.translateFrom);
+      const toEl = document.getElementById(btn.dataset.translateTo);
+      if (!fromEl.value.trim()) {
+        alert('Isi dulu teks yang mau diterjemahkan.');
+        return;
+      }
+      alert('Fitur translate otomatis belum aktif (menunggu setup API DeepL). Silakan isi manual dulu untuk sekarang.');
+    });
+  });
+
+  // ---------- WORK FORM (create / edit) ----------
+  const form = document.getElementById('form-work');
+  const formTitle = document.getElementById('form-title');
+  const btnCancelEdit = document.getElementById('btn-cancel-edit');
+  const btnSubmitWork = document.getElementById('btn-submit-work');
+
+  function resetForm() {
+    form.reset();
+    document.getElementById('work-id').value = '';
+    formTitle.textContent = '+ Post Karya Baru';
+    btnSubmitWork.textContent = 'Post Karya';
+    btnCancelEdit.hidden = true;
+    document.getElementById('edit-mode-banner').hidden = true;
+    document.getElementById('form-work-container').classList.remove('border-[#f75500]');
+    selectedTags = [];
+    renderTagsPicker();
+    exitCreatorEditMode();
+    panelNewCreator.hidden = true;
+    updateCreatorControlsVisibility();
+  }
+  btnCancelEdit.addEventListener('click', resetForm);
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const errEl = document.getElementById('work-error');
+    const okEl = document.getElementById('work-success');
+    errEl.hidden = true; okEl.hidden = true;
+
+    const id = document.getElementById('work-id').value;
+    const titleId = document.getElementById('work-title-id').value.trim();
+    const titleEn = document.getElementById('work-title-en').value.trim();
+    if (!titleId && !titleEn) {
+      errEl.textContent = 'Judul wajib diisi minimal 1 bahasa.';
+      errEl.hidden = false;
+      return;
+    }
+    const creatorId = await resolveCreatorId(errEl);
+    if (!creatorId) return;
+
+    const payload = {
+      category_id: document.getElementById('work-category').value,
+      creator_id: creatorId,
+      title_id: titleId || null,
+      title_en: titleEn || null,
+      description_id: document.getElementById('work-desc-id').value.trim() || null,
+      description_en: document.getElementById('work-desc-en').value.trim() || null,
+      youtube_url: document.getElementById('work-youtube').value.trim(),
+      duration: document.getElementById('work-duration').value.trim() || null,
+      tags: selectedTags
+    };
+
+    let result;
+    if (id) {
+      result = await sb.from('works').update(payload).eq('id', id);
+    } else {
+      payload.status = 'approved';
+      payload.approved_at = new Date().toISOString();
+      payload.approved_by = currentProfile.id;
+      result = await sb.from('works').insert(payload);
+    }
+
+    if (result.error) {
+      errEl.textContent = 'Gagal menyimpan: ' + result.error.message;
+      errEl.hidden = false;
+      return;
+    }
+
+    okEl.textContent = id ? 'Karya berhasil diupdate.' : 'Karya berhasil diposting.';
+    okEl.hidden = false;
+    resetForm();
+    await loadWorks();
+  });
+
+  // ---------- WORKS LIST ----------
+  async function loadWorks() {
+    const { data, error } = await sb
+      .from('works')
+      .select('*, categories(name_id, name_en), creators(name)')
+      .order('created_at', { ascending: false });
+
+    const tbody = document.getElementById('works-table-body');
+    const emptyEl = document.getElementById('works-empty');
+    if (error) { console.error(error); return; }
+
+    if (!data.length) {
+      tbody.innerHTML = '';
+      emptyEl.hidden = false;
+      return;
+    }
+    emptyEl.hidden = true;
+
+    tbody.innerHTML = data.map(w => `
+      <tr class="hover:bg-cosmic-850/60">
+        <td class="px-4 py-3 text-white">${escapeHtml(w.title_id || w.title_en || '(tanpa judul)')}</td>
+        <td class="px-4 py-3 text-zinc-400">${escapeHtml(w.categories?.name_id || w.categories?.name_en || '-')}</td>
+        <td class="px-4 py-3 text-zinc-400">${escapeHtml(w.creators?.name || '-')}</td>
+        <td class="px-4 py-3">
+          <span class="text-[11px] font-mono-code px-2 py-0.5 rounded-full ${statusClass(w.status)}">${w.status}</span>
+        </td>
+        <td class="px-4 py-3 text-right whitespace-nowrap">
+          <button class="btn-edit text-xs text-[#f75500] hover:underline mr-3" data-id="${w.id}">Edit</button>
+          <button class="btn-delete text-xs text-red-400 hover:underline" data-id="${w.id}">Hapus</button>
+        </td>
+      </tr>
+    `).join('');
+
+    tbody.querySelectorAll('.btn-edit').forEach(btn => {
+      btn.addEventListener('click', () => editWork(data.find(w => w.id === btn.dataset.id)));
+    });
+    tbody.querySelectorAll('.btn-delete').forEach(btn => {
+      btn.addEventListener('click', () => deleteWork(btn.dataset.id));
+    });
+  }
+
+  function statusClass(status) {
+    if (status === 'approved') return 'bg-neon-emerald/10 text-neon-emerald';
+    if (status === 'pending') return 'bg-yellow-500/10 text-yellow-400';
+    return 'bg-red-500/10 text-red-400';
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str ?? '';
+    return div.innerHTML;
+  }
+
+  function editWork(work) {
+    document.getElementById('work-id').value = work.id;
+    document.getElementById('work-category').value = work.category_id;
+    document.getElementById('work-creator-select').value = work.creator_id;
+    exitCreatorEditMode();
+    panelNewCreator.hidden = true;
+    updateCreatorControlsVisibility();
+    document.getElementById('work-title-id').value = work.title_id || '';
+    document.getElementById('work-title-en').value = work.title_en || '';
+    document.getElementById('work-desc-id').value = work.description_id || '';
+    document.getElementById('work-desc-en').value = work.description_en || '';
+    document.getElementById('work-youtube').value = work.youtube_url || '';
+    document.getElementById('work-duration').value = work.duration || '';
+    selectedTags = [...(work.tags || [])];
+    renderTagsPicker();
+
+    formTitle.textContent = 'Edit Karya';
+    btnSubmitWork.textContent = 'Update Karya';
+    btnCancelEdit.hidden = false;
+    document.getElementById('edit-mode-banner').hidden = false;
+    document.getElementById('form-work-container').classList.add('border-[#f75500]');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  async function deleteWork(id) {
+    if (!confirm('Yakin mau hapus karya ini? Tidak bisa dibatalkan.')) return;
+    const { error } = await sb.from('works').delete().eq('id', id);
+    if (error) { alert('Gagal hapus: ' + error.message); return; }
+    await loadWorks();
+  }
+
+  // ---------- AUTO-FILL DURATION FROM YOUTUBE LINK ----------
+  let ytApiReady = false;
+  window.onYouTubeIframeAPIReady = () => { ytApiReady = true; };
+  (function loadYouTubeApi() {
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+  })();
+
+  function extractYouTubeId(url) {
+    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([A-Za-z0-9_-]{11})/);
+    return match ? match[1] : null;
+  }
+
+  function formatDuration(totalSeconds) {
+    const s = Math.round(totalSeconds);
+    const h = Math.floor(s / 3600);
+    const m = Math.floor((s % 3600) / 60);
+    const sec = s % 60;
+    const mm = h > 0 ? String(m).padStart(2, '0') : String(m);
+    const ss = String(sec).padStart(2, '0');
+    return h > 0 ? `${h}:${mm}:${ss}` : `${mm}:${ss}`;
+  }
+
+  let ytProbePlayer = null;
+  document.getElementById('work-youtube').addEventListener('blur', () => {
+    const durationField = document.getElementById('work-duration');
+    if (durationField.value.trim()) return; // don't override a manually-entered value
+    const url = document.getElementById('work-youtube').value.trim();
+    const videoId = extractYouTubeId(url);
+    if (!videoId || !ytApiReady) return;
+
+    if (ytProbePlayer) { ytProbePlayer.destroy(); ytProbePlayer = null; }
+    let probeDiv = document.getElementById('yt-duration-probe');
+    if (!probeDiv) {
+      probeDiv = document.createElement('div');
+      probeDiv.id = 'yt-duration-probe';
+      probeDiv.style.cssText = 'position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;';
+      document.body.appendChild(probeDiv);
+    }
+    ytProbePlayer = new YT.Player(probeDiv, {
+      videoId,
+      events: {
+        onReady: (e) => {
+          const dur = e.target.getDuration();
+          if (dur > 0) durationField.value = formatDuration(dur);
+          e.target.destroy();
+          ytProbePlayer = null;
+        },
+        onError: () => {
+          if (ytProbePlayer) { ytProbePlayer.destroy(); ytProbePlayer = null; }
+        }
+      }
+    });
+  });
+
+  renderTagsPicker();
+  checkSession();
+</script>
+</body>
+</html>
