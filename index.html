@@ -1111,6 +1111,27 @@
 
   const cachedShowcase = [];
 
+  // Hide the grids immediately so visitors don't see a flash of the
+  // hardcoded demo cards (e.g. "Cosmic Horizon") before the real
+  // Supabase data has a chance to load and replace them.
+  const allShowcaseGrids = Array.from(document.querySelectorAll('[id^="grid-"]'));
+  allShowcaseGrids.forEach((g) => {
+    g.style.opacity = '0';
+    g.style.transition = 'opacity 0.3s ease';
+    g.classList.add('animate-pulse');
+  });
+  let gridsRevealed = false;
+  function revealShowcaseGrids() {
+    if (gridsRevealed) return;
+    gridsRevealed = true;
+    allShowcaseGrids.forEach((g) => {
+      g.style.opacity = '1';
+      g.classList.remove('animate-pulse');
+    });
+  }
+  // Failsafe: never leave the grids invisible if the fetch hangs/fails silently.
+  setTimeout(revealShowcaseGrids, 4000);
+
   function renderShowcase(lang) {
     for (const entry of cachedShowcase) {
       if (entry.works && entry.works.length > 0) {
@@ -1127,7 +1148,7 @@
       .from('categories')
       .select('*')
       .order('display_order');
-    if (catErr || !categories) { console.error('IFAI: failed to load categories', catErr); return; }
+    if (catErr || !categories) { console.error('IFAI: failed to load categories', catErr); revealShowcaseGrids(); return; }
 
     for (const cat of categories) {
       const grid = document.getElementById('grid-' + cat.slug);
@@ -1153,6 +1174,7 @@
     }
 
     renderShowcase(window.IFAI_I18N ? window.IFAI_I18N.getLang() : 'en');
+    revealShowcaseGrids();
     window.addEventListener('ifai:langchange', (e) => renderShowcase(e.detail.lang));
   }
 
