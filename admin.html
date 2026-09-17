@@ -112,6 +112,9 @@
               <button type="button" id="btn-edit-creator" hidden class="text-xs font-mono-code px-3 py-2.5 rounded-lg bg-cosmic-800 border border-zinc-700 text-zinc-300 hover:border-[#f75500] hover:text-[#f75500] transition-colors whitespace-nowrap">
                 Edit
               </button>
+              <button type="button" id="btn-delete-creator" hidden class="text-xs font-mono-code px-3 py-2.5 rounded-lg bg-cosmic-800 border border-zinc-700 text-zinc-300 hover:border-red-500 hover:text-red-400 transition-colors whitespace-nowrap">
+                Delete
+              </button>
               <button type="button" id="btn-toggle-new-creator" class="text-xs font-mono-code px-3 py-2.5 rounded-lg bg-cosmic-800 border border-zinc-700 text-zinc-300 hover:border-[#f75500] hover:text-[#f75500] transition-colors whitespace-nowrap">
                 + Add Creator
               </button>
@@ -482,6 +485,7 @@
   function updateCreatorControlsVisibility() {
     const value = document.getElementById('work-creator-select').value;
     btnEditCreator.hidden = !value;
+    document.getElementById('btn-delete-creator').hidden = !value;
   }
 
   document.getElementById('work-creator-select').addEventListener('change', () => {
@@ -532,6 +536,27 @@
     creatorPanelTitle.textContent = 'Edit Creator: ' + creator.name;
     creatorEditActions.hidden = false;
     panelNewCreator.hidden = false;
+  });
+
+  document.getElementById('btn-delete-creator').addEventListener('click', async () => {
+    const select = document.getElementById('work-creator-select');
+    const id = select.value;
+    const creator = creatorsCache.find(c => c.id === id);
+    if (!creator) return;
+    if (!confirm(`Yakin mau hapus creator "${creator.name}"? Tindakan ini tidak bisa dibatalkan.`)) return;
+    const { error } = await sb.from('creators').delete().eq('id', id);
+    if (error) {
+      if (error.code === '23503') {
+        alert(`Creator "${creator.name}" masih dipakai oleh satu atau lebih karya, jadi tidak bisa dihapus. Hapus atau pindahkan dulu karya-karyanya ke creator lain.`);
+      } else {
+        alert('Gagal hapus creator: ' + error.message);
+      }
+      return;
+    }
+    exitCreatorEditMode();
+    panelNewCreator.hidden = true;
+    await loadCreators();
+    updateCreatorControlsVisibility();
   });
 
   document.getElementById('btn-cancel-creator-edit').addEventListener('click', () => {
@@ -608,6 +633,12 @@
     const name = document.getElementById('creator-name').value.trim();
     if (!name) {
       errEl.textContent = 'Nama creator wajib diisi.';
+      errEl.hidden = false;
+      return null;
+    }
+    const duplicate = creatorsCache.find(c => c.name.trim().toLowerCase() === name.toLowerCase());
+    if (duplicate) {
+      errEl.textContent = `Creator dengan nama "${name}" sudah ada di daftar. Kalau ini orang yang sama, batalkan lalu pilih "${duplicate.name}" dari dropdown Creator di atas. Kalau orang berbeda, pakai nama yang lebih spesifik (misalnya tambahkan kota/studio).`;
       errEl.hidden = false;
       return null;
     }
