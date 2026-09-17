@@ -350,6 +350,16 @@
     'music': 'cat.music.title',
     'visual-art': 'cat.visualart.title'
   };
+  // Matches each category's eyebrow badge color on the homepage
+  // (CATEGORY // 01..05), so the archive page's badge stays consistent
+  // with the section it was linked from.
+  const CATEGORY_BADGE_CLASS = {
+    'film': 'bg-neon-emerald/15 text-neon-emerald border-neon-emerald/30',
+    'commercial': 'bg-neon-cyan/15 text-neon-cyan border-neon-cyan/30',
+    'animation': 'bg-fuchsia-500/20 text-fuchsia-300 border-fuchsia-500/30',
+    'music': 'bg-neon-purple/20 text-purple-300 border-purple-500/30',
+    'visual-art': 'bg-amber-500/20 text-amber-300 border-amber-500/30'
+  };
 
   function extractYouTubeId(url) {
     const match = (url || '').match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([A-Za-z0-9_-]{11})/);
@@ -438,7 +448,9 @@
     document.title = `${catTitle} | IFAI Archive`;
     document.getElementById('archive-category-title').textContent = catTitle;
     document.getElementById('archive-category-name').textContent = catTitle;
-    document.getElementById('archive-category-badge').textContent = catTitle.toUpperCase();
+    const badgeEl = document.getElementById('archive-category-badge');
+    badgeEl.textContent = catTitle.toUpperCase();
+    badgeEl.className = 'text-xs font-mono px-2 py-0.5 rounded border ' + (CATEGORY_BADGE_CLASS[slug] || 'bg-[#f75500]/15 text-[#f75500] border-[#f75500]/30');
 
     const { data: works, error } = await sb
       .from('works')
