@@ -710,7 +710,7 @@
     const bioEl = document.getElementById('dp-creator-bio');
     if (bioEl) { bioEl.textContent = creator.bio || ''; bioEl.style.display = creator.bio ? '' : 'none'; }
     const avatarEl = document.getElementById('dp-creator-avatar');
-    if (avatarEl && creator.avatar_url) avatarEl.src = creator.avatar_url;
+    if (avatarEl) avatarEl.src = creator.avatar_url || defaultAvatarDataUri(creator.name);
 
     setSocial('dp-social-instagram', creator.social_instagram);
     setSocial('dp-social-facebook', creator.social_facebook);
@@ -724,6 +724,15 @@
     const div = document.createElement('div');
     div.textContent = str ?? '';
     return div.innerHTML;
+  }
+
+  // Generic fallback avatar (creator's initial on a neutral circle) for
+  // creators who haven't uploaded a photo — instead of leaving whatever
+  // unrelated demo photo was hardcoded in the static HTML.
+  function defaultAvatarDataUri(name) {
+    const initial = (name || '?').trim().charAt(0).toUpperCase() || '?';
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128"><rect width="128" height="128" rx="64" fill="#2a292e"/><text x="64" y="86" font-family="sans-serif" font-size="56" fill="#849396" text-anchor="middle">${initial}</text></svg>`;
+    return 'data:image/svg+xml,' + encodeURIComponent(svg);
   }
 
   window.addEventListener('ifai:langchange', (e) => {

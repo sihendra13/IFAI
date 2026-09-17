@@ -113,7 +113,7 @@
                 Edit
               </button>
               <button type="button" id="btn-toggle-new-creator" class="text-xs font-mono-code px-3 py-2.5 rounded-lg bg-cosmic-800 border border-zinc-700 text-zinc-300 hover:border-[#f75500] hover:text-[#f75500] transition-colors whitespace-nowrap">
-                + Baru
+                + Add Creator
               </button>
             </div>
           </div>
@@ -493,8 +493,14 @@
   btnToggleNewCreator.addEventListener('click', () => {
     exitCreatorEditMode();
     panelNewCreator.hidden = !panelNewCreator.hidden;
+    const select = document.getElementById('work-creator-select');
     if (!panelNewCreator.hidden) {
       creatorPanelTitle.textContent = 'Creator Baru';
+      // Dropdown's current selection is ignored while creating a new
+      // creator inline — disable it so that isn't confusing/misleading.
+      select.disabled = true;
+    } else {
+      select.disabled = false;
     }
   });
 
@@ -503,6 +509,7 @@
     creatorPanelTitle.textContent = 'Creator';
     creatorEditActions.hidden = true;
     clearNewCreatorFields();
+    document.getElementById('work-creator-select').disabled = false;
   }
 
   btnEditCreator.addEventListener('click', () => {
