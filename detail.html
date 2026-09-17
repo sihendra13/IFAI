@@ -13,6 +13,9 @@
     .glow-orange {
       box-shadow: 0 0 25px -4px rgba(247, 85, 0, 0.45);
     }
+    .glow-white {
+      box-shadow: 0 0 25px -4px rgba(255, 255, 255, 0.35);
+    }
     .text-glow-neon {
       text-shadow: 0 0 16px rgba(0, 255, 157, 0.45);
     }
@@ -288,9 +291,10 @@ if (new URLSearchParams(window.location.search).get('id')) {
                 </p>
 </div>
 <div class="pt-space-xs flex items-center justify-end">
-<a class="px-space-md py-1.5 rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface font-label-code text-label-code transition-all" data-path="showcase" href="#">
-                  View Details
-                </a>
+<a class="group/cta relative inline-flex items-center px-5 py-2 rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 hover:text-black transition-all duration-300 glow-white" data-path="showcase" href="#">
+<span class="relative z-10">View Details &#8594;</span>
+<span class="absolute inset-0 -translate-x-full group-hover/cta:translate-x-0 bg-white transition-transform duration-300 ease-out"></span>
+</a>
 </div>
 </div>
 </div>
@@ -320,9 +324,10 @@ if (new URLSearchParams(window.location.search).get('id')) {
                 </p>
 </div>
 <div class="pt-space-xs flex items-center justify-end">
-<a class="px-space-md py-1.5 rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface font-label-code text-label-code transition-all" data-path="showcase" href="#">
-                  View Details
-                </a>
+<a class="group/cta relative inline-flex items-center px-5 py-2 rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 hover:text-black transition-all duration-300 glow-white" data-path="showcase" href="#">
+<span class="relative z-10">View Details &#8594;</span>
+<span class="absolute inset-0 -translate-x-full group-hover/cta:translate-x-0 bg-white transition-transform duration-300 ease-out"></span>
+</a>
 </div>
 </div>
 </div>
@@ -352,9 +357,10 @@ if (new URLSearchParams(window.location.search).get('id')) {
                 </p>
 </div>
 <div class="pt-space-xs flex items-center justify-end">
-<a class="px-space-md py-1.5 rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface font-label-code text-label-code transition-all" data-path="showcase" href="#">
-                  View Details
-                </a>
+<a class="group/cta relative inline-flex items-center px-5 py-2 rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 hover:text-black transition-all duration-300 glow-white" data-path="showcase" href="#">
+<span class="relative z-10">View Details &#8594;</span>
+<span class="absolute inset-0 -translate-x-full group-hover/cta:translate-x-0 bg-white transition-transform duration-300 ease-out"></span>
+</a>
 </div>
 </div>
 </div>
@@ -684,7 +690,10 @@ ${duration ? `<div class="absolute bottom-3 right-3"><span class="font-label-cod
 <p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-1">${escapeHtmlDp(description)}</p>
 </div>
 <div class="pt-space-xs flex items-center justify-end">
-<span class="px-space-md py-1.5 rounded-lg bg-surface-container-high group-hover:bg-primary-container group-hover:text-on-primary-container text-on-surface font-label-code text-label-code transition-all">View Details</span>
+<span class="relative inline-flex items-center px-5 py-2 rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 group-hover:text-black transition-all duration-300 glow-white">
+<span class="relative z-10">View Details →</span>
+<span class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-white transition-transform duration-300 ease-out"></span>
+</span>
 </div>
 </div>
 </a>`;
