@@ -543,6 +543,24 @@
     const id = select.value;
     const creator = creatorsCache.find(c => c.id === id);
     if (!creator) return;
+
+    // Check upfront whether any work still references this creator, so we
+    // never show a "yakin mau hapus?" confirm for a deletion that's
+    // guaranteed to fail — that's misleading (looks like it'll succeed).
+    const { data: linkedWorks, error: checkError } = await sb
+      .from('works')
+      .select('id, title_en, title_id')
+      .eq('creator_id', id);
+    if (checkError) {
+      alert('Gagal mengecek karya terkait: ' + checkError.message);
+      return;
+    }
+    if (linkedWorks && linkedWorks.length > 0) {
+      const titles = linkedWorks.map(w => '• ' + (w.title_en || w.title_id || '(Tanpa judul)')).join('\n');
+      alert(`Creator "${creator.name}" tidak bisa dihapus karena masih dipakai oleh ${linkedWorks.length} karya:\n\n${titles}\n\nHapus atau pindahkan dulu karya-karya itu ke creator lain sebelum menghapus creator ini.`);
+      return;
+    }
+
     if (!confirm(`Yakin mau hapus creator "${creator.name}"? Tindakan ini tidak bisa dibatalkan.`)) return;
     const { error } = await sb.from('creators').delete().eq('id', id);
     if (error) {
