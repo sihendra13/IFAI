@@ -242,9 +242,12 @@ if (new URLSearchParams(window.location.search).get('id')) {
 <p data-i18n="detail.likeSubtitle" class="font-body-sm text-body-sm text-on-surface-variant">
               Share it with your friends or community.
             </p>
-<button class="mt-space-xs py-2 px-space-md text-center rounded-lg bg-[#00f5a0]/10 hover:bg-[#00f5a0]/20 text-[#00f5a0] border border-[#00f5a0]/30 font-label-code text-label-code transition-all font-semibold flex items-center justify-center gap-1.5" onclick="shareWork()">
+<button class="group/share relative mt-space-xs py-2 px-space-md text-center rounded-full bg-white/10 border border-white/20 backdrop-blur-md font-label-code text-label-code transition-all font-semibold flex items-center justify-center gap-1.5 overflow-hidden" onclick="shareWork()">
+<span class="relative z-10 flex items-center gap-1.5 text-white group-hover/share:text-black transition-colors duration-300">
 <span class="material-symbols-outlined text-[18px]">share</span>
 <span data-i18n="detail.shareWork">Share Work →</span>
+</span>
+<span class="absolute inset-0 -translate-x-full group-hover/share:translate-x-0 bg-white transition-transform duration-300 ease-out"></span>
             </button>
 </div>
 </aside>
@@ -259,7 +262,7 @@ if (new URLSearchParams(window.location.search).get('id')) {
 </div>
 <h2 data-i18n="detail.moreToExplore" class="font-headline-md text-headline-md text-on-surface tracking-tight">More to Explore</h2>
 </div>
-<a id="dp-view-archive" class="font-label-code text-label-code text-primary hover:text-primary-container flex items-center gap-1 transition-colors" data-path="showcase" href="index.html#showcase">
+<a id="dp-view-archive" class="font-label-code text-label-code text-zinc-400 hover:text-[#f75500] flex items-center gap-1 transition-colors" data-path="showcase" href="index.html#showcase">
 <span data-i18n="detail.viewArchive">View Full Archive</span>
 <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
 </a>
