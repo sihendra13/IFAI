@@ -115,6 +115,14 @@
 <div class="aspect-video w-full relative bg-surface-container-lowest">
 <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" class="w-full h-full object-cover transition-opacity duration-300" id="cinema-player" src="https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ?autoplay=0&amp;rel=0&amp;modestbranding=1&amp;controls=1&amp;showinfo=0" title="Cosmic Horizon - AI Cinematic Film">
 </iframe>
+<script>
+// Runs the instant the parser reaches this point — before Tailwind/Supabase/fonts
+// finish loading — so a real work id never flashes the hardcoded fallback video.
+if (new URLSearchParams(window.location.search).get('id')) {
+  var __p = document.getElementById('cinema-player');
+  if (__p) { __p.style.opacity = '0'; __p.src = ''; __p.parentElement.classList.add('animate-pulse'); }
+}
+</script>
 </div>
 </div>
 <!-- Quick Action Bar -->
@@ -238,22 +246,22 @@
 </div>
 </aside>
 </div>
-<!-- MORE CURATED FILMS (More to Explore) — static for now, will be auto-populated from same-category entries once the admin dashboard exists -->
+<!-- MORE CURATED WORKS (More to Explore) — repopulated with real same-category works by the dynamic loader script below; these 3 cards are the fallback shown only when there's no ?id= in the URL -->
 <section class="mt-space-3xl flex flex-col gap-space-xl">
 <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-sm">
 <div class="flex flex-col gap-space-xxs">
 <div class="flex items-center gap-space-xs">
-<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
-<span data-i18n="detail.upNext" class="font-label-code text-label-code uppercase tracking-wider text-secondary-container">UP NEXT</span>
+<span class="w-2 h-2 rounded-full bg-white"></span>
+<span data-i18n="detail.upNext" class="font-label-code text-label-code uppercase tracking-wider text-white">UP NEXT</span>
 </div>
 <h2 data-i18n="detail.moreToExplore" class="font-headline-md text-headline-md text-on-surface tracking-tight">More to Explore</h2>
 </div>
-<a class="font-label-code text-label-code text-primary hover:text-primary-container flex items-center gap-1 transition-colors" data-path="showcase" href="#">
-<span data-i18n="detail.viewArchive">View Full Cinema Archive</span>
+<a id="dp-view-archive" class="font-label-code text-label-code text-primary hover:text-primary-container flex items-center gap-1 transition-colors" data-path="showcase" href="index.html#showcase">
+<span data-i18n="detail.viewArchive">View Full Archive</span>
 <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
 </a>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<div id="dp-related-grid" class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
 <!-- Card 1: Parallel Hearts -->
 <div class="group flex flex-col rounded-2xl bg-surface-container-low border border-zinc-700 overflow-hidden hover:bg-surface-container transition-all duration-300 shadow-lg">
 <div class="aspect-video w-full relative overflow-hidden bg-surface-container-lowest">
@@ -279,8 +287,7 @@
                   Exploration of computational emotion and residual human affection in the remaining android replicas in the Nusantara 2089 megacity.
                 </p>
 </div>
-<div class="pt-space-xs flex items-center justify-between">
-<span class="font-label-code text-label-code text-secondary-container">Curation Score: 95</span>
+<div class="pt-space-xs flex items-center justify-end">
 <a class="px-space-md py-1.5 rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface font-label-code text-label-code transition-all" data-path="showcase" href="#">
                   View Details
                 </a>
@@ -312,8 +319,7 @@
                   Algorithmic choreography of endemic Nusantara flora growth with synthetic metabolism simulation and organic soundscapes.
                 </p>
 </div>
-<div class="pt-space-xs flex items-center justify-between">
-<span class="font-label-code text-label-code text-secondary-container">Curation Score: 94</span>
+<div class="pt-space-xs flex items-center justify-end">
 <a class="px-space-md py-1.5 rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface font-label-code text-label-code transition-all" data-path="showcase" href="#">
                   View Details
                 </a>
@@ -345,8 +351,7 @@
                   Reconstruction of the collective memory archive of Nusantara's digital transition era using an auto-regressive temporal recursive model.
                 </p>
 </div>
-<div class="pt-space-xs flex items-center justify-between">
-<span class="font-label-code text-label-code text-secondary-container">Curation Score: 97</span>
+<div class="pt-space-xs flex items-center justify-end">
 <a class="px-space-md py-1.5 rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface font-label-code text-label-code transition-all" data-path="showcase" href="#">
                   View Details
                 </a>
@@ -484,7 +489,7 @@
       'detail.cinemaMode': 'Cinema Mode', 'detail.fullscreen': 'Fullscreen', 'detail.share': 'Share',
       'detail.synopsisHeader': 'Synopsis & Curatorial Concept',
       'detail.likeTitle': 'Like this work?', 'detail.likeSubtitle': 'Share it with your friends or community.', 'detail.shareWork': 'Share Work →',
-      'detail.upNext': 'UP NEXT', 'detail.moreToExplore': 'More to Explore', 'detail.viewArchive': 'View Full Cinema Archive',
+      'detail.upNext': 'UP NEXT', 'detail.moreToExplore': 'More to Explore', 'detail.viewArchive': 'View Full Archive',
       'detail.noSynopsis': 'No synopsis available for this work yet.',
     },
     id: {
@@ -500,7 +505,7 @@
       'detail.cinemaMode': 'Mode Sinema', 'detail.fullscreen': 'Layar Penuh', 'detail.share': 'Bagikan',
       'detail.synopsisHeader': 'Sinopsis & Konsep Kuratorial',
       'detail.likeTitle': 'Suka dengan karya ini?', 'detail.likeSubtitle': 'Bagikan karya ini ke teman atau komunitas kamu.', 'detail.shareWork': 'Bagikan Karya →',
-      'detail.upNext': 'BERIKUTNYA', 'detail.moreToExplore': 'Jelajahi Lebih Lanjut', 'detail.viewArchive': 'Lihat Arsip Sinema Lengkap',
+      'detail.upNext': 'BERIKUTNYA', 'detail.moreToExplore': 'Jelajahi Lebih Lanjut', 'detail.viewArchive': 'Lihat Arsip Lengkap',
       'detail.noSynopsis': 'Belum ada sinopsis untuk karya ini.',
     },
   };
@@ -577,12 +582,13 @@
   const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   let currentWork = null;
 
-  // Hide the hardcoded fallback video immediately (before the Supabase fetch
-  // resolves) so visitors never see a flash of the wrong video when a real
-  // work id is in the URL.
+  // The fallback video is hidden synchronously by an inline <script> placed
+  // right after the iframe (runs before this file even finishes loading), so
+  // its src is already blanked by the time we get here — use the known
+  // fallback URL directly rather than reading the (now-empty) DOM src.
   const initialWorkId = new URLSearchParams(window.location.search).get('id');
   const cinemaPlayer = document.getElementById('cinema-player');
-  const fallbackPlayerSrc = cinemaPlayer ? cinemaPlayer.src : '';
+  const fallbackPlayerSrc = 'https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ?autoplay=0&rel=0&modestbranding=1&controls=1&showinfo=0';
   if (initialWorkId && cinemaPlayer) {
     cinemaPlayer.style.opacity = '0';
     cinemaPlayer.src = '';
@@ -612,7 +618,7 @@
 
     const { data: work, error } = await sb
       .from('works')
-      .select('*, creators(*), categories(name_en, name_id)')
+      .select('*, creators(*), categories(name_en, name_id, slug)')
       .eq('id', workId)
       .eq('status', 'approved')
       .single();
@@ -629,7 +635,71 @@
     }
 
     currentWork = work;
-    renderWork(work, window.IFAI_I18N ? window.IFAI_I18N.getLang() : 'en');
+    const lang = window.IFAI_I18N ? window.IFAI_I18N.getLang() : 'en';
+    renderWork(work, lang);
+    loadRelatedWorks(work, lang);
+  }
+
+  let cachedRelatedWorks = null;
+
+  async function loadRelatedWorks(work, lang) {
+    const catSlug = work.categories?.slug;
+    const archiveLink = document.getElementById('dp-view-archive');
+    if (archiveLink) archiveLink.href = catSlug ? `category.html?slug=${encodeURIComponent(catSlug)}` : 'index.html#showcase';
+
+    if (!work.category_id) return;
+    const { data: related, error } = await sb
+      .from('works')
+      .select('*, creators(name)')
+      .eq('category_id', work.category_id)
+      .eq('status', 'approved')
+      .neq('id', work.id)
+      .order('created_at', { ascending: false })
+      .limit(3);
+
+    if (error) { console.error('IFAI: failed to load related works', error); return; }
+    cachedRelatedWorks = related || [];
+    renderRelatedWorks(cachedRelatedWorks, window.IFAI_I18N ? window.IFAI_I18N.getLang() : lang);
+  }
+
+  function relatedCardHtml(work, lang) {
+    const isId = lang === 'id';
+    const title = isId ? (work.title_id || work.title_en || '') : (work.title_en || work.title_id || '');
+    const description = isId ? (work.description_id || work.description_en || '') : (work.description_en || work.description_id || '');
+    const videoId = extractYouTubeId(work.youtube_url);
+    const thumb = videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg` : 'https://placehold.co/640x360/161820/666?text=No+Thumbnail';
+    const creatorName = work.creators?.name || 'Unknown';
+    const duration = work.duration ? `${escapeHtmlDp(work.duration)} MIN` : '';
+
+    return `
+<a href="detail.html?id=${encodeURIComponent(work.id)}" class="group flex flex-col rounded-2xl bg-surface-container-low border border-zinc-700 overflow-hidden hover:bg-surface-container transition-all duration-300 shadow-lg">
+<div class="aspect-video w-full relative overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${escapeHtmlDp(title)}" src="${thumb}">
+${duration ? `<div class="absolute bottom-3 right-3"><span class="font-label-code text-label-code px-space-xs py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-md text-on-surface">${duration}</span></div>` : ''}
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between gap-space-md">
+<div class="flex flex-col gap-1">
+<h3 class="font-title-sm text-title-sm text-on-surface group-hover:text-primary transition-colors">${escapeHtmlDp(title)}</h3>
+<span class="font-label-meta text-label-meta text-outline">By ${escapeHtmlDp(creatorName)}</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-1">${escapeHtmlDp(description)}</p>
+</div>
+<div class="pt-space-xs flex items-center justify-end">
+<span class="px-space-md py-1.5 rounded-lg bg-surface-container-high group-hover:bg-primary-container group-hover:text-on-primary-container text-on-surface font-label-code text-label-code transition-all">View Details</span>
+</div>
+</div>
+</a>`;
+  }
+
+  function renderRelatedWorks(works, lang) {
+    const grid = document.getElementById('dp-related-grid');
+    const section = grid ? grid.closest('section') : null;
+    if (!grid) return;
+    if (!works || works.length === 0) {
+      if (section) section.style.display = 'none';
+      return;
+    }
+    if (section) section.style.display = '';
+    grid.innerHTML = works.map(w => relatedCardHtml(w, lang)).join('');
   }
 
   function renderWork(work, lang) {
@@ -736,6 +806,7 @@
 
   window.addEventListener('ifai:langchange', (e) => {
     if (currentWork) renderWork(currentWork, e.detail.lang);
+    if (cachedRelatedWorks) renderRelatedWorks(cachedRelatedWorks, e.detail.lang);
   });
 
   loadWorkFromUrl();
