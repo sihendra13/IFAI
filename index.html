@@ -1128,7 +1128,7 @@
     });
   }
   // Failsafe: never leave the grids invisible if the fetch hangs/fails silently.
-  setTimeout(revealShowcaseGrids, 4000);
+  setTimeout(revealShowcaseGrids, 8000);
 
   function renderShowcase(lang) {
     for (const entry of cachedShowcase) {
@@ -1148,9 +1148,13 @@
       .order('display_order');
     if (catErr || !categories) { console.error('IFAI: failed to load categories', catErr); revealShowcaseGrids(); return; }
 
-    for (const cat of categories) {
+    // Fetch every category's works in parallel instead of one-at-a-time —
+    // sequential awaits here could add up to 1-2s+ on a slow connection,
+    // risking the reveal failsafe firing before real data was ready
+    // (visible as a flash of stale demo cards).
+    await Promise.all(categories.map(async (cat) => {
       const grid = document.getElementById('grid-' + cat.slug);
-      if (!grid) continue;
+      if (!grid) return;
 
       // Keep the original hardcoded demo cards so we can use them as
       // padding — real works are shown first, demo cards fill any
@@ -1165,11 +1169,11 @@
         .order('created_at', { ascending: false })
         .limit(4);
 
-      if (error) { console.error('IFAI: failed to load works for', cat.slug, error); continue; }
+      if (error) { console.error('IFAI: failed to load works for', cat.slug, error); return; }
       // If there are zero approved works for this category, the
       // hardcoded demo cards already in the HTML stay as-is.
       cachedShowcase.push({ slug: cat.slug, grid, demoCardsHtml, works });
-    }
+    }));
 
     renderShowcase(window.IFAI_I18N ? window.IFAI_I18N.getLang() : 'en');
     revealShowcaseGrids();
