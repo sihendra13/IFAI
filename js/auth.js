@@ -18,6 +18,17 @@
   const SUPABASE_URL = 'https://qayckglxfmtrjqtghitx.supabase.co';
   const SUPABASE_ANON_KEY = 'sb_publishable_qf2j0vC_6D63ziteKUflCQ_u-rYaIgd';
   const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  // Supabase's auth client keeps a BroadcastChannel open for cross-tab
+  // session sync, and Chrome evicts a bfcache-parked page the instant a
+  // message arrives on any channel it holds — which happens on every
+  // page's own boot. That forces every back/forward navigation into a
+  // full reload instead of an instant restore. Closing it right before
+  // the page is parked/unloaded lets bfcache work; the (rare) cost is
+  // this specific tab won't hear about a sign-out from another tab
+  // while it's parked.
+  window.addEventListener('pagehide', function () {
+    try { sb.auth.broadcastChannel && sb.auth.broadcastChannel.close(); } catch (e) {}
+  });
 
   const GOOGLE_CLIENT_ID = '214234294300-jc5nboj26s1s1hkee3j70041tsg3uvgj.apps.googleusercontent.com';
   const GOOGLE_SESSION_KEY = 'ifai_google_session';

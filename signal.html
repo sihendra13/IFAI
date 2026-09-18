@@ -388,6 +388,12 @@
   const SUPABASE_URL = 'https://qayckglxfmtrjqtghitx.supabase.co';
   const SUPABASE_ANON_KEY = 'sb_publishable_qf2j0vC_6D63ziteKUflCQ_u-rYaIgd';
   const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  // See js/auth.js for why: closes this client's cross-tab auth
+  // BroadcastChannel before the page is parked/unloaded so it doesn't
+  // block Chrome's back/forward cache.
+  window.addEventListener('pagehide', function () {
+    try { sb.auth.broadcastChannel && sb.auth.broadcastChannel.close(); } catch (e) {}
+  });
 
   function escapeHtml(str) {
     const div = document.createElement('div');

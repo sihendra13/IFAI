@@ -177,7 +177,6 @@ document.getElementById('cinema-player').parentElement.classList.add('animate-pu
 <div class="flex items-center gap-space-xs">
 <button class="flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface transition-all font-label-code text-label-code" id="btn-like" onclick="toggleLike(this)">
 <span id="like-icon" class="material-symbols-outlined text-[18px] text-on-surface-variant" style="font-variation-settings: 'FILL' 0;">favorite</span>
-<span id="like-count" class="">1.4k</span>
 </button>
 </div>
 </div>
@@ -315,22 +314,15 @@ document.getElementById('cinema-player').parentElement.classList.add('animate-pu
     }
   }
 
-  // Like button micro-interaction
+  // Like button micro-interaction — purely a local visual toggle, no
+  // backend counter (there's no real like data to show, so we don't
+  // fabricate one).
   let isLiked = false;
   function toggleLike(btn) {
-    const countSpan = document.getElementById('like-count');
     const icon = document.getElementById('like-icon');
-    if (!isLiked) {
-      countSpan.innerText = '1,401';
-      icon.style.fontVariationSettings = "'FILL' 1";
-      icon.style.color = '#ffb4ab';
-      isLiked = true;
-    } else {
-      countSpan.innerText = '1.4k';
-      icon.style.fontVariationSettings = "'FILL' 0";
-      icon.style.color = '';
-      isLiked = false;
-    }
+    isLiked = !isLiked;
+    icon.style.fontVariationSettings = isLiked ? "'FILL' 1" : "'FILL' 0";
+    icon.style.color = isLiked ? '#ffb4ab' : '';
   }
 
   // Cinema Mode Toggle
@@ -527,6 +519,12 @@ document.getElementById('cinema-player').parentElement.classList.add('animate-pu
   const SUPABASE_URL = 'https://qayckglxfmtrjqtghitx.supabase.co';
   const SUPABASE_ANON_KEY = 'sb_publishable_qf2j0vC_6D63ziteKUflCQ_u-rYaIgd';
   const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  // See js/auth.js for why: closes this client's cross-tab auth
+  // BroadcastChannel before the page is parked/unloaded so it doesn't
+  // block Chrome's back/forward cache.
+  window.addEventListener('pagehide', function () {
+    try { sb.auth.broadcastChannel && sb.auth.broadcastChannel.close(); } catch (e) {}
+  });
   let currentWork = null;
 
   // The video is hidden synchronously by an inline <script> placed right
