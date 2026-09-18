@@ -184,7 +184,7 @@
         if (slideBg) slideBg.style.display = 'none';
 
         if (joinAvatar) {
-          joinAvatar.className = 'relative z-10 w-6 h-6 rounded-full object-cover border border-zinc-700/60';
+          joinAvatar.className = 'relative z-10 w-6 h-6 rounded-full object-cover border border-[#f75500]';
           if (user.picture) {
             joinAvatar.src = user.picture;
           } else {
