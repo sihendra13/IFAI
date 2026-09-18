@@ -26,3 +26,34 @@ create policy "Admins can manage signals"
   on public.signals for all
   using (exists (select 1 from public.profiles where profiles.id = auth.uid() and profiles.role = 'admin'))
   with check (exists (select 1 from public.profiles where profiles.id = auth.uid() and profiles.role = 'admin'));
+
+-- Storage bucket for Signal cover images (run in the same SQL Editor —
+-- no need to use the Storage UI at all).
+insert into storage.buckets (id, name, public)
+values ('signal-images', 'signal-images', true)
+on conflict (id) do nothing;
+
+create policy "Public can view signal images"
+  on storage.objects for select
+  using (bucket_id = 'signal-images');
+
+create policy "Admins can upload signal images"
+  on storage.objects for insert
+  with check (
+    bucket_id = 'signal-images'
+    and exists (select 1 from public.profiles where profiles.id = auth.uid() and profiles.role = 'admin')
+  );
+
+create policy "Admins can update signal images"
+  on storage.objects for update
+  using (
+    bucket_id = 'signal-images'
+    and exists (select 1 from public.profiles where profiles.id = auth.uid() and profiles.role = 'admin')
+  );
+
+create policy "Admins can delete signal images"
+  on storage.objects for delete
+  using (
+    bucket_id = 'signal-images'
+    and exists (select 1 from public.profiles where profiles.id = auth.uid() and profiles.role = 'admin')
+  );

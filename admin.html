@@ -90,6 +90,18 @@
   <!-- DASHBOARD -->
   <section id="screen-dashboard" hidden class="flex flex-col gap-10">
 
+    <!-- Admin Tabs -->
+    <div class="flex items-center gap-2 border-b border-zinc-800">
+      <button type="button" id="tab-btn-works" class="admin-tab-btn px-4 py-2.5 text-sm font-semibold text-white border-b-2 border-[#f75500]">
+        Karya
+      </button>
+      <button type="button" id="tab-btn-signals" class="admin-tab-btn px-4 py-2.5 text-sm font-semibold text-zinc-400 border-b-2 border-transparent hover:text-white transition-colors">
+        IFAI Signals
+      </button>
+    </div>
+
+    <div id="tab-panel-works" class="flex flex-col gap-10">
+
     <!-- Post Form -->
     <div id="form-work-container" class="p-6 rounded-2xl bg-cosmic-850 border border-zinc-800 transition-colors">
       <div id="edit-mode-banner" hidden class="mb-5 px-4 py-3 rounded-lg bg-[#f75500]/15 border border-[#f75500] flex items-center gap-2 text-sm text-[#f75500] font-semibold">
@@ -261,6 +273,11 @@
       </div>
     </div>
 
+    </div>
+    <!-- /tab-panel-works -->
+
+    <div id="tab-panel-signals" class="hidden flex-col gap-10">
+
     <!-- IFAI Signals Form -->
     <div id="form-signal-container" class="p-6 rounded-2xl bg-cosmic-850 border border-zinc-800 transition-colors">
       <div id="signal-edit-mode-banner" hidden class="mb-5 px-4 py-3 rounded-lg bg-[#f75500]/15 border border-[#f75500] flex items-center gap-2 text-sm text-[#f75500] font-semibold">
@@ -365,6 +382,9 @@
         <p id="signals-empty" hidden class="text-center text-sm text-zinc-500 py-8">Belum ada signal yang diposting.</p>
       </div>
     </div>
+
+    </div>
+    <!-- /tab-panel-signals -->
 
   </section>
 </main>
@@ -1240,6 +1260,28 @@
     if (error) { alert('Gagal hapus: ' + error.message); return; }
     await loadSignals();
   }
+
+  // ---------- ADMIN TABS (Karya / IFAI Signals) ----------
+  const tabBtnWorks = document.getElementById('tab-btn-works');
+  const tabBtnSignals = document.getElementById('tab-btn-signals');
+  const tabPanelWorks = document.getElementById('tab-panel-works');
+  const tabPanelSignals = document.getElementById('tab-panel-signals');
+
+  function setActiveTab(tab) {
+    const isWorks = tab === 'works';
+    tabPanelWorks.classList.toggle('hidden', !isWorks);
+    tabPanelSignals.classList.toggle('hidden', isWorks);
+    tabBtnWorks.classList.toggle('text-white', isWorks);
+    tabBtnWorks.classList.toggle('border-[#f75500]', isWorks);
+    tabBtnWorks.classList.toggle('text-zinc-400', !isWorks);
+    tabBtnWorks.classList.toggle('border-transparent', !isWorks);
+    tabBtnSignals.classList.toggle('text-white', !isWorks);
+    tabBtnSignals.classList.toggle('border-[#f75500]', !isWorks);
+    tabBtnSignals.classList.toggle('text-zinc-400', isWorks);
+    tabBtnSignals.classList.toggle('border-transparent', isWorks);
+  }
+  tabBtnWorks.addEventListener('click', () => setActiveTab('works'));
+  tabBtnSignals.addEventListener('click', () => setActiveTab('signals'));
 
   renderTagsPicker();
   checkSession();
