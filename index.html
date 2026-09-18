@@ -118,13 +118,13 @@
 <span class="text-zinc-600">/</span>
 <span data-lang-btn="id" class="px-1">ID</span>
 </button>
-<a data-i18n="nav.login" class="hidden sm:inline-block text-xs font-mono text-zinc-300 hover:text-white uppercase tracking-wider transition-colors min-w-[48px] text-center" href="#">
-          Log In
+<a id="auth-logout-desktop" style="display:none;" class="hidden sm:inline-block text-xs font-mono text-zinc-300 hover:text-white uppercase tracking-wider transition-colors min-w-[48px] text-center cursor-pointer">
+          Log Out
         </a>
-<a class="relative group px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase overflow-hidden border border-[#f75500]/50 text-white bg-cosmic-800/80 hover:bg-[#f75500] hover:text-black transition-all duration-300 glow-orange min-w-[172px] text-center" href="#programs">
-<span data-i18n="nav.join" class="relative z-10" style="font-family: 'Space Grotesk', sans-serif;">Join Community</span>
+<button type="button" id="join-community-btn" class="relative group px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase overflow-hidden border border-[#f75500]/50 text-white bg-cosmic-800/80 hover:bg-[#f75500] hover:text-black transition-all duration-300 glow-orange min-w-[172px] text-center">
+<span id="join-community-label" class="relative z-10" style="font-family: 'Space Grotesk', sans-serif;">Join Community</span>
 <div class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-[#f75500] transition-transform duration-300 ease-out"></div>
-</a>
+</button>
 <button type="button" id="mobile-menu-toggle" class="md:hidden flex items-center justify-center w-9 h-9 rounded-full border border-zinc-700 hover:border-zinc-500 text-zinc-300 hover:text-white transition-colors focus:outline-none" aria-label="Open menu" aria-expanded="false">
 <svg id="mobile-menu-icon-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
 <svg id="mobile-menu-icon-close" class="hidden w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -144,10 +144,37 @@
 <span class="text-zinc-600">/</span>
 <span data-lang-btn="id" class="px-1">ID</span>
 </button>
-<a data-i18n="nav.login" class="text-xs font-mono text-zinc-300 hover:text-white uppercase tracking-wider transition-colors" href="#">Log In</a>
+<a id="auth-logout-mobile" style="display:none;" class="text-xs font-mono text-zinc-300 hover:text-white uppercase tracking-wider transition-colors cursor-pointer">Log Out</a>
 </div>
 </div>
 <!-- END: MainHeader -->
+<!-- Auth Modal (Join Community / Log In) -->
+<div id="auth-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4">
+<div id="auth-modal-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+<div class="relative w-full max-w-sm rounded-3xl bg-cosmic-900 border border-zinc-700 p-8 shadow-2xl">
+<button type="button" id="auth-modal-close" class="absolute top-4 right-4 text-zinc-500 hover:text-white transition-colors" aria-label="Close">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+</button>
+<h3 data-i18n="auth.title" class="text-xl font-bold text-white mb-1">Join IFAI Community</h3>
+<p data-i18n="auth.subtitle" class="text-sm text-zinc-400 mb-6">Sign in to submit your work and join the community.</p>
+<button type="button" id="auth-google-btn" class="w-full flex items-center justify-center gap-3 px-5 py-3 rounded-full bg-white text-black font-semibold text-sm hover:bg-zinc-200 transition-colors">
+<svg class="w-5 h-5" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+<span data-i18n="auth.google">Continue with Google</span>
+</button>
+<div class="flex items-center gap-3 my-5">
+<div class="h-px bg-zinc-800 flex-1"></div>
+<span data-i18n="auth.or" class="text-xs text-zinc-500 font-mono uppercase">or</span>
+<div class="h-px bg-zinc-800 flex-1"></div>
+</div>
+<form id="auth-email-form" class="flex flex-col gap-3">
+<input id="auth-email-input" type="email" required placeholder="you@email.com" data-i18n-placeholder="auth.emailPlaceholder" class="w-full px-4 py-3 rounded-xl bg-cosmic-800 border border-zinc-700 text-white text-sm placeholder-zinc-500 focus:outline-none focus:border-[#f75500] transition-colors">
+<button type="submit" id="auth-email-submit" class="w-full px-5 py-3 rounded-full border border-[#f75500]/50 text-white bg-cosmic-800/80 hover:bg-[#f75500] hover:text-black font-semibold text-sm transition-all duration-300">
+<span data-i18n="auth.sendLink">Send Magic Link</span>
+</button>
+</form>
+<p id="auth-status-msg" class="hidden text-xs text-center mt-4"></p>
+</div>
+</div>
 <main>
 <!-- BEGIN: HeroSection -->
 <section class="relative min-h-screen flex flex-col justify-center overflow-hidden bg-cosmic-950">
@@ -898,6 +925,7 @@
     en: {
       'nav.showcase': 'Showcase', 'nav.programs': 'Programs', 'nav.about': 'About',
       'nav.login': 'Log In', 'nav.join': 'Join Community',
+      'auth.title': 'Join IFAI Community', 'auth.subtitle': 'Sign in to submit your work and join the community.', 'auth.google': 'Continue with Google', 'auth.or': 'or', 'auth.emailPlaceholder': 'you@email.com', 'auth.sendLink': 'Send Magic Link', 'auth.linkSent': 'Check your email for the login link.', 'auth.logout': 'Log Out',
       'hero.title': 'Indonesia Future Arts & Intelligence',
       'hero.subtitle': "Indonesia's Premier Stage for AI-Driven Arts & Intelligence.",
       'hero.cta': 'Explore',
@@ -929,6 +957,7 @@
     id: {
       'nav.showcase': 'Etalase', 'nav.programs': 'Program', 'nav.about': 'Tentang',
       'nav.login': 'Masuk', 'nav.join': 'Gabung Komunitas',
+      'auth.title': 'Gabung Komunitas IFAI', 'auth.subtitle': 'Masuk untuk mengirim karyamu dan bergabung dengan komunitas.', 'auth.google': 'Lanjutkan dengan Google', 'auth.or': 'atau', 'auth.emailPlaceholder': 'kamu@email.com', 'auth.sendLink': 'Kirim Link Masuk', 'auth.linkSent': 'Cek email kamu untuk link masuk.', 'auth.logout': 'Keluar',
       'hero.title': 'Indonesia Future Arts & Intelligence',
       'hero.subtitle': 'Panggung Utama Indonesia untuk Seni & Kecerdasan Berbasis AI.',
       'hero.cta': 'Jelajahi',
@@ -968,6 +997,10 @@
     document.querySelectorAll('[data-i18n]').forEach((el) => {
       const val = dict[el.getAttribute('data-i18n')];
       if (val != null) el.textContent = val;
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+      const val = dict[el.getAttribute('data-i18n-placeholder')];
+      if (val != null) el.setAttribute('placeholder', val);
     });
     document.querySelectorAll('[data-lang-btn]').forEach((btn) => {
       const active = btn.getAttribute('data-lang-btn') === lang;
@@ -1042,6 +1075,7 @@
      hardcoded demo cards above are left untouched (fallback).
      ============================================================ -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/auth.js"></script>
 <script>
 (function () {
   const SUPABASE_URL = 'https://qayckglxfmtrjqtghitx.supabase.co';
