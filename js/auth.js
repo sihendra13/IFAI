@@ -170,16 +170,26 @@
     if (logoutDesktop) logoutDesktop.addEventListener('click', handleLogout);
     if (logoutMobile) logoutMobile.addEventListener('click', handleLogout);
 
+    const BTN_LOGGED_OUT_CLASSES = 'relative group inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase overflow-hidden border border-[#f75500]/50 text-white bg-cosmic-800/80 hover:bg-[#f75500] hover:text-black transition-all duration-300 glow-orange min-w-[172px] text-center';
+    const BTN_LOGGED_IN_CLASSES = 'inline-flex items-center gap-2.5 text-xs font-semibold tracking-wider uppercase text-zinc-200 cursor-default py-1 px-1';
+
     function renderAuthState() {
       const user = Auth.getUser();
+      const slideBg = joinBtn.querySelector('.bg-\\[\\#f75500\\]') || joinBtn.querySelector('div');
       if (user) {
         const fullName = user.name || (user.email ? user.email.split('@')[0] : 'Member');
         joinLabel.textContent = fullName.split(' ')[0];
         joinBtn.dataset.authed = 'true';
-        joinBtn.classList.add('cursor-default');
+        joinBtn.className = BTN_LOGGED_IN_CLASSES;
+        if (slideBg) slideBg.style.display = 'none';
+
         if (joinAvatar) {
-          if (user.picture) { joinAvatar.src = user.picture; joinAvatar.classList.remove('hidden'); }
-          else { joinAvatar.classList.add('hidden'); joinAvatar.removeAttribute('src'); }
+          joinAvatar.className = 'relative z-10 w-6 h-6 rounded-full object-cover border border-zinc-700/60';
+          if (user.picture) {
+            joinAvatar.src = user.picture;
+          } else {
+            joinAvatar.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239ca3af'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-4.43-.82-6.14-2.88C7.55 15.8 9.68 15 12 15s4.45.8 6.14 2.12C16.43 19.18 14.03 20 12 20z'/%3E%3C/svg%3E";
+          }
         }
         if (logoutDesktop) logoutDesktop.style.display = '';
         if (logoutMobile) logoutMobile.style.display = '';
@@ -187,8 +197,13 @@
       } else {
         joinLabel.textContent = t('nav.join', 'Join Community');
         joinBtn.dataset.authed = 'false';
-        joinBtn.classList.remove('cursor-default');
-        if (joinAvatar) { joinAvatar.classList.add('hidden'); joinAvatar.removeAttribute('src'); }
+        joinBtn.className = BTN_LOGGED_OUT_CLASSES;
+        if (slideBg) slideBg.style.display = '';
+
+        if (joinAvatar) {
+          joinAvatar.className = 'hidden relative z-10 w-5 h-5 rounded-full object-cover';
+          joinAvatar.removeAttribute('src');
+        }
         if (logoutDesktop) logoutDesktop.style.display = 'none';
         if (logoutMobile) logoutMobile.style.display = 'none';
       }
