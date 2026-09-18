@@ -93,6 +93,7 @@
     const closeBtn = document.getElementById('auth-modal-close');
     const joinBtn = document.getElementById('join-community-btn');
     const joinLabel = document.getElementById('join-community-label');
+    const joinAvatar = document.getElementById('join-community-avatar');
     const logoutDesktop = document.getElementById('auth-logout-desktop');
     const logoutMobile = document.getElementById('auth-logout-mobile');
     const googleBtnContainer = document.getElementById('google-signin-btn');
@@ -172,10 +173,14 @@
     function renderAuthState() {
       const user = Auth.getUser();
       if (user) {
-        const name = user.name || (user.email ? user.email.split('@')[0] : 'Member');
-        joinLabel.textContent = name;
+        const fullName = user.name || (user.email ? user.email.split('@')[0] : 'Member');
+        joinLabel.textContent = fullName.split(' ')[0];
         joinBtn.dataset.authed = 'true';
         joinBtn.classList.add('cursor-default');
+        if (joinAvatar) {
+          if (user.picture) { joinAvatar.src = user.picture; joinAvatar.classList.remove('hidden'); }
+          else { joinAvatar.classList.add('hidden'); joinAvatar.removeAttribute('src'); }
+        }
         if (logoutDesktop) logoutDesktop.style.display = '';
         if (logoutMobile) logoutMobile.style.display = '';
         closeModal();
@@ -183,6 +188,7 @@
         joinLabel.textContent = t('nav.join', 'Join Community');
         joinBtn.dataset.authed = 'false';
         joinBtn.classList.remove('cursor-default');
+        if (joinAvatar) { joinAvatar.classList.add('hidden'); joinAvatar.removeAttribute('src'); }
         if (logoutDesktop) logoutDesktop.style.display = 'none';
         if (logoutMobile) logoutMobile.style.display = 'none';
       }
