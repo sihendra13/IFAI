@@ -108,6 +108,7 @@
       statusMsg.classList.add('hidden');
       emailForm.reset();
       modal.classList.remove('hidden');
+      ensureGoogleButton();
     }
     function closeModal() { modal.classList.add('hidden'); }
 
@@ -141,14 +142,34 @@
       }
     }
 
+    // Deliberately NOT initialized on page load: the GSI iframe it creates
+    // runs third-party code on every single page view, which is a common
+    // cause of the browser skipping its back/forward cache (making every
+    // back-navigation a slow full reload instead of an instant restore).
+    // Initializing it only when the user actually opens the modal means
+    // ordinary browsing (viewing works, signals, going back) never touches
+    // Google's script at all.
+    let googleButtonInitialized = false;
     function initGoogleButton() {
+      if (googleButtonInitialized) return;
       if (!googleBtnContainer || !window.google || !google.accounts || !google.accounts.id) return;
       google.accounts.id.initialize({ client_id: GOOGLE_CLIENT_ID, callback: handleGoogleCredential });
       googleBtnContainer.innerHTML = '';
       google.accounts.id.renderButton(googleBtnContainer, { theme: 'outline', size: 'large', width: 320, text: 'continue_with' });
+      googleButtonInitialized = true;
     }
-    initGoogleButton();
-    window.addEventListener('load', initGoogleButton);
+    function ensureGoogleButton() {
+      if (googleButtonInitialized) return;
+      initGoogleButton();
+      if (googleButtonInitialized) return;
+      // The GSI script (loaded async) may still be downloading — retry
+      // briefly until it's ready rather than leaving the button blank.
+      const retry = setInterval(function () {
+        initGoogleButton();
+        if (googleButtonInitialized) clearInterval(retry);
+      }, 200);
+      setTimeout(function () { clearInterval(retry); }, 5000);
+    }
 
     if (emailForm) {
       emailForm.addEventListener('submit', async function (e) {
