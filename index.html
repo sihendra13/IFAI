@@ -710,7 +710,7 @@
 <span data-i18n="programs.eyebrow" class="text-xs font-mono text-white tracking-widest uppercase">Incubation &amp; Keynotes</span>
 <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-1">IFAI SIGNALS</h2>
 </div>
-<a data-i18n="programs.viewAll" class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] flex items-center gap-1.5 transition-colors" href="#">
+<a id="signals-view-all" style="display:none;" data-i18n="programs.viewAll" class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] flex items-center gap-1.5 transition-colors" href="#">
             View All Events →
           </a>
 </div>
@@ -1265,9 +1265,9 @@
 
   async function wireSignals() {
     if (!signalsGrid) return;
-    const { data: signals, error } = await sb
+    const { data: signals, count, error } = await sb
       .from('signals')
-      .select('*')
+      .select('*', { count: 'exact' })
       .order('created_at', { ascending: false })
       .limit(4);
 
@@ -1279,6 +1279,10 @@
     cachedSignals.push(...signals);
     renderSignals(window.IFAI_I18N ? window.IFAI_I18N.getLang() : 'en');
     revealSignalsGrid();
+
+    const viewAllLink = document.getElementById('signals-view-all');
+    if (viewAllLink && (count || signals.length) > 2) viewAllLink.style.display = '';
+
     window.addEventListener('ifai:langchange', (e) => renderSignals(e.detail.lang));
   }
 
