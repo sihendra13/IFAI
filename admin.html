@@ -290,10 +290,19 @@
 
         <!-- Label EN/ID -->
         <div class="flex flex-col gap-2">
-          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Klasifikasi *</label>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <input type="text" id="signal-label-id" placeholder="Berita" class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
-            <input type="text" id="signal-label-en" placeholder="News" class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Klasifikasi * <span class="normal-case text-zinc-500">(contoh: Berita / Artikel)</span></label>
+          <div class="flex flex-col gap-1.5 p-3 rounded-lg bg-cosmic-900 border border-zinc-800">
+            <span class="text-[11px] text-zinc-500">🇮🇩 Klasifikasi (Bahasa Indonesia)</span>
+            <input type="text" id="signal-label-id" placeholder="Berita" class="bg-transparent border-b border-zinc-700 pb-1.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+          </div>
+          <div class="flex items-end gap-2 p-3 rounded-lg bg-cosmic-900 border border-zinc-800">
+            <div class="flex-1 flex flex-col gap-1.5">
+              <span class="text-[11px] text-zinc-500">🇬🇧 Classification (English)</span>
+              <input type="text" id="signal-label-en" placeholder="News" class="bg-transparent border-b border-zinc-700 pb-1.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+            </div>
+            <button type="button" data-translate-from="signal-label-id" data-translate-to="signal-label-en" class="btn-translate text-[11px] font-mono-code px-3 py-1.5 rounded-md bg-cosmic-800 border border-zinc-700 text-[#f75500] hover:border-[#f75500] transition-colors whitespace-nowrap">
+              Translate
+            </button>
           </div>
         </div>
 
