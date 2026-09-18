@@ -716,14 +716,28 @@ ${duration ? `<div class="absolute bottom-3 right-3"><span class="font-label-cod
       }
     }
 
-    // Video embed
+    // Video embed — replace the iframe element itself rather than just
+    // setting .src on the existing one. Changing .src on an iframe that's
+    // already in the document counts as navigating that browsing context,
+    // which Chrome adds to the TAB's own joint session history — so the
+    // browser back button would first "undo" the video load (visible as
+    // the player going blank) before it undoes the actual page navigation,
+    // needing a second back press to really leave the page. A freshly
+    // created iframe's first navigation doesn't have this problem.
     const videoId = extractYouTubeId(work.youtube_url);
-    const player = document.getElementById('cinema-player');
-    if (player && videoId) {
-      player.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=0&rel=0&modestbranding=1&controls=1&showinfo=0`;
-      player.title = title;
-      player.style.opacity = '1';
-      player.parentElement.classList.remove('animate-pulse');
+    const oldPlayer = document.getElementById('cinema-player');
+    if (oldPlayer && videoId) {
+      const playerWrap = oldPlayer.parentElement;
+      const newPlayer = document.createElement('iframe');
+      newPlayer.id = 'cinema-player';
+      newPlayer.className = oldPlayer.className;
+      newPlayer.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+      newPlayer.allowFullscreen = true;
+      newPlayer.title = title;
+      newPlayer.style.opacity = '1';
+      newPlayer.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=0&rel=0&modestbranding=1&controls=1&showinfo=0`;
+      oldPlayer.replaceWith(newPlayer);
+      if (playerWrap) playerWrap.classList.remove('animate-pulse');
     }
 
     // Creator card
