@@ -714,64 +714,48 @@
             View All Events →
           </a>
 </div>
-<!-- 2-Column Bento Box Events -->
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-<!-- Event Card 1 -->
-<div class="group relative rounded-3xl overflow-hidden border border-zinc-800 bg-cosmic-850 p-3 sm:p-4 hover:border-neon-emerald/60 transition duration-300 flex flex-col justify-between">
-<div class="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-6">
-<img alt="Synthetic Realities AI Film Showcase Exhibition" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB06rJitX5YWAUH-7hmEQlNjImOMWzSuwousFeQP6NLFXhcukjImSqyo5bEFNcJIVk7IqI5eJCVa7LzfcHkhCXDpCUSss15MrevmzwOd7tfyrVMLG6J9JzIf7J2RHDJ9vgg1tpLxnHMznww1cPh4ftE0wLlBGBj1CK0D63XCwSM1bqrIXBPczUtx8wGA222PNskv9EdGWICzxIft-bkHHUfIzON2mzU6OqUBjUiKGmvq9w1rV7XYPW8yw"/>
-<div class="absolute inset-0 bg-gradient-to-t from-cosmic-950 via-transparent to-transparent"></div>
-<span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-mono uppercase bg-black/70 backdrop-blur border border-neon-emerald/40 text-neon-emerald">
-                Physical Exhibition
-              </span>
+<!-- 2-Column Signals grid — repopulated from the "signals" table by the loader script below; these 2 cards are the fallback shown until that fetch resolves (or fails) -->
+<div id="signals-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<a href="#" class="group relative rounded-3xl overflow-hidden border border-zinc-800 bg-cosmic-850 hover:border-[#f75500]/60 transition duration-300 flex flex-col sm:flex-row">
+<div class="flex-1 p-6 sm:p-8 flex flex-col justify-between gap-4 order-2 sm:order-1">
+<div>
+<span class="inline-block px-3 py-1 rounded-full text-xs font-mono uppercase bg-black/40 border border-[#f75500]/40 text-[#f75500] mb-3">Physical Exhibition</span>
+<h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-[#E3A85F] transition-colors mb-2">Synthetic Realities: The AI Film Showcase</h3>
+<p class="text-zinc-400 text-sm leading-relaxed line-clamp-3">A 3-day immersive screening and live prompt battle featuring Indonesia's premiere digital artists, interactive neural screen walls, and panel discussions with global directors.</p>
 </div>
-<div class="px-2 pb-2">
-<div class="flex items-center gap-3 text-xs font-mono text-zinc-400 mb-2">
-<span>Jakarta Cultural Center</span>
-<span>•</span>
-<span class="text-neon-emerald">May 21, 2025</span>
-</div>
-<h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Synthetic Realities: The AI Film Showcase</h3>
-<p class="text-zinc-400 text-sm mb-6 leading-relaxed">
-                A 3-day immersive screening and live prompt battle featuring Indonesia's premiere digital artists, interactive neural screen walls, and panel discussions with global directors.
-              </p>
 <div class="flex items-center justify-between pt-4 border-t border-zinc-700">
-<span class="text-xs font-mono text-zinc-400">Pass: Free with RSVP</span>
-<a class="group/cta relative px-5 py-2 rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 hover:text-black transition-all duration-300 glow-white" href="#">
-<span class="relative z-10">Register Seat →</span>
-<div class="absolute inset-0 -translate-x-full group-hover/cta:translate-x-0 bg-white transition-transform duration-300 ease-out"></div>
+<span class="text-xs font-mono text-zinc-400">May 21, 2025</span>
+<span class="relative px-5 py-2 rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 group-hover:text-black transition-all duration-300 glow-white">
+<span class="relative z-10">See Detail →</span>
+<span class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-white transition-transform duration-300 ease-out"></span>
+</span>
+</div>
+</div>
+<div class="relative w-full sm:w-2/5 aspect-[16/9] sm:aspect-auto order-1 sm:order-2">
+<img alt="Synthetic Realities AI Film Showcase Exhibition" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB06rJitX5YWAUH-7hmEQlNjImOMWzSuwousFeQP6NLFXhcukjImSqyo5bEFNcJIVk7IqI5eJCVa7LzfcHkhCXDpCUSss15MrevmzwOd7tfyrVMLG6J9JzIf7J2RHDJ9vgg1tpLxnHMznww1cPh4ftE0wLlBGBj1CK0D63XCwSM1bqrIXBPczUtx8wGA222PNskv9EdGWICzxIft-bkHHUfIzON2mzU6OqUBjUiKGmvq9w1rV7XYPW8yw"/>
+<div class="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-cosmic-850 via-transparent to-transparent"></div>
+</div>
 </a>
+<a href="#" class="group relative rounded-3xl overflow-hidden border border-zinc-800 bg-cosmic-850 hover:border-[#f75500]/60 transition duration-300 flex flex-col sm:flex-row">
+<div class="flex-1 p-6 sm:p-8 flex flex-col justify-between gap-4 order-2 sm:order-1">
+<div>
+<span class="inline-block px-3 py-1 rounded-full text-xs font-mono uppercase bg-black/40 border border-[#f75500]/40 text-[#f75500] mb-3">Summit &amp; Masterclass</span>
+<h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-[#E3A85F] transition-colors mb-2">The Art of Prompting: Architectural Minds</h3>
+<p class="text-zinc-400 text-sm leading-relaxed line-clamp-3">Intensive masterclass diving deep into generative latent spaces, custom LoRA model training for local Indonesian indigenous motifs, and ethical AI copyright frameworks.</p>
 </div>
-</div>
-</div>
-<!-- Event Card 2 -->
-<div class="group relative rounded-3xl overflow-hidden border border-zinc-800 bg-cosmic-850 p-3 sm:p-4 hover:border-neon-cyan/60 transition duration-300 flex flex-col justify-between">
-<div class="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-6">
-<img alt="The Art of Prompting Keynote and Workshop Stage" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRCq4OAeLzvtSItFxPFOpJedUD2MtZQBPtYC53C_67QOt3XuJEmN9c81fP-r6EQv4KReVdSXN58Vrz1GCqeHu_441hKipa0FlD5U-1KKJHmM_Kb2aOEbMGSkMxo0MnM2ISc1FMjRKPTVY8YHs6N4faMsRaPEoDDCH8Y3zw_q-4ScL_-klGhGOOrt5V51Y2qOHcPF1HhazqYJheuOOyPRHkYuGd_FxZnzlReHP376lQ5m7WDGDf0KW5BA"/>
-<div class="absolute inset-0 bg-gradient-to-t from-cosmic-950 via-transparent to-transparent"></div>
-<span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-mono uppercase bg-black/70 backdrop-blur border border-neon-cyan/40 text-neon-cyan">
-                Summit &amp; Masterclass
-              </span>
-</div>
-<div class="px-2 pb-2">
-<div class="flex items-center gap-3 text-xs font-mono text-zinc-400 mb-2">
-<span>Main Auditorium &amp; Online Stream</span>
-<span>•</span>
-<span class="text-neon-cyan">June 14, 2025</span>
-</div>
-<h3 class="text-xl sm:text-2xl font-bold text-white mb-2">The Art of Prompting: Architectural Minds</h3>
-<p class="text-zinc-400 text-sm mb-6 leading-relaxed">
-                Intensive masterclass diving deep into generative latent spaces, custom LoRA model training for local Indonesian indigenous motifs, and ethical AI copyright frameworks.
-              </p>
 <div class="flex items-center justify-between pt-4 border-t border-zinc-700">
-<span class="text-xs font-mono text-zinc-400">Limited Capacity: 150 Seats</span>
-<a class="group/cta relative px-5 py-2 rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 hover:text-black transition-all duration-300 glow-white" href="#">
-<span class="relative z-10">Apply for Masterclass →</span>
-<div class="absolute inset-0 -translate-x-full group-hover/cta:translate-x-0 bg-white transition-transform duration-300 ease-out"></div>
+<span class="text-xs font-mono text-zinc-400">June 14, 2025</span>
+<span class="relative px-5 py-2 rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 group-hover:text-black transition-all duration-300 glow-white">
+<span class="relative z-10">See Detail →</span>
+<span class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-white transition-transform duration-300 ease-out"></span>
+</span>
+</div>
+</div>
+<div class="relative w-full sm:w-2/5 aspect-[16/9] sm:aspect-auto order-1 sm:order-2">
+<img alt="The Art of Prompting Keynote and Workshop Stage" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRCq4OAeLzvtSItFxPFOpJedUD2MtZQBPtYC53C_67QOt3XuJEmN9c81fP-r6EQv4KReVdSXN58Vrz1GCqeHu_441hKipa0FlD5U-1KKJHmM_Kb2aOEbMGSkMxo0MnM2ISc1FMjRKPTVY8YHs6N4faMsRaPEoDDCH8Y3zw_q-4ScL_-klGhGOOrt5V51Y2qOHcPF1HhazqYJheuOOyPRHkYuGd_FxZnzlReHP376lQ5m7WDGDf0KW5BA"/>
+<div class="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-cosmic-850 via-transparent to-transparent"></div>
+</div>
 </a>
-</div>
-</div>
-</div>
 </div>
 </div>
 </section>
@@ -1214,6 +1198,91 @@
   }
 
   wireShowcase();
+
+  // ---------- IFAI SIGNALS (image + short article cards) ----------
+  const signalsGrid = document.getElementById('signals-grid');
+  if (signalsGrid) {
+    signalsGrid.style.opacity = '0';
+    signalsGrid.style.transition = 'opacity 0.3s ease';
+    signalsGrid.classList.add('animate-pulse');
+  }
+  let signalsRevealed = false;
+  function revealSignalsGrid() {
+    if (signalsRevealed || !signalsGrid) return;
+    signalsRevealed = true;
+    signalsGrid.style.opacity = '1';
+    signalsGrid.classList.remove('animate-pulse');
+  }
+  setTimeout(revealSignalsGrid, 8000);
+
+  function pickSignalField(signal, field, lang) {
+    const isId = lang === 'id';
+    return (isId ? signal[field + '_id'] : signal[field + '_en']) || signal[field + '_en'] || signal[field + '_id'] || '';
+  }
+
+  function formatSignalDate(dateStr, lang) {
+    if (!dateStr) return '';
+    const d = new Date(dateStr + 'T00:00:00');
+    return d.toLocaleDateString(lang === 'id' ? 'id-ID' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function signalCardHtml(signal, lang) {
+    const label = pickSignalField(signal, 'label', lang);
+    const title = pickSignalField(signal, 'title', lang);
+    const description = pickSignalField(signal, 'description', lang);
+    const dateStr = formatSignalDate(signal.event_date, lang);
+
+    return `
+<a href="signal.html?id=${encodeURIComponent(signal.id)}" class="group relative rounded-3xl overflow-hidden border border-zinc-800 bg-cosmic-850 hover:border-[#f75500]/60 transition duration-300 flex flex-col sm:flex-row">
+<div class="flex-1 p-6 sm:p-8 flex flex-col justify-between gap-4 order-2 sm:order-1">
+<div>
+<span class="inline-block px-3 py-1 rounded-full text-xs font-mono uppercase bg-black/40 border border-[#f75500]/40 text-[#f75500] mb-3">${escapeHtml(label)}</span>
+<h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-[#E3A85F] transition-colors mb-2">${escapeHtml(title)}</h3>
+<p class="text-zinc-400 text-sm leading-relaxed line-clamp-3">${escapeHtml(description)}</p>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-zinc-700">
+<span class="text-xs font-mono text-zinc-400">${escapeHtml(dateStr)}</span>
+<span class="relative px-5 py-2 rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 group-hover:text-black transition-all duration-300 glow-white">
+<span class="relative z-10">See Detail →</span>
+<span class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-white transition-transform duration-300 ease-out"></span>
+</span>
+</div>
+</div>
+<div class="relative w-full sm:w-2/5 aspect-[16/9] sm:aspect-auto order-1 sm:order-2">
+<img src="${signal.image_url}" class="w-full h-full object-cover" alt="${escapeHtml(title)}">
+<div class="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-cosmic-850 via-transparent to-transparent"></div>
+</div>
+</a>`;
+  }
+
+  const cachedSignals = [];
+
+  function renderSignals(lang) {
+    if (!signalsGrid || !cachedSignals.length) return;
+    signalsGrid.innerHTML = cachedSignals.map((s) => signalCardHtml(s, lang)).join('');
+    if (window.IFAI_I18N) window.IFAI_I18N.applyLanguage(lang, { silent: true });
+  }
+
+  async function wireSignals() {
+    if (!signalsGrid) return;
+    const { data: signals, error } = await sb
+      .from('signals')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .limit(4);
+
+    if (error || !signals || !signals.length) {
+      if (error) console.error('IFAI: failed to load signals', error);
+      revealSignalsGrid();
+      return;
+    }
+    cachedSignals.push(...signals);
+    renderSignals(window.IFAI_I18N ? window.IFAI_I18N.getLang() : 'en');
+    revealSignalsGrid();
+    window.addEventListener('ifai:langchange', (e) => renderSignals(e.detail.lang));
+  }
+
+  wireSignals();
 })();
 </script>
 </body>

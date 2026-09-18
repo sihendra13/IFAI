@@ -261,6 +261,111 @@
       </div>
     </div>
 
+    <!-- IFAI Signals Form -->
+    <div id="form-signal-container" class="p-6 rounded-2xl bg-cosmic-850 border border-zinc-800 transition-colors">
+      <div id="signal-edit-mode-banner" hidden class="mb-5 px-4 py-3 rounded-lg bg-[#f75500]/15 border border-[#f75500] flex items-center gap-2 text-sm text-[#f75500] font-semibold">
+        <span>✏️</span>
+        <span>Mode Edit — kamu sedang mengubah signal yang sudah ada, bukan membuat signal baru.</span>
+      </div>
+      <h2 id="signal-form-title" class="text-lg font-bold text-white mb-6">+ Post IFAI Signal Baru</h2>
+      <form id="form-signal" class="flex flex-col gap-5">
+        <input type="hidden" id="signal-id"/>
+
+        <!-- Label EN/ID -->
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Klasifikasi *</label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <input type="text" id="signal-label-id" placeholder="Berita" class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+            <input type="text" id="signal-label-en" placeholder="News" class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+          </div>
+        </div>
+
+        <!-- Title EN/ID -->
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Judul *</label>
+          <div class="flex flex-col gap-1.5 p-3 rounded-lg bg-cosmic-900 border border-zinc-800">
+            <span class="text-[11px] text-zinc-500">🇮🇩 Judul (Bahasa Indonesia)</span>
+            <input type="text" id="signal-title-id" class="bg-transparent border-b border-zinc-700 pb-1.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+          </div>
+          <div class="flex items-end gap-2 p-3 rounded-lg bg-cosmic-900 border border-zinc-800">
+            <div class="flex-1 flex flex-col gap-1.5">
+              <span class="text-[11px] text-zinc-500">🇬🇧 Title (English)</span>
+              <input type="text" id="signal-title-en" class="bg-transparent border-b border-zinc-700 pb-1.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+            </div>
+            <button type="button" data-translate-from="signal-title-id" data-translate-to="signal-title-en" class="btn-translate text-[11px] font-mono-code px-3 py-1.5 rounded-md bg-cosmic-800 border border-zinc-700 text-[#f75500] hover:border-[#f75500] transition-colors whitespace-nowrap">
+              Translate
+            </button>
+          </div>
+        </div>
+
+        <!-- Description EN/ID -->
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Deskripsi</label>
+          <div class="flex flex-col gap-1.5 p-3 rounded-lg bg-cosmic-900 border border-zinc-800">
+            <span class="text-[11px] text-zinc-500">🇮🇩 Deskripsi (Bahasa Indonesia)</span>
+            <textarea id="signal-desc-id" rows="4" class="bg-transparent border-b border-zinc-700 pb-1.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500] resize-y"></textarea>
+          </div>
+          <div class="flex items-end gap-2 p-3 rounded-lg bg-cosmic-900 border border-zinc-800">
+            <div class="flex-1 flex flex-col gap-1.5">
+              <span class="text-[11px] text-zinc-500">🇬🇧 Description (English)</span>
+              <textarea id="signal-desc-en" rows="4" class="bg-transparent border-b border-zinc-700 pb-1.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500] resize-y"></textarea>
+            </div>
+            <button type="button" data-translate-from="signal-desc-id" data-translate-to="signal-desc-en" class="btn-translate text-[11px] font-mono-code px-3 py-1.5 rounded-md bg-cosmic-800 border border-zinc-700 text-[#f75500] hover:border-[#f75500] transition-colors whitespace-nowrap">
+              Translate
+            </button>
+          </div>
+        </div>
+
+        <!-- Image + Date -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Gambar *</label>
+            <div class="flex items-center gap-3">
+              <img id="signal-image-preview" hidden class="w-16 h-16 rounded-lg object-cover border border-zinc-700"/>
+              <div id="signal-image-placeholder" class="w-16 h-16 rounded-lg bg-cosmic-800 border border-zinc-700 flex items-center justify-center text-zinc-600 text-[10px] text-center leading-tight">No<br/>Image</div>
+              <input type="file" id="signal-image-file" accept="image/*" class="flex-1 text-xs text-zinc-400 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border file:border-zinc-700 file:bg-cosmic-850 file:text-zinc-300 file:text-xs hover:file:border-[#f75500] hover:file:text-[#f75500] file:cursor-pointer"/>
+            </div>
+            <input type="hidden" id="signal-image-current"/>
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Tanggal (opsional)</label>
+            <input type="date" id="signal-date" class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+          </div>
+        </div>
+
+        <p id="signal-error" hidden class="text-xs text-red-400"></p>
+        <p id="signal-success" hidden class="text-xs text-[#f75500]"></p>
+
+        <div class="flex items-center gap-3">
+          <button type="submit" id="btn-submit-signal" class="py-2.5 px-6 rounded-lg bg-[#f75500] text-white font-semibold text-sm hover:shadow-[0_0_20px_rgba(247,85,0,0.5)] transition-all">
+            Post Signal
+          </button>
+          <button type="button" id="btn-cancel-signal-edit" hidden class="py-2.5 px-6 rounded-lg border border-zinc-700 text-zinc-300 text-sm hover:border-zinc-500 transition-colors">
+            Batal Edit
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- IFAI Signals List -->
+    <div>
+      <h2 class="text-lg font-bold text-white mb-4">Semua IFAI Signals</h2>
+      <div class="overflow-x-auto rounded-2xl border border-zinc-800">
+        <table class="w-full text-sm">
+          <thead class="bg-cosmic-850 text-zinc-400 text-xs font-mono-code uppercase tracking-wider">
+            <tr>
+              <th class="text-left px-4 py-3">Judul</th>
+              <th class="text-left px-4 py-3">Klasifikasi</th>
+              <th class="text-left px-4 py-3">Tanggal</th>
+              <th class="text-right px-4 py-3">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="signals-table-body" class="divide-y divide-zinc-800/80"></tbody>
+        </table>
+        <p id="signals-empty" hidden class="text-center text-sm text-zinc-500 py-8">Belum ada signal yang diposting.</p>
+      </div>
+    </div>
+
   </section>
 </main>
 
@@ -363,6 +468,7 @@
     await loadCategories();
     await loadCreators();
     await loadWorks();
+    await loadSignals();
   }
 
   document.getElementById('btn-toggle-password').addEventListener('click', () => {
@@ -937,6 +1043,203 @@
       }
     });
   });
+
+  // ---------- IFAI SIGNALS (image + short article cards on the homepage) ----------
+  const signalImagePreview = document.getElementById('signal-image-preview');
+  const signalImagePlaceholder = document.getElementById('signal-image-placeholder');
+  const signalImageFile = document.getElementById('signal-image-file');
+  const SIGNAL_IMAGE_MAX_BYTES = 4 * 1024 * 1024; // 4MB
+
+  function setSignalImagePreview(url) {
+    if (url) {
+      signalImagePreview.src = url;
+      signalImagePreview.hidden = false;
+      signalImagePlaceholder.hidden = true;
+    } else {
+      signalImagePreview.hidden = true;
+      signalImagePlaceholder.hidden = false;
+    }
+  }
+
+  signalImageFile.addEventListener('change', () => {
+    const file = signalImageFile.files[0];
+    if (!file) return;
+    const errEl = document.getElementById('signal-error');
+    if (file.size > SIGNAL_IMAGE_MAX_BYTES) {
+      errEl.textContent = 'Ukuran gambar maksimal 4MB. File kamu ' + (file.size / 1024 / 1024).toFixed(1) + 'MB.';
+      errEl.hidden = false;
+      signalImageFile.value = '';
+      return;
+    }
+    errEl.hidden = true;
+    setSignalImagePreview(URL.createObjectURL(file));
+  });
+
+  // Uploads the chosen file (if any) to Supabase Storage ("signal-images"
+  // bucket) and returns its public URL. Falls back to whatever image was
+  // already on the signal (kept in the hidden field) when editing without
+  // changing the photo.
+  async function uploadSignalImageIfSelected() {
+    const file = signalImageFile.files[0];
+    const currentUrl = document.getElementById('signal-image-current').value || null;
+    if (!file) return currentUrl;
+    if (file.size > SIGNAL_IMAGE_MAX_BYTES) throw new Error('Ukuran gambar maksimal 4MB.');
+    const ext = file.name.split('.').pop();
+    const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+    const { error } = await sb.storage.from('signal-images').upload(path, file);
+    if (error) throw new Error('Gagal upload gambar: ' + error.message);
+    const { data } = sb.storage.from('signal-images').getPublicUrl(path);
+    return data.publicUrl;
+  }
+
+  const formSignal = document.getElementById('form-signal');
+  const signalFormTitle = document.getElementById('signal-form-title');
+  const btnCancelSignalEdit = document.getElementById('btn-cancel-signal-edit');
+  const btnSubmitSignal = document.getElementById('btn-submit-signal');
+
+  function resetSignalForm() {
+    formSignal.reset();
+    document.getElementById('signal-id').value = '';
+    document.getElementById('signal-image-current').value = '';
+    setSignalImagePreview(null);
+    signalFormTitle.textContent = '+ Post IFAI Signal Baru';
+    btnSubmitSignal.textContent = 'Post Signal';
+    btnCancelSignalEdit.hidden = true;
+    document.getElementById('signal-edit-mode-banner').hidden = true;
+    document.getElementById('form-signal-container').classList.remove('border-[#f75500]');
+  }
+  btnCancelSignalEdit.addEventListener('click', resetSignalForm);
+
+  formSignal.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const errEl = document.getElementById('signal-error');
+    const okEl = document.getElementById('signal-success');
+    errEl.hidden = true; okEl.hidden = true;
+
+    const id = document.getElementById('signal-id').value;
+    const titleId = document.getElementById('signal-title-id').value.trim();
+    const titleEn = document.getElementById('signal-title-en').value.trim();
+    if (!titleId && !titleEn) {
+      errEl.textContent = 'Judul wajib diisi minimal 1 bahasa.';
+      errEl.hidden = false;
+      return;
+    }
+    const labelId = document.getElementById('signal-label-id').value.trim();
+    const labelEn = document.getElementById('signal-label-en').value.trim();
+    if (!labelId && !labelEn) {
+      errEl.textContent = 'Klasifikasi wajib diisi minimal 1 bahasa.';
+      errEl.hidden = false;
+      return;
+    }
+
+    let imageUrl;
+    try {
+      imageUrl = await uploadSignalImageIfSelected();
+    } catch (err) {
+      errEl.textContent = err.message;
+      errEl.hidden = false;
+      return;
+    }
+    if (!imageUrl) {
+      errEl.textContent = 'Gambar wajib diupload.';
+      errEl.hidden = false;
+      return;
+    }
+
+    const payload = {
+      label_id: labelId || labelEn,
+      label_en: labelEn || labelId,
+      title_id: titleId || null,
+      title_en: titleEn || null,
+      description_id: document.getElementById('signal-desc-id').value.trim() || null,
+      description_en: document.getElementById('signal-desc-en').value.trim() || null,
+      image_url: imageUrl,
+      event_date: document.getElementById('signal-date').value || null
+    };
+
+    let result;
+    if (id) {
+      result = await sb.from('signals').update(payload).eq('id', id);
+    } else {
+      result = await sb.from('signals').insert(payload);
+    }
+
+    if (result.error) {
+      errEl.textContent = 'Gagal menyimpan: ' + result.error.message;
+      errEl.hidden = false;
+      return;
+    }
+
+    okEl.textContent = id ? 'Signal berhasil diupdate.' : 'Signal berhasil diposting.';
+    okEl.hidden = false;
+    resetSignalForm();
+    await loadSignals();
+  });
+
+  async function loadSignals() {
+    const { data, error } = await sb
+      .from('signals')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    const tbody = document.getElementById('signals-table-body');
+    const emptyEl = document.getElementById('signals-empty');
+    if (error) { console.error(error); return; }
+
+    if (!data.length) {
+      tbody.innerHTML = '';
+      emptyEl.hidden = false;
+      return;
+    }
+    emptyEl.hidden = true;
+
+    tbody.innerHTML = data.map(s => `
+      <tr class="hover:bg-cosmic-850/60">
+        <td class="px-4 py-3 text-white">${escapeHtml(s.title_id || s.title_en || '(tanpa judul)')}</td>
+        <td class="px-4 py-3 text-zinc-400">${escapeHtml(s.label_id || s.label_en || '-')}</td>
+        <td class="px-4 py-3 text-zinc-400">${s.event_date ? escapeHtml(s.event_date) : '-'}</td>
+        <td class="px-4 py-3 text-right whitespace-nowrap">
+          <button class="btn-edit-signal text-xs text-[#f75500] hover:underline mr-3" data-id="${s.id}">Edit</button>
+          <button class="btn-delete-signal text-xs text-red-400 hover:underline" data-id="${s.id}">Hapus</button>
+        </td>
+      </tr>
+    `).join('');
+
+    tbody.querySelectorAll('.btn-edit-signal').forEach(btn => {
+      btn.addEventListener('click', () => editSignal(data.find(s => s.id === btn.dataset.id)));
+    });
+    tbody.querySelectorAll('.btn-delete-signal').forEach(btn => {
+      btn.addEventListener('click', () => deleteSignal(btn.dataset.id));
+    });
+  }
+
+  function editSignal(signal) {
+    document.getElementById('signal-id').value = signal.id;
+    document.getElementById('signal-label-id').value = signal.label_id || '';
+    document.getElementById('signal-label-en').value = signal.label_en || '';
+    document.getElementById('signal-title-id').value = signal.title_id || '';
+    document.getElementById('signal-title-en').value = signal.title_en || '';
+    document.getElementById('signal-desc-id').value = signal.description_id || '';
+    document.getElementById('signal-desc-en').value = signal.description_en || '';
+    document.getElementById('signal-date').value = signal.event_date || '';
+    document.getElementById('signal-image-current').value = signal.image_url || '';
+    setSignalImagePreview(signal.image_url || null);
+    signalImageFile.value = '';
+
+    signalFormTitle.textContent = 'Edit IFAI Signal';
+    btnSubmitSignal.textContent = 'Update Signal';
+    btnCancelSignalEdit.hidden = false;
+    document.getElementById('signal-edit-mode-banner').hidden = false;
+    document.getElementById('form-signal-container').classList.add('border-[#f75500]');
+    document.getElementById('form-signal-container').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  async function deleteSignal(id) {
+    if (!confirm('Yakin mau hapus signal ini? Tidak bisa dibatalkan.')) return;
+    const { error } = await sb.from('signals').delete().eq('id', id);
+    if (error) { alert('Gagal hapus: ' + error.message); return; }
+    await loadSignals();
+  }
 
   renderTagsPicker();
   checkSession();
