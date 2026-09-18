@@ -1,35 +1,83 @@
-// Shared Supabase Auth wiring for the "Join Community" modal, used identically
-// by index.html, detail.html and category.html. Requires the supabase-js CDN
-// script to be loaded earlier on the page, and the auth modal markup (same
-// ids on every page) to be present in the DOM.
+// Shared auth wiring for the "Join Community" modal, used identically by
+// index.html, detail.html and category.html.
+//
+// Two independent sign-in paths feed one unified "logged in" state:
+//  - Google: handled entirely client-side via Google Identity Services (GIS),
+//    verified server-side by functions/api/auth-session.js, which mints our
+//    own long-lived session token (functions/_lib/session.js). Stored in
+//    localStorage. Chosen over Supabase's hosted OAuth redirect specifically
+//    so the Google "Sign in" screen shows ifai.pages.dev, not a supabase.co
+//    subdomain.
+//  - Email magic link: still handled by Supabase Auth directly (signInWithOtp)
+//    — no branding downside there, so no reason to replace it.
+//
+// Requires the supabase-js CDN script and the Google Identity Services script
+// to be loaded earlier on the page, and the auth modal markup (same ids on
+// every page) to be present in the DOM.
 (function () {
   const SUPABASE_URL = 'https://qayckglxfmtrjqtghitx.supabase.co';
   const SUPABASE_ANON_KEY = 'sb_publishable_qf2j0vC_6D63ziteKUflCQ_u-rYaIgd';
   const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  let currentUser = null;
+  const GOOGLE_CLIENT_ID = '214234294300-jc5nboj26s1s1hkee3j70041tsg3uvgj.apps.googleusercontent.com';
+  const GOOGLE_SESSION_KEY = 'ifai_google_session';
+
+  let supabaseUser = null;
+  let googleUser = null;
   const listeners = [];
-  function notify() { listeners.forEach((cb) => cb(currentUser)); }
+  function notify() { listeners.forEach((cb) => cb(getUser())); }
+  function getUser() {
+    if (supabaseUser) return { name: supabaseUser.user_metadata?.full_name || supabaseUser.user_metadata?.name || supabaseUser.email, email: supabaseUser.email, picture: supabaseUser.user_metadata?.avatar_url || null };
+    if (googleUser) return { name: googleUser.name, email: googleUser.email, picture: googleUser.picture };
+    return null;
+  }
+
+  function base64UrlToJson(base64url) {
+    const base64 = base64url.replace(/-/g, '+').replace(/_/g, '/');
+    const padded = base64 + '='.repeat((4 - (base64.length % 4)) % 4);
+    return JSON.parse(decodeURIComponent(atob(padded).split('').map((c) => '%' + c.charCodeAt(0).toString(16).padStart(2, '0')).join('')));
+  }
+
+  function readLocalGoogleSession() {
+    const token = localStorage.getItem(GOOGLE_SESSION_KEY);
+    if (!token) return null;
+    try {
+      const payload = base64UrlToJson(token.split('.')[1]);
+      if (typeof payload.exp !== 'number' || payload.exp * 1000 < Date.now()) {
+        localStorage.removeItem(GOOGLE_SESSION_KEY);
+        return null;
+      }
+      return payload;
+    } catch (e) {
+      localStorage.removeItem(GOOGLE_SESSION_KEY);
+      return null;
+    }
+  }
 
   const Auth = {
-    onChange(cb) { listeners.push(cb); cb(currentUser); },
-    getUser() { return currentUser; },
-    signInWithGoogle() {
-      return sb.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.href } });
-    },
+    onChange(cb) { listeners.push(cb); cb(getUser()); },
+    getUser,
     signInWithEmail(email) {
       return sb.auth.signInWithOtp({ email, options: { emailRedirectTo: window.location.href } });
     },
-    signOut() { return sb.auth.signOut(); }
+    signOut() {
+      googleUser = null;
+      localStorage.removeItem(GOOGLE_SESSION_KEY);
+      if (window.google && google.accounts && google.accounts.id) google.accounts.id.disableAutoSelect();
+      sb.auth.signOut();
+      notify();
+    }
   };
   window.IFAI_AUTH = Auth;
 
+  googleUser = readLocalGoogleSession();
+
   sb.auth.getSession().then(({ data: { session } }) => {
-    currentUser = session ? session.user : null;
+    supabaseUser = session ? session.user : null;
     notify();
   });
   sb.auth.onAuthStateChange((_event, session) => {
-    currentUser = session ? session.user : null;
+    supabaseUser = session ? session.user : null;
     notify();
   });
 
@@ -47,7 +95,7 @@
     const joinLabel = document.getElementById('join-community-label');
     const logoutDesktop = document.getElementById('auth-logout-desktop');
     const logoutMobile = document.getElementById('auth-logout-mobile');
-    const googleBtn = document.getElementById('auth-google-btn');
+    const googleBtnContainer = document.getElementById('google-signin-btn');
     const emailForm = document.getElementById('auth-email-form');
     const emailInput = document.getElementById('auth-email-input');
     const submitBtn = document.getElementById('auth-email-submit');
@@ -69,7 +117,33 @@
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
     if (backdrop) backdrop.addEventListener('click', closeModal);
 
-    if (googleBtn) googleBtn.addEventListener('click', function () { Auth.signInWithGoogle(); });
+    async function handleGoogleCredential(response) {
+      try {
+        const res = await fetch('/api/auth-session', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ idToken: response.credential })
+        });
+        const profile = await res.json();
+        if (!res.ok) throw new Error(profile.error || 'Google sign-in failed');
+        localStorage.setItem(GOOGLE_SESSION_KEY, profile.sessionToken);
+        googleUser = profile;
+        notify();
+      } catch (err) {
+        statusMsg.classList.remove('hidden');
+        statusMsg.textContent = err.message || 'Google sign-in failed, please try again.';
+        statusMsg.className = 'text-xs text-center mt-4 text-red-400';
+      }
+    }
+
+    function initGoogleButton() {
+      if (!googleBtnContainer || !window.google || !google.accounts || !google.accounts.id) return;
+      google.accounts.id.initialize({ client_id: GOOGLE_CLIENT_ID, callback: handleGoogleCredential });
+      googleBtnContainer.innerHTML = '';
+      google.accounts.id.renderButton(googleBtnContainer, { theme: 'outline', size: 'large', width: 320, text: 'continue_with' });
+    }
+    initGoogleButton();
+    window.addEventListener('load', initGoogleButton);
 
     if (emailForm) {
       emailForm.addEventListener('submit', async function (e) {
@@ -98,8 +172,7 @@
     function renderAuthState() {
       const user = Auth.getUser();
       if (user) {
-        const name = (user.user_metadata && (user.user_metadata.full_name || user.user_metadata.name))
-          || (user.email ? user.email.split('@')[0] : 'Member');
+        const name = user.name || (user.email ? user.email.split('@')[0] : 'Member');
         joinLabel.textContent = name;
         joinBtn.dataset.authed = 'true';
         joinBtn.classList.add('cursor-default');
