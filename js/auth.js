@@ -127,8 +127,12 @@
         });
         const profile = await res.json();
         if (!res.ok) throw new Error(profile.error || 'Google sign-in failed');
+        // Clear any leftover magic-link session first, so a stale Supabase
+        // session never shadows the identity the user just signed in with.
+        await sb.auth.signOut();
         localStorage.setItem(GOOGLE_SESSION_KEY, profile.sessionToken);
         googleUser = profile;
+        supabaseUser = null;
         notify();
       } catch (err) {
         statusMsg.classList.remove('hidden');
