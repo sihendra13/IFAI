@@ -162,14 +162,14 @@
 <h1 id="signal-title" class="text-3xl sm:text-5xl font-bold tracking-tight text-white mb-4">Loading…</h1>
 <div id="signal-date" style="display:none;" class="text-sm font-mono text-zinc-500 mb-4"></div>
 
-<!-- Share -->
-<div class="flex items-center gap-3 mb-8">
+<!-- Share (top) -->
+<div class="signal-share-row flex items-center gap-3 mb-8">
 <span data-i18n="signal.share" class="text-xs font-mono text-zinc-500 uppercase tracking-wider">Share:</span>
-<a id="share-whatsapp" target="_blank" rel="noopener" title="WhatsApp" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
-<a id="share-facebook" target="_blank" rel="noopener" title="Facebook" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
-<a id="share-threads" target="_blank" rel="noopener" title="Threads" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-threads"></i></a>
-<a id="share-linkedin" target="_blank" rel="noopener" title="LinkedIn" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
-<button type="button" id="share-copy" title="Copy link" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-solid fa-link"></i></button>
+<a data-share="whatsapp" target="_blank" rel="noopener" title="WhatsApp" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+<a data-share="facebook" target="_blank" rel="noopener" title="Facebook" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+<a data-share="threads" target="_blank" rel="noopener" title="Threads" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-threads"></i></a>
+<a data-share="linkedin" target="_blank" rel="noopener" title="LinkedIn" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
+<button type="button" data-share-copy title="Copy link" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-solid fa-link"></i></button>
 </div>
 
 <div class="relative w-full aspect-video rounded-2xl overflow-hidden mb-10 bg-cosmic-850 border border-zinc-800">
@@ -177,6 +177,16 @@
 </div>
 
 <div id="signal-description" class="text-zinc-300 leading-relaxed flex flex-col gap-4"></div>
+
+<!-- Share (bottom) -->
+<div class="signal-share-row flex items-center gap-3 mt-10 pt-8 border-t border-zinc-800">
+<span data-i18n="signal.share" class="text-xs font-mono text-zinc-500 uppercase tracking-wider">Share:</span>
+<a data-share="whatsapp" target="_blank" rel="noopener" title="WhatsApp" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+<a data-share="facebook" target="_blank" rel="noopener" title="Facebook" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+<a data-share="threads" target="_blank" rel="noopener" title="Threads" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-threads"></i></a>
+<a data-share="linkedin" target="_blank" rel="noopener" title="LinkedIn" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
+<button type="button" data-share-copy title="Copy link" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-solid fa-link"></i></button>
+</div>
 </div>
 </main>
 
@@ -417,14 +427,18 @@
       .join('');
 
     const pageUrl = window.location.href;
-    document.getElementById('share-whatsapp').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' | IFAI - ' + pageUrl)}`;
-    document.getElementById('share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
-    document.getElementById('share-threads').href = `https://www.threads.net/intent/post?text=${encodeURIComponent(title + ' | IFAI - ' + pageUrl)}`;
-    document.getElementById('share-linkedin').href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`;
+    const shareUrls = {
+      whatsapp: `https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' | IFAI - ' + pageUrl)}`,
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`,
+      threads: `https://www.threads.net/intent/post?text=${encodeURIComponent(title + ' | IFAI - ' + pageUrl)}`,
+      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`
+    };
+    document.querySelectorAll('[data-share]').forEach((el) => {
+      el.href = shareUrls[el.getAttribute('data-share')];
+    });
   }
 
-  const copyBtn = document.getElementById('share-copy');
-  if (copyBtn) {
+  document.querySelectorAll('[data-share-copy]').forEach((copyBtn) => {
     copyBtn.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(window.location.href);
@@ -435,7 +449,7 @@
         // clipboard API unavailable — nothing else to fall back to here
       }
     });
-  }
+  });
 
   async function loadSignal() {
     const id = new URLSearchParams(window.location.search).get('id');
