@@ -595,10 +595,35 @@ document.getElementById('cinema-player').parentElement.classList.add('animate-pu
 
   let cachedRelatedWorks = null;
 
+  function relatedSkeletonCardsHtml(count = 3) {
+    let out = '';
+    for (let i = 0; i < count; i++) {
+      out += `
+<div class="flex flex-col rounded-2xl bg-surface-container-low border border-zinc-800 overflow-hidden shadow-lg w-[85vw] md:w-auto flex-shrink-0 md:flex-shrink snap-start animate-pulse pointer-events-none select-none" aria-hidden="true">
+<div class="aspect-video w-full bg-zinc-800/50"></div>
+<div class="p-space-md flex flex-col flex-1 justify-between gap-space-md">
+<div class="space-y-2.5">
+<div class="h-4 bg-zinc-700/50 rounded-md w-3/4"></div>
+<div class="h-3 bg-zinc-800/60 rounded w-1/3"></div>
+<div class="h-3 bg-zinc-800/40 rounded w-full mt-2"></div>
+<div class="h-3 bg-zinc-800/40 rounded w-4/5"></div>
+</div>
+<div class="pt-space-xs flex justify-end">
+<div class="w-24 h-7 rounded-full bg-zinc-800/60"></div>
+</div>
+</div>
+</div>`;
+    }
+    return out;
+  }
+
   async function loadRelatedWorks(work, lang) {
     const catSlug = work.categories?.slug;
     const archiveLink = document.getElementById('dp-view-archive');
     if (archiveLink) archiveLink.href = catSlug ? `category?slug=${encodeURIComponent(catSlug)}` : '/#showcase';
+
+    const grid = document.getElementById('dp-related-grid');
+    if (grid) grid.innerHTML = relatedSkeletonCardsHtml(3);
 
     if (!work.category_id) return;
     const { data: related, error } = await sb
@@ -610,7 +635,7 @@ document.getElementById('cinema-player').parentElement.classList.add('animate-pu
       .order('created_at', { ascending: false })
       .limit(3);
 
-    if (error) { console.error('IFAI: failed to load related works', error); return; }
+    if (error) { console.error('IFAI: failed to load related works', error); if (grid) grid.innerHTML = ''; return; }
     cachedRelatedWorks = related || [];
     renderRelatedWorks(cachedRelatedWorks, window.IFAI_I18N ? window.IFAI_I18N.getLang() : lang);
   }

@@ -782,25 +782,34 @@
 
   const cachedShowcase = [];
 
-  // Hide the (empty) grids immediately so visitors see a loading pulse
-  // instead of a blank gap while the real Supabase data is fetched.
+  function showcaseSkeletonCardsHtml(count = 4) {
+    let out = '';
+    for (let i = 0; i < count; i++) {
+      out += `
+<article class="relative rounded-2xl overflow-hidden bg-cosmic-850/80 border border-zinc-800/80 flex flex-col h-full w-[85vw] sm:w-auto flex-shrink-0 sm:flex-shrink snap-start animate-pulse pointer-events-none select-none" aria-hidden="true">
+<div class="relative aspect-video w-full bg-zinc-800/50">
+<div class="absolute top-3 right-3 w-14 h-4 rounded-full bg-zinc-700/40"></div>
+</div>
+<div class="p-4 flex flex-col justify-between flex-grow gap-4">
+<div class="space-y-2.5">
+<div class="h-4 bg-zinc-700/50 rounded-md w-3/4"></div>
+<div class="h-3 bg-zinc-800/60 rounded-md w-1/2"></div>
+</div>
+<div class="mt-4 pt-3 border-t border-zinc-800/60 flex items-center justify-between">
+<div class="h-3 bg-zinc-700/40 rounded w-20"></div>
+<div class="h-3 bg-zinc-800/40 rounded w-12"></div>
+</div>
+</div>
+</article>`;
+    }
+    return out;
+  }
+
+  // Populate skeleton cards immediately so visitors see a structured loading state
   const allShowcaseGrids = Array.from(document.querySelectorAll('[id^="grid-"]'));
   allShowcaseGrids.forEach((g) => {
-    g.style.opacity = '0';
-    g.style.transition = 'opacity 0.3s ease';
-    g.classList.add('animate-pulse');
+    g.innerHTML = showcaseSkeletonCardsHtml(4);
   });
-  let gridsRevealed = false;
-  function revealShowcaseGrids() {
-    if (gridsRevealed) return;
-    gridsRevealed = true;
-    allShowcaseGrids.forEach((g) => {
-      g.style.opacity = '1';
-      g.classList.remove('animate-pulse');
-    });
-  }
-  // Failsafe: never leave the grids invisible if the fetch hangs/fails silently.
-  setTimeout(revealShowcaseGrids, 8000);
 
   function renderShowcase(lang) {
     for (const entry of cachedShowcase) {
@@ -814,7 +823,7 @@
       .from('categories')
       .select('*')
       .order('display_order');
-    if (catErr || !categories) { console.error('IFAI: failed to load categories', catErr); revealShowcaseGrids(); return; }
+    if (catErr || !categories) { console.error('IFAI: failed to load categories', catErr); allShowcaseGrids.forEach(g => g.innerHTML = ''); return; }
 
     // Fetch every category's works in parallel instead of one-at-a-time —
     // sequential awaits here could add up to 1-2s+ on a slow connection,
@@ -838,27 +847,39 @@
     }));
 
     renderShowcase(window.IFAI_I18N ? window.IFAI_I18N.getLang() : 'en');
-    revealShowcaseGrids();
     window.addEventListener('ifai:langchange', (e) => renderShowcase(e.detail.lang));
   }
 
   wireShowcase();
 
   // ---------- IFAI SIGNALS (image + short article cards) ----------
+  function signalsSkeletonCardsHtml(count = 2) {
+    let out = '';
+    for (let i = 0; i < count; i++) {
+      out += `
+<div class="relative rounded-3xl overflow-hidden border border-zinc-800 bg-cosmic-850/80 flex flex-col sm:flex-row w-[85vw] lg:w-auto flex-shrink-0 lg:flex-shrink snap-start animate-pulse pointer-events-none select-none" aria-hidden="true">
+<div class="flex-1 p-6 sm:p-8 flex flex-col justify-between gap-4 order-2 sm:order-1">
+<div class="space-y-3">
+<div class="w-20 h-5 rounded-full bg-zinc-800/70"></div>
+<div class="h-6 bg-zinc-700/50 rounded-md w-4/5"></div>
+<div class="h-4 bg-zinc-800/50 rounded-md w-full"></div>
+<div class="h-4 bg-zinc-800/40 rounded-md w-2/3"></div>
+</div>
+<div class="flex items-center gap-4 pt-4 border-t border-zinc-800/60">
+<div class="w-20 h-3 bg-zinc-800/60 rounded"></div>
+<div class="w-24 h-8 bg-zinc-800/60 rounded-full"></div>
+</div>
+</div>
+<div class="relative w-full sm:w-2/5 aspect-[16/9] sm:aspect-auto order-1 sm:order-2 bg-zinc-800/40 min-h-[160px]"></div>
+</div>`;
+    }
+    return out;
+  }
+
   const signalsGrid = document.getElementById('signals-grid');
   if (signalsGrid) {
-    signalsGrid.style.opacity = '0';
-    signalsGrid.style.transition = 'opacity 0.3s ease';
-    signalsGrid.classList.add('animate-pulse');
+    signalsGrid.innerHTML = signalsSkeletonCardsHtml(2);
   }
-  let signalsRevealed = false;
-  function revealSignalsGrid() {
-    if (signalsRevealed || !signalsGrid) return;
-    signalsRevealed = true;
-    signalsGrid.style.opacity = '1';
-    signalsGrid.classList.remove('animate-pulse');
-  }
-  setTimeout(revealSignalsGrid, 8000);
 
   function pickSignalField(signal, field, lang) {
     const isId = lang === 'id';
@@ -918,12 +939,11 @@
 
     if (error || !signals || !signals.length) {
       if (error) console.error('IFAI: failed to load signals', error);
-      revealSignalsGrid();
+      signalsGrid.innerHTML = '';
       return;
     }
     cachedSignals.push(...signals);
     renderSignals(window.IFAI_I18N ? window.IFAI_I18N.getLang() : 'en');
-    revealSignalsGrid();
 
     const viewAllLink = document.getElementById('signals-view-all');
     if (viewAllLink && (count || signals.length) > 2) viewAllLink.style.display = '';
