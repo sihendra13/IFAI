@@ -293,9 +293,9 @@ if (new URLSearchParams(window.location.search).get('id')) {
 <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
 </a>
 </div>
-<div id="dp-related-grid" class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<div id="dp-related-grid" class="flex gap-space-lg overflow-x-auto snap-x snap-mandatory pb-2 -mx-4 px-4 md:grid md:grid-cols-3 md:overflow-visible md:mx-0 md:px-0 md:pb-0">
 <!-- Card 1: Parallel Hearts -->
-<div class="group flex flex-col rounded-2xl bg-surface-container-low border border-zinc-700 overflow-hidden hover:bg-surface-container transition-all duration-300 shadow-lg">
+<div class="group flex flex-col rounded-2xl bg-surface-container-low border border-zinc-700 overflow-hidden hover:bg-surface-container transition-all duration-300 shadow-lg w-[85vw] md:w-auto flex-shrink-0 md:flex-shrink snap-start">
 <div class="aspect-video w-full relative overflow-hidden bg-surface-container-lowest">
 <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Cinematic frame from a psychological drama film showing two synthetic human androids looking into a glowing mirror in a rainy cyberpunk Jakarta alley." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2HKXMaAv78jbFeDK5tOpYbJVW8lmXTizvH7M6QhjBeio7KU3hHaBWdYcC4W8dvBtZ33-Ai1zKPJGFpEOP6qLOt8NcpmBEwlOgD4aj0MjUvf9XkDYXZjSzp9drCeUK1Pe_ZsWKLnAVbMkilWsVF1cAmVsQwlMHsZ010x_OG7nRuJRoDNZLvFU1KV6_nLhNqPEfCisibph69T3J3VFBVrJxJHPWKI5HfWnj2tut9ulrVn6VPMCa3JSHmA">
 <div class="absolute top-3 left-3">
@@ -328,7 +328,7 @@ if (new URLSearchParams(window.location.search).get('id')) {
 </div>
 </div>
 <!-- Card 2: Digital Bloom -->
-<div class="group flex flex-col rounded-2xl bg-surface-container-low border border-zinc-700 overflow-hidden hover:bg-surface-container transition-all duration-300 shadow-lg">
+<div class="group flex flex-col rounded-2xl bg-surface-container-low border border-zinc-700 overflow-hidden hover:bg-surface-container transition-all duration-300 shadow-lg w-[85vw] md:w-auto flex-shrink-0 md:flex-shrink snap-start">
 <div class="aspect-video w-full relative overflow-hidden bg-surface-container-lowest">
 <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Vibrant generative 3D macro animation of procedural Rafflesia arnoldii flowers with bioluminescent cybernetic stamens pulsing with green and electric cyan light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUJtcHQrO8xL1J-Sf73INE4XqrAtVxAkfXqyc4XMBxIfNRR8C2lu-RxIUjnsgO31mWmW1AZ9_PNbullduJ75k86aOdi82fmcX3_qmvRlYeK3GqpXwisVATdIxpOc0AJXtQp-YXYdQBgr7VkOFviV6uAB_Kz9W8PBWtDCjLaHvf639xdTuS8tv8JE84G0NrD5FtWzXveeiehgqZf0zy-0xjitNXWbNLwO3prlI5P7a86fgfKRSKzEYNmw">
 <div class="absolute top-3 left-3">
@@ -361,7 +361,7 @@ if (new URLSearchParams(window.location.search).get('id')) {
 </div>
 </div>
 <!-- Card 3: The Memory Loop -->
-<div class="group flex flex-col rounded-2xl bg-surface-container-low border border-zinc-700 overflow-hidden hover:bg-surface-container transition-all duration-300 shadow-lg">
+<div class="group flex flex-col rounded-2xl bg-surface-container-low border border-zinc-700 overflow-hidden hover:bg-surface-container transition-all duration-300 shadow-lg w-[85vw] md:w-auto flex-shrink-0 md:flex-shrink snap-start">
 <div class="aspect-video w-full relative overflow-hidden bg-surface-container-lowest">
 <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Retro-futuristic neural cinema still of an archivist sorting analog magnetic tapes surrounded by floating CRT monitors depicting memories of rural Java in 1970." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsiEl3QpAFdHChXTk6_Dlf-OzLSvNFVV_vx-LitU2aqNpvy66tSiATHm30bhrwGu-aGe3ncw1e-MalSitd2lU02hC1AbwYKw1XC7RPIw0ypb7gcPNLYQxOCXzEo8iZsdChfpF3qUZ-JkpSnrXXtU8pvZOTNT7rr7GyeTdrtnREGxLpwlzpoF5yjWCttqOgGTrh_IxBcYyh8RuRc2Sq8R4Eu2nJp00nsK-J2y3Jmi-fHOvELRQjO-yVmA">
 <div class="absolute top-3 left-3">
@@ -715,7 +715,7 @@ if (new URLSearchParams(window.location.search).get('id')) {
     const duration = work.duration ? `${escapeHtmlDp(work.duration)} MIN` : '';
 
     return `
-<a href="detail.html?id=${encodeURIComponent(work.id)}" class="group flex flex-col rounded-2xl bg-surface-container-low border border-zinc-700 overflow-hidden hover:bg-surface-container transition-all duration-300 shadow-lg">
+<a href="detail.html?id=${encodeURIComponent(work.id)}" class="group flex flex-col rounded-2xl bg-surface-container-low border border-zinc-700 overflow-hidden hover:bg-surface-container transition-all duration-300 shadow-lg w-[85vw] md:w-auto flex-shrink-0 md:flex-shrink snap-start">
 <div class="aspect-video w-full relative overflow-hidden bg-surface-container-lowest">
 <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${escapeHtmlDp(title)}" src="${thumb}">
 ${duration ? `<div class="absolute bottom-3 right-3"><span class="font-label-code text-label-code px-space-xs py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-md text-on-surface">${duration}</span></div>` : ''}
