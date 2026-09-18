@@ -715,8 +715,8 @@
           </a>
 </div>
 <!-- 2-Column Signals grid — repopulated from the "signals" table by the loader script below; these 2 cards are the fallback shown until that fetch resolves (or fails) -->
-<div id="signals-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-<a href="#" class="group relative rounded-3xl overflow-hidden border border-zinc-700 bg-cosmic-850 hover:border-[#E3A85F]/50 hover:shadow-[0_0_40px_6px_rgba(227,168,95,0.3)] transition-all duration-300 flex flex-col sm:flex-row">
+<div id="signals-grid" class="flex gap-8 overflow-x-auto snap-x snap-mandatory pb-2 -mx-4 px-4 lg:grid lg:grid-cols-2 lg:overflow-visible lg:mx-0 lg:px-0 lg:pb-0">
+<a href="#" class="group relative rounded-3xl overflow-hidden border border-zinc-700 bg-cosmic-850 hover:border-[#E3A85F]/50 hover:shadow-[0_0_40px_6px_rgba(227,168,95,0.3)] transition-all duration-300 flex flex-col sm:flex-row w-[85vw] lg:w-auto flex-shrink-0 lg:flex-shrink snap-start">
 <div class="flex-1 p-6 sm:p-8 flex flex-col justify-between gap-4 order-2 sm:order-1">
 <div>
 <span class="inline-block px-3 py-1 rounded-full text-xs font-mono uppercase bg-[#00e5ff]/10 border border-[#00e5ff]/30 text-[#00e5ff] mb-3">Physical Exhibition</span>
@@ -736,7 +736,7 @@
 <div class="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-cosmic-850 from-0% via-transparent via-10% to-transparent to-100%"></div>
 </div>
 </a>
-<a href="#" class="group relative rounded-3xl overflow-hidden border border-zinc-700 bg-cosmic-850 hover:border-[#E3A85F]/50 hover:shadow-[0_0_40px_6px_rgba(227,168,95,0.3)] transition-all duration-300 flex flex-col sm:flex-row">
+<a href="#" class="group relative rounded-3xl overflow-hidden border border-zinc-700 bg-cosmic-850 hover:border-[#E3A85F]/50 hover:shadow-[0_0_40px_6px_rgba(227,168,95,0.3)] transition-all duration-300 flex flex-col sm:flex-row w-[85vw] lg:w-auto flex-shrink-0 lg:flex-shrink snap-start">
 <div class="flex-1 p-6 sm:p-8 flex flex-col justify-between gap-4 order-2 sm:order-1">
 <div>
 <span class="inline-block px-3 py-1 rounded-full text-xs font-mono uppercase bg-[#00e5ff]/10 border border-[#00e5ff]/30 text-[#00e5ff] mb-3">Summit &amp; Masterclass</span>
@@ -1233,7 +1233,7 @@
     const dateStr = formatSignalDate(signal.event_date, lang);
 
     return `
-<a href="signal?id=${encodeURIComponent(signal.id)}" class="group relative rounded-3xl overflow-hidden border border-zinc-700 bg-cosmic-850 hover:border-[#E3A85F]/50 hover:shadow-[0_0_40px_6px_rgba(227,168,95,0.3)] transition-all duration-300 flex flex-col sm:flex-row">
+<a href="signal?id=${encodeURIComponent(signal.id)}" class="group relative rounded-3xl overflow-hidden border border-zinc-700 bg-cosmic-850 hover:border-[#E3A85F]/50 hover:shadow-[0_0_40px_6px_rgba(227,168,95,0.3)] transition-all duration-300 flex flex-col sm:flex-row w-[85vw] lg:w-auto flex-shrink-0 lg:flex-shrink snap-start">
 <div class="flex-1 p-6 sm:p-8 flex flex-col justify-between gap-4 order-2 sm:order-1">
 <div>
 <span class="inline-block px-3 py-1 rounded-full text-xs font-mono uppercase bg-[#00e5ff]/10 border border-[#00e5ff]/30 text-[#00e5ff] mb-3">${escapeHtml(label)}</span>
