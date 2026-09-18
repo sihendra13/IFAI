@@ -840,7 +840,7 @@
         .order('created_at', { ascending: false })
         .limit(4);
 
-      if (error) { console.error('IFAI: failed to load works for', cat.slug, error); return; }
+      if (error) { console.error('IFAI: failed to load works for', cat.slug, error); grid.innerHTML = ''; return; }
       // Zero approved works for this category is a valid, expected state —
       // the grid just stays empty. No hardcoded fallback content.
       cachedShowcase.push({ slug: cat.slug, grid, works: works || [] });

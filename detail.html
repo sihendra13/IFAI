@@ -625,7 +625,7 @@ document.getElementById('cinema-player').parentElement.classList.add('animate-pu
     const grid = document.getElementById('dp-related-grid');
     if (grid) grid.innerHTML = relatedSkeletonCardsHtml(3);
 
-    if (!work.category_id) return;
+    if (!work.category_id) { if (grid) grid.innerHTML = ''; return; }
     const { data: related, error } = await sb
       .from('works')
       .select('*, creators(name)')
