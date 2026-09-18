@@ -24,16 +24,16 @@
 <header id="main-header" class="fixed top-4 left-0 right-0 mx-auto max-w-7xl z-50 bg-cosmic-950/60 backdrop-blur-xl border border-zinc-800/80 rounded-full shadow-lg shadow-black/40 transition-all duration-500">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
 <!-- Brand Logo -->
-<a class="flex items-center group focus:outline-none rounded" href="index.html">
+<a class="flex items-center group focus:outline-none rounded" href="/">
 <img src="image/logo.png" alt="IFAI Future Arts Logo" class="h-4 sm:h-5 object-contain" />
 </a>
 <!-- Primary Navigation Links -->
 <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide font-body-md">
-<a data-i18n="nav.showcase" class="text-zinc-300 hover:text-[#f75500] transition-colors" href="index.html#showcase">Showcase</a>
-<a data-i18n="nav.programs" class="text-zinc-300 hover:text-[#f75500] transition-colors" href="index.html#programs">Programs</a>
-<a class="hidden text-zinc-300 hover:text-[#f75500] transition-colors" href="index.html#manifesto">Creator Hub</a>
-<a class="hidden text-zinc-300 hover:text-[#f75500] transition-colors" href="index.html#manifesto">Journal</a>
-<a data-i18n="nav.about" class="text-zinc-300 hover:text-[#f75500] transition-colors" href="index.html#manifesto">About</a>
+<a data-i18n="nav.showcase" class="text-zinc-300 hover:text-[#f75500] transition-colors" href="/#showcase">Showcase</a>
+<a data-i18n="nav.programs" class="text-zinc-300 hover:text-[#f75500] transition-colors" href="/#programs">Programs</a>
+<a class="hidden text-zinc-300 hover:text-[#f75500] transition-colors" href="/#manifesto">Creator Hub</a>
+<a class="hidden text-zinc-300 hover:text-[#f75500] transition-colors" href="/#manifesto">Journal</a>
+<a data-i18n="nav.about" class="text-zinc-300 hover:text-[#f75500] transition-colors" href="/#manifesto">About</a>
 </nav>
 <!-- Action Buttons -->
 <div class="flex items-center gap-4">
@@ -59,9 +59,9 @@
 </header>
 <!-- Mobile Menu Panel -->
 <div id="mobile-menu-panel" class="hidden md:hidden fixed top-24 left-4 right-4 sm:left-6 sm:right-6 z-40 bg-cosmic-950/95 backdrop-blur-xl border border-zinc-700 rounded-3xl shadow-lg shadow-black/40 p-6 flex flex-col gap-4">
-<a data-i18n="nav.showcase" class="text-zinc-200 hover:text-[#f75500] transition-colors text-base font-medium" href="index.html#showcase">Showcase</a>
-<a data-i18n="nav.programs" class="text-zinc-200 hover:text-[#f75500] transition-colors text-base font-medium" href="index.html#programs">Programs</a>
-<a data-i18n="nav.about" class="text-zinc-200 hover:text-[#f75500] transition-colors text-base font-medium" href="index.html#manifesto">About</a>
+<a data-i18n="nav.showcase" class="text-zinc-200 hover:text-[#f75500] transition-colors text-base font-medium" href="/#showcase">Showcase</a>
+<a data-i18n="nav.programs" class="text-zinc-200 hover:text-[#f75500] transition-colors text-base font-medium" href="/#programs">Programs</a>
+<a data-i18n="nav.about" class="text-zinc-200 hover:text-[#f75500] transition-colors text-base font-medium" href="/#manifesto">About</a>
 <div class="h-px bg-zinc-800 my-1"></div>
 <div class="flex items-center justify-between">
 <button type="button" id="lang-toggle-mobile" class="flex items-center gap-1 text-xs font-mono text-zinc-400 hover:text-white uppercase tracking-wider transition-colors border border-zinc-700 hover:border-zinc-500 rounded-full px-3 py-1.5 focus:outline-none" aria-label="Switch language">
@@ -106,13 +106,13 @@
 <!-- Breadcrumb & Curatorial Badge Telemetry -->
 <section class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-lg">
 <div class="flex flex-wrap items-center gap-space-xs font-label-code text-label-code text-on-surface-variant">
-<a class="hover:text-primary transition-colors flex items-center gap-1" data-path="showcase" href="index.html">
+<a class="hover:text-primary transition-colors flex items-center gap-1" data-path="showcase" href="/">
 <span class="material-symbols-outlined text-[16px] text-outline">database</span>
 <span data-i18n="detail.archive">Archive</span>
 </a>
 <span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
 <!-- FIELD: category -->
-<a id="dp-category" class="hover:text-primary transition-colors" data-path="programs" href="index.html#showcase">AI Film Showcase</a>
+<a id="dp-category" class="hover:text-primary transition-colors" data-path="programs" href="/#showcase">AI Film Showcase</a>
 <span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
 <!-- FIELD: title -->
 <span id="dp-title-crumb" class="text-[#f75500] font-medium">Cosmic Horizon</span>
@@ -288,7 +288,7 @@ if (new URLSearchParams(window.location.search).get('id')) {
 </div>
 <h2 data-i18n="detail.moreToExplore" class="font-headline-md text-headline-md text-on-surface tracking-tight">More to Explore</h2>
 </div>
-<a id="dp-view-archive" class="font-label-code text-label-code text-zinc-400 hover:text-[#f75500] flex items-center gap-1 transition-colors" data-path="showcase" href="index.html#showcase">
+<a id="dp-view-archive" class="font-label-code text-label-code text-zinc-400 hover:text-[#f75500] flex items-center gap-1 transition-colors" data-path="showcase" href="/#showcase">
 <span data-i18n="detail.viewArchive">View Full Archive</span>
 <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
 </a>
@@ -445,7 +445,7 @@ if (new URLSearchParams(window.location.search).get('id')) {
 <div class="grid grid-cols-1 md:grid-cols-5 gap-12 pb-12 border-b border-zinc-850">
 <!-- Brand Info -->
 <div class="md:col-span-2 space-y-4">
-<a class="flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-emerald rounded" href="index.html">
+<a class="flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-emerald rounded" href="/">
 <img src="image/logo.png" alt="IFAI Future Arts Logo" class="h-4 sm:h-5 object-contain" />
 </a>
 <p data-i18n="footer.brandDesc" class="text-xs text-zinc-400 leading-relaxed max-w-sm">
@@ -459,11 +459,11 @@ if (new URLSearchParams(window.location.search).get('id')) {
 <div>
 <h5 data-i18n="footer.col1.title" class="text-white font-mono uppercase text-xs tracking-wider mb-4">Explore</h5>
 <ul class="space-y-2.5">
-<li><a data-i18n="footer.col1.link1" class="hover:text-neon-emerald transition-colors" href="index.html#showcase">AI Film Showcase</a></li>
-<li><a data-i18n="footer.col1.link2" class="hover:text-neon-emerald transition-colors" href="index.html#showcase">Commercial Video</a></li>
-<li><a data-i18n="footer.col1.link3" class="hover:text-neon-emerald transition-colors" href="index.html#showcase">Neural Soundscapes</a></li>
-<li><a data-i18n="footer.col1.link4" class="hover:text-neon-emerald transition-colors" href="index.html#programs">Summits &amp; Events</a></li>
-<li><a data-i18n="footer.col1.link5" class="hover:text-neon-emerald transition-colors" href="index.html">Archive 2025</a></li>
+<li><a data-i18n="footer.col1.link1" class="hover:text-neon-emerald transition-colors" href="/#showcase">AI Film Showcase</a></li>
+<li><a data-i18n="footer.col1.link2" class="hover:text-neon-emerald transition-colors" href="/#showcase">Commercial Video</a></li>
+<li><a data-i18n="footer.col1.link3" class="hover:text-neon-emerald transition-colors" href="/#showcase">Neural Soundscapes</a></li>
+<li><a data-i18n="footer.col1.link4" class="hover:text-neon-emerald transition-colors" href="/#programs">Summits &amp; Events</a></li>
+<li><a data-i18n="footer.col1.link5" class="hover:text-neon-emerald transition-colors" href="/">Archive 2025</a></li>
 </ul>
 </div>
 <!-- Links Column 2 -->
@@ -688,7 +688,7 @@ if (new URLSearchParams(window.location.search).get('id')) {
   async function loadRelatedWorks(work, lang) {
     const catSlug = work.categories?.slug;
     const archiveLink = document.getElementById('dp-view-archive');
-    if (archiveLink) archiveLink.href = catSlug ? `category.html?slug=${encodeURIComponent(catSlug)}` : 'index.html#showcase';
+    if (archiveLink) archiveLink.href = catSlug ? `category?slug=${encodeURIComponent(catSlug)}` : '/#showcase';
 
     if (!work.category_id) return;
     const { data: related, error } = await sb
@@ -715,7 +715,7 @@ if (new URLSearchParams(window.location.search).get('id')) {
     const duration = work.duration ? `${escapeHtmlDp(work.duration)} MIN` : '';
 
     return `
-<a href="detail.html?id=${encodeURIComponent(work.id)}" class="group flex flex-col rounded-2xl bg-surface-container-low border border-zinc-700 overflow-hidden hover:bg-surface-container transition-all duration-300 shadow-lg w-[85vw] md:w-auto flex-shrink-0 md:flex-shrink snap-start">
+<a href="detail?id=${encodeURIComponent(work.id)}" class="group flex flex-col rounded-2xl bg-surface-container-low border border-zinc-700 overflow-hidden hover:bg-surface-container transition-all duration-300 shadow-lg w-[85vw] md:w-auto flex-shrink-0 md:flex-shrink snap-start">
 <div class="aspect-video w-full relative overflow-hidden bg-surface-container-lowest">
 <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${escapeHtmlDp(title)}" src="${thumb}">
 ${duration ? `<div class="absolute bottom-3 right-3"><span class="font-label-code text-label-code px-space-xs py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-md text-on-surface">${duration}</span></div>` : ''}
