@@ -83,14 +83,37 @@
 
   googleUser = readLocalGoogleSession();
 
-  sb.auth.getSession().then(({ data: { session } }) => {
-    supabaseUser = session ? session.user : null;
+  // The admin signs in on /admin, which keeps its own session (separate storage key).
+  // An admin session found here is a leftover from before that split (or from an old
+  // admin tab), so it is ignored and cleared locally instead of showing the admin's
+  // email in the public navbar. scope "local" only removes it from this browser and
+  // does not revoke the admin's real session.
+  const adminLookups = {}; // one lookup per user id, however many auth events fire
+  function isAdminUser(userId) {
+    if (!adminLookups[userId]) {
+      adminLookups[userId] = sb.from('profiles').select('role').eq('id', userId).maybeSingle()
+        .then(({ data }) => !!data && data.role === 'admin');
+    }
+    return adminLookups[userId];
+  }
+  let sessionCheckId = 0;
+  async function applySupabaseSession(session) {
+    const checkId = ++sessionCheckId;
+    if (!session) { supabaseUser = null; notify(); return; }
+    let isAdmin = false;
+    try { isAdmin = await isAdminUser(session.user.id); } catch (e) { /* lookup failed: treat as a normal member */ }
+    if (checkId !== sessionCheckId) return; // a newer session event replaced this one
+    if (isAdmin) {
+      supabaseUser = null;
+      sb.auth.signOut({ scope: 'local' });
+    } else {
+      supabaseUser = session.user;
+    }
     notify();
-  });
-  sb.auth.onAuthStateChange((_event, session) => {
-    supabaseUser = session ? session.user : null;
-    notify();
-  });
+  }
+
+  sb.auth.getSession().then(({ data: { session } }) => applySupabaseSession(session));
+  sb.auth.onAuthStateChange((_event, session) => { applySupabaseSession(session); });
 
   function t(key, fallback) {
     const lang = window.IFAI_I18N ? window.IFAI_I18N.getLang() : 'en';
