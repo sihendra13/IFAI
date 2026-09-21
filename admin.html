@@ -464,14 +464,18 @@
         </div>
 
         <h3 class="text-sm font-bold text-white uppercase tracking-wider pt-4 border-t border-zinc-800">Karya Pilihan (opsional — kosongkan judul untuk menyembunyikan)</h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div class="flex flex-col gap-1.5">
           <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Judul Karya</label>
           <input type="text" id="ch-work-title" placeholder="After The Rain" class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
         </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+        <div class="flex flex-col gap-1.5 sm:col-span-2">
+          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Link Video YouTube <span class="normal-case text-zinc-500">(diputar langsung di homepage, opsional)</span></label>
+          <input type="text" id="ch-work-watch-url" placeholder="https://..." class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+        </div>
         <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Durasi (otomatis) <span class="normal-case text-zinc-500">(tampil di pojok gambar)</span></label>
-          <input type="text" id="ch-work-duration" placeholder="Terisi otomatis dari link YouTube" class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Durasi (otomatis)</label>
+          <input type="text" id="ch-work-duration" placeholder="Terisi otomatis dari link" class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
         </div>
         </div>
         <div class="flex flex-col gap-1.5">
@@ -514,12 +518,6 @@
               Translate
             </button>
           </div>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Link Video YouTube <span class="normal-case text-zinc-500">(diputar langsung di homepage, opsional)</span></label>
-          <input type="text" id="ch-work-watch-url" placeholder="https://..." class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
-        </div>
         </div>
 
         <input type="hidden" id="ch-featured" value="1"/>
