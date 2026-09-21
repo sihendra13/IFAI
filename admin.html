@@ -564,7 +564,9 @@
 <script>
   const SUPABASE_URL = 'https://qayckglxfmtrjqtghitx.supabase.co';
   const SUPABASE_ANON_KEY = 'sb_publishable_qf2j0vC_6D63ziteKUflCQ_u-rYaIgd';
-  const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  // The admin session gets its own storage key. With the default key it was shared with
+  // the public site, so logging in here also showed the admin's email in the public navbar.
+  const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { auth: { storageKey: 'ifai-admin-auth' } });
 
   const screens = {
     login: document.getElementById('screen-login'),
