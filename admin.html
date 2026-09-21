@@ -496,7 +496,7 @@
         </div>
         </div>
         <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Gambar Karya</label>
+          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Gambar Karya <span class="normal-case text-zinc-500">(opsional — kosong = thumbnail YouTube)</span></label>
           <div class="flex items-center gap-3">
             <img id="ch-work-image-preview" hidden class="w-16 h-16 rounded-lg object-cover border border-zinc-700"/>
             <div id="ch-work-image-placeholder" class="w-16 h-16 rounded-lg bg-cosmic-800 border border-zinc-700 flex items-center justify-center text-zinc-600 text-[10px] text-center leading-tight">No<br/>Image</div>
@@ -538,25 +538,9 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Pipeline <span class="normal-case text-zinc-500">(tools yang dipakai membuat karya)</span></label>
-          <input type="text" id="ch-work-pipeline" placeholder="Runway Gen-3 Alpha • Midjourney v6" class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
-        </div>
-        <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Kurasi</label>
-          <input type="text" id="ch-work-curation" placeholder="Official Selection IFAI 2025" class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
-        </div>
-        <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Link Tonton Film <span class="normal-case text-zinc-500">(YouTube dsb, opsional)</span></label>
+          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Link Video YouTube <span class="normal-case text-zinc-500">(diputar langsung di homepage, opsional)</span></label>
           <input type="text" id="ch-work-watch-url" placeholder="https://..." class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
         </div>
-        <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Link Detail Karya <span class="normal-case text-zinc-500">(opsional)</span></label>
-          <input type="text" id="ch-work-detail-url" placeholder="https://www.myifai.com/detail?id=..." class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
-        </div>
-        </div>
-        <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Link "View All Works" <span class="normal-case text-zinc-500">(opsional)</span></label>
-          <input type="text" id="ch-works-url" placeholder="https://..." class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
         </div>
 
         <label class="flex items-center gap-3 p-3 rounded-lg bg-cosmic-900 border border-zinc-800 cursor-pointer">
@@ -1588,11 +1572,7 @@
       work_meta_en: orNull(chVal('ch-work-meta-en')),
       work_synopsis_id: orNull(chVal('ch-work-synopsis-id')),
       work_synopsis_en: orNull(chVal('ch-work-synopsis-en')),
-      work_pipeline: orNull(chVal('ch-work-pipeline')),
-      work_curation: orNull(chVal('ch-work-curation')),
-      work_watch_url: orNull(chVal('ch-work-watch-url')),
-      work_detail_url: orNull(chVal('ch-work-detail-url')),
-      works_url: orNull(chVal('ch-works-url'))
+      work_watch_url: orNull(chVal('ch-work-watch-url'))
     };
 
     try {
@@ -1673,9 +1653,7 @@
     set('ch-work-title', c.work_title); set('ch-work-duration', c.work_duration);
     set('ch-work-meta-id', c.work_meta_id); set('ch-work-meta-en', c.work_meta_en);
     set('ch-work-synopsis-id', c.work_synopsis_id); set('ch-work-synopsis-en', c.work_synopsis_en);
-    set('ch-work-pipeline', c.work_pipeline); set('ch-work-curation', c.work_curation);
-    set('ch-work-watch-url', c.work_watch_url); set('ch-work-detail-url', c.work_detail_url);
-    set('ch-works-url', c.works_url);
+    set('ch-work-watch-url', c.work_watch_url);
     document.getElementById('ch-featured').checked = !!c.is_featured;
 
     document.getElementById('ch-photo-current').value = c.photo_url || '';

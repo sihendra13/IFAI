@@ -480,14 +480,15 @@
 </div>
 </article>
 
-<!-- Middle Grid: About + Fields/Tools -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-<!-- Left Card: About the Creator -->
-<article class="lg:col-span-5 rounded-2xl bg-cyber-surface border border-cyber-border p-6 sm:p-8 flex flex-col justify-between">
+<!-- Creator details + featured work: one box -->
+<div class="rounded-2xl bg-cyber-surface border border-cyber-border overflow-hidden">
+<div class="grid grid-cols-1 lg:grid-cols-12">
+<!-- About the Creator -->
+<div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between border-cyber-border lg:border-r">
 <div>
 <div class="flex items-center justify-between mb-4">
-<h3 class="font-mono text-xs uppercase tracking-widest text-cyber-emerald font-bold flex items-center gap-2">
-<span class="w-1 h-3 bg-cyber-emerald inline-block"></span>
+<h3 class="font-mono text-xs uppercase tracking-widest text-white font-bold flex items-center gap-2">
+<span class="w-1 h-3 bg-cyber-cyan inline-block"></span>
 <span data-i18n="creator.aboutTitle">About the Creator</span>
 </h3>
 <span class="font-mono text-[10px] text-slate-500">BIO // ARCHIVE</span>
@@ -497,19 +498,18 @@
           </p>
 </div>
 <div>
-<!-- No destination yet: the creator profile page doesn't exist -->
+<!-- No destination yet: the creator detail page doesn't exist -->
 <a aria-disabled="true" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-cyber-borderHover bg-cyber-surfaceDim hover:border-cyber-emerald text-slate-200 hover:text-cyber-emerald text-xs font-mono tracking-wider transition-all duration-300 group cursor-pointer">
 <span data-i18n="creator.moreAbout">More About Raka</span>
 <span class="transform group-hover:translate-x-1 transition-transform">→</span>
 </a>
 </div>
-</article>
-<!-- Right Card: Creative Fields & Tools -->
-<div class="lg:col-span-7 rounded-2xl bg-cyber-surface border border-cyber-border p-6 sm:p-8 flex flex-col justify-between gap-6">
-<!-- Creative Fields -->
+</div>
+<!-- Creative Fields & Tools -->
+<div class="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between gap-6 border-t lg:border-t-0 border-cyber-border">
 <div>
 <div class="flex items-center justify-between mb-3">
-<h3 class="font-mono text-xs uppercase tracking-widest text-slate-300 font-bold flex items-center gap-2">
+<h3 class="font-mono text-xs uppercase tracking-widest text-white font-bold flex items-center gap-2">
 <span class="w-1 h-3 bg-cyber-cyan inline-block"></span>
 <span data-i18n="creator.fieldsTitle">Creative Fields</span>
 </h3>
@@ -523,11 +523,10 @@
 <span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim border border-cyber-border text-xs font-medium text-slate-200 hover:border-cyber-emerald transition-colors">Concept Design</span>
 </div>
 </div>
-<!-- Tools Used -->
 <div class="border-t border-cyber-border pt-5">
 <div class="flex items-center justify-between mb-3">
-<h3 class="font-mono text-xs uppercase tracking-widest text-slate-300 font-bold flex items-center gap-2">
-<span class="w-1 h-3 bg-cyber-emerald inline-block"></span>
+<h3 class="font-mono text-xs uppercase tracking-widest text-white font-bold flex items-center gap-2">
+<span class="w-1 h-3 bg-cyber-cyan inline-block"></span>
 <span data-i18n="creator.toolsTitle">Tools Used</span>
 </h3>
 <span class="font-mono text-[10px] text-slate-500">NEURAL STACK</span>
@@ -580,88 +579,49 @@
 </div>
 </div>
 
-<!-- Featured Works -->
-<div class="space-y-4 pt-2">
-<div class="flex items-center justify-between border-b border-cyber-border pb-3">
-<div class="flex items-center gap-3">
-<h3 data-i18n="creator.featuredTitle" class="text-xl font-bold tracking-tight text-white uppercase">
-            Featured Works
-          </h3>
-<span data-i18n="creator.featuredBadge" class="px-2 py-0.5 rounded text-[10px] font-mono bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/30">
-            MAIN SHOWCASE
-          </span>
+<!-- Featured Work -->
+<div class="border-t border-cyber-border">
+<div class="flex items-center gap-3 px-6 sm:px-8 py-5 border-b border-cyber-border">
+<h3 data-i18n="creator.featuredTitle" class="text-xl font-bold tracking-tight text-white uppercase">Featured Work</h3>
+<span data-i18n="creator.featuredBadge" class="px-2 py-0.5 rounded text-[10px] font-mono bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/30">MAIN SHOWCASE</span>
 </div>
-<!-- No destination yet: the creator's works page doesn't exist -->
-<a aria-disabled="true" class="group flex items-center gap-1.5 text-xs font-mono text-cyber-muted hover:text-cyber-emerald transition-colors cursor-pointer">
-<span data-i18n="creator.viewAllWorks">View All Works</span>
-<span class="transform group-hover:translate-x-1 transition-transform">→</span>
-</a>
-</div>
-<!-- Wide Cinema Focus Card: After The Rain -->
-<article class="rounded-2xl bg-cyber-surface border border-cyber-border overflow-hidden hover:border-cyber-borderHover transition-all duration-300 shadow-xl">
 <div class="grid grid-cols-1 lg:grid-cols-12">
-<!-- Left Visual Pane -->
-<div class="lg:col-span-7 relative group bg-black overflow-hidden aspect-video lg:aspect-auto">
+<!-- Visual pane (the video plays here once a YouTube link is set) -->
+<div data-work-media class="lg:col-span-7 relative group bg-black overflow-hidden aspect-video lg:aspect-auto lg:min-h-[360px]">
 <img alt="After The Rain - Lone silhouette overlooking flooded post-apocalyptic skyline at sunset" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcnxVPxKOOM9wdmIBkr6r5wWW0db_cfrmHqx7aLpeHEmOFD8rkePjVh_SbPQoJbGsH2C0B16OF3pemmUYxmKRr930O8PVh4OkzkXHWz_CjEZV5_Fe9B6jZ7vtnWX9HlViQo2qsC32fyAFJIRd0Cf5myZU9skXSYxtkGVgeVi0qTHSFiJs-dc9Z5AThsSVq5yczuOL7JHnxezV0lbDhPULyatJla7IBeZG9Aw308oX3">
 <div class="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
-<span class="px-2.5 py-1 rounded bg-black/70 backdrop-blur-md border border-cyber-emerald/40 text-cyber-emerald font-mono text-[10px] font-bold uppercase tracking-wider">
-                Featured Opus
-              </span>
+<span class="px-2.5 py-1 rounded bg-black/70 backdrop-blur-md border border-cyber-emerald/40 text-cyber-emerald font-mono text-[10px] font-bold uppercase tracking-wider">Featured Opus</span>
 </div>
 <div class="absolute inset-0 flex items-center justify-center">
-<button aria-label="Watch teaser: After The Rain" class="w-16 h-16 rounded-full bg-cyber-darkBg/80 border-2 border-cyber-emerald text-cyber-emerald flex items-center justify-center backdrop-blur-sm shadow-glow-emerald hover:scale-110 hover:bg-cyber-emerald hover:text-cyber-darkBg transition-all duration-300" type="button">
+<button aria-label="Play: After The Rain" class="w-16 h-16 rounded-full bg-cyber-darkBg/80 border-2 border-cyber-emerald text-cyber-emerald flex items-center justify-center backdrop-blur-sm shadow-glow-emerald hover:scale-110 hover:bg-cyber-emerald hover:text-cyber-darkBg transition-all duration-300" type="button">
 <svg class="w-6 h-6 fill-current ml-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
 </button>
 </div>
-<div class="absolute bottom-4 left-4 font-mono text-xs text-white/80 bg-black/60 px-2 py-1 rounded border border-white/10">
-              08:24
-            </div>
+<div class="absolute bottom-4 left-4 font-mono text-xs text-white/80 bg-black/60 px-2 py-1 rounded border border-white/10">08:24</div>
 </div>
-<!-- Right Metadata Pane -->
-<div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between bg-cyber-surface">
+<!-- Details pane -->
+<div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between">
 <div class="space-y-4">
 <div class="flex items-center justify-between font-mono text-xs text-cyber-emerald">
 <span data-i18n="creator.filmMeta" class="tracking-widest font-semibold uppercase">SHORT FILM • 2024 • 8 MIN</span>
 </div>
 <div>
-<h4 class="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-tight">
-                  After The Rain
-                </h4>
-<p data-i18n="creator.filmDirector" class="font-mono text-xs text-cyber-cyan mt-1">
-                  Directed &amp; Created by Raka Pratama
-                </p>
+<h4 class="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-tight">After The Rain</h4>
+<p data-i18n="creator.filmDirector" class="font-mono text-xs text-cyber-cyan mt-1">Directed &amp; Created by Raka Pratama</p>
 </div>
 <p data-i18n="creator.filmSynopsis" class="text-slate-300 text-sm leading-relaxed font-normal">
                 A poetic exploration of memory, the post-rain urban landscape, and human inner calm in an age of automation. Every visual sequence was synthesized using custom latent diffusion, with photorealistic anamorphic lighting curation.
               </p>
-<div class="bg-cyber-darkBg/70 p-3.5 rounded-xl border border-cyber-border space-y-2 font-mono text-xs">
-<div class="flex items-start gap-2">
-<span class="text-cyber-muted whitespace-nowrap">Pipeline:</span>
-<span class="text-slate-300">Runway Gen-3 Alpha • Midjourney v6 • DaVinci Resolve AI</span>
 </div>
-<div class="flex items-center gap-2">
-<span data-i18n="creator.curation" class="text-cyber-muted whitespace-nowrap">Curation:</span>
-<span class="text-cyber-emerald flex items-center gap-1">
-<svg class="w-3.5 h-3.5 text-cyber-emerald" fill="currentColor" viewBox="0 0 20 20"><path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path></svg>
-                    Official Selection IFAI 2025
-                  </span>
-</div>
-</div>
-</div>
-<!-- Call to Actions (visual only for now) -->
-<div class="pt-6 mt-4 border-t border-cyber-border flex flex-wrap sm:flex-nowrap gap-3">
-<button class="w-full sm:w-auto flex-1 px-5 py-3 bg-cyber-emerald hover:bg-emerald-400 text-cyber-darkBg font-mono font-bold text-xs uppercase tracking-wider rounded-lg shadow-glow-emerald transition-all duration-200 flex items-center justify-center gap-2" type="button">
+<div class="pt-6 mt-4 border-t border-cyber-border">
+<button class="w-full px-5 py-3 bg-cyber-emerald hover:bg-emerald-400 text-cyber-darkBg font-mono font-bold text-xs uppercase tracking-wider rounded-lg shadow-glow-emerald transition-all duration-200 flex items-center justify-center gap-2" type="button">
 <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
-<span data-i18n="creator.watchFilm">Watch Film</span>
-</button>
-<button class="w-full sm:w-auto px-5 py-3 rounded-lg border border-cyber-cyan/50 text-cyber-cyan hover:bg-cyber-cyan/10 font-mono text-xs uppercase tracking-wider transition-all duration-200 flex items-center justify-center gap-1.5 group" type="button">
-<span data-i18n="creator.workDetail">Work Details</span>
-<span class="transform group-hover:translate-x-0.5 transition-transform">→</span>
+<span data-i18n="creator.watchNow">Watch Now</span>
 </button>
 </div>
 </div>
 </div>
-</article>
+</div>
 </div>
 </div>
 </section>
@@ -842,15 +802,12 @@ setTimeout(function () { var el = document.getElementById('creator-hub-body'); i
       "creator.moreAbout": "More About Raka",
       "creator.fieldsTitle": "Creative Fields",
       "creator.toolsTitle": "Tools Used",
-      "creator.featuredTitle": "Featured Works",
+      "creator.featuredTitle": "Featured Work",
       "creator.featuredBadge": "MAIN SHOWCASE",
-      "creator.viewAllWorks": "View All Works",
       "creator.filmMeta": "SHORT FILM • 2024 • 8 MIN",
       "creator.filmDirector": "Directed & Created by Raka Pratama",
       "creator.filmSynopsis": "A poetic exploration of memory, the post-rain urban landscape, and human inner calm in an age of automation. Every visual sequence was synthesized using custom latent diffusion, with photorealistic anamorphic lighting curation.",
-      "creator.curation": "Curation:",
-      "creator.watchFilm": "Watch Film",
-      "creator.workDetail": "Work Details", 'nav.about': 'About',
+      "creator.watchNow": "Watch Now",'nav.about': 'About',
       'nav.login': 'Log In', 'nav.join': 'Join Community',
       'auth.title': 'Join IFAI Community', 'auth.subtitle': 'Sign in to submit your work and join the community.', 'auth.google': 'Continue with Google', 'auth.or': 'or', 'auth.emailPlaceholder': 'you@email.com', 'auth.sendLink': 'Send Magic Link', 'auth.linkSent': 'Check your email for the login link.', 'auth.logout': 'Log Out',
       'hero.title': 'Indonesia Future Arts & Intelligence',
@@ -893,13 +850,10 @@ setTimeout(function () { var el = document.getElementById('creator-hub-body'); i
       "creator.toolsTitle": "Tools Yang Digunakan",
       "creator.featuredTitle": "Karya Pilihan",
       "creator.featuredBadge": "SHOWCASE UTAMA",
-      "creator.viewAllWorks": "Lihat Semua Karya",
       "creator.filmMeta": "FILM PENDEK • 2024 • 8 MENIT",
       "creator.filmDirector": "Disutradarai & Direka oleh Raka Pratama",
       "creator.filmSynopsis": "Eksplorasi puitis tentang memori, lanskap perkotaan pasca-hujan, dan ketenangan batin manusia di tengah era otomatisasi. Seluruh sekuens visual disintesis menggunakan custom latent diffusion dengan kurasi pencahayaan anamorfik fotorealistis.",
-      "creator.curation": "Kurasi:",
-      "creator.watchFilm": "Tonton Film",
-      "creator.workDetail": "Detail Karya", 'nav.about': 'Tentang',
+      "creator.watchNow": "Tonton Sekarang",'nav.about': 'Tentang',
       'nav.login': 'Masuk', 'nav.join': 'Gabung Komunitas',
       'auth.title': 'Gabung Komunitas IFAI', 'auth.subtitle': 'Masuk untuk mengirim karyamu dan bergabung dengan komunitas.', 'auth.google': 'Lanjutkan dengan Google', 'auth.or': 'atau', 'auth.emailPlaceholder': 'kamu@email.com', 'auth.sendLink': 'Kirim Link Masuk', 'auth.linkSent': 'Cek email kamu untuk link masuk.', 'auth.logout': 'Keluar',
       'hero.title': 'Indonesia Future Arts & Intelligence',
@@ -1337,7 +1291,7 @@ ${chEsc(c.location)}
     const fieldsBlock = fields.length ? `
 <div>
 <div class="flex items-center justify-between mb-3">
-<h3 class="font-mono text-xs uppercase tracking-widest text-slate-300 font-bold flex items-center gap-2">
+<h3 class="font-mono text-xs uppercase tracking-widest text-white font-bold flex items-center gap-2">
 <span class="w-1 h-3 bg-cyber-cyan inline-block"></span>
 <span data-i18n="creator.fieldsTitle">Creative Fields</span>
 </h3>
@@ -1350,8 +1304,8 @@ ${fields.map((f) => `<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim bor
     const toolsBlock = tools.length ? `
 <div class="${fields.length ? 'border-t border-cyber-border pt-5' : ''}">
 <div class="flex items-center justify-between mb-3">
-<h3 class="font-mono text-xs uppercase tracking-widest text-slate-300 font-bold flex items-center gap-2">
-<span class="w-1 h-3 bg-cyber-emerald inline-block"></span>
+<h3 class="font-mono text-xs uppercase tracking-widest text-white font-bold flex items-center gap-2">
+<span class="w-1 h-3 bg-cyber-cyan inline-block"></span>
 <span data-i18n="creator.toolsTitle">Tools Used</span>
 </h3>
 <span class="font-mono text-[10px] text-slate-500">NEURAL STACK</span>
@@ -1362,39 +1316,39 @@ ${fields.map((f) => `<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim bor
     // Featured work (hidden entirely when it has no title)
     let workBlock = '';
     if (c.work_title) {
-      const workImg = safeUrl(c.work_image_url);
       const watchUrl = safeUrl(c.work_watch_url);
-      const detailUrl = safeUrl(c.work_detail_url);
-      const worksUrl = safeUrl(c.works_url);
+      const ytId = extractYouTubeId(watchUrl);
+      // No uploaded image? Fall back to the YouTube thumbnail.
+      const workImg = safeUrl(c.work_image_url) || (ytId ? `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg` : '');
       const meta = pickCreatorField(c, 'work_meta', lang);
       const synopsis = pickCreatorField(c, 'work_synopsis', lang);
+      const playLabel = chEsc('Play: ' + c.work_title);
+      const playCls = 'w-16 h-16 rounded-full bg-cyber-darkBg/80 border-2 border-cyber-emerald text-cyber-emerald flex items-center justify-center backdrop-blur-sm shadow-glow-emerald hover:scale-110 hover:bg-cyber-emerald hover:text-cyber-darkBg transition-all duration-300';
+      const playIcon = '<svg class="w-6 h-6 fill-current ml-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>';
+      const watchCls = 'w-full px-5 py-3 bg-cyber-emerald hover:bg-emerald-400 text-cyber-darkBg font-mono font-bold text-xs uppercase tracking-wider rounded-lg shadow-glow-emerald transition-all duration-200 flex items-center justify-center gap-2';
+      const watchInner = '<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg><span data-i18n="creator.watchNow">Watch Now</span>';
+      // YouTube links play in place; any other link opens in a new tab.
+      const playBtn = ytId
+        ? `<button type="button" data-play-video="${ytId}" aria-label="${playLabel}" class="${playCls}">${playIcon}</button>`
+        : (watchUrl ? `<a href="${chEsc(watchUrl)}" target="_blank" rel="noopener" aria-label="${playLabel}" class="${playCls}">${playIcon}</a>` : '');
+      const watchBtn = ytId
+        ? `<button type="button" data-play-video="${ytId}" class="${watchCls}">${watchInner}</button>`
+        : (watchUrl ? `<a href="${chEsc(watchUrl)}" target="_blank" rel="noopener" class="${watchCls}">${watchInner}</a>` : '');
       workBlock = `
-<div class="space-y-4 pt-2">
-<div class="flex items-center justify-between border-b border-cyber-border pb-3">
-<div class="flex items-center gap-3">
-<h3 data-i18n="creator.featuredTitle" class="text-xl font-bold tracking-tight text-white uppercase">Featured Works</h3>
+<div class="flex items-center gap-3 px-6 sm:px-8 py-5 border-b border-cyber-border">
+<h3 data-i18n="creator.featuredTitle" class="text-xl font-bold tracking-tight text-white uppercase">Featured Work</h3>
 <span data-i18n="creator.featuredBadge" class="px-2 py-0.5 rounded text-[10px] font-mono bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/30">MAIN SHOWCASE</span>
 </div>
-${worksUrl ? `<a href="${chEsc(worksUrl)}" target="_blank" rel="noopener" class="group flex items-center gap-1.5 text-xs font-mono text-cyber-muted hover:text-cyber-emerald transition-colors">
-<span data-i18n="creator.viewAllWorks">View All Works</span>
-<span class="transform group-hover:translate-x-1 transition-transform">→</span>
-</a>` : ''}
-</div>
-<article class="rounded-2xl bg-cyber-surface border border-cyber-border overflow-hidden hover:border-cyber-borderHover transition-all duration-300 shadow-xl">
 <div class="grid grid-cols-1 lg:grid-cols-12">
-<div class="lg:col-span-7 relative group bg-black overflow-hidden aspect-video lg:aspect-auto">
-${workImg ? `<img alt="${chEsc(c.work_title)}" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" src="${chEsc(workImg)}">` : ''}
+<div data-work-media data-title="${chEsc(c.work_title)}" class="lg:col-span-7 relative group bg-black overflow-hidden aspect-video lg:aspect-auto lg:min-h-[360px]">
+${workImg ? `<img alt="${chEsc(c.work_title)}" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" src="${chEsc(workImg)}"${ytId ? ` onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${ytId}/hqdefault.jpg'"` : ''}>` : ''}
 <div class="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
 <span class="px-2.5 py-1 rounded bg-black/70 backdrop-blur-md border border-cyber-emerald/40 text-cyber-emerald font-mono text-[10px] font-bold uppercase tracking-wider">Featured Opus</span>
 </div>
-${watchUrl ? `<div class="absolute inset-0 flex items-center justify-center">
-<a href="${chEsc(watchUrl)}" target="_blank" rel="noopener" aria-label="Watch: ${chEsc(c.work_title)}" class="w-16 h-16 rounded-full bg-cyber-darkBg/80 border-2 border-cyber-emerald text-cyber-emerald flex items-center justify-center backdrop-blur-sm shadow-glow-emerald hover:scale-110 hover:bg-cyber-emerald hover:text-cyber-darkBg transition-all duration-300">
-<svg class="w-6 h-6 fill-current ml-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
-</a>
-</div>` : ''}
+${playBtn ? `<div class="absolute inset-0 flex items-center justify-center">${playBtn}</div>` : ''}
 ${c.work_duration ? `<div class="absolute bottom-4 left-4 font-mono text-xs text-white/80 bg-black/60 px-2 py-1 rounded border border-white/10">${chEsc(c.work_duration)}</div>` : ''}
 </div>
-<div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between bg-cyber-surface">
+<div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between">
 <div class="space-y-4">
 ${meta ? `<div class="flex items-center justify-between font-mono text-xs text-cyber-emerald"><span class="tracking-widest font-semibold uppercase">${chEsc(meta)}</span></div>` : ''}
 <div>
@@ -1402,30 +1356,39 @@ ${meta ? `<div class="flex items-center justify-between font-mono text-xs text-c
 <p class="font-mono text-xs text-cyber-cyan mt-1">${isId ? 'Oleh' : 'By'} ${chEsc(name)}</p>
 </div>
 ${synopsis ? `<p class="text-slate-300 text-sm leading-relaxed font-normal">${chEsc(synopsis)}</p>` : ''}
-${(c.work_pipeline || c.work_curation) ? `<div class="bg-cyber-darkBg/70 p-3.5 rounded-xl border border-cyber-border space-y-2 font-mono text-xs">
-${c.work_pipeline ? `<div class="flex items-start gap-2"><span class="text-cyber-muted whitespace-nowrap">Pipeline:</span><span class="text-slate-300">${chEsc(c.work_pipeline)}</span></div>` : ''}
-${c.work_curation ? `<div class="flex items-center gap-2"><span data-i18n="creator.curation" class="text-cyber-muted whitespace-nowrap">Curation:</span>
-<span class="text-cyber-emerald flex items-center gap-1">
-<svg class="w-3.5 h-3.5 text-cyber-emerald" fill="currentColor" viewBox="0 0 20 20"><path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path></svg>
-${chEsc(c.work_curation)}
-</span></div>` : ''}
-</div>` : ''}
 </div>
-${(watchUrl || detailUrl) ? `<div class="pt-6 mt-4 border-t border-cyber-border flex flex-wrap sm:flex-nowrap gap-3">
-${watchUrl ? `<a href="${chEsc(watchUrl)}" target="_blank" rel="noopener" class="w-full sm:w-auto flex-1 px-5 py-3 bg-cyber-emerald hover:bg-emerald-400 text-cyber-darkBg font-mono font-bold text-xs uppercase tracking-wider rounded-lg shadow-glow-emerald transition-all duration-200 flex items-center justify-center gap-2">
-<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
-<span data-i18n="creator.watchFilm">Watch Film</span>
-</a>` : ''}
-${detailUrl ? `<a href="${chEsc(detailUrl)}" class="w-full sm:w-auto px-5 py-3 rounded-lg border border-cyber-cyan/50 text-cyber-cyan hover:bg-cyber-cyan/10 font-mono text-xs uppercase tracking-wider transition-all duration-200 flex items-center justify-center gap-1.5 group">
-<span data-i18n="creator.workDetail">Work Details</span>
-<span class="transform group-hover:translate-x-0.5 transition-transform">→</span>
-</a>` : ''}
-</div>` : ''}
+${watchBtn ? `<div class="pt-6 mt-4 border-t border-cyber-border">${watchBtn}</div>` : ''}
 </div>
-</div>
-</article>
 </div>`;
     }
+
+    // About + fields/tools + featured work share one box.
+    const hasAbout = !!(bio || profileUrl);
+    const hasRight = !!(fieldsBlock || toolsBlock);
+    const topGrid = (hasAbout || hasRight) ? `<div class="grid grid-cols-1 lg:grid-cols-12">
+${hasAbout ? `<div class="${hasRight ? 'lg:col-span-5 lg:border-r' : 'lg:col-span-12'} p-6 sm:p-8 flex flex-col justify-between border-cyber-border">
+<div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-mono text-xs uppercase tracking-widest text-white font-bold flex items-center gap-2">
+<span class="w-1 h-3 bg-cyber-cyan inline-block"></span>
+<span data-i18n="creator.aboutTitle">About the Creator</span>
+</h3>
+<span class="font-mono text-[10px] text-slate-500">BIO // ARCHIVE</span>
+</div>
+${bio ? `<p class="text-slate-300 text-sm sm:text-base leading-relaxed font-normal mb-6">${chEsc(bio)}</p>` : ''}
+</div>
+${profileUrl ? `<div>
+<a href="${chEsc(profileUrl)}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-cyber-borderHover bg-cyber-surfaceDim hover:border-cyber-emerald text-slate-200 hover:text-cyber-emerald text-xs font-mono tracking-wider transition-all duration-300 group">
+<span>${isId ? 'Lebih Banyak Tentang' : 'More About'} ${chEsc(firstName)}</span>
+<span class="transform group-hover:translate-x-1 transition-transform">→</span>
+</a>
+</div>` : ''}
+</div>` : ''}
+${hasRight ? `<div class="${hasAbout ? 'lg:col-span-7 border-t lg:border-t-0' : 'lg:col-span-12'} p-6 sm:p-8 flex flex-col justify-between gap-6 border-cyber-border">${fieldsBlock}${toolsBlock}</div>` : ''}
+</div>` : '';
+    const detailsBox = (topGrid || workBlock)
+      ? `<div class="rounded-2xl bg-cyber-surface border border-cyber-border overflow-hidden">${topGrid}${workBlock ? (topGrid ? `<div class="border-t border-cyber-border">${workBlock}</div>` : workBlock) : ''}</div>`
+      : '';
 
     return `
 <header class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-cyber-border pb-5">
@@ -1470,28 +1433,7 @@ ${['whatsapp:fa-brands fa-whatsapp:WhatsApp', 'facebook:fa-brands fa-facebook-f:
 </div>
 </article>
 
-${(bio || profileUrl || fieldsBlock || toolsBlock) ? `<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-${(bio || profileUrl) ? `<article class="${(fieldsBlock || toolsBlock) ? 'lg:col-span-5' : 'lg:col-span-12'} rounded-2xl bg-cyber-surface border border-cyber-border p-6 sm:p-8 flex flex-col justify-between">
-<div>
-<div class="flex items-center justify-between mb-4">
-<h3 class="font-mono text-xs uppercase tracking-widest text-cyber-emerald font-bold flex items-center gap-2">
-<span class="w-1 h-3 bg-cyber-emerald inline-block"></span>
-<span data-i18n="creator.aboutTitle">About the Creator</span>
-</h3>
-<span class="font-mono text-[10px] text-slate-500">BIO // ARCHIVE</span>
-</div>
-${bio ? `<p class="text-slate-300 text-sm sm:text-base leading-relaxed font-normal mb-6">${chEsc(bio)}</p>` : ''}
-</div>
-${profileUrl ? `<div>
-<a href="${chEsc(profileUrl)}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-cyber-borderHover bg-cyber-surfaceDim hover:border-cyber-emerald text-slate-200 hover:text-cyber-emerald text-xs font-mono tracking-wider transition-all duration-300 group">
-<span>${isId ? 'Lebih Banyak Tentang' : 'More About'} ${chEsc(firstName)}</span>
-<span class="transform group-hover:translate-x-1 transition-transform">→</span>
-</a>
-</div>` : ''}
-</article>` : ''}
-${(fieldsBlock || toolsBlock) ? `<div class="${(bio || profileUrl) ? 'lg:col-span-7' : 'lg:col-span-12'} rounded-2xl bg-cyber-surface border border-cyber-border p-6 sm:p-8 flex flex-col justify-between gap-6">${fieldsBlock}${toolsBlock}</div>` : ''}
-</div>` : ''}
-${workBlock}`;
+${detailsBox}`;
   }
 
   function wireCreatorShare(title) {
@@ -1549,6 +1491,19 @@ ${workBlock}`;
       // Body starts hidden so the placeholder never flashes before real content swaps in.
       creatorBody.classList.remove('invisible');
     }
+  }
+
+  // Watch Now / big play button: swap the artwork for the YouTube player.
+  if (creatorBody) {
+    creatorBody.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-play-video]');
+      if (!btn) return;
+      const pane = creatorBody.querySelector('[data-work-media]');
+      if (!pane) return;
+      const id = btn.getAttribute('data-play-video');
+      pane.innerHTML = `<iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0" title="${chEsc(pane.getAttribute('data-title') || 'Video')}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+      pane.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
   }
 
   wireCreatorHub();
