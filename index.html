@@ -410,7 +410,7 @@
 <!-- BEGIN: CreatorHubSection -->
 <!-- PLACEHOLDER CONTENT: everything inside this section is hardcoded sample data (Raka Pratama / After The Rain) so the layout can be reviewed first. Once the admin "Creator Hub" tab is ready it gets replaced by admin-managed data, and this hardcoded copy is deleted. -->
 <section class="scroll-mt-28 py-24 bg-cosmic-950 border-t border-b border-zinc-800" id="creator-hub">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+<div id="creator-hub-body" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 invisible">
 <!-- Section Header -->
 <header class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-cyber-border pb-5">
 <div class="space-y-1.5">
@@ -666,6 +666,10 @@
 </div>
 </section>
 <!-- END: CreatorHubSection -->
+<script>
+// Failsafe: reveal the Creator Hub even if the data loader below never runs.
+setTimeout(function () { var el = document.getElementById('creator-hub-body'); if (el) el.classList.remove('invisible'); }, 6000);
+</script>
 <!-- BEGIN: ProgramsAndEventsSection -->
 <section class="py-24 border-b border-zinc-800 bg-cosmic-950" id="journal">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1261,6 +1265,293 @@
   }
 
   wireSignals();
+
+  // ---------- CREATOR HUB (admin-managed spotlight) ----------
+  // Renders the single featured row of "creator_spotlights". Until one exists
+  // (or if the fetch fails) the hardcoded placeholder already in the HTML stays.
+  const creatorBody = document.getElementById('creator-hub-body');
+  let cachedCreator = null;
+
+  function chEsc(str) {
+    return String(str ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  function safeUrl(u) { return /^https?:\/\//i.test(u || '') ? u : ''; }
+
+  function pickCreatorField(row, field, lang) {
+    return (lang === 'id' ? row[field + '_id'] : row[field + '_en']) || row[field + '_en'] || row[field + '_id'] || '';
+  }
+
+  // Tools the design has dedicated icons for; anything else gets an initials tile.
+  const CREATOR_TOOL_TILES = {
+    midjourney: { hover: 'hover:border-cyber-cyan', box: 'text-cyber-cyan', icon: '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>' },
+    runway: { hover: 'hover:border-cyber-emerald', box: 'text-cyber-emerald font-bold text-sm', icon: 'R:' },
+    comfyui: { hover: 'hover:border-cyber-cyan', box: 'text-cyber-cyan', icon: '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>' },
+    davinci: { hover: 'hover:border-cyber-emerald', box: 'text-amber-400', icon: '<div class="w-3.5 h-3.5 rounded-full border-2 border-dashed border-amber-400"></div>', center: true },
+    suno: { hover: 'hover:border-cyber-cyan', box: 'text-cyber-cyan', icon: '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"></path></svg>' },
+    photoshop: { hover: 'hover:border-blue-400', boxBg: 'bg-[#001e36]', box: 'text-[#31a8ff] font-bold font-mono text-xs', icon: 'Ps', center: true }
+  };
+
+  function creatorToolTileHtml(name) {
+    const key = name.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const hit = Object.keys(CREATOR_TOOL_TILES).find((k) => key.includes(k));
+    const letters = name.replace(/[^A-Za-z0-9]/g, '').slice(0, 2);
+    const t = hit ? CREATOR_TOOL_TILES[hit]
+      : { hover: 'hover:border-cyber-cyan', box: 'text-cyber-cyan font-bold font-mono text-xs', icon: chEsc(letters.charAt(0).toUpperCase() + letters.slice(1).toLowerCase()) };
+    return `
+<div class="flex flex-col items-center justify-center p-3 rounded-xl bg-cyber-surfaceDim border border-cyber-border ${t.hover} transition-all group">
+<div class="w-8 h-8 rounded-lg ${t.boxBg || 'bg-black/40'} flex items-center justify-center mb-1.5 ${t.box} group-hover:scale-110 transition-transform">${t.icon}</div>
+<span class="font-mono text-[11px] text-slate-300 group-hover:text-white${t.center ? ' text-center leading-tight' : ''}">${chEsc(name)}</span>
+</div>`;
+  }
+
+  function creatorHubHtml(c, lang) {
+    const isId = lang === 'id';
+    const name = c.name || '';
+    const nameParts = name.trim().split(/\s+/);
+    const nameHtml = nameParts.length > 1
+      ? `${chEsc(nameParts[0])}<br><span class="text-slate-100">${chEsc(nameParts.slice(1).join(' '))}</span>`
+      : chEsc(name);
+
+    const roleParts = (c.role || '').split('/').map((x) => x.trim()).filter(Boolean);
+    const roleHtml = roleParts.length
+      ? `<span class="text-cyber-cyan tracking-wider font-semibold uppercase">${chEsc(roleParts[0])}</span>`
+        + (roleParts.length > 1 ? `<span>/</span><span class="text-slate-300 uppercase">${chEsc(roleParts.slice(1).join(' / '))}</span>` : '')
+      : '';
+    const locationHtml = c.location
+      ? `${roleParts.length ? '<span class="hidden sm:inline text-cyber-border">•</span>' : ''}
+<span class="flex items-center gap-1 text-slate-400">
+<svg class="w-3.5 h-3.5 text-cyber-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+${chEsc(c.location)}
+</span>`
+      : '';
+
+    const quote = pickCreatorField(c, 'quote', lang);
+    const bio = pickCreatorField(c, 'bio', lang);
+    const photo = safeUrl(c.photo_url);
+    const profileUrl = safeUrl(c.profile_url);
+    const firstName = nameParts[0] || name;
+
+    const fields = (c.fields || []).filter(Boolean);
+    const tools = (c.tools || []).filter(Boolean);
+    const fieldsBlock = fields.length ? `
+<div>
+<div class="flex items-center justify-between mb-3">
+<h3 class="font-mono text-xs uppercase tracking-widest text-slate-300 font-bold flex items-center gap-2">
+<span class="w-1 h-3 bg-cyber-cyan inline-block"></span>
+<span data-i18n="creator.fieldsTitle">Creative Fields</span>
+</h3>
+<span class="font-mono text-[10px] text-slate-500">EXPERTISE DOMAINS</span>
+</div>
+<div class="flex flex-wrap gap-2 pt-1">
+${fields.map((f) => `<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim border border-cyber-border text-xs font-medium text-slate-200 hover:border-cyber-emerald transition-colors">${chEsc(f)}</span>`).join('')}
+</div>
+</div>` : '';
+    const toolsBlock = tools.length ? `
+<div class="${fields.length ? 'border-t border-cyber-border pt-5' : ''}">
+<div class="flex items-center justify-between mb-3">
+<h3 class="font-mono text-xs uppercase tracking-widest text-slate-300 font-bold flex items-center gap-2">
+<span class="w-1 h-3 bg-cyber-emerald inline-block"></span>
+<span data-i18n="creator.toolsTitle">Tools Used</span>
+</h3>
+<span class="font-mono text-[10px] text-slate-500">NEURAL STACK</span>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5 pt-1">${tools.map(creatorToolTileHtml).join('')}</div>
+</div>` : '';
+
+    // Featured work (hidden entirely when it has no title)
+    let workBlock = '';
+    if (c.work_title) {
+      const workImg = safeUrl(c.work_image_url);
+      const watchUrl = safeUrl(c.work_watch_url);
+      const detailUrl = safeUrl(c.work_detail_url);
+      const worksUrl = safeUrl(c.works_url);
+      const meta = pickCreatorField(c, 'work_meta', lang);
+      const synopsis = pickCreatorField(c, 'work_synopsis', lang);
+      workBlock = `
+<div class="space-y-4 pt-2">
+<div class="flex items-center justify-between border-b border-cyber-border pb-3">
+<div class="flex items-center gap-3">
+<h3 data-i18n="creator.featuredTitle" class="text-xl font-bold tracking-tight text-white uppercase">Featured Works</h3>
+<span data-i18n="creator.featuredBadge" class="px-2 py-0.5 rounded text-[10px] font-mono bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/30">MAIN SHOWCASE</span>
+</div>
+${worksUrl ? `<a href="${chEsc(worksUrl)}" target="_blank" rel="noopener" class="group flex items-center gap-1.5 text-xs font-mono text-cyber-muted hover:text-cyber-emerald transition-colors">
+<span data-i18n="creator.viewAllWorks">View All Works</span>
+<span class="transform group-hover:translate-x-1 transition-transform">→</span>
+</a>` : ''}
+</div>
+<article class="rounded-2xl bg-cyber-surface border border-cyber-border overflow-hidden hover:border-cyber-borderHover transition-all duration-300 shadow-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12">
+<div class="lg:col-span-7 relative group bg-black overflow-hidden aspect-video lg:aspect-auto">
+${workImg ? `<img alt="${chEsc(c.work_title)}" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" src="${chEsc(workImg)}">` : ''}
+<div class="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
+<span class="px-2.5 py-1 rounded bg-black/70 backdrop-blur-md border border-cyber-emerald/40 text-cyber-emerald font-mono text-[10px] font-bold uppercase tracking-wider">Featured Opus</span>
+</div>
+${watchUrl ? `<div class="absolute inset-0 flex items-center justify-center">
+<a href="${chEsc(watchUrl)}" target="_blank" rel="noopener" aria-label="Watch: ${chEsc(c.work_title)}" class="w-16 h-16 rounded-full bg-cyber-darkBg/80 border-2 border-cyber-emerald text-cyber-emerald flex items-center justify-center backdrop-blur-sm shadow-glow-emerald hover:scale-110 hover:bg-cyber-emerald hover:text-cyber-darkBg transition-all duration-300">
+<svg class="w-6 h-6 fill-current ml-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+</a>
+</div>` : ''}
+${c.work_duration ? `<div class="absolute bottom-4 left-4 font-mono text-xs text-white/80 bg-black/60 px-2 py-1 rounded border border-white/10">${chEsc(c.work_duration)}</div>` : ''}
+</div>
+<div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between bg-cyber-surface">
+<div class="space-y-4">
+${meta ? `<div class="flex items-center justify-between font-mono text-xs text-cyber-emerald"><span class="tracking-widest font-semibold uppercase">${chEsc(meta)}</span></div>` : ''}
+<div>
+<h4 class="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-tight">${chEsc(c.work_title)}</h4>
+<p class="font-mono text-xs text-cyber-cyan mt-1">${isId ? 'Oleh' : 'By'} ${chEsc(name)}</p>
+</div>
+${synopsis ? `<p class="text-slate-300 text-sm leading-relaxed font-normal">${chEsc(synopsis)}</p>` : ''}
+${(c.work_pipeline || c.work_curation) ? `<div class="bg-cyber-darkBg/70 p-3.5 rounded-xl border border-cyber-border space-y-2 font-mono text-xs">
+${c.work_pipeline ? `<div class="flex items-start gap-2"><span class="text-cyber-muted whitespace-nowrap">Pipeline:</span><span class="text-slate-300">${chEsc(c.work_pipeline)}</span></div>` : ''}
+${c.work_curation ? `<div class="flex items-center gap-2"><span data-i18n="creator.curation" class="text-cyber-muted whitespace-nowrap">Curation:</span>
+<span class="text-cyber-emerald flex items-center gap-1">
+<svg class="w-3.5 h-3.5 text-cyber-emerald" fill="currentColor" viewBox="0 0 20 20"><path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path></svg>
+${chEsc(c.work_curation)}
+</span></div>` : ''}
+</div>` : ''}
+</div>
+${(watchUrl || detailUrl) ? `<div class="pt-6 mt-4 border-t border-cyber-border flex flex-wrap sm:flex-nowrap gap-3">
+${watchUrl ? `<a href="${chEsc(watchUrl)}" target="_blank" rel="noopener" class="w-full sm:w-auto flex-1 px-5 py-3 bg-cyber-emerald hover:bg-emerald-400 text-cyber-darkBg font-mono font-bold text-xs uppercase tracking-wider rounded-lg shadow-glow-emerald transition-all duration-200 flex items-center justify-center gap-2">
+<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+<span data-i18n="creator.watchFilm">Watch Film</span>
+</a>` : ''}
+${detailUrl ? `<a href="${chEsc(detailUrl)}" class="w-full sm:w-auto px-5 py-3 rounded-lg border border-cyber-cyan/50 text-cyber-cyan hover:bg-cyber-cyan/10 font-mono text-xs uppercase tracking-wider transition-all duration-200 flex items-center justify-center gap-1.5 group">
+<span data-i18n="creator.workDetail">Work Details</span>
+<span class="transform group-hover:translate-x-0.5 transition-transform">→</span>
+</a>` : ''}
+</div>` : ''}
+</div>
+</div>
+</article>
+</div>`;
+    }
+
+    return `
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-cyber-border pb-5">
+<div class="space-y-1.5">
+<div class="font-mono text-xs text-white tracking-wider uppercase"><span>Featured Creator // Spotlight</span></div>
+<h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">CREATOR HUB</h2>
+</div>
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyber-surface border border-cyber-border text-xs font-mono text-slate-300">
+<svg class="w-4 h-4 text-cyber-cyan" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M23 12l-2.44-2.79.34-3.69-3.61-.82-1.89-3.2L12 2.96 8.6 1.5 6.71 4.69 3.1 5.5l.34 3.7L1 12l2.44 2.79-.34 3.7 3.61.82L8.6 22.5l3.4-1.47 3.4 1.46 1.89-3.19 3.61-.82-.34-3.69L23 12zm-12.91 4.72l-3.8-3.81 1.48-1.48 2.32 2.33 5.85-5.87 1.48 1.48-7.33 7.35z"></path></svg>
+<span data-i18n="creator.status">VERIFIED IFAI FELLOW</span>
+</div>
+</header>
+
+<article class="relative rounded-2xl bg-cyber-surface border border-cyber-border overflow-hidden shadow-2xl">
+<div class="absolute -right-20 -top-20 w-96 h-96 bg-cyber-emerald/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute left-1/4 -bottom-20 w-80 h-80 bg-cyber-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 min-h-[500px]">
+<div class="lg:col-span-6 relative group overflow-hidden bg-black flex items-end min-h-[380px] lg:min-h-full">
+${photo ? `<img alt="${chEsc(name)}" class="absolute inset-0 w-full h-full object-cover object-center filter grayscale contrast-110 group-hover:scale-105 transition-transform duration-700 ease-out opacity-85" src="${chEsc(photo)}">` : ''}
+<div class="absolute inset-0 bg-gradient-to-t from-cyber-surface via-cyber-darkBg/50 to-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-cyber-surface/90 hidden lg:block"></div>
+</div>
+<div class="lg:col-span-6 p-6 sm:p-10 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-cyber-border relative z-10">
+<div>
+<div class="flex items-center justify-between gap-4 mb-6">
+<span data-i18n="creator.profileBadge" class="text-[11px] font-mono px-2 py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30">CREATOR PROFILE</span>
+</div>
+<div class="space-y-2 mb-8">
+<h3 class="text-4xl sm:text-5xl font-bold uppercase tracking-tight text-white leading-none">${nameHtml}</h3>
+<div class="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs sm:text-sm text-cyber-muted pt-2">${roleHtml}${locationHtml}</div>
+</div>
+${quote ? `<blockquote class="p-5 rounded-xl bg-cyber-darkBg/60 text-slate-300 text-sm sm:text-base leading-relaxed italic mb-8"><span class="text-cyber-cyan text-xl not-italic">“</span>${chEsc(quote)}<span class="text-cyber-cyan text-xl not-italic">”</span></blockquote>` : ''}
+</div>
+<div class="pt-4 flex items-center justify-end gap-3" id="creator-share-row">
+${['whatsapp:fa-brands fa-whatsapp:WhatsApp', 'facebook:fa-brands fa-facebook-f:Facebook', 'threads:fa-brands fa-threads:Threads', 'linkedin:fa-brands fa-linkedin-in:LinkedIn'].map((s) => {
+  const [key, icon, label] = s.split(':');
+  return `<a data-share="${key}" target="_blank" rel="noopener" title="${label}" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="${icon}"></i></a>`;
+}).join('\n')}
+<button type="button" data-share-copy title="Copy link" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-solid fa-link"></i></button>
+</div>
+</div>
+</div>
+</article>
+
+${(bio || profileUrl || fieldsBlock || toolsBlock) ? `<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+${(bio || profileUrl) ? `<article class="${(fieldsBlock || toolsBlock) ? 'lg:col-span-5' : 'lg:col-span-12'} rounded-2xl bg-cyber-surface border border-cyber-border p-6 sm:p-8 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-mono text-xs uppercase tracking-widest text-cyber-emerald font-bold flex items-center gap-2">
+<span class="w-1 h-3 bg-cyber-emerald inline-block"></span>
+<span data-i18n="creator.aboutTitle">About the Creator</span>
+</h3>
+<span class="font-mono text-[10px] text-slate-500">BIO // ARCHIVE</span>
+</div>
+${bio ? `<p class="text-slate-300 text-sm sm:text-base leading-relaxed font-normal mb-6">${chEsc(bio)}</p>` : ''}
+</div>
+${profileUrl ? `<div>
+<a href="${chEsc(profileUrl)}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-cyber-borderHover bg-cyber-surfaceDim hover:border-cyber-emerald text-slate-200 hover:text-cyber-emerald text-xs font-mono tracking-wider transition-all duration-300 group">
+<span>${isId ? 'Lebih Banyak Tentang' : 'More About'} ${chEsc(firstName)}</span>
+<span class="transform group-hover:translate-x-1 transition-transform">→</span>
+</a>
+</div>` : ''}
+</article>` : ''}
+${(fieldsBlock || toolsBlock) ? `<div class="${(bio || profileUrl) ? 'lg:col-span-7' : 'lg:col-span-12'} rounded-2xl bg-cyber-surface border border-cyber-border p-6 sm:p-8 flex flex-col justify-between gap-6">${fieldsBlock}${toolsBlock}</div>` : ''}
+</div>` : ''}
+${workBlock}`;
+  }
+
+  function wireCreatorShare(title) {
+    const row = document.getElementById('creator-share-row');
+    if (!row) return;
+    const url = window.location.origin + '/#creator-hub';
+    const shareUrls = {
+      whatsapp: 'https://api.whatsapp.com/send?text=' + encodeURIComponent(title + ' | IFAI - ' + url),
+      facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url),
+      threads: 'https://www.threads.net/intent/post?text=' + encodeURIComponent(title + ' | IFAI - ' + url),
+      linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url)
+    };
+    row.querySelectorAll('[data-share]').forEach((el) => { el.href = shareUrls[el.getAttribute('data-share')]; });
+    const copyBtn = row.querySelector('[data-share-copy]');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(url);
+          const icon = copyBtn.querySelector('i');
+          icon.className = 'fa-solid fa-check';
+          setTimeout(() => { icon.className = 'fa-solid fa-link'; }, 1500);
+        } catch (e) {
+          // clipboard API unavailable — nothing else to fall back to here
+        }
+      });
+    }
+  }
+
+  function renderCreatorHub(lang) {
+    if (!creatorBody || !cachedCreator) return;
+    creatorBody.innerHTML = creatorHubHtml(cachedCreator, lang);
+    if (window.IFAI_I18N) window.IFAI_I18N.applyLanguage(lang, { silent: true });
+    wireCreatorShare((cachedCreator.name || '') + ' — IFAI Creator Hub');
+  }
+
+  async function wireCreatorHub() {
+    if (!creatorBody) return;
+    // Placeholder share row (until a real creator replaces it)
+    wireCreatorShare('Raka Pratama — IFAI Creator Hub');
+    try {
+      const { data, error } = await sb
+        .from('creator_spotlights')
+        .select('*')
+        .eq('is_featured', true)
+        .eq('status', 'approved')
+        .limit(1);
+      if (error) {
+        console.error('IFAI: failed to load creator spotlight', error);
+      } else if (data && data.length) {
+        cachedCreator = data[0];
+        renderCreatorHub(window.IFAI_I18N ? window.IFAI_I18N.getLang() : 'en');
+        window.addEventListener('ifai:langchange', (e) => renderCreatorHub(e.detail.lang));
+      }
+    } finally {
+      // Body starts hidden so the placeholder never flashes before real content swaps in.
+      creatorBody.classList.remove('invisible');
+    }
+  }
+
+  wireCreatorHub();
 })();
 </script>
 <script>
@@ -1285,36 +1576,6 @@
     align();
     if (stop || ++ticks >= 16) clearInterval(timer);
   }, 250);
-})();
-</script>
-<script>
-// Creator Hub share row: shares the section link (placeholder title until the
-// creator is admin-managed).
-(function () {
-  const row = document.getElementById('creator-share-row');
-  if (!row) return;
-  const url = window.location.origin + '/#creator-hub';
-  const title = 'Raka Pratama — IFAI Creator Hub';
-  const shareUrls = {
-    whatsapp: 'https://api.whatsapp.com/send?text=' + encodeURIComponent(title + ' | IFAI - ' + url),
-    facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url),
-    threads: 'https://www.threads.net/intent/post?text=' + encodeURIComponent(title + ' | IFAI - ' + url),
-    linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url)
-  };
-  row.querySelectorAll('[data-share]').forEach((el) => { el.href = shareUrls[el.getAttribute('data-share')]; });
-  const copyBtn = row.querySelector('[data-share-copy]');
-  if (copyBtn) {
-    copyBtn.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(url);
-        const icon = copyBtn.querySelector('i');
-        icon.className = 'fa-solid fa-check';
-        setTimeout(() => { icon.className = 'fa-solid fa-link'; }, 1500);
-      } catch (e) {
-        // clipboard API unavailable — nothing else to fall back to here
-      }
-    });
-  }
 })();
 </script>
 </body>
