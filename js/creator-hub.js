@@ -266,7 +266,7 @@ ${watchBtn ? `<div class="flex-shrink-0">${watchBtn}</div>` : ''}
     }
 
     const hasRight = !!(fieldsBlock || toolsBlock);
-    const topGrid = (hasAbout || hasRight) ? `<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    const topGrid = (hasAbout || hasRight) ? `<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:items-start">
 ${hasAbout ? `<div class="${hasRight ? 'lg:col-span-7' : 'lg:col-span-12'} rounded-2xl bg-cyber-surface border border-zinc-700 p-6 sm:p-8">
 <div class="flex items-center justify-between mb-4">
 <h3 class="font-mono text-xs uppercase tracking-widest text-white font-bold flex items-center gap-2">
@@ -277,7 +277,7 @@ ${hasAbout ? `<div class="${hasRight ? 'lg:col-span-7' : 'lg:col-span-12'} round
 </div>
 ${bio ? `<p class="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">${esc(bio)}</p>` : ''}
 </div>` : ''}
-${hasRight ? `<div class="${hasAbout ? 'lg:col-span-5' : 'lg:col-span-12'} rounded-2xl bg-cyber-surface border border-zinc-700 p-6 sm:p-8 flex flex-col justify-between gap-6">${fieldsBlock}${toolsBlock}</div>` : ''}
+${hasRight ? `<div class="${hasAbout ? 'lg:col-span-5' : 'lg:col-span-12'} rounded-2xl bg-cyber-surface border border-zinc-700 p-6 sm:p-8 flex flex-col gap-6">${fieldsBlock}${toolsBlock}</div>` : ''}
 </div>` : '';
 
     return workBlock + topGrid;
