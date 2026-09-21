@@ -408,8 +408,7 @@
         <span>✏️</span>
         <span>Mode Edit — kamu sedang mengubah creator yang sudah ada, bukan membuat yang baru.</span>
       </div>
-      <h2 id="ch-form-title" class="text-lg font-bold text-white mb-2">+ Tambah Creator Hub Baru</h2>
-      <p class="text-xs text-zinc-500 mb-6">Hanya <strong class="text-zinc-300">1 creator</strong> yang tampil di section Creator Hub homepage. Selama belum ada creator yang dicentang "Tampilkan di homepage", homepage menampilkan contoh (placeholder).</p>
+      <h2 id="ch-form-title" class="text-lg font-bold text-white mb-6">Creator Hub</h2>
       <form id="form-ch" class="flex flex-col gap-5">
         <input type="hidden" id="ch-id"/>
 
@@ -420,8 +419,8 @@
           <input type="text" id="ch-name" placeholder="Raka Pratama" class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
         </div>
         <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Peran <span class="normal-case text-zinc-500">(pisahkan dengan /)</span></label>
-          <input type="text" id="ch-role" placeholder="AI Filmmaker / Visual Storyteller" class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Peran <span class="normal-case text-zinc-500">(cukup 1, atau lebih dengan pemisah /)</span></label>
+          <input type="text" id="ch-role" placeholder="AI Filmmaker" class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
         </div>
         </div>
         <div class="flex flex-col gap-1.5">
@@ -436,22 +435,6 @@
             <input type="file" id="ch-photo-file" accept="image/*" class="flex-1 text-xs text-zinc-400 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border file:border-zinc-700 file:bg-cosmic-850 file:text-zinc-300 file:text-xs hover:file:border-[#f75500] hover:file:text-[#f75500] file:cursor-pointer"/>
           </div>
           <input type="hidden" id="ch-photo-current"/>
-        </div>
-        <div class="flex flex-col gap-2">
-          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Kutipan <span class="normal-case text-zinc-500">(petikan dari detail cerita, ± 200 karakter agar tampil 3–4 baris)</span></label>
-          <div class="flex flex-col gap-1.5 p-3 rounded-lg bg-cosmic-900 border border-zinc-800">
-            <span class="text-[11px] text-zinc-500">🇮🇩 Kutipan (Bahasa Indonesia)</span>
-            <textarea id="ch-quote-id" rows="3" placeholder="" class="bg-transparent border-b border-zinc-700 pb-1.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500] resize-y"></textarea>
-          </div>
-          <div class="flex items-end gap-2 p-3 rounded-lg bg-cosmic-900 border border-zinc-800">
-            <div class="flex-1 flex flex-col gap-1.5">
-              <span class="text-[11px] text-zinc-500">🇬🇧 Kutipan (English)</span>
-              <textarea id="ch-quote-en" rows="3" placeholder="" class="bg-transparent border-b border-zinc-700 pb-1.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500] resize-y"></textarea>
-            </div>
-            <button type="button" data-translate-from="ch-quote-id" data-translate-to="ch-quote-en" class="btn-translate text-[11px] font-mono-code px-3 py-1.5 rounded-md bg-cosmic-800 border border-zinc-700 text-[#f75500] hover:border-[#f75500] transition-colors whitespace-nowrap">
-              Translate
-            </button>
-          </div>
         </div>
         <div class="flex flex-col gap-2">
           <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Tentang Creator</label>
@@ -471,13 +454,13 @@
         </div>
 
         <h3 class="text-sm font-bold text-white uppercase tracking-wider pt-4 border-t border-zinc-800">Bidang Kreatif &amp; Tools</h3>
-        <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Bidang Kreatif <span class="normal-case text-zinc-500">(pisahkan dengan koma)</span></label>
-          <input type="text" id="ch-fields" placeholder="AI Film, Visual Storytelling, Generative Video" class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Bidang Kreatif <span class="normal-case text-zinc-500">(pilih maksimal 6)</span> <span id="ch-fields-count" class="normal-case text-zinc-400 ml-1">0/6</span></label>
+          <div id="ch-fields-picker" class="flex flex-wrap gap-2 p-3 rounded-lg bg-cosmic-900 border border-zinc-800"></div>
         </div>
-        <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Tools yang Digunakan <span class="normal-case text-zinc-500">(pisahkan dengan koma — Midjourney, Runway, ComfyUI, DaVinci, Suno, Photoshop tampil dengan ikon khusus)</span></label>
-          <input type="text" id="ch-tools" placeholder="Midjourney, Runway, ComfyUI" class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Tools yang Digunakan <span class="normal-case text-zinc-500">(pilih maksimal 6)</span> <span id="ch-tools-count" class="normal-case text-zinc-400 ml-1">0/6</span></label>
+          <div id="ch-tools-picker" class="flex flex-wrap gap-2 p-3 rounded-lg bg-cosmic-900 border border-zinc-800"></div>
         </div>
 
         <h3 class="text-sm font-bold text-white uppercase tracking-wider pt-4 border-t border-zinc-800">Karya Pilihan (opsional — kosongkan judul untuk menyembunyikan)</h3>
@@ -501,15 +484,15 @@
           <input type="hidden" id="ch-work-image-current"/>
         </div>
         <div class="flex flex-col gap-2">
-          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Jenis / Tahun / Durasi <span class="normal-case text-zinc-500">(contoh: FILM PENDEK • 2024 • 8 MENIT)</span></label>
+          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Jenis / Tahun <span class="normal-case text-zinc-500">(contoh: FILM PENDEK • 2024)</span></label>
           <div class="flex flex-col gap-1.5 p-3 rounded-lg bg-cosmic-900 border border-zinc-800">
-            <span class="text-[11px] text-zinc-500">🇮🇩 Jenis / Tahun / Durasi (Bahasa Indonesia)</span>
-            <input type="text" id="ch-work-meta-id" placeholder="FILM PENDEK • 2024 • 8 MENIT" class="bg-transparent border-b border-zinc-700 pb-1.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+            <span class="text-[11px] text-zinc-500">🇮🇩 Jenis / Tahun (Bahasa Indonesia)</span>
+            <input type="text" id="ch-work-meta-id" placeholder="FILM PENDEK • 2024" class="bg-transparent border-b border-zinc-700 pb-1.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
           </div>
           <div class="flex items-end gap-2 p-3 rounded-lg bg-cosmic-900 border border-zinc-800">
             <div class="flex-1 flex flex-col gap-1.5">
-              <span class="text-[11px] text-zinc-500">🇬🇧 Jenis / Tahun / Durasi (English)</span>
-              <input type="text" id="ch-work-meta-en" placeholder="SHORT FILM • 2024 • 8 MIN" class="bg-transparent border-b border-zinc-700 pb-1.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+              <span class="text-[11px] text-zinc-500">🇬🇧 Jenis / Tahun (English)</span>
+              <input type="text" id="ch-work-meta-en" placeholder="SHORT FILM • 2024" class="bg-transparent border-b border-zinc-700 pb-1.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
             </div>
             <button type="button" data-translate-from="ch-work-meta-id" data-translate-to="ch-work-meta-en" class="btn-translate text-[11px] font-mono-code px-3 py-1.5 rounded-md bg-cosmic-800 border border-zinc-700 text-[#f75500] hover:border-[#f75500] transition-colors whitespace-nowrap">
               Translate
@@ -539,17 +522,14 @@
         </div>
         </div>
 
-        <label class="flex items-center gap-3 p-3 rounded-lg bg-cosmic-900 border border-zinc-800 cursor-pointer">
-          <input type="checkbox" id="ch-featured" class="w-4 h-4 accent-[#f75500]"/>
-          <span class="text-sm text-zinc-200">Tampilkan di homepage <span class="text-zinc-500">(creator lain yang sedang tampil otomatis dimatikan)</span></span>
-        </label>
+        <input type="hidden" id="ch-featured" value="1"/>
 
         <p id="ch-error" hidden class="text-xs text-red-400"></p>
         <p id="ch-success" hidden class="text-xs text-[#f75500]"></p>
 
         <div class="flex items-center gap-3">
           <button type="submit" id="btn-submit-ch" class="py-2.5 px-6 rounded-lg bg-[#f75500] text-white font-semibold text-sm hover:shadow-[0_0_20px_rgba(247,85,0,0.5)] transition-all">
-            Simpan Creator
+            Submit Creator
           </button>
           <button type="button" id="btn-cancel-ch-edit" hidden class="py-2.5 px-6 rounded-lg border border-zinc-700 text-zinc-300 text-sm hover:border-zinc-500 transition-colors">
             Batal Edit
@@ -1459,7 +1439,58 @@
   // ---------- CREATOR HUB (single spotlight shown on the homepage) ----------
   const CH_IMAGE_MAX_BYTES = 4 * 1024 * 1024; // 4MB
   const chVal = (id) => document.getElementById(id).value.trim();
-  const chList = (id) => chVal(id).split(',').map((x) => x.trim()).filter(Boolean);
+
+  // Chip pickers (choose from the list, at most 6).
+  const CH_MAX_CHIPS = 6;
+  const CH_FIELD_OPTIONS = [
+    'AI Film', 'Visual Storytelling', 'Generative Video', 'AI Art', 'Concept Design',
+    'AI Music', 'Sound Design', 'Animation', 'Commercial', 'Motion Graphics',
+    'Character Design', 'Documentary', 'Synthetic Cinema', 'Virtual Production'
+  ];
+  const CH_TOOL_OPTIONS = [
+    'Midjourney', 'Runway', 'ComfyUI', 'DaVinci Resolve', 'Suno', 'Photoshop',
+    'Kling', 'Veo', 'Sora', 'Higgsfield', 'Seedance', 'Luma', 'Pika',
+    'Flux', 'Stable Diffusion', 'Leonardo', 'Adobe Firefly', 'ElevenLabs',
+    'CapCut', 'After Effects', 'Premiere Pro', 'Blender'
+  ];
+
+  function chChipPicker(boxId, countId, options) {
+    const box = document.getElementById(boxId);
+    const counter = document.getElementById(countId);
+    let selected = [];
+    function render() {
+      // Keep any already-saved value that is no longer in the preset list.
+      const all = [...new Set([...options, ...selected])];
+      const atLimit = selected.length >= CH_MAX_CHIPS;
+      box.innerHTML = all.map((item) => {
+        const active = selected.includes(item);
+        const disabled = !active && atLimit;
+        return `<button type="button" data-chip="${escapeHtml(item)}" ${disabled ? 'disabled' : ''} class="text-xs font-mono-code px-3 py-1.5 rounded-full border transition-colors ${
+          active
+            ? 'bg-[#f75500] border-[#f75500] text-white'
+            : disabled
+              ? 'bg-cosmic-800 border-zinc-800 text-zinc-600 cursor-not-allowed opacity-50'
+              : 'bg-cosmic-800 border-zinc-700 text-zinc-400 hover:border-[#f75500] hover:text-[#f75500]'
+        }">${escapeHtml(item)}</button>`;
+      }).join('');
+      counter.textContent = selected.length + '/' + CH_MAX_CHIPS;
+      box.querySelectorAll('button').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const item = btn.dataset.chip;
+          if (selected.includes(item)) selected = selected.filter((x) => x !== item);
+          else if (selected.length < CH_MAX_CHIPS) selected.push(item);
+          render();
+        });
+      });
+    }
+    render();
+    return {
+      get: () => selected.slice(),
+      set: (list) => { selected = (list || []).slice(0, CH_MAX_CHIPS); render(); }
+    };
+  }
+  const chFields = chChipPicker('ch-fields-picker', 'ch-fields-count', CH_FIELD_OPTIONS);
+  const chTools = chChipPicker('ch-tools-picker', 'ch-tools-count', CH_TOOL_OPTIONS);
 
   function chSetPreview(prefix, url) {
     const img = document.getElementById(prefix + '-preview');
@@ -1513,8 +1544,10 @@
       document.getElementById(prefix + '-current').value = '';
       chSetPreview(prefix, null);
     });
-    chFormTitle.textContent = '+ Tambah Creator Hub Baru';
-    btnSubmitCh.textContent = 'Simpan Creator';
+    chFields.set([]);
+    chTools.set([]);
+    chFormTitle.textContent = 'Creator Hub';
+    btnSubmitCh.textContent = 'Submit Creator';
     btnCancelChEdit.hidden = true;
     document.getElementById('ch-edit-mode-banner').hidden = true;
     document.getElementById('form-ch-container').classList.remove('border-[#f75500]');
@@ -1546,7 +1579,8 @@
     } catch (err) { return fail(err.message); }
     if (!photoUrl) return fail('Foto creator wajib diupload.');
 
-    const featured = document.getElementById('ch-featured').checked;
+    // New creators go live right away (the previous one is switched off); editing keeps the current state.
+    const featured = document.getElementById('ch-featured').value === '1';
     const orNull = (v) => v || null;
     const payload = {
       is_featured: featured,
@@ -1554,12 +1588,10 @@
       role: orNull(chVal('ch-role')),
       location: orNull(chVal('ch-location')),
       photo_url: photoUrl,
-      quote_id: orNull(chVal('ch-quote-id')),
-      quote_en: orNull(chVal('ch-quote-en')),
       bio_id: orNull(chVal('ch-bio-id')),
       bio_en: orNull(chVal('ch-bio-en')),
-      fields: chList('ch-fields'),
-      tools: chList('ch-tools'),
+      fields: chFields.get(),
+      tools: chTools.get(),
       work_title: orNull(chVal('ch-work-title')),
       work_image_url: workImageUrl,
       work_duration: orNull(chVal('ch-work-duration')),
@@ -1579,7 +1611,7 @@
       : await sb.from('creator_spotlights').insert(payload);
     if (result.error) return fail('Gagal menyimpan: ' + result.error.message);
 
-    okEl.textContent = (id ? 'Creator berhasil diupdate.' : 'Creator berhasil disimpan.') + (featured ? ' Sekarang tampil di homepage.' : '');
+    okEl.textContent = (id ? 'Creator berhasil diupdate.' : 'Creator berhasil disimpan.') + (featured ? ' Tampil di homepage.' : '');
     okEl.hidden = false;
     resetChForm();
     await loadCreatorSpotlights();
@@ -1641,14 +1673,13 @@
     const set = (id, v) => { document.getElementById(id).value = v || ''; };
     document.getElementById('ch-id').value = c.id;
     set('ch-name', c.name); set('ch-role', c.role); set('ch-location', c.location);
-    set('ch-quote-id', c.quote_id); set('ch-quote-en', c.quote_en);
     set('ch-bio-id', c.bio_id); set('ch-bio-en', c.bio_en);
-    set('ch-fields', (c.fields || []).join(', ')); set('ch-tools', (c.tools || []).join(', '));
+    chFields.set(c.fields || []); chTools.set(c.tools || []);
     set('ch-work-title', c.work_title); set('ch-work-duration', c.work_duration);
     set('ch-work-meta-id', c.work_meta_id); set('ch-work-meta-en', c.work_meta_en);
     set('ch-work-synopsis-id', c.work_synopsis_id); set('ch-work-synopsis-en', c.work_synopsis_en);
     set('ch-work-watch-url', c.work_watch_url);
-    document.getElementById('ch-featured').checked = !!c.is_featured;
+    document.getElementById('ch-featured').value = c.is_featured ? '1' : '';
 
     document.getElementById('ch-photo-current').value = c.photo_url || '';
     chSetPreview('ch-photo', c.photo_url || null);

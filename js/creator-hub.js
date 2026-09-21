@@ -17,6 +17,17 @@
     return m ? m[1] : null;
   }
 
+  // Automatic "quote": the start of the bio, ~200 characters, ending on a sentence
+  // when that keeps most of the length, otherwise on a word with an ellipsis.
+  function excerpt(text, max) {
+    const t = (text || '').replace(/\s+/g, ' ').trim();
+    if (t.length <= max) return t;
+    const cut = t.slice(0, max);
+    const end = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('! '), cut.lastIndexOf('? '));
+    if (end >= 140) return t.slice(0, end + 1);
+    return cut.slice(0, cut.lastIndexOf(' ')).replace(/[,;:\-–—\s]+$/, '') + '…';
+  }
+
   function pick(row, field, lang) {
     return (lang === 'id' ? row[field + '_id'] : row[field + '_en']) || row[field + '_en'] || row[field + '_id'] || '';
   }
@@ -27,8 +38,6 @@
     role: 'AI Filmmaker / Visual Storyteller',
     location: 'Jakarta, Indonesia',
     photo_url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAxIjTBTS4mTYOYAX6KKjc8EFVc5HEzWL6D6okV9c8b4vXTG8dqsqmLTHlHoa-HD1H0zeyYVl3Oq-xoh_4TZ--i3-8Q5lPeABkb5SsBeJ_Oweo9HLaNindBtSD6bGVzpwQU4FN_4D8R5XUG_Ylyo7PIqyB2A3o-82I5sLs2XNuLnHud76fpfjg0MDJvuWaBZK96eyFwiK-qpIidbRD2h-SxxFsz8Cs1nQtF65BKHLNl',
-    quote_en: 'AI is not a replacement for a storyteller. It gives us a new way to tell stories on a wider scale, yet every film still begins with human emotion and one question: what should the audience feel?',
-    quote_id: 'AI bukan pengganti seorang storyteller. AI memberi cara baru untuk menceritakan kisah yang lebih luas, namun setiap film tetap berawal dari emosi manusia dan satu pertanyaan: apa yang ingin dirasakan penonton?',
     bio_en: "Raka Pratama is a filmmaker and visual creator exploring how artificial intelligence can become a new language in cinema. Raka's work blends a cinematic approach with AI technology to create visual stories that still begin from human perspective and emotion.",
     bio_id: 'Raka Pratama adalah filmmaker dan kreator visual yang mengeksplorasi bagaimana kecerdasan buatan dapat menjadi bahasa baru dalam sinema. Karyanya memadukan pendekatan sinematik dengan teknologi AI untuk menciptakan cerita visual yang tetap berangkat dari perspektif dan emosi manusia.',
     fields: ['AI Film', 'Visual Storytelling', 'Generative Video', 'AI Art', 'Concept Design'],
@@ -36,8 +45,8 @@
     work_title: 'After The Rain',
     work_image_url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBcnxVPxKOOM9wdmIBkr6r5wWW0db_cfrmHqx7aLpeHEmOFD8rkePjVh_SbPQoJbGsH2C0B16OF3pemmUYxmKRr930O8PVh4OkzkXHWz_CjEZV5_Fe9B6jZ7vtnWX9HlViQo2qsC32fyAFJIRd0Cf5myZU9skXSYxtkGVgeVi0qTHSFiJs-dc9Z5AThsSVq5yczuOL7JHnxezV0lbDhPULyatJla7IBeZG9Aw308oX3',
     work_duration: '08:24',
-    work_meta_en: 'SHORT FILM • 2024 • 8 MIN',
-    work_meta_id: 'FILM PENDEK • 2024 • 8 MENIT',
+    work_meta_en: 'SHORT FILM • 2024',
+    work_meta_id: 'FILM PENDEK • 2024',
     work_synopsis_en: 'A poetic exploration of memory, the post-rain urban landscape, and human inner calm in an age of automation. Every visual sequence was synthesized using custom latent diffusion, with photorealistic anamorphic lighting curation.',
     work_synopsis_id: 'Eksplorasi puitis tentang memori, lanskap perkotaan pasca-hujan, dan ketenangan batin manusia di tengah era otomatisasi. Seluruh sekuens visual disintesis menggunakan custom latent diffusion dengan kurasi pencahayaan anamorfik fotorealistis.'
   };
@@ -107,7 +116,7 @@ ${esc(c.location)}
       : esc(name);
 
 
-    const quote = pick(c, 'quote', lang);
+    const quote = excerpt(pick(c, 'bio', lang), 200);
     const photo = safeUrl(c.photo_url);
 
     const footer = `<div class="pt-4 flex items-center justify-end">
@@ -173,8 +182,7 @@ ${['whatsapp:fa-brands fa-whatsapp:WhatsApp', 'facebook:fa-brands fa-facebook-f:
     const isId = lang === 'id';
     const name = c.name || '';
     const bio = pick(c, 'bio', lang);
-    const quote = pick(c, 'quote', lang);
-    const hasAbout = !!(bio || quote);
+    const hasAbout = !!bio;
     const fields = (c.fields || []).filter(Boolean);
     const tools = (c.tools || []).filter(Boolean);
     // Side by side with "About" the tools column is narrower: 3 per row at lg+.
@@ -268,7 +276,6 @@ ${hasAbout ? `<div class="${hasRight ? 'lg:col-span-7' : 'lg:col-span-12'} round
 </h3>
 <span class="font-mono text-[10px] text-slate-500">BIO // ARCHIVE</span>
 </div>
-${quote ? `<blockquote class="p-5 rounded-xl bg-cyber-darkBg/60 text-slate-300 text-sm sm:text-base leading-relaxed italic ${bio ? 'mb-5' : ''}"><span class="text-cyber-cyan text-xl not-italic">“</span>${esc(quote)}<span class="text-cyber-cyan text-xl not-italic">”</span></blockquote>` : ''}
 ${bio ? `<p class="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">${esc(bio)}</p>` : ''}
 </div>` : ''}
 ${hasRight ? `<div class="${hasAbout ? 'lg:col-span-5' : 'lg:col-span-12'} rounded-2xl bg-cyber-surface border border-zinc-700 p-6 sm:p-8 flex flex-col justify-between gap-6">${fieldsBlock}${toolsBlock}</div>` : ''}
