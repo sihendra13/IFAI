@@ -231,7 +231,7 @@ ${fields.map((f) => `<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim bor
         : (watchUrl ? `<a href="${esc(watchUrl)}" target="_blank" rel="noopener" class="${watchCls}">${watchInner}</a>`
           : (inert ? `<button type="button" class="${watchCls}">${watchInner}</button>` : ''));
       workBlock = `
-<div class="space-y-4 pt-2 w-full max-w-4xl mx-auto">
+<div class="space-y-4 pt-2">
 <div class="flex items-center gap-3">
 <h3 data-i18n="creator.featuredTitle" class="text-xl font-bold tracking-tight text-white uppercase">Featured Work</h3>
 <span data-i18n="creator.featuredBadge" class="px-2 py-0.5 rounded text-[10px] font-mono bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/30">MAIN SHOWCASE</span>
