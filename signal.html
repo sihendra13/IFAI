@@ -205,6 +205,26 @@
 <button type="button" data-share-copy title="Copy link" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-solid fa-link"></i></button>
 </div>
 </div>
+
+<!-- MORE FROM THE JOURNAL — other signals, newest first. Stays hidden until the loader script below finds at least one, so there's never an empty state. -->
+<div id="signal-related" style="display:none;" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+<section class="flex flex-col gap-8">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-white"></span>
+<span data-i18n="signal.keepReading" class="text-xs font-mono uppercase tracking-wider text-white">KEEP READING</span>
+</div>
+<h2 data-i18n="signal.moreFromJournal" class="text-2xl leading-8 font-semibold text-[#e4e1e8] tracking-tight">More from the Journal</h2>
+</div>
+<a href="/journal" class="text-xs font-mono text-zinc-400 hover:text-[#f75500] flex items-center gap-1 transition-colors">
+<span data-i18n="signal.viewAllJournal">View All Journal</span>
+<span>→</span>
+</a>
+</div>
+<div id="signal-related-grid" class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-2 -mx-4 px-4 md:grid md:grid-cols-3 md:overflow-visible md:mx-0 md:px-0 md:pb-0"></div>
+</section>
+</div>
 </main>
 
 <!-- BEGIN: MainFooter -->
@@ -287,6 +307,7 @@
       'auth.title': 'Join IFAI Community', 'auth.subtitle': 'Sign in to submit your work and join the community.', 'auth.google': 'Continue with Google', 'auth.or': 'or', 'auth.emailPlaceholder': 'you@email.com', 'auth.sendLink': 'Send Magic Link', 'auth.linkSent': 'Check your email for the login link.', 'auth.logout': 'Log Out',
       'signal.backToHome': '← Back to IFAI Signals', 'signal.share': 'Share:',
       'signal.notFound': 'This IFAI Signal could not be found.',
+      'signal.keepReading': 'KEEP READING', 'signal.moreFromJournal': 'More from the Journal', 'signal.viewAllJournal': 'View All Journal',
       'footer.brandDesc': "Indonesia Future Arts & Intelligence is Indonesia's leading platform for AI-driven creativity, bridging art, technology, and human imagination through films, visuals, and synthetic music.",
       'footer.location': 'Based in Jakarta, Indonesia • Empowering Nationwide Creators',
       'footer.col1.title': 'Explore', 'footer.col1.link1': 'AI Film Showcase', 'footer.col1.link2': 'Commercial Video', 'footer.col1.link3': 'Neural Soundscapes', 'footer.col1.link4': 'Summits & Events', 'footer.col1.link5': 'Archive 2025',
@@ -300,6 +321,7 @@
       'auth.title': 'Gabung Komunitas IFAI', 'auth.subtitle': 'Masuk untuk mengirim karyamu dan bergabung dengan komunitas.', 'auth.google': 'Lanjutkan dengan Google', 'auth.or': 'atau', 'auth.emailPlaceholder': 'kamu@email.com', 'auth.sendLink': 'Kirim Link Masuk', 'auth.linkSent': 'Cek email kamu untuk link masuk.', 'auth.logout': 'Keluar',
       'signal.backToHome': '← Kembali ke IFAI Signals', 'signal.share': 'Bagikan:',
       'signal.notFound': 'IFAI Signal ini tidak ditemukan.',
+      'signal.keepReading': 'LANJUT MEMBACA', 'signal.moreFromJournal': 'Lainnya dari Jurnal', 'signal.viewAllJournal': 'Lihat Semua Jurnal',
       'footer.brandDesc': 'Indonesia Future Arts & Intelligence adalah platform terdepan Indonesia untuk kreativitas berbasis AI, menjembatani seni, teknologi, dan imajinasi manusia lewat film, visual, dan musik sintetis.',
       'footer.location': 'Berbasis di Jakarta, Indonesia • Memberdayakan Kreator Seluruh Nusantara',
       'footer.col1.title': 'Jelajahi', 'footer.col1.link1': 'Etalase Film AI', 'footer.col1.link2': 'Video Iklan', 'footer.col1.link3': 'Lanskap Suara Neural', 'footer.col1.link4': 'Summit & Acara', 'footer.col1.link5': 'Arsip 2025',
@@ -474,6 +496,91 @@
     });
   });
 
+  // ---------- More from the Journal (other signals) ----------
+  let cachedRelatedSignals = [];
+
+  function relatedSkeletonCardsHtml(count = 3) {
+    let out = '';
+    for (let i = 0; i < count; i++) {
+      out += `
+<div class="flex flex-col rounded-2xl bg-[#1b1b20] border border-zinc-800 overflow-hidden shadow-lg w-[85vw] md:w-auto flex-shrink-0 md:flex-shrink snap-start animate-pulse pointer-events-none select-none" aria-hidden="true">
+<div class="aspect-video w-full bg-zinc-800/50"></div>
+<div class="p-4 flex flex-col flex-1 justify-between gap-4">
+<div class="space-y-2.5">
+<div class="h-4 bg-zinc-700/50 rounded-md w-3/4"></div>
+<div class="h-3 bg-zinc-800/60 rounded w-1/3"></div>
+<div class="h-3 bg-zinc-800/40 rounded w-full mt-2"></div>
+<div class="h-3 bg-zinc-800/40 rounded w-4/5"></div>
+</div>
+<div class="pt-2 flex justify-end">
+<div class="w-24 h-7 rounded-full bg-zinc-800/60"></div>
+</div>
+</div>
+</div>`;
+    }
+    return out;
+  }
+
+  function relatedSignalCardHtml(signal, lang) {
+    const label = pickField(signal, 'label', lang);
+    const title = pickField(signal, 'title', lang);
+    const description = pickField(signal, 'description', lang);
+    let dateStr = '';
+    if (signal.event_date) {
+      const d = new Date(signal.event_date + 'T00:00:00');
+      dateStr = d.toLocaleDateString(lang === 'id' ? 'id-ID' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    return `
+<a href="signal?id=${encodeURIComponent(signal.id)}" class="group flex flex-col rounded-2xl bg-[#1b1b20] border border-zinc-700 overflow-hidden hover:bg-[#202026] transition-all duration-300 shadow-lg w-[85vw] md:w-auto flex-shrink-0 md:flex-shrink snap-start">
+<div class="aspect-video w-full relative overflow-hidden bg-cosmic-950">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${escapeHtml(title)}" src="${signal.image_url || ''}">
+${label ? `<div class="absolute bottom-3 right-3"><span class="text-xs font-mono uppercase px-2 py-0.5 rounded bg-black/70 backdrop-blur-md text-[#e4e1e8]">${escapeHtml(label)}</span></div>` : ''}
+</div>
+<div class="p-4 flex flex-col flex-1 justify-between gap-4">
+<div class="flex flex-col gap-1">
+<h3 class="text-lg leading-6 font-medium text-[#e4e1e8] group-hover:text-[#c3f5ff] transition-colors line-clamp-2">${escapeHtml(title)}</h3>
+${dateStr ? `<span class="text-[11px] font-mono text-[#849396]">${escapeHtml(dateStr)}</span>` : ''}
+<p class="text-[13px] leading-5 text-[#bac9cc] line-clamp-2 mt-1">${escapeHtml(description)}</p>
+</div>
+<div class="pt-2 flex items-center justify-end">
+<span class="relative inline-flex items-center px-5 py-2 rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 group-hover:text-black transition-all duration-300 glow-white">
+<span class="relative z-10">See Detail →</span>
+<span class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-white transition-transform duration-300 ease-out"></span>
+</span>
+</div>
+</div>
+</a>`;
+  }
+
+  function renderRelatedSignals(lang) {
+    const grid = document.getElementById('signal-related-grid');
+    const wrap = document.getElementById('signal-related');
+    if (!grid || !wrap) return;
+    if (!cachedRelatedSignals.length) { grid.innerHTML = ''; wrap.style.display = 'none'; return; }
+    wrap.style.display = '';
+    grid.innerHTML = cachedRelatedSignals.map((s) => relatedSignalCardHtml(s, lang)).join('');
+  }
+
+  async function loadRelatedSignals(current) {
+    const grid = document.getElementById('signal-related-grid');
+    const wrap = document.getElementById('signal-related');
+    if (!grid || !wrap) return;
+    grid.innerHTML = relatedSkeletonCardsHtml(3);
+    wrap.style.display = '';
+
+    const { data, error } = await sb
+      .from('signals')
+      .select('*')
+      .neq('id', current.id)
+      .order('created_at', { ascending: false })
+      .limit(3);
+
+    if (error) console.error('IFAI: failed to load related signals', error);
+    cachedRelatedSignals = (!error && data) ? data : [];
+    renderRelatedSignals(window.IFAI_I18N ? window.IFAI_I18N.getLang() : 'en');
+  }
+
   async function loadSignal() {
     const id = new URLSearchParams(window.location.search).get('id');
     if (!id) { showNotFound(); return; }
@@ -483,7 +590,11 @@
 
     currentSignal = signal;
     renderSignal(window.IFAI_I18N ? window.IFAI_I18N.getLang() : 'en');
-    window.addEventListener('ifai:langchange', (e) => renderSignal(e.detail.lang));
+    window.addEventListener('ifai:langchange', (e) => {
+      renderSignal(e.detail.lang);
+      renderRelatedSignals(e.detail.lang);
+    });
+    loadRelatedSignals(signal);
   }
 
   loadSignal();
