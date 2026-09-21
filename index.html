@@ -320,7 +320,7 @@
 <section class="pt-12 pb-24 bg-cosmic-950">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
 <!-- 02 Video Commercial Showcase -->
-<div>
+<div id="commercial" class="scroll-mt-28">
 <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
 <div>
 <div class="flex items-center gap-3">
@@ -337,7 +337,7 @@
 </div>
 </div>
 <!-- 03 Animation Showcase -->
-<div>
+<div id="animation" class="scroll-mt-28">
 <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
 <div>
 <div class="flex items-center gap-3">
@@ -354,7 +354,7 @@
 </div>
 </div>
 <!-- 04 Music & Audio Neural Showcase -->
-<div>
+<div id="music" class="scroll-mt-28">
 <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
 <div>
 <div class="flex items-center gap-3">
@@ -371,7 +371,7 @@
 </div>
 </div>
 <!-- 05 Visual Art Showcase -->
-<div>
+<div id="visual-art" class="scroll-mt-28">
   <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
     <div>
       <div class="flex items-center gap-3">
@@ -951,6 +951,30 @@
   }
 
   wireSignals();
+})();
+</script>
+<script>
+// Cross-page anchor links (e.g. "Back to Music" from a category page) get
+// scrolled by the browser before Tailwind's CDN styles apply and the
+// Supabase cards fill in, so the target lands off-position. Re-align a few
+// times while the page settles, and stop as soon as the user scrolls.
+(function () {
+  const id = decodeURIComponent(location.hash.slice(1));
+  if (!id) return;
+  let stop = false;
+  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach((evt) => {
+    window.addEventListener(evt, () => { stop = true; }, { passive: true, once: true });
+  });
+  function align() {
+    const el = document.getElementById(id);
+    if (el && !stop) el.scrollIntoView({ behavior: 'instant', block: 'start' });
+  }
+  align();
+  let ticks = 0;
+  const timer = setInterval(() => {
+    align();
+    if (stop || ++ticks >= 16) clearInterval(timer);
+  }, 250);
 })();
 </script>
 </body>

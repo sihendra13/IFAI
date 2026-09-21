@@ -177,7 +177,7 @@
 </div>
 <h1 id="archive-category-title" class="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-2">Loading…</h1>
 </div>
-<a data-i18n="archive.backHome" href="/" class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] flex items-center gap-1.5 transition-colors">← Back to Home</a>
+<a id="archive-back-link" data-i18n="archive.back.film" href="/#showcase" class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] flex items-center gap-1.5 transition-colors">← Back to Home</a>
 </div>
 
 <!-- Works Grid -->
@@ -269,6 +269,7 @@
       'nav.login': 'Log In', 'nav.join': 'Join Community',
       'auth.title': 'Join IFAI Community', 'auth.subtitle': 'Sign in to submit your work and join the community.', 'auth.google': 'Continue with Google', 'auth.or': 'or', 'auth.emailPlaceholder': 'you@email.com', 'auth.sendLink': 'Send Magic Link', 'auth.linkSent': 'Check your email for the login link.', 'auth.logout': 'Log Out',
       'archive.backHome': '← Back to Home',
+      'archive.back.film': '← Back to Film', 'archive.back.commercial': '← Back to Commercial', 'archive.back.animation': '← Back to Animation', 'archive.back.music': '← Back to Music', 'archive.back.visual-art': '← Back to Visual Art',
       'archive.empty': 'No works published in this category yet.',
       'cat.film.title': 'AI Film Showcase',
       'cat.commercial.title': 'Video Commercial Showcase',
@@ -288,6 +289,7 @@
       'nav.login': 'Masuk', 'nav.join': 'Gabung Komunitas',
       'auth.title': 'Gabung Komunitas IFAI', 'auth.subtitle': 'Masuk untuk mengirim karyamu dan bergabung dengan komunitas.', 'auth.google': 'Lanjutkan dengan Google', 'auth.or': 'atau', 'auth.emailPlaceholder': 'kamu@email.com', 'auth.sendLink': 'Kirim Link Masuk', 'auth.linkSent': 'Cek email kamu untuk link masuk.', 'auth.logout': 'Keluar',
       'archive.backHome': '← Kembali ke Beranda',
+      'archive.back.film': '← Kembali ke Film', 'archive.back.commercial': '← Kembali ke Iklan', 'archive.back.animation': '← Kembali ke Animasi', 'archive.back.music': '← Kembali ke Musik', 'archive.back.visual-art': '← Kembali ke Seni Visual',
       'archive.empty': 'Belum ada karya yang dipublikasikan di kategori ini.',
       'cat.film.title': 'Etalase Film',
       'cat.commercial.title': 'Etalase Iklan Video',
@@ -501,6 +503,16 @@
     const params = new URLSearchParams(window.location.search);
     const slug = params.get('slug') || 'film';
     currentSlug = slug;
+
+    // Back link returns to this category's row on the homepage (Film's row
+    // is #showcase); unknown slugs fall back to the plain homepage.
+    const backLink = document.getElementById('archive-back-link');
+    if (backLink) {
+      const backAnchor = { 'film': '#showcase', 'commercial': '#commercial', 'animation': '#animation', 'music': '#music', 'visual-art': '#visual-art' }[slug];
+      backLink.setAttribute('href', backAnchor ? '/' + backAnchor : '/');
+      backLink.setAttribute('data-i18n', backAnchor ? 'archive.back.' + slug : 'archive.backHome');
+      if (window.IFAI_I18N) window.IFAI_I18N.applyLanguage(window.IFAI_I18N.getLang(), { silent: true });
+    }
 
     const grid = document.getElementById('archive-grid');
     const emptyEl = document.getElementById('archive-empty');
