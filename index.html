@@ -438,22 +438,6 @@
 <!-- Vignette Overlays -->
 <div class="absolute inset-0 bg-gradient-to-t from-cyber-surface via-cyber-darkBg/50 to-transparent"></div>
 <div class="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-cyber-surface/90 hidden lg:block"></div>
-<div class="relative z-10 p-6 sm:p-8 w-full flex flex-col justify-between h-full">
-<div class="pt-4">
-<p class="italic font-medium text-3xl sm:text-4xl text-slate-100 drop-shadow-md -rotate-3 leading-tight select-none">
-                Good Stories<br>
-<span class="text-cyber-cyan">New Possibilities</span>
-</p>
-</div>
-<div class="border-l-2 border-[#00e5ff] pl-3 mt-12 backdrop-blur-sm bg-black/40 py-1.5 pr-4 inline-block w-fit rounded-r">
-<span class="block font-mono text-[10px] tracking-[0.25em] text-white uppercase font-bold">
-                Creative People
-              </span>
-<span class="block font-mono text-xs tracking-[0.15em] text-slate-300 uppercase">
-                Brighter Tomorrow
-              </span>
-</div>
-</div>
 </div>
 <!-- Right Column: Identity, Quote & Actions -->
 <div class="lg:col-span-6 p-6 sm:p-10 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-cyber-border relative z-10">
@@ -462,18 +446,6 @@
 <span data-i18n="creator.profileBadge" class="text-[11px] font-mono px-2 py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30">
                 CREATOR PROFILE
               </span>
-<!-- Quick Actions (visual only for now) -->
-<div class="flex items-center gap-2">
-<button aria-label="Follow" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors" type="button">
-<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
-<button aria-label="Share profile" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors" type="button">
-<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
-<button aria-label="Save profile" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors" type="button">
-<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
-</div>
 </div>
 <!-- Creator Name and Role -->
 <div class="space-y-2 mb-8">
@@ -492,10 +464,17 @@
 </div>
 </div>
 <!-- Quote Block -->
-<blockquote class="relative p-5 rounded-xl bg-cyber-darkBg/60 text-slate-300 text-sm sm:text-base leading-relaxed italic mb-8">
-<span class="text-cyber-cyan text-2xl absolute -top-2 left-2 opacity-40">“</span>
-<span data-i18n="creator.quote">AI is not a replacement for a storyteller. AI gives us a new way to tell stories on a wider scale.</span>
+<blockquote class="p-5 rounded-xl bg-cyber-darkBg/60 text-slate-300 text-sm sm:text-base leading-relaxed italic mb-8">
+<span class="text-cyber-cyan text-xl not-italic">“</span><span data-i18n="creator.quote">AI is not a replacement for a storyteller. It gives us a new way to tell stories on a wider scale, yet every film still begins with human emotion and one question: what should the audience feel?</span><span class="text-cyber-cyan text-xl not-italic">”</span>
 </blockquote>
+</div>
+<!-- Share -->
+<div class="pt-4 flex items-center justify-end gap-3" id="creator-share-row">
+<a data-share="whatsapp" target="_blank" rel="noopener" title="WhatsApp" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+<a data-share="facebook" target="_blank" rel="noopener" title="Facebook" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+<a data-share="threads" target="_blank" rel="noopener" title="Threads" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-threads"></i></a>
+<a data-share="linkedin" target="_blank" rel="noopener" title="LinkedIn" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
+<button type="button" data-share-copy title="Copy link" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-solid fa-link"></i></button>
 </div>
 </div>
 </div>
@@ -853,7 +832,7 @@
       'nav.showcase': 'Showcase', 'nav.journal': 'Journal', 'nav.creatorHub': 'Creator Hub',
       "creator.status": "VERIFIED IFAI FELLOW",
       "creator.profileBadge": "CREATOR PROFILE",
-      "creator.quote": "AI is not a replacement for a storyteller. AI gives us a new way to tell stories on a wider scale.",
+      "creator.quote": "AI is not a replacement for a storyteller. It gives us a new way to tell stories on a wider scale, yet every film still begins with human emotion and one question: what should the audience feel?",
       "creator.aboutTitle": "About the Creator",
       "creator.bio": "Raka Pratama is a filmmaker and visual creator exploring how artificial intelligence can become a new language in cinema. Raka's work blends a cinematic approach with AI technology to create visual stories that still begin from human perspective and emotion.",
       "creator.moreAbout": "More About Raka",
@@ -902,7 +881,7 @@
       'nav.showcase': 'Etalase', 'nav.journal': 'Jurnal', 'nav.creatorHub': 'Creator Hub',
       "creator.status": "IFAI FELLOW TERVERIFIKASI",
       "creator.profileBadge": "PROFIL CREATOR",
-      "creator.quote": "AI bukan pengganti seorang storyteller. AI memberi kita cara baru untuk menceritakan kisah yang lebih luas.",
+      "creator.quote": "AI bukan pengganti seorang storyteller. AI memberi cara baru untuk menceritakan kisah yang lebih luas, namun setiap film tetap berawal dari emosi manusia dan satu pertanyaan: apa yang ingin dirasakan penonton?",
       "creator.aboutTitle": "Tentang Creator",
       "creator.bio": "Raka Pratama adalah filmmaker dan kreator visual yang mengeksplorasi bagaimana kecerdasan buatan dapat menjadi bahasa baru dalam sinema. Karyanya memadukan pendekatan sinematik dengan teknologi AI untuk menciptakan cerita visual yang tetap berangkat dari perspektif dan emosi manusia.",
       "creator.moreAbout": "Lebih Banyak Tentang Raka",
@@ -1306,6 +1285,36 @@
     align();
     if (stop || ++ticks >= 16) clearInterval(timer);
   }, 250);
+})();
+</script>
+<script>
+// Creator Hub share row: shares the section link (placeholder title until the
+// creator is admin-managed).
+(function () {
+  const row = document.getElementById('creator-share-row');
+  if (!row) return;
+  const url = window.location.origin + '/#creator-hub';
+  const title = 'Raka Pratama — IFAI Creator Hub';
+  const shareUrls = {
+    whatsapp: 'https://api.whatsapp.com/send?text=' + encodeURIComponent(title + ' | IFAI - ' + url),
+    facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url),
+    threads: 'https://www.threads.net/intent/post?text=' + encodeURIComponent(title + ' | IFAI - ' + url),
+    linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url)
+  };
+  row.querySelectorAll('[data-share]').forEach((el) => { el.href = shareUrls[el.getAttribute('data-share')]; });
+  const copyBtn = row.querySelector('[data-share-copy]');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(url);
+        const icon = copyBtn.querySelector('i');
+        icon.className = 'fa-solid fa-check';
+        setTimeout(() => { icon.className = 'fa-solid fa-link'; }, 1500);
+      } catch (e) {
+        // clipboard API unavailable — nothing else to fall back to here
+      }
+    });
+  }
 })();
 </script>
 </body>
