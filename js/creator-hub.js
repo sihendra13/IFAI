@@ -237,14 +237,13 @@ ${fields.map((f) => `<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim bor
 <span data-i18n="creator.featuredBadge" class="px-2 py-0.5 rounded text-[10px] font-mono bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/30">MAIN SHOWCASE</span>
 </div>
 <article class="rounded-2xl bg-cyber-surface border border-zinc-700 overflow-hidden shadow-xl">
-<div class="grid grid-cols-1 lg:grid-cols-12">
-<div data-work-media data-title="${esc(c.work_title)}" class="lg:col-span-7 relative group bg-black overflow-hidden aspect-video lg:aspect-auto lg:min-h-[360px]">
+<div data-work-media data-title="${esc(c.work_title)}" class="relative group bg-black overflow-hidden aspect-video">
 ${workImg ? `<img alt="${esc(c.work_title)}" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" src="${esc(workImg)}"${ytId ? ` onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${ytId}/hqdefault.jpg'"` : ''}>` : ''}
 ${playBtn ? `<div class="absolute inset-0 flex items-center justify-center">${playBtn}</div>` : ''}
 ${c.work_duration ? `<div class="absolute bottom-4 left-4 font-mono text-xs text-white/80 bg-black/60 px-2 py-1 rounded border border-white/10">${esc(c.work_duration)}</div>` : ''}
 </div>
-<div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between">
-<div class="space-y-4">
+<div class="p-6 sm:p-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="space-y-4 min-w-0 md:max-w-3xl">
 ${meta ? `<div><span class="inline-block text-[11px] font-mono uppercase px-2 py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30">${esc(meta)}</span></div>` : ''}
 <div>
 <h4 class="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-tight">${esc(c.work_title)}</h4>
@@ -252,8 +251,7 @@ ${meta ? `<div><span class="inline-block text-[11px] font-mono uppercase px-2 py
 </div>
 ${synopsis ? `<p class="text-slate-300 text-sm leading-relaxed font-normal">${esc(synopsis)}</p>` : ''}
 </div>
-${watchBtn ? `<div class="pt-6 mt-4 border-t border-zinc-700 flex justify-end">${watchBtn}</div>` : ''}
-</div>
+${watchBtn ? `<div class="flex-shrink-0">${watchBtn}</div>` : ''}
 </div>
 </article>
 </div>`;
