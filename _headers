@@ -1,0 +1,4 @@
+# Cloudflare Pages: always revalidate our own scripts, so a deploy reaches returning
+# visitors immediately (the default is a 4 hour browser cache).
+/js/*
+  Cache-Control: no-cache
