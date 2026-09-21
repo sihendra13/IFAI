@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>IFAI Signals</title>
+<title>Journal | IFAI</title>
 <link rel="icon" type="image/x-icon" href="/image/favicon.ico"/>
 <link rel="icon" type="image/png" sizes="16x16" href="/image/favicon-16x16.png"/>
 <link rel="icon" type="image/png" sizes="32x32" href="/image/favicon-32x32.png"/>
@@ -17,10 +17,7 @@
 <meta property="og:image" content="https://www.myifai.com/image/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
-<meta property="og:url" content="https://www.myifai.com/signal"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="IFAI — Indonesia Future Arts &amp; Intelligence"/>
-<meta name="twitter:description" content="Indonesia Future Arts &amp; Intelligence is Indonesia's leading platform for AI-driven creativity, bridging art, technology, and human imagination through films, visuals, and synthetic music."/>
 <meta name="twitter:image" content="https://www.myifai.com/image/og-image.png"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <!-- Tailwind CSS CDN with forms & container queries plugins -->
@@ -164,45 +161,29 @@
 </div>
 
 <main class="pt-32 pb-24 min-h-screen bg-cosmic-950">
-<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-<!-- Back link -->
-<a data-i18n="signal.backToHome" href="/#journal" class="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] transition-colors mb-6">← Back to IFAI Signals</a>
-
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <!-- Breadcrumb -->
 <div class="flex items-center gap-2 text-xs font-mono text-zinc-500 mb-6">
-<a data-i18n="nav.journal" href="/journal" class="hover:text-[#f75500] transition-colors">Journal</a>
+<a data-i18n="journal.crumbHome" href="/" class="hover:text-[#f75500] transition-colors">Home</a>
 <span>/</span>
-<span id="signal-title-crumb" class="text-zinc-300">Loading…</span>
+<span data-i18n="nav.journal" class="text-zinc-300">Journal</span>
 </div>
 
-<span id="signal-label" class="inline-block px-3 py-1 rounded-full text-xs font-mono uppercase bg-[#00e5ff]/10 border border-[#00e5ff]/30 text-[#00e5ff] mb-4">Loading…</span>
-<h1 id="signal-title" class="text-3xl sm:text-5xl font-bold tracking-tight text-white mb-4">Loading…</h1>
-<div id="signal-date" style="display:none;" class="text-sm font-mono text-zinc-500 mb-4"></div>
-
-<!-- Share (top) -->
-<div class="signal-share-row flex items-center gap-3 mb-8">
-<span data-i18n="signal.share" class="text-xs font-mono text-zinc-500 uppercase tracking-wider">Share:</span>
-<a data-share="whatsapp" target="_blank" rel="noopener" title="WhatsApp" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
-<a data-share="facebook" target="_blank" rel="noopener" title="Facebook" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
-<a data-share="threads" target="_blank" rel="noopener" title="Threads" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-threads"></i></a>
-<a data-share="linkedin" target="_blank" rel="noopener" title="LinkedIn" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
-<button type="button" data-share-copy title="Copy link" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-solid fa-link"></i></button>
+<!-- Section Header -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+<div>
+<span data-i18n="programs.eyebrow" class="text-xs font-mono text-white tracking-widest uppercase">Incubation &amp; Keynotes</span>
+<h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-1">IFAI SIGNALS</h1>
+</div>
+<a data-i18n="archive.backHome" href="/" class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] flex items-center gap-1.5 transition-colors">← Back to Home</a>
 </div>
 
-<div class="relative w-full aspect-video rounded-2xl overflow-hidden mb-10 bg-cosmic-850 border border-zinc-800">
-<img id="signal-image" class="w-full h-full object-cover" alt="">
-</div>
+<!-- Journal Grid — every signal, newest first -->
+<div id="journal-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-8"></div>
 
-<div id="signal-description" class="text-zinc-300 leading-relaxed flex flex-col gap-4"></div>
-
-<!-- Share (bottom) -->
-<div class="signal-share-row flex items-center gap-3 mt-10 pt-8 border-t border-zinc-800">
-<span data-i18n="signal.share" class="text-xs font-mono text-zinc-500 uppercase tracking-wider">Share:</span>
-<a data-share="whatsapp" target="_blank" rel="noopener" title="WhatsApp" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
-<a data-share="facebook" target="_blank" rel="noopener" title="Facebook" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
-<a data-share="threads" target="_blank" rel="noopener" title="Threads" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-threads"></i></a>
-<a data-share="linkedin" target="_blank" rel="noopener" title="LinkedIn" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
-<button type="button" data-share-copy title="Copy link" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-solid fa-link"></i></button>
+<!-- Empty state -->
+<div id="journal-empty" hidden class="text-center py-24">
+<p data-i18n="journal.empty" class="text-zinc-500 text-sm">No journal entries published yet.</p>
 </div>
 </div>
 </main>
@@ -285,8 +266,10 @@
       'nav.showcase': 'Showcase', 'nav.journal': 'Journal', 'nav.about': 'About',
       'nav.login': 'Log In', 'nav.join': 'Join Community',
       'auth.title': 'Join IFAI Community', 'auth.subtitle': 'Sign in to submit your work and join the community.', 'auth.google': 'Continue with Google', 'auth.or': 'or', 'auth.emailPlaceholder': 'you@email.com', 'auth.sendLink': 'Send Magic Link', 'auth.linkSent': 'Check your email for the login link.', 'auth.logout': 'Log Out',
-      'signal.backToHome': '← Back to IFAI Signals', 'signal.share': 'Share:',
-      'signal.notFound': 'This IFAI Signal could not be found.',
+      'archive.backHome': '← Back to Home',
+      'programs.eyebrow': 'Incubation & Keynotes',
+      'journal.crumbHome': 'Home',
+      'journal.empty': 'No journal entries published yet.',
       'footer.brandDesc': "Indonesia Future Arts & Intelligence is Indonesia's leading platform for AI-driven creativity, bridging art, technology, and human imagination through films, visuals, and synthetic music.",
       'footer.location': 'Based in Jakarta, Indonesia • Empowering Nationwide Creators',
       'footer.col1.title': 'Explore', 'footer.col1.link1': 'AI Film Showcase', 'footer.col1.link2': 'Commercial Video', 'footer.col1.link3': 'Neural Soundscapes', 'footer.col1.link4': 'Summits & Events', 'footer.col1.link5': 'Archive 2025',
@@ -298,8 +281,10 @@
       'nav.showcase': 'Etalase', 'nav.journal': 'Jurnal', 'nav.about': 'Tentang',
       'nav.login': 'Masuk', 'nav.join': 'Gabung Komunitas',
       'auth.title': 'Gabung Komunitas IFAI', 'auth.subtitle': 'Masuk untuk mengirim karyamu dan bergabung dengan komunitas.', 'auth.google': 'Lanjutkan dengan Google', 'auth.or': 'atau', 'auth.emailPlaceholder': 'kamu@email.com', 'auth.sendLink': 'Kirim Link Masuk', 'auth.linkSent': 'Cek email kamu untuk link masuk.', 'auth.logout': 'Keluar',
-      'signal.backToHome': '← Kembali ke IFAI Signals', 'signal.share': 'Bagikan:',
-      'signal.notFound': 'IFAI Signal ini tidak ditemukan.',
+      'archive.backHome': '← Kembali ke Beranda',
+      'programs.eyebrow': 'Inkubasi & Sesi Utama',
+      'journal.crumbHome': 'Beranda',
+      'journal.empty': 'Belum ada jurnal yang dipublikasikan.',
       'footer.brandDesc': 'Indonesia Future Arts & Intelligence adalah platform terdepan Indonesia untuk kreativitas berbasis AI, menjembatani seni, teknologi, dan imajinasi manusia lewat film, visual, dan musik sintetis.',
       'footer.location': 'Berbasis di Jakarta, Indonesia • Memberdayakan Kreator Seluruh Nusantara',
       'footer.col1.title': 'Jelajahi', 'footer.col1.link1': 'Etalase Film AI', 'footer.col1.link2': 'Video Iklan', 'footer.col1.link3': 'Lanskap Suara Neural', 'footer.col1.link4': 'Summit & Acara', 'footer.col1.link5': 'Arsip 2025',
@@ -375,9 +360,8 @@
 </script>
 
 <!-- ============================================================
-     SIGNAL LOADER — reads ?id=<signal id> from the URL and renders
-     that one IFAI Signal (image + article text), same header/footer
-     as the rest of the site.
+     JOURNAL LOADER — lists ALL IFAI Signals (newest first), unlike
+     the homepage section which only shows the latest 2.
      ============================================================ -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -400,93 +384,102 @@
     return div.innerHTML;
   }
 
-  function pickField(signal, field, lang) {
+  function pickSignalField(signal, field, lang) {
     const isId = lang === 'id';
     return (isId ? signal[field + '_id'] : signal[field + '_en']) || signal[field + '_en'] || signal[field + '_id'] || '';
   }
 
-  let currentSignal = null;
-
-  function showNotFound() {
-    const lang = window.IFAI_I18N ? window.IFAI_I18N.getLang() : 'en';
-    const msg = (window.IFAI_I18N && window.IFAI_I18N.dict[lang]['signal.notFound']) || 'This IFAI Signal could not be found.';
-    document.title = 'IFAI Signals';
-    document.getElementById('signal-title-crumb').textContent = '404';
-    document.getElementById('signal-label').style.display = 'none';
-    document.getElementById('signal-title').textContent = msg;
-    document.getElementById('signal-image').closest('div').style.display = 'none';
+  function formatSignalDate(dateStr, lang) {
+    if (!dateStr) return '';
+    const d = new Date(dateStr + 'T00:00:00');
+    return d.toLocaleDateString(lang === 'id' ? 'id-ID' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' });
   }
 
-  function renderSignal(lang) {
-    const s = currentSignal;
-    if (!s) return;
-    const label = pickField(s, 'label', lang);
-    const title = pickField(s, 'title', lang);
-    const description = pickField(s, 'description', lang);
+  // Same card as the homepage IFAI SIGNALS section (index.html), minus the
+  // horizontal-scroll sizing classes since this page is a plain grid.
+  function signalCardHtml(signal, lang) {
+    const label = pickSignalField(signal, 'label', lang);
+    const title = pickSignalField(signal, 'title', lang);
+    const description = pickSignalField(signal, 'description', lang);
+    const dateStr = formatSignalDate(signal.event_date, lang);
 
-    document.title = `${title} | IFAI`;
-    document.getElementById('signal-title-crumb').textContent = title;
-    document.getElementById('signal-label').textContent = label;
-    document.getElementById('signal-title').textContent = title;
+    return `
+<a href="signal?id=${encodeURIComponent(signal.id)}" class="group relative rounded-3xl overflow-hidden border border-zinc-700 bg-cosmic-850 hover:border-[#E3A85F]/50 hover:shadow-[0_0_40px_6px_rgba(227,168,95,0.3)] transition-all duration-300 flex flex-col sm:flex-row">
+<div class="flex-1 p-6 sm:p-8 flex flex-col justify-between gap-4 order-2 sm:order-1">
+<div>
+<span class="inline-block px-3 py-1 rounded-full text-xs font-mono uppercase bg-[#00e5ff]/10 border border-[#00e5ff]/30 text-[#00e5ff] mb-3">${escapeHtml(label)}</span>
+<h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-[#E3A85F] transition-colors mb-2 line-clamp-3">${escapeHtml(title)}</h3>
+<p class="text-zinc-400 text-sm leading-relaxed line-clamp-3">${escapeHtml(description)}</p>
+</div>
+<div class="flex items-center gap-4 pt-4 border-t border-zinc-700">
+<span class="text-xs font-mono text-zinc-400">${escapeHtml(dateStr)}</span>
+<span class="relative px-5 py-2.5 rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 group-hover:text-black transition-all duration-300 glow-white">
+<span class="relative z-10">See Detail →</span>
+<span class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-white transition-transform duration-300 ease-out"></span>
+</span>
+</div>
+</div>
+<div class="relative w-full sm:w-2/5 aspect-[16/9] sm:aspect-auto order-1 sm:order-2">
+<img src="${signal.image_url}" class="w-full h-full object-cover" alt="${escapeHtml(title)}">
+<div class="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-cosmic-850 from-0% via-transparent via-10% to-transparent to-100%"></div>
+</div>
+</a>`;
+  }
 
-    const imgEl = document.getElementById('signal-image');
-    imgEl.src = s.image_url || '';
-    imgEl.alt = title;
+  function journalSkeletonCardsHtml(count = 4) {
+    let out = '';
+    for (let i = 0; i < count; i++) {
+      out += `
+<div class="relative rounded-3xl overflow-hidden border border-zinc-800 bg-cosmic-850/80 flex flex-col sm:flex-row animate-pulse pointer-events-none select-none" aria-hidden="true">
+<div class="flex-1 p-6 sm:p-8 flex flex-col justify-between gap-4 order-2 sm:order-1">
+<div class="space-y-3">
+<div class="w-20 h-5 rounded-full bg-zinc-800/70"></div>
+<div class="h-6 bg-zinc-700/50 rounded-md w-4/5"></div>
+<div class="h-4 bg-zinc-800/50 rounded-md w-full"></div>
+<div class="h-4 bg-zinc-800/40 rounded-md w-2/3"></div>
+</div>
+<div class="flex items-center gap-4 pt-4 border-t border-zinc-800/60">
+<div class="w-20 h-3 bg-zinc-800/60 rounded"></div>
+<div class="w-24 h-8 bg-zinc-800/60 rounded-full"></div>
+</div>
+</div>
+<div class="relative w-full sm:w-2/5 aspect-[16/9] sm:aspect-auto order-1 sm:order-2 bg-zinc-800/40 min-h-[160px]"></div>
+</div>`;
+    }
+    return out;
+  }
 
-    const dateEl = document.getElementById('signal-date');
-    if (s.event_date) {
-      const d = new Date(s.event_date + 'T00:00:00');
-      dateEl.textContent = d.toLocaleDateString(lang === 'id' ? 'id-ID' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' });
-      dateEl.style.display = '';
-    } else {
-      dateEl.style.display = 'none';
+  const grid = document.getElementById('journal-grid');
+  const emptyEl = document.getElementById('journal-empty');
+  let cachedSignals = [];
+
+  function renderGrid(lang) {
+    grid.innerHTML = cachedSignals.map((s) => signalCardHtml(s, lang)).join('');
+    if (window.IFAI_I18N) window.IFAI_I18N.applyLanguage(lang, { silent: true });
+  }
+
+  async function loadJournal() {
+    grid.innerHTML = journalSkeletonCardsHtml(4);
+
+    const { data: signals, error } = await sb
+      .from('signals')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      console.error('IFAI: failed to load journal', error);
+      grid.innerHTML = '';
+      return;
     }
 
-    const descEl = document.getElementById('signal-description');
-    descEl.innerHTML = (description || '')
-      .split('\n')
-      .filter((p) => p.trim())
-      .map((p) => `<p>${escapeHtml(p)}</p>`)
-      .join('');
+    cachedSignals = signals || [];
+    renderGrid(window.IFAI_I18N ? window.IFAI_I18N.getLang() : 'en');
+    emptyEl.hidden = cachedSignals.length > 0;
 
-    const pageUrl = window.location.href;
-    const shareUrls = {
-      whatsapp: `https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' | IFAI - ' + pageUrl)}`,
-      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`,
-      threads: `https://www.threads.net/intent/post?text=${encodeURIComponent(title + ' | IFAI - ' + pageUrl)}`,
-      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`
-    };
-    document.querySelectorAll('[data-share]').forEach((el) => {
-      el.href = shareUrls[el.getAttribute('data-share')];
-    });
+    window.addEventListener('ifai:langchange', (e) => renderGrid(e.detail.lang));
   }
 
-  document.querySelectorAll('[data-share-copy]').forEach((copyBtn) => {
-    copyBtn.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(window.location.href);
-        const icon = copyBtn.querySelector('i');
-        icon.className = 'fa-solid fa-check';
-        setTimeout(() => { icon.className = 'fa-solid fa-link'; }, 1500);
-      } catch (e) {
-        // clipboard API unavailable — nothing else to fall back to here
-      }
-    });
-  });
-
-  async function loadSignal() {
-    const id = new URLSearchParams(window.location.search).get('id');
-    if (!id) { showNotFound(); return; }
-
-    const { data: signal, error } = await sb.from('signals').select('*').eq('id', id).single();
-    if (error || !signal) { showNotFound(); return; }
-
-    currentSignal = signal;
-    renderSignal(window.IFAI_I18N ? window.IFAI_I18N.getLang() : 'en');
-    window.addEventListener('ifai:langchange', (e) => renderSignal(e.detail.lang));
-  }
-
-  loadSignal();
+  loadJournal();
 })();
 </script>
 </body>

@@ -123,9 +123,8 @@
 <!-- Primary Navigation Links -->
 <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide font-jakarta">
 <a data-i18n="nav.showcase" class="text-zinc-300 hover:text-[#f75500] transition-colors" href="#showcase">Showcase</a>
-<a data-i18n="nav.programs" class="text-zinc-300 hover:text-[#f75500] transition-colors" href="#programs">Programs</a>
+<a data-i18n="nav.journal" class="text-zinc-300 hover:text-[#f75500] transition-colors" href="#journal">Journal</a>
 <a class="hidden text-zinc-300 hover:text-[#f75500] transition-colors" href="#manifesto">Creator Hub</a>
-<a class="hidden text-zinc-300 hover:text-[#f75500] transition-colors" href="#manifesto">Journal</a>
 <a data-i18n="nav.about" class="text-zinc-300 hover:text-[#f75500] transition-colors" href="#manifesto">About</a>
 </nav>
 <!-- Action Buttons -->
@@ -153,7 +152,7 @@
 <!-- Mobile Menu Panel -->
 <div id="mobile-menu-panel" class="hidden md:hidden fixed top-24 left-4 right-4 sm:left-6 sm:right-6 z-40 bg-cosmic-950/95 backdrop-blur-xl border border-zinc-700 rounded-3xl shadow-lg shadow-black/40 p-6 flex flex-col gap-4">
 <a data-i18n="nav.showcase" class="text-zinc-200 hover:text-[#f75500] transition-colors text-base font-medium" href="#showcase">Showcase</a>
-<a data-i18n="nav.programs" class="text-zinc-200 hover:text-[#f75500] transition-colors text-base font-medium" href="#programs">Programs</a>
+<a data-i18n="nav.journal" class="text-zinc-200 hover:text-[#f75500] transition-colors text-base font-medium" href="#journal">Journal</a>
 <a data-i18n="nav.about" class="text-zinc-200 hover:text-[#f75500] transition-colors text-base font-medium" href="#manifesto">About</a>
 <div class="h-px bg-zinc-800 my-1"></div>
 <div class="flex items-center justify-between">
@@ -392,15 +391,15 @@
 </section>
 <!-- END: CommercialAndMusicShowcase -->
 <!-- BEGIN: ProgramsAndEventsSection -->
-<section class="py-24 border-b border-zinc-800 bg-cosmic-950" id="programs">
+<section class="py-24 border-b border-zinc-800 bg-cosmic-950" id="journal">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
 <div>
 <span data-i18n="programs.eyebrow" class="text-xs font-mono text-white tracking-widest uppercase">Incubation &amp; Keynotes</span>
 <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-1">IFAI SIGNALS</h2>
 </div>
-<a id="signals-view-all" style="display:none;" data-i18n="programs.viewAll" class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] flex items-center gap-1.5 transition-colors" href="#">
-            View All Events →
+<a id="signals-view-all" style="display:none;" data-i18n="programs.viewAll" class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] flex items-center gap-1.5 transition-colors" href="/journal">
+            View All Journal →
           </a>
 </div>
 <!-- 2-Column Signals grid — populated entirely from the "signals" table by the loader script below. Stays empty if there's a fetch error or zero signals; no hardcoded fallback content. -->
@@ -503,7 +502,7 @@
 <li><a data-i18n="footer.col1.link1" class="hover:text-[#f75500] transition-colors" href="#showcase">AI Film Showcase</a></li>
 <li><a data-i18n="footer.col1.link2" class="hover:text-[#f75500] transition-colors" href="#showcase">Commercial Video</a></li>
 <li><a data-i18n="footer.col1.link3" class="hover:text-[#f75500] transition-colors" href="#showcase">Neural Soundscapes</a></li>
-<li><a data-i18n="footer.col1.link4" class="hover:text-[#f75500] transition-colors" href="#programs">Summits &amp; Events</a></li>
+<li><a data-i18n="footer.col1.link4" class="hover:text-[#f75500] transition-colors" href="#journal">Summits &amp; Events</a></li>
 <li><a data-i18n="footer.col1.link5" class="hover:text-[#f75500] transition-colors" href="#">Archive 2025</a></li>
 </ul>
 </div>
@@ -554,7 +553,7 @@
   const LANG_KEY = 'ifai_lang';
   const DICT = {
     en: {
-      'nav.showcase': 'Showcase', 'nav.programs': 'Programs', 'nav.about': 'About',
+      'nav.showcase': 'Showcase', 'nav.journal': 'Journal', 'nav.about': 'About',
       'nav.login': 'Log In', 'nav.join': 'Join Community',
       'auth.title': 'Join IFAI Community', 'auth.subtitle': 'Sign in to submit your work and join the community.', 'auth.google': 'Continue with Google', 'auth.or': 'or', 'auth.emailPlaceholder': 'you@email.com', 'auth.sendLink': 'Send Magic Link', 'auth.linkSent': 'Check your email for the login link.', 'auth.logout': 'Log Out',
       'hero.title': 'Indonesia Future Arts & Intelligence',
@@ -575,7 +574,7 @@
       'cta.title': 'Join the Indonesian AI Vanguard',
       'cta.subtitle': 'Submit your autonomous films, commercial work, or neural compositions for upcoming seasonal curations.',
       'cta.button': 'Submit Your Creation →',
-      'programs.eyebrow': 'Incubation & Keynotes', 'programs.viewAll': 'View All Events →',
+      'programs.eyebrow': 'Incubation & Keynotes', 'programs.viewAll': 'View All Journal →',
       'manifesto.eyebrow': 'Manifesto & Ecosystem', 'manifesto.title': 'Where Art and Intelligence Converge.',
       'manifesto.body': "Indonesia Future Arts & Intelligence (IFAI) is a non-profit foundation and movement creating a sanctuary for local creators to showcase, learn, and sculpt tomorrow's digital heritage. We believe artificial intelligence is not a replacement for human soul, but an infinitely expandable medium.",
       'footer.brandDesc': "Indonesia Future Arts & Intelligence is Indonesia's leading platform for AI-driven creativity, bridging art, technology, and human imagination through films, visuals, and synthetic music.",
@@ -586,7 +585,7 @@
       'footer.copyright': '© 2025 IFAI (Indonesia Future Arts & Intelligence). All rights reserved.',
     },
     id: {
-      'nav.showcase': 'Etalase', 'nav.programs': 'Program', 'nav.about': 'Tentang',
+      'nav.showcase': 'Etalase', 'nav.journal': 'Jurnal', 'nav.about': 'Tentang',
       'nav.login': 'Masuk', 'nav.join': 'Gabung Komunitas',
       'auth.title': 'Gabung Komunitas IFAI', 'auth.subtitle': 'Masuk untuk mengirim karyamu dan bergabung dengan komunitas.', 'auth.google': 'Lanjutkan dengan Google', 'auth.or': 'atau', 'auth.emailPlaceholder': 'kamu@email.com', 'auth.sendLink': 'Kirim Link Masuk', 'auth.linkSent': 'Cek email kamu untuk link masuk.', 'auth.logout': 'Keluar',
       'hero.title': 'Indonesia Future Arts & Intelligence',
@@ -607,7 +606,7 @@
       'cta.title': 'Bergabung dengan Garda Depan AI Indonesia',
       'cta.subtitle': 'Kirim film otonom, karya iklan, atau komposisi neural kamu untuk kurasi musiman mendatang.',
       'cta.button': 'Kirim Karya Kamu →',
-      'programs.eyebrow': 'Inkubasi & Sesi Utama', 'programs.viewAll': 'Lihat Semua Acara →',
+      'programs.eyebrow': 'Inkubasi & Sesi Utama', 'programs.viewAll': 'Lihat Semua Jurnal →',
       'manifesto.eyebrow': 'Manifesto & Ekosistem', 'manifesto.title': 'Tempat Seni dan Kecerdasan Bertemu.',
       'manifesto.body': 'Indonesia Future Arts & Intelligence (IFAI) adalah yayasan nirlaba dan gerakan yang menciptakan ruang bagi kreator lokal untuk menampilkan karya, belajar, dan membentuk warisan digital masa depan. Kami percaya kecerdasan buatan bukan pengganti jiwa manusia, melainkan medium yang dapat berkembang tanpa batas.',
       'footer.brandDesc': 'Indonesia Future Arts & Intelligence adalah platform terdepan Indonesia untuk kreativitas berbasis AI, menjembatani seni, teknologi, dan imajinasi manusia lewat film, visual, dan musik sintetis.',
@@ -935,7 +934,7 @@
       .from('signals')
       .select('*', { count: 'exact' })
       .order('created_at', { ascending: false })
-      .limit(4);
+      .limit(2);
 
     if (error || !signals || !signals.length) {
       if (error) console.error('IFAI: failed to load signals', error);
