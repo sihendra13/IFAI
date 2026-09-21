@@ -470,8 +470,8 @@
           <input type="text" id="ch-work-title" placeholder="After The Rain" class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
         </div>
         <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Durasi <span class="normal-case text-zinc-500">(tampil di pojok gambar)</span></label>
-          <input type="text" id="ch-work-duration" placeholder="08:24" class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Durasi (otomatis) <span class="normal-case text-zinc-500">(tampil di pojok gambar)</span></label>
+          <input type="text" id="ch-work-duration" placeholder="Terisi otomatis dari link YouTube" class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
         </div>
         </div>
         <div class="flex flex-col gap-1.5">
@@ -1546,6 +1546,7 @@
     });
     chFields.set([]);
     chTools.set([]);
+    chProbedUrl = '';
     chFormTitle.textContent = 'Creator Hub';
     btnSubmitCh.textContent = 'Submit Creator';
     btnCancelChEdit.hidden = true;
@@ -1679,6 +1680,7 @@
     set('ch-work-meta-id', c.work_meta_id); set('ch-work-meta-en', c.work_meta_en);
     set('ch-work-synopsis-id', c.work_synopsis_id); set('ch-work-synopsis-en', c.work_synopsis_en);
     set('ch-work-watch-url', c.work_watch_url);
+    chProbedUrl = c.work_watch_url || '';
     document.getElementById('ch-featured').value = c.is_featured ? '1' : '';
 
     document.getElementById('ch-photo-current').value = c.photo_url || '';
@@ -1695,6 +1697,54 @@
     document.getElementById('form-ch-container').classList.add('border-[#f75500]');
     document.getElementById('form-ch-container').scrollIntoView({ behavior: 'smooth' });
   }
+
+  // Duration is read from the YouTube link once the field loses focus (same approach
+  // as the "Post Karya" form). A changed link always refreshes it; an unchanged link
+  // never overwrites a value typed by hand.
+  let chProbePlayer = null;
+  let chProbedUrl = '';
+  document.getElementById('ch-work-watch-url').addEventListener('blur', () => {
+    const durationEl = document.getElementById('ch-work-duration');
+    const url = chVal('ch-work-watch-url');
+    const videoId = extractYouTubeId(url);
+    if (!videoId) return;
+    if (url === chProbedUrl && durationEl.value.trim()) return;
+    chProbedUrl = url;
+
+    const probe = () => {
+      if (chProbePlayer) { chProbePlayer.destroy(); chProbePlayer = null; }
+      let probeDiv = document.getElementById('yt-duration-probe-ch');
+      if (!probeDiv) {
+        probeDiv = document.createElement('div');
+        probeDiv.id = 'yt-duration-probe-ch';
+        probeDiv.style.cssText = 'position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;';
+        document.body.appendChild(probeDiv);
+      }
+      chProbePlayer = new YT.Player(probeDiv, {
+        videoId,
+        events: {
+          onReady: (e) => {
+            const dur = e.target.getDuration();
+            if (dur > 0) durationEl.value = formatDuration(dur);
+            e.target.destroy();
+            chProbePlayer = null;
+          },
+          onError: () => {
+            if (chProbePlayer) { chProbePlayer.destroy(); chProbePlayer = null; }
+          }
+        }
+      });
+    };
+    // The YouTube API loads in the background; wait for it if it isn't ready yet.
+    if (ytApiReady) probe();
+    else {
+      let tries = 0;
+      const timer = setInterval(() => {
+        if (ytApiReady) { clearInterval(timer); probe(); }
+        else if (++tries > 20) clearInterval(timer);
+      }, 250);
+    }
+  });
 
   async function deleteCreatorSpotlight(id) {
     if (!confirm('Yakin mau hapus creator ini? Tidak bisa dibatalkan.')) return;
