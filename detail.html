@@ -185,7 +185,9 @@ document.getElementById('cinema-player').parentElement.classList.add('animate-pu
 <div id="dp-content-grid" class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
 <!-- LEFT COLUMN: Film narrative, Directorial Notes, Prompt Inspector, Stills (8 cols) -->
 <main class="lg:col-span-8 flex flex-col gap-space-2xl min-w-0">
-<!-- Title & Meta Tags -->
+<!-- Synopsis / Description — FIELD: description -->
+<article class="p-space-lg rounded-2xl bg-surface-container-low border border-zinc-700 flex flex-col gap-space-md relative overflow-hidden shadow-xl">
+<!-- Title & Meta Tags (inside the card so its top lines up with the creator card) -->
 <div class="flex flex-col gap-space-xs">
 <!-- FIELD: tags (array, admin-defined) + FIELD: duration -->
 <div id="dp-tags" class="flex flex-wrap items-center gap-space-xs mb-space-xxs"></div>
@@ -196,8 +198,6 @@ document.getElementById('cinema-player').parentElement.classList.add('animate-pu
 <!-- FIELD: archive_id (optional) -->
 <p id="dp-archive-line" class="font-label-code text-label-code text-[#00f5a0]"></p>
 </div>
-<!-- Synopsis / Description — FIELD: description -->
-<article class="p-space-lg rounded-xl bg-surface-container-low border border-zinc-700 flex flex-col gap-space-md relative overflow-hidden">
 <div class="flex items-center gap-space-xs">
 <span class="material-symbols-outlined text-primary-container text-[20px]">auto_stories</span>
 <h2 data-i18n="detail.synopsisHeader" class="font-title-sm text-title-sm uppercase tracking-wider text-on-surface">Synopsis &amp; Curatorial Concept</h2>
