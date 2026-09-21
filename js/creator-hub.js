@@ -224,8 +224,6 @@ ${fields.map((f) => `<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim bor
       const playLabel = esc('Play: ' + c.work_title);
       const playCls = 'w-[68px] h-12 rounded-xl bg-[#FF0000] hover:bg-[#cc0000] text-white flex items-center justify-center shadow-lg shadow-black/40 hover:scale-110 transition-all duration-300';
       const playIcon = '<svg class="w-6 h-6 fill-current -ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>';
-      const watchCls = PILL_CLS.replace('px-5 py-2.5', 'px-8 py-3 min-w-[200px]');
-      const watchInner = '<svg class="relative z-10 w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg><span class="relative z-10" data-i18n="creator.watchNow">Watch Now</span>' + PILL_SLIDE;
       // YouTube links play in place; any other link opens in a new tab.
       // Placeholder content has no video, so its buttons are visual only.
       const inert = !!c.__placeholder && !watchUrl;
@@ -233,10 +231,6 @@ ${fields.map((f) => `<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim bor
         ? `<button type="button" data-play-video="${ytId}" aria-label="${playLabel}" class="${playCls}">${playIcon}</button>`
         : (watchUrl ? `<a href="${esc(watchUrl)}" target="_blank" rel="noopener" aria-label="${playLabel}" class="${playCls}">${playIcon}</a>`
           : (inert ? `<button type="button" aria-label="${playLabel}" class="${playCls}">${playIcon}</button>` : ''));
-      const watchBtn = ytId
-        ? `<button type="button" data-play-video="${ytId}" class="${watchCls}">${watchInner}</button>`
-        : (watchUrl ? `<a href="${esc(watchUrl)}" target="_blank" rel="noopener" class="${watchCls}">${watchInner}</a>`
-          : (inert ? `<button type="button" class="${watchCls}">${watchInner}</button>` : ''));
       workBlock = `
 <div class="space-y-4 pt-2">
 <div class="flex items-center gap-3">
@@ -250,16 +244,13 @@ ${workImg ? `<img alt="${esc(c.work_title)}" class="w-full h-full object-cover o
 ${playBtn ? `<div class="absolute inset-0 flex items-center justify-center">${playBtn}</div>` : ''}
 ${c.work_duration ? `<div class="absolute bottom-4 left-4 font-mono text-xs text-white/80 bg-black/60 px-2 py-1 rounded border border-white/10">${esc(c.work_duration)}</div>` : ''}
 </div>
-<div class="p-6 sm:p-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
-<div class="space-y-4 min-w-0 md:max-w-3xl">
+<div class="p-6 sm:p-8 space-y-4">
 ${meta ? `<div><span class="inline-block text-[11px] font-mono uppercase px-2 py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30">${esc(meta)}</span></div>` : ''}
 <div>
 <h4 class="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-tight">${esc(c.work_title)}</h4>
 <p class="font-mono text-xs text-white mt-1">${isId ? 'Oleh' : 'By'} ${esc(name)}</p>
 </div>
 ${synopsis ? `<p class="text-slate-300 text-sm leading-relaxed font-normal">${esc(synopsis)}</p>` : ''}
-</div>
-${watchBtn ? `<div class="flex-shrink-0">${watchBtn}</div>` : ''}
 </div>
 </article>
 </div>`;
