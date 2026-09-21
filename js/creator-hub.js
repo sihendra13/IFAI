@@ -150,7 +150,7 @@ ${footer}
     const photo = safeUrl(c.photo_url);
     const shareBtn = 'w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors';
     return `<div class="flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-8">
-${photo ? `<div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-zinc-700 bg-black flex-shrink-0">
+${photo ? `<div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-zinc-700 bg-black flex-shrink-0">
 <img alt="${esc(c.name)}" class="w-full h-full object-cover object-center filter grayscale contrast-110 opacity-85" src="${esc(photo)}">
 </div>` : ''}
 <div class="flex-1 min-w-0">
