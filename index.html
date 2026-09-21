@@ -480,11 +480,10 @@
 </div>
 </article>
 
-<!-- Creator details + featured work: one box -->
-<div class="rounded-2xl bg-cyber-surface border border-cyber-border overflow-hidden">
-<div class="grid grid-cols-1 lg:grid-cols-12">
+<!-- Middle Grid: About + Fields/Tools -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 <!-- About the Creator -->
-<div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between border-cyber-border lg:border-r">
+<div class="lg:col-span-5 rounded-2xl bg-cyber-surface border border-cyber-border p-6 sm:p-8 flex flex-col justify-between">
 <div>
 <div class="flex items-center justify-between mb-4">
 <h3 class="font-mono text-xs uppercase tracking-widest text-white font-bold flex items-center gap-2">
@@ -499,14 +498,15 @@
 </div>
 <div>
 <!-- No destination yet: the creator detail page doesn't exist -->
-<a aria-disabled="true" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-cyber-borderHover bg-cyber-surfaceDim hover:border-cyber-emerald text-slate-200 hover:text-cyber-emerald text-xs font-mono tracking-wider transition-all duration-300 group cursor-pointer">
-<span data-i18n="creator.moreAbout">More About Raka</span>
-<span class="transform group-hover:translate-x-1 transition-transform">→</span>
+<a aria-disabled="true" class="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 hover:text-black transition-all duration-300 glow-white cursor-pointer">
+<span class="relative z-10" data-i18n="creator.moreAbout">More About Raka</span>
+<span class="relative z-10">→</span>
+<span class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-white transition-transform duration-300 ease-out"></span>
 </a>
 </div>
 </div>
 <!-- Creative Fields & Tools -->
-<div class="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between gap-6 border-t lg:border-t-0 border-cyber-border">
+<div class="lg:col-span-7 rounded-2xl bg-cyber-surface border border-cyber-border p-6 sm:p-8 flex flex-col justify-between gap-6">
 <div>
 <div class="flex items-center justify-between mb-3">
 <h3 class="font-mono text-xs uppercase tracking-widest text-white font-bold flex items-center gap-2">
@@ -580,11 +580,12 @@
 </div>
 
 <!-- Featured Work -->
-<div class="border-t border-cyber-border">
-<div class="flex items-center gap-3 px-6 sm:px-8 py-5 border-b border-cyber-border">
+<div class="space-y-4 pt-2">
+<div class="flex items-center gap-3 border-b border-cyber-border pb-3">
 <h3 data-i18n="creator.featuredTitle" class="text-xl font-bold tracking-tight text-white uppercase">Featured Work</h3>
 <span data-i18n="creator.featuredBadge" class="px-2 py-0.5 rounded text-[10px] font-mono bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/30">MAIN SHOWCASE</span>
 </div>
+<article class="rounded-2xl bg-cyber-surface border border-cyber-border overflow-hidden hover:border-cyber-borderHover transition-all duration-300 shadow-xl">
 <div class="grid grid-cols-1 lg:grid-cols-12">
 <!-- Visual pane (the video plays here once a YouTube link is set) -->
 <div data-work-media class="lg:col-span-7 relative group bg-black overflow-hidden aspect-video lg:aspect-auto lg:min-h-[360px]">
@@ -593,8 +594,8 @@
 <span class="px-2.5 py-1 rounded bg-black/70 backdrop-blur-md border border-cyber-emerald/40 text-cyber-emerald font-mono text-[10px] font-bold uppercase tracking-wider">Featured Opus</span>
 </div>
 <div class="absolute inset-0 flex items-center justify-center">
-<button aria-label="Play: After The Rain" class="w-16 h-16 rounded-full bg-cyber-darkBg/80 border-2 border-cyber-emerald text-cyber-emerald flex items-center justify-center backdrop-blur-sm shadow-glow-emerald hover:scale-110 hover:bg-cyber-emerald hover:text-cyber-darkBg transition-all duration-300" type="button">
-<svg class="w-6 h-6 fill-current ml-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+<button aria-label="Play: After The Rain" class="w-[68px] h-12 rounded-xl bg-[#FF0000] hover:bg-[#cc0000] text-white flex items-center justify-center shadow-lg shadow-black/40 hover:scale-110 transition-all duration-300" type="button">
+<svg class="w-6 h-6 fill-current -ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
 </button>
 </div>
 <div class="absolute bottom-4 left-4 font-mono text-xs text-white/80 bg-black/60 px-2 py-1 rounded border border-white/10">08:24</div>
@@ -614,14 +615,15 @@
               </p>
 </div>
 <div class="pt-6 mt-4 border-t border-cyber-border">
-<button class="w-full px-5 py-3 bg-cyber-emerald hover:bg-emerald-400 text-cyber-darkBg font-mono font-bold text-xs uppercase tracking-wider rounded-lg shadow-glow-emerald transition-all duration-200 flex items-center justify-center gap-2" type="button">
-<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
-<span data-i18n="creator.watchNow">Watch Now</span>
+<button class="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 hover:text-black transition-all duration-300 glow-white cursor-pointer" type="button">
+<svg class="relative z-10 w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+<span class="relative z-10" data-i18n="creator.watchNow">Watch Now</span>
+<span class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-white transition-transform duration-300 ease-out"></span>
 </button>
 </div>
 </div>
 </div>
-</div>
+</article>
 </div>
 </div>
 </section>
@@ -1323,10 +1325,10 @@ ${fields.map((f) => `<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim bor
       const meta = pickCreatorField(c, 'work_meta', lang);
       const synopsis = pickCreatorField(c, 'work_synopsis', lang);
       const playLabel = chEsc('Play: ' + c.work_title);
-      const playCls = 'w-16 h-16 rounded-full bg-cyber-darkBg/80 border-2 border-cyber-emerald text-cyber-emerald flex items-center justify-center backdrop-blur-sm shadow-glow-emerald hover:scale-110 hover:bg-cyber-emerald hover:text-cyber-darkBg transition-all duration-300';
-      const playIcon = '<svg class="w-6 h-6 fill-current ml-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>';
-      const watchCls = 'w-full px-5 py-3 bg-cyber-emerald hover:bg-emerald-400 text-cyber-darkBg font-mono font-bold text-xs uppercase tracking-wider rounded-lg shadow-glow-emerald transition-all duration-200 flex items-center justify-center gap-2';
-      const watchInner = '<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg><span data-i18n="creator.watchNow">Watch Now</span>';
+      const playCls = 'w-[68px] h-12 rounded-xl bg-[#FF0000] hover:bg-[#cc0000] text-white flex items-center justify-center shadow-lg shadow-black/40 hover:scale-110 transition-all duration-300';
+      const playIcon = '<svg class="w-6 h-6 fill-current -ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>';
+      const watchCls = 'group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 hover:text-black transition-all duration-300 glow-white cursor-pointer';
+      const watchInner = '<svg class="relative z-10 w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg><span class="relative z-10" data-i18n="creator.watchNow">Watch Now</span><span class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-white transition-transform duration-300 ease-out"></span>';
       // YouTube links play in place; any other link opens in a new tab.
       const playBtn = ytId
         ? `<button type="button" data-play-video="${ytId}" aria-label="${playLabel}" class="${playCls}">${playIcon}</button>`
@@ -1335,10 +1337,12 @@ ${fields.map((f) => `<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim bor
         ? `<button type="button" data-play-video="${ytId}" class="${watchCls}">${watchInner}</button>`
         : (watchUrl ? `<a href="${chEsc(watchUrl)}" target="_blank" rel="noopener" class="${watchCls}">${watchInner}</a>` : '');
       workBlock = `
-<div class="flex items-center gap-3 px-6 sm:px-8 py-5 border-b border-cyber-border">
+<div class="space-y-4 pt-2">
+<div class="flex items-center gap-3 border-b border-cyber-border pb-3">
 <h3 data-i18n="creator.featuredTitle" class="text-xl font-bold tracking-tight text-white uppercase">Featured Work</h3>
 <span data-i18n="creator.featuredBadge" class="px-2 py-0.5 rounded text-[10px] font-mono bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/30">MAIN SHOWCASE</span>
 </div>
+<article class="rounded-2xl bg-cyber-surface border border-cyber-border overflow-hidden hover:border-cyber-borderHover transition-all duration-300 shadow-xl">
 <div class="grid grid-cols-1 lg:grid-cols-12">
 <div data-work-media data-title="${chEsc(c.work_title)}" class="lg:col-span-7 relative group bg-black overflow-hidden aspect-video lg:aspect-auto lg:min-h-[360px]">
 ${workImg ? `<img alt="${chEsc(c.work_title)}" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" src="${chEsc(workImg)}"${ytId ? ` onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${ytId}/hqdefault.jpg'"` : ''}>` : ''}
@@ -1359,14 +1363,16 @@ ${synopsis ? `<p class="text-slate-300 text-sm leading-relaxed font-normal">${ch
 </div>
 ${watchBtn ? `<div class="pt-6 mt-4 border-t border-cyber-border">${watchBtn}</div>` : ''}
 </div>
+</div>
+</article>
 </div>`;
     }
 
     // About + fields/tools + featured work share one box.
     const hasAbout = !!(bio || profileUrl);
     const hasRight = !!(fieldsBlock || toolsBlock);
-    const topGrid = (hasAbout || hasRight) ? `<div class="grid grid-cols-1 lg:grid-cols-12">
-${hasAbout ? `<div class="${hasRight ? 'lg:col-span-5 lg:border-r' : 'lg:col-span-12'} p-6 sm:p-8 flex flex-col justify-between border-cyber-border">
+    const topGrid = (hasAbout || hasRight) ? `<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+${hasAbout ? `<div class="${hasRight ? 'lg:col-span-5' : 'lg:col-span-12'} rounded-2xl bg-cyber-surface border border-cyber-border p-6 sm:p-8 flex flex-col justify-between">
 <div>
 <div class="flex items-center justify-between mb-4">
 <h3 class="font-mono text-xs uppercase tracking-widest text-white font-bold flex items-center gap-2">
@@ -1378,17 +1384,16 @@ ${hasAbout ? `<div class="${hasRight ? 'lg:col-span-5 lg:border-r' : 'lg:col-spa
 ${bio ? `<p class="text-slate-300 text-sm sm:text-base leading-relaxed font-normal mb-6">${chEsc(bio)}</p>` : ''}
 </div>
 ${profileUrl ? `<div>
-<a href="${chEsc(profileUrl)}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-cyber-borderHover bg-cyber-surfaceDim hover:border-cyber-emerald text-slate-200 hover:text-cyber-emerald text-xs font-mono tracking-wider transition-all duration-300 group">
-<span>${isId ? 'Lebih Banyak Tentang' : 'More About'} ${chEsc(firstName)}</span>
-<span class="transform group-hover:translate-x-1 transition-transform">→</span>
+<a href="${chEsc(profileUrl)}" target="_blank" rel="noopener" class="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 hover:text-black transition-all duration-300 glow-white cursor-pointer">
+<span class="relative z-10">${isId ? 'Lebih Banyak Tentang' : 'More About'} ${chEsc(firstName)}</span>
+<span class="relative z-10">→</span>
+<span class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-white transition-transform duration-300 ease-out"></span>
 </a>
 </div>` : ''}
 </div>` : ''}
-${hasRight ? `<div class="${hasAbout ? 'lg:col-span-7 border-t lg:border-t-0' : 'lg:col-span-12'} p-6 sm:p-8 flex flex-col justify-between gap-6 border-cyber-border">${fieldsBlock}${toolsBlock}</div>` : ''}
+${hasRight ? `<div class="${hasAbout ? 'lg:col-span-7' : 'lg:col-span-12'} rounded-2xl bg-cyber-surface border border-cyber-border p-6 sm:p-8 flex flex-col justify-between gap-6">${fieldsBlock}${toolsBlock}</div>` : ''}
 </div>` : '';
-    const detailsBox = (topGrid || workBlock)
-      ? `<div class="rounded-2xl bg-cyber-surface border border-cyber-border overflow-hidden">${topGrid}${workBlock ? (topGrid ? `<div class="border-t border-cyber-border">${workBlock}</div>` : workBlock) : ''}</div>`
-      : '';
+    const detailsBox = topGrid + workBlock;
 
     return `
 <header class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-cyber-border pb-5">
