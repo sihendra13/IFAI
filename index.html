@@ -414,18 +414,15 @@
 <!-- Section Header -->
 <header class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-cyber-border pb-5">
 <div class="space-y-1.5">
-<div class="flex items-center gap-2 font-mono text-xs text-cyber-cyan tracking-wider uppercase">
-<span class="inline-block w-2 h-2 rounded-full bg-cyber-cyan animate-pulse"></span>
+<div class="font-mono text-xs text-white tracking-wider uppercase">
 <span>Featured Creator // Spotlight</span>
 </div>
 <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">CREATOR HUB</h2>
 </div>
 <!-- Status Indicator -->
-<div class="inline-flex items-center gap-3 px-3 py-1.5 rounded-full bg-cyber-surface border border-cyber-border text-xs font-mono text-slate-400">
-<span class="w-1.5 h-1.5 rounded-full bg-cyber-emerald"></span>
-<span data-i18n="creator.status">STATUS: VERIFIED IFAI FELLOW</span>
-<span class="text-cyber-border">|</span>
-<span class="text-slate-500">ID: RP-9024</span>
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyber-surface border border-cyber-border text-xs font-mono text-slate-300">
+<svg class="w-4 h-4 text-cyber-cyan" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M23 12l-2.44-2.79.34-3.69-3.61-.82-1.89-3.2L12 2.96 8.6 1.5 6.71 4.69 3.1 5.5l.34 3.7L1 12l2.44 2.79-.34 3.7 3.61.82L8.6 22.5l3.4-1.47 3.4 1.46 1.89-3.19 3.61-.82-.34-3.69L23 12zm-12.91 4.72l-3.8-3.81 1.48-1.48 2.32 2.33 5.85-5.87 1.48 1.48-7.33 7.35z"></path></svg>
+<span data-i18n="creator.status">VERIFIED IFAI FELLOW</span>
 </div>
 </header>
 
@@ -448,8 +445,8 @@
 <span class="text-cyber-cyan">New Possibilities</span>
 </p>
 </div>
-<div class="border-l-2 border-cyber-emerald pl-3 mt-12 backdrop-blur-sm bg-black/40 py-1.5 pr-4 inline-block w-fit rounded-r">
-<span class="block font-mono text-[10px] tracking-[0.25em] text-cyber-emerald uppercase font-bold">
+<div class="border-l-2 border-[#00e5ff] pl-3 mt-12 backdrop-blur-sm bg-black/40 py-1.5 pr-4 inline-block w-fit rounded-r">
+<span class="block font-mono text-[10px] tracking-[0.25em] text-white uppercase font-bold">
                 Creative People
               </span>
 <span class="block font-mono text-xs tracking-[0.15em] text-slate-300 uppercase">
@@ -462,19 +459,18 @@
 <div class="lg:col-span-6 p-6 sm:p-10 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-cyber-border relative z-10">
 <div>
 <div class="flex items-center justify-between gap-4 mb-6">
-<span data-i18n="creator.profileBadge" class="px-2.5 py-1 text-[11px] font-mono font-semibold tracking-wider text-cyber-emerald bg-cyber-emerald/10 border border-cyber-emerald/30 rounded">
+<span data-i18n="creator.profileBadge" class="text-[11px] font-mono px-2 py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30">
                 CREATOR PROFILE
               </span>
 <!-- Quick Actions (visual only for now) -->
 <div class="flex items-center gap-2">
-<button aria-label="Follow" class="px-5 py-2 bg-cyber-emerald hover:bg-emerald-400 text-cyber-darkBg font-mono font-bold text-xs uppercase tracking-wider rounded-lg shadow-glow-emerald transition-all duration-200 transform active:scale-95 flex items-center gap-1.5" type="button">
+<button aria-label="Follow" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors" type="button">
 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-<span data-i18n="creator.follow">FOLLOW</span>
 </button>
-<button aria-label="Share profile" class="p-2 bg-cyber-surfaceDim hover:bg-cyber-surfaceBright border border-cyber-border text-slate-300 hover:text-white rounded-lg transition-colors" type="button">
+<button aria-label="Share profile" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors" type="button">
 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </button>
-<button aria-label="Save profile" class="p-2 bg-cyber-surfaceDim hover:bg-cyber-surfaceBright border border-cyber-border text-slate-300 hover:text-white rounded-lg transition-colors" type="button">
+<button aria-label="Save profile" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors" type="button">
 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </button>
 </div>
@@ -496,17 +492,10 @@
 </div>
 </div>
 <!-- Quote Block -->
-<blockquote class="relative p-5 rounded-xl bg-cyber-darkBg/60 border-l-2 border-cyber-cyan border-y border-r border-cyber-border text-slate-300 text-sm sm:text-base leading-relaxed italic mb-8">
+<blockquote class="relative p-5 rounded-xl bg-cyber-darkBg/60 text-slate-300 text-sm sm:text-base leading-relaxed italic mb-8">
 <span class="text-cyber-cyan text-2xl absolute -top-2 left-2 opacity-40">“</span>
 <span data-i18n="creator.quote">AI is not a replacement for a storyteller. AI gives us a new way to tell stories on a wider scale.</span>
 </blockquote>
-</div>
-<!-- Bottom focus line -->
-<div class="pt-4 border-t border-cyber-border flex items-center font-mono text-[11px] text-cyber-muted">
-<span class="flex items-center gap-2">
-<span class="w-1.5 h-1.5 rounded-full bg-cyber-emerald"></span>
-<span data-i18n="creator.focus">FOCUS: GENERATIVE CINEMA &amp; SYNTHETIC NARRATIVE</span>
-</span>
 </div>
 </div>
 </div>
@@ -862,11 +851,9 @@
   const DICT = {
     en: {
       'nav.showcase': 'Showcase', 'nav.journal': 'Journal', 'nav.creatorHub': 'Creator Hub',
-      "creator.status": "STATUS: VERIFIED IFAI FELLOW",
+      "creator.status": "VERIFIED IFAI FELLOW",
       "creator.profileBadge": "CREATOR PROFILE",
-      "creator.follow": "FOLLOW",
       "creator.quote": "AI is not a replacement for a storyteller. AI gives us a new way to tell stories on a wider scale.",
-      "creator.focus": "FOCUS: GENERATIVE CINEMA & SYNTHETIC NARRATIVE",
       "creator.aboutTitle": "About the Creator",
       "creator.bio": "Raka Pratama is a filmmaker and visual creator exploring how artificial intelligence can become a new language in cinema. Raka's work blends a cinematic approach with AI technology to create visual stories that still begin from human perspective and emotion.",
       "creator.moreAbout": "More About Raka",
@@ -913,11 +900,9 @@
     },
     id: {
       'nav.showcase': 'Etalase', 'nav.journal': 'Jurnal', 'nav.creatorHub': 'Creator Hub',
-      "creator.status": "STATUS: IFAI FELLOW TERVERIFIKASI",
+      "creator.status": "IFAI FELLOW TERVERIFIKASI",
       "creator.profileBadge": "PROFIL CREATOR",
-      "creator.follow": "IKUTI",
       "creator.quote": "AI bukan pengganti seorang storyteller. AI memberi kita cara baru untuk menceritakan kisah yang lebih luas.",
-      "creator.focus": "FOKUS: GENERATIVE CINEMA & SYNTHETIC NARRATIVE",
       "creator.aboutTitle": "Tentang Creator",
       "creator.bio": "Raka Pratama adalah filmmaker dan kreator visual yang mengeksplorasi bagaimana kecerdasan buatan dapat menjadi bahasa baru dalam sinema. Karyanya memadukan pendekatan sinematik dengan teknologi AI untuk menciptakan cerita visual yang tetap berangkat dari perspektif dan emosi manusia.",
       "creator.moreAbout": "Lebih Banyak Tentang Raka",
