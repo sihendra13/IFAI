@@ -155,8 +155,11 @@ ${footer}
     const isId = lang === 'id';
     const name = c.name || '';
     const bio = pick(c, 'bio', lang);
+    const hasAbout = !!bio;
     const fields = (c.fields || []).filter(Boolean);
     const tools = (c.tools || []).filter(Boolean);
+    // Side by side with "About" the tools column is narrower: 3 per row at lg+.
+    const toolsCols = hasAbout ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-3' : 'grid-cols-2 sm:grid-cols-3 md:grid-cols-6';
 
     const fieldsBlock = fields.length ? `
 <div>
@@ -180,7 +183,7 @@ ${fields.map((f) => `<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim bor
 </h3>
 <span class="font-mono text-[10px] text-slate-500">NEURAL STACK</span>
 </div>
-<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5 pt-1">${tools.map(toolTileHtml).join('')}</div>
+<div class="grid ${toolsCols} gap-2.5 pt-1">${tools.map(toolTileHtml).join('')}</div>
 </div>` : '';
 
     // Featured work (hidden entirely when it has no title)
@@ -237,10 +240,9 @@ ${watchBtn ? `<div class="pt-6 mt-4 border-t border-zinc-700 flex justify-end">$
 </div>`;
     }
 
-    const hasAbout = !!bio;
     const hasRight = !!(fieldsBlock || toolsBlock);
     const topGrid = (hasAbout || hasRight) ? `<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-${hasAbout ? `<div class="${hasRight ? 'lg:col-span-5' : 'lg:col-span-12'} rounded-2xl bg-cyber-surface border border-zinc-700 p-6 sm:p-8">
+${hasAbout ? `<div class="${hasRight ? 'lg:col-span-7' : 'lg:col-span-12'} rounded-2xl bg-cyber-surface border border-zinc-700 p-6 sm:p-8">
 <div class="flex items-center justify-between mb-4">
 <h3 class="font-mono text-xs uppercase tracking-widest text-white font-bold flex items-center gap-2">
 <span class="w-1 h-3 bg-cyber-cyan inline-block"></span>
@@ -250,10 +252,10 @@ ${hasAbout ? `<div class="${hasRight ? 'lg:col-span-5' : 'lg:col-span-12'} round
 </div>
 <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">${esc(bio)}</p>
 </div>` : ''}
-${hasRight ? `<div class="${hasAbout ? 'lg:col-span-7' : 'lg:col-span-12'} rounded-2xl bg-cyber-surface border border-zinc-700 p-6 sm:p-8 flex flex-col justify-between gap-6">${fieldsBlock}${toolsBlock}</div>` : ''}
+${hasRight ? `<div class="${hasAbout ? 'lg:col-span-5' : 'lg:col-span-12'} rounded-2xl bg-cyber-surface border border-zinc-700 p-6 sm:p-8 flex flex-col justify-between gap-6">${fieldsBlock}${toolsBlock}</div>` : ''}
 </div>` : '';
 
-    return topGrid + workBlock;
+    return workBlock + topGrid;
   }
 
   // Copy / share row (profile page).
