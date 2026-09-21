@@ -10,6 +10,16 @@
     return String(str ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   }
 
+  // Escapes the text, then turns http(s) links into clickable anchors (opening in a new tab).
+  // Trailing punctuation such as ". , ) ;" stays outside the link.
+  function linkify(text) {
+    return esc(text).replace(/https?:\/\/(?:(?!&lt;|&gt;|&quot;)[^\s<])+/g, (url) => {
+      const m = url.match(/^(.*?)((?:[.,;:!?)\]]|&#39;)*)$/);
+      const clean = m[1], tail = m[2];
+      return `<a href="${clean}" target="_blank" rel="noopener noreferrer" class="text-cyber-cyan underline underline-offset-2 decoration-cyber-cyan/40 hover:text-white hover:decoration-white transition-colors break-words">${clean}</a>${tail}`;
+    });
+  }
+
   function safeUrl(u) { return /^https?:\/\//i.test(u || '') ? u : ''; }
 
   function youTubeId(url) {
@@ -250,7 +260,7 @@ ${meta ? `<div><span class="inline-block text-[11px] font-mono uppercase px-2 py
 <h4 class="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-tight">${esc(c.work_title)}</h4>
 <p class="font-mono text-xs text-white mt-1">${isId ? 'Oleh' : 'By'} ${esc(name)}</p>
 </div>
-${synopsis ? `<p class="text-slate-300 text-sm leading-relaxed font-normal">${esc(synopsis)}</p>` : ''}
+${synopsis ? `<p class="text-slate-300 text-sm leading-relaxed font-normal break-words">${linkify(synopsis)}</p>` : ''}
 </div>
 </article>
 </div>`;
@@ -266,7 +276,7 @@ ${hasAbout ? `<div class="${hasRight ? 'lg:col-span-7' : 'lg:col-span-12'} round
 </h3>
 <span class="font-mono text-[10px] text-slate-500">BIO // ARCHIVE</span>
 </div>
-${bio ? `<p class="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">${esc(bio)}</p>` : ''}
+${bio ? `<p class="text-slate-300 text-sm sm:text-base leading-relaxed font-normal break-words">${linkify(bio)}</p>` : ''}
 </div>` : ''}
 ${hasRight ? `<div class="${hasAbout ? 'lg:col-span-5' : 'lg:col-span-12'} rounded-2xl bg-cyber-surface border border-zinc-700 p-6 sm:p-8 flex flex-col gap-6">${fieldsBlock}${toolsBlock}</div>` : ''}
 </div>` : '';
@@ -324,5 +334,5 @@ ${hasRight ? `<div class="${hasAbout ? 'lg:col-span-5' : 'lg:col-span-12'} round
     return (data && data.length) ? data[0] : null;
   }
 
-  window.IFAI_CREATOR = { PLACEHOLDER, heroHtml, headerHtml, detailsHtml, pillHtml, wireShare, wirePlay, fetchCreator, esc };
+  window.IFAI_CREATOR = { PLACEHOLDER, heroHtml, headerHtml, detailsHtml, linkify, pillHtml, wireShare, wirePlay, fetchCreator, esc };
 })();
