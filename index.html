@@ -590,9 +590,6 @@
 <!-- Visual pane (the video plays here once a YouTube link is set) -->
 <div data-work-media class="lg:col-span-7 relative group bg-black overflow-hidden aspect-video lg:aspect-auto lg:min-h-[360px]">
 <img alt="After The Rain - Lone silhouette overlooking flooded post-apocalyptic skyline at sunset" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcnxVPxKOOM9wdmIBkr6r5wWW0db_cfrmHqx7aLpeHEmOFD8rkePjVh_SbPQoJbGsH2C0B16OF3pemmUYxmKRr930O8PVh4OkzkXHWz_CjEZV5_Fe9B6jZ7vtnWX9HlViQo2qsC32fyAFJIRd0Cf5myZU9skXSYxtkGVgeVi0qTHSFiJs-dc9Z5AThsSVq5yczuOL7JHnxezV0lbDhPULyatJla7IBeZG9Aw308oX3">
-<div class="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
-<span class="px-2.5 py-1 rounded bg-black/70 backdrop-blur-md border border-cyber-emerald/40 text-cyber-emerald font-mono text-[10px] font-bold uppercase tracking-wider">Featured Opus</span>
-</div>
 <div class="absolute inset-0 flex items-center justify-center">
 <button aria-label="Play: After The Rain" class="w-[68px] h-12 rounded-xl bg-[#FF0000] hover:bg-[#cc0000] text-white flex items-center justify-center shadow-lg shadow-black/40 hover:scale-110 transition-all duration-300" type="button">
 <svg class="w-6 h-6 fill-current -ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
@@ -603,19 +600,17 @@
 <!-- Details pane -->
 <div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between">
 <div class="space-y-4">
-<div class="flex items-center justify-between font-mono text-xs text-cyber-emerald">
-<span data-i18n="creator.filmMeta" class="tracking-widest font-semibold uppercase">SHORT FILM • 2024 • 8 MIN</span>
-</div>
+<div><span data-i18n="creator.filmMeta" class="inline-block text-[11px] font-mono uppercase px-2 py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30">SHORT FILM • 2024 • 8 MIN</span></div>
 <div>
 <h4 class="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-tight">After The Rain</h4>
-<p data-i18n="creator.filmDirector" class="font-mono text-xs text-cyber-cyan mt-1">Directed &amp; Created by Raka Pratama</p>
+<p data-i18n="creator.filmDirector" class="font-mono text-xs text-white mt-1">Directed &amp; Created by Raka Pratama</p>
 </div>
 <p data-i18n="creator.filmSynopsis" class="text-slate-300 text-sm leading-relaxed font-normal">
                 A poetic exploration of memory, the post-rain urban landscape, and human inner calm in an age of automation. Every visual sequence was synthesized using custom latent diffusion, with photorealistic anamorphic lighting curation.
               </p>
 </div>
 <div class="pt-6 mt-4 border-t border-cyber-border">
-<button class="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 hover:text-black transition-all duration-300 glow-white cursor-pointer" type="button">
+<button class="group relative inline-flex items-center justify-center gap-2 px-8 py-3 min-w-[200px] rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 hover:text-black transition-all duration-300 glow-white cursor-pointer" type="button">
 <svg class="relative z-10 w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
 <span class="relative z-10" data-i18n="creator.watchNow">Watch Now</span>
 <span class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-white transition-transform duration-300 ease-out"></span>
@@ -1327,7 +1322,7 @@ ${fields.map((f) => `<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim bor
       const playLabel = chEsc('Play: ' + c.work_title);
       const playCls = 'w-[68px] h-12 rounded-xl bg-[#FF0000] hover:bg-[#cc0000] text-white flex items-center justify-center shadow-lg shadow-black/40 hover:scale-110 transition-all duration-300';
       const playIcon = '<svg class="w-6 h-6 fill-current -ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>';
-      const watchCls = 'group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 hover:text-black transition-all duration-300 glow-white cursor-pointer';
+      const watchCls = 'group relative inline-flex items-center justify-center gap-2 px-8 py-3 min-w-[200px] rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 hover:text-black transition-all duration-300 glow-white cursor-pointer';
       const watchInner = '<svg class="relative z-10 w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg><span class="relative z-10" data-i18n="creator.watchNow">Watch Now</span><span class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-white transition-transform duration-300 ease-out"></span>';
       // YouTube links play in place; any other link opens in a new tab.
       const playBtn = ytId
@@ -1346,18 +1341,15 @@ ${fields.map((f) => `<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim bor
 <div class="grid grid-cols-1 lg:grid-cols-12">
 <div data-work-media data-title="${chEsc(c.work_title)}" class="lg:col-span-7 relative group bg-black overflow-hidden aspect-video lg:aspect-auto lg:min-h-[360px]">
 ${workImg ? `<img alt="${chEsc(c.work_title)}" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" src="${chEsc(workImg)}"${ytId ? ` onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${ytId}/hqdefault.jpg'"` : ''}>` : ''}
-<div class="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
-<span class="px-2.5 py-1 rounded bg-black/70 backdrop-blur-md border border-cyber-emerald/40 text-cyber-emerald font-mono text-[10px] font-bold uppercase tracking-wider">Featured Opus</span>
-</div>
 ${playBtn ? `<div class="absolute inset-0 flex items-center justify-center">${playBtn}</div>` : ''}
 ${c.work_duration ? `<div class="absolute bottom-4 left-4 font-mono text-xs text-white/80 bg-black/60 px-2 py-1 rounded border border-white/10">${chEsc(c.work_duration)}</div>` : ''}
 </div>
 <div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between">
 <div class="space-y-4">
-${meta ? `<div class="flex items-center justify-between font-mono text-xs text-cyber-emerald"><span class="tracking-widest font-semibold uppercase">${chEsc(meta)}</span></div>` : ''}
+${meta ? `<div><span class="inline-block text-[11px] font-mono uppercase px-2 py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30">${chEsc(meta)}</span></div>` : ''}
 <div>
 <h4 class="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-tight">${chEsc(c.work_title)}</h4>
-<p class="font-mono text-xs text-cyber-cyan mt-1">${isId ? 'Oleh' : 'By'} ${chEsc(name)}</p>
+<p class="font-mono text-xs text-white mt-1">${isId ? 'Oleh' : 'By'} ${chEsc(name)}</p>
 </div>
 ${synopsis ? `<p class="text-slate-300 text-sm leading-relaxed font-normal">${chEsc(synopsis)}</p>` : ''}
 </div>
