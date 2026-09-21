@@ -137,7 +137,7 @@ ${PILL_SLIDE}
 </a>
 </div>`;
 
-    return `<article class="relative rounded-2xl bg-cyber-surface border border-zinc-700 overflow-hidden shadow-2xl">
+    const desktopCard = `<article class="relative rounded-2xl bg-cyber-surface border border-zinc-700 overflow-hidden shadow-2xl">
 <div class="absolute -right-20 -top-20 w-96 h-96 bg-cyber-emerald/10 rounded-full blur-3xl pointer-events-none"></div>
 <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[500px]">
 <div class="creator-photo-fade lg:col-span-6 relative group overflow-hidden bg-black flex items-end min-h-[380px] lg:min-h-full">
@@ -160,6 +160,36 @@ ${footer}
 </div>
 </div>
 </article>`;
+
+    // Below 1024px the card is laid out like an IFAI Signals card: photo on top (side by side
+    // from 640px), padded body with badge, one-line name, role, 3-line excerpt, then a footer
+    // with the location and the "More About" button.
+    const roleLine = (c.role || '').split('/').map((x) => x.trim()).filter(Boolean).join(' / ');
+    const compact = `<article class="group relative rounded-3xl overflow-hidden border border-zinc-700 bg-cyber-surface flex flex-col sm:flex-row">
+<div class="flex-1 min-w-0 p-6 sm:p-8 flex flex-col justify-between gap-4 order-2 sm:order-1">
+<div class="min-w-0">
+<span data-i18n="creator.profileBadge" class="inline-block px-3 py-1 rounded-full text-xs font-mono uppercase bg-[#00e5ff]/10 border border-[#00e5ff]/30 text-[#00e5ff] mb-3">CREATOR PROFILE</span>
+<h3 class="text-xl font-bold text-white uppercase truncate mb-1">${esc(name)}</h3>
+${roleLine ? `<p class="text-xs font-mono font-semibold text-cyber-cyan uppercase truncate mb-2">${esc(roleLine)}</p>` : ''}
+${quote ? `<p class="text-zinc-400 text-sm leading-relaxed line-clamp-3">“${esc(quote)}”</p>` : ''}
+</div>
+<div class="flex items-center gap-4 pt-4 border-t border-zinc-700">
+<span class="min-w-0 flex-1 text-xs font-mono text-zinc-400 truncate">${esc(c.location || '')}</span>
+<a href="${esc(detailHref(c))}" class="${PILL_CLS} flex-shrink-0 whitespace-nowrap">
+<span class="relative z-10">${isId ? 'Lebih Banyak Tentang' : 'More About'} ${esc(firstName)}</span>
+<span class="relative z-10">→</span>
+${PILL_SLIDE}
+</a>
+</div>
+</div>
+<div class="relative w-full sm:w-2/5 aspect-[16/9] sm:aspect-auto order-1 sm:order-2 bg-black">
+${photo ? `<img alt="${esc(name)}" class="absolute inset-0 w-full h-full object-cover object-center filter grayscale contrast-110 opacity-85" src="${esc(photo)}">` : ''}
+<div class="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-cyber-surface from-0% via-transparent via-10% to-transparent to-100% pointer-events-none"></div>
+</div>
+</article>`;
+
+    return `<div class="lg:hidden">${compact}</div>
+<div class="hidden lg:block">${desktopCard}</div>`;
   }
 
   // Compact profile header for /creator: photo, name, role/location and the
