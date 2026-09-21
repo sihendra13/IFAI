@@ -196,7 +196,8 @@
 
 <!-- Profile -->
 <div id="creator-detail-body" class="space-y-8">
-<div class="rounded-2xl bg-cyber-surface border border-zinc-800 min-h-[500px] animate-pulse" aria-hidden="true"></div>
+<div class="rounded-2xl bg-cyber-surface border border-zinc-800 h-28 animate-pulse" aria-hidden="true"></div>
+<div class="rounded-2xl bg-cyber-surface border border-zinc-800 h-72 animate-pulse" aria-hidden="true"></div>
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 animate-pulse" aria-hidden="true">
 <div class="lg:col-span-5 rounded-2xl bg-cyber-surface border border-zinc-800 h-56"></div>
 <div class="lg:col-span-7 rounded-2xl bg-cyber-surface border border-zinc-800 h-56"></div>
@@ -416,7 +417,7 @@
 
   function render(lang) {
     if (!creator) return;
-    body.innerHTML = C.heroHtml(creator, lang, { mode: 'detail' }) + C.detailsHtml(creator, lang);
+    body.innerHTML = C.headerHtml(creator) + C.detailsHtml(creator, lang);
     pillSlot.innerHTML = C.pillHtml();
     document.title = `${creator.name} | IFAI Creator Hub`;
     crumb.textContent = creator.name;

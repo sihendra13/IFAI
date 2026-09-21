@@ -1,6 +1,6 @@
 // Shared Creator Hub rendering.
-//  - index.html   -> profile card only (heroHtml, mode "home")
-//  - creator.html -> full profile page (heroHtml mode "detail" + detailsHtml)
+//  - index.html   -> profile card only (heroHtml)
+//  - creator.html -> full profile page (headerHtml + detailsHtml)
 // Data comes from the single featured row of "creator_spotlights" (managed in
 // the admin "Creator Hub" tab). PLACEHOLDER is sample content shown until a
 // creator is featured; delete it (and the fallbacks that use it) once the real
@@ -79,18 +79,8 @@
 </div>`;
   }
 
-  // Profile card. mode "home": "More About" button bottom-right.
-  //                mode "detail": share icons bottom-right.
-  function heroHtml(c, lang, opts) {
-    const mode = (opts && opts.mode) || 'home';
-    const isId = lang === 'id';
-    const name = c.name || '';
-    const nameParts = name.trim().split(/\s+/);
-    const firstName = nameParts[0] || name;
-    const nameHtml = nameParts.length > 1
-      ? `${esc(nameParts[0])}<br><span class="text-slate-100">${esc(nameParts.slice(1).join(' '))}</span>`
-      : esc(name);
-
+  // "AI FILMMAKER / VISUAL STORYTELLER  •  📍 Jakarta" line, shared by the card and the page header.
+  function roleLocationHtml(c) {
     const roleParts = (c.role || '').split('/').map((x) => x.trim()).filter(Boolean);
     const roleHtml = roleParts.length
       ? `<span class="text-cyber-cyan tracking-wider font-semibold uppercase">${esc(roleParts[0])}</span>`
@@ -103,20 +93,24 @@
 ${esc(c.location)}
 </span>`
       : '';
+    return roleHtml + locationHtml;
+  }
+
+  // Profile card on the homepage, with a "More About" button bottom-right.
+  function heroHtml(c, lang) {
+    const isId = lang === 'id';
+    const name = c.name || '';
+    const nameParts = name.trim().split(/\s+/);
+    const firstName = nameParts[0] || name;
+    const nameHtml = nameParts.length > 1
+      ? `${esc(nameParts[0])}<br><span class="text-slate-100">${esc(nameParts.slice(1).join(' '))}</span>`
+      : esc(name);
+
 
     const quote = pick(c, 'quote', lang);
     const photo = safeUrl(c.photo_url);
 
-    const shareBtn = 'w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors';
-    const footer = mode === 'detail'
-      ? `<div class="pt-4 flex items-center justify-end gap-3" id="creator-share-row">
-${['whatsapp:fa-brands fa-whatsapp:WhatsApp', 'facebook:fa-brands fa-facebook-f:Facebook', 'threads:fa-brands fa-threads:Threads', 'linkedin:fa-brands fa-linkedin-in:LinkedIn'].map((s) => {
-  const [key, icon, label] = s.split(':');
-  return `<a data-share="${key}" target="_blank" rel="noopener" title="${label}" class="${shareBtn}"><i class="${icon}"></i></a>`;
-}).join('\n')}
-<button type="button" data-share-copy title="Copy link" class="${shareBtn}"><i class="fa-solid fa-link"></i></button>
-</div>`
-      : `<div class="pt-4 flex items-center justify-end">
+    const footer = `<div class="pt-4 flex items-center justify-end">
 <a href="${esc(detailHref(c))}" class="${PILL_CLS}">
 <span class="relative z-10">${isId ? 'Lebih Banyak Tentang' : 'More About'} ${esc(firstName)}</span>
 <span class="relative z-10">→</span>
@@ -140,7 +134,7 @@ ${photo ? `<img alt="${esc(name)}" class="absolute inset-0 w-full h-full object-
 </div>
 <div class="space-y-2 mb-8">
 <h3 class="text-4xl sm:text-5xl font-bold uppercase tracking-tight text-white leading-none">${nameHtml}</h3>
-<div class="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs sm:text-sm text-cyber-muted pt-2">${roleHtml}${locationHtml}</div>
+<div class="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs sm:text-sm text-cyber-muted pt-2">${roleLocationHtml(c)}</div>
 </div>
 ${quote ? `<blockquote class="p-5 rounded-xl bg-cyber-darkBg/60 text-slate-300 text-sm sm:text-base leading-relaxed italic mb-8"><span class="text-cyber-cyan text-xl not-italic">“</span>${esc(quote)}<span class="text-cyber-cyan text-xl not-italic">”</span></blockquote>` : ''}
 </div>
@@ -150,12 +144,37 @@ ${footer}
 </article>`;
   }
 
+  // Compact profile header for /creator: photo, name, role/location and the
+  // share icons (the big card on the homepage would just repeat itself here).
+  function headerHtml(c) {
+    const photo = safeUrl(c.photo_url);
+    const shareBtn = 'w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors';
+    return `<div class="flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-8">
+${photo ? `<div class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border border-zinc-700 bg-black flex-shrink-0">
+<img alt="${esc(c.name)}" class="w-full h-full object-cover object-center filter grayscale contrast-110 opacity-85" src="${esc(photo)}">
+</div>` : ''}
+<div class="flex-1 min-w-0">
+<span data-i18n="creator.profileBadge" class="inline-block text-[11px] font-mono px-2 py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30 mb-3">CREATOR PROFILE</span>
+<h1 class="text-3xl sm:text-5xl font-bold uppercase tracking-tight text-white leading-none">${esc(c.name)}</h1>
+<div class="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs sm:text-sm text-cyber-muted pt-3">${roleLocationHtml(c)}</div>
+</div>
+<div class="flex items-center gap-3 sm:self-end" id="creator-share-row">
+${['whatsapp:fa-brands fa-whatsapp:WhatsApp', 'facebook:fa-brands fa-facebook-f:Facebook', 'threads:fa-brands fa-threads:Threads', 'linkedin:fa-brands fa-linkedin-in:LinkedIn'].map((s) => {
+  const [key, icon, label] = s.split(':');
+  return `<a data-share="${key}" target="_blank" rel="noopener" title="${label}" class="${shareBtn}"><i class="${icon}"></i></a>`;
+}).join('\n')}
+<button type="button" data-share-copy title="Copy link" class="${shareBtn}"><i class="fa-solid fa-link"></i></button>
+</div>
+</div>`;
+  }
+
   // About + creative fields + tools, then the featured work (profile page only).
   function detailsHtml(c, lang) {
     const isId = lang === 'id';
     const name = c.name || '';
     const bio = pick(c, 'bio', lang);
-    const hasAbout = !!bio;
+    const quote = pick(c, 'quote', lang);
+    const hasAbout = !!(bio || quote);
     const fields = (c.fields || []).filter(Boolean);
     const tools = (c.tools || []).filter(Boolean);
     // Side by side with "About" the tools column is narrower: 3 per row at lg+.
@@ -250,7 +269,8 @@ ${hasAbout ? `<div class="${hasRight ? 'lg:col-span-7' : 'lg:col-span-12'} round
 </h3>
 <span class="font-mono text-[10px] text-slate-500">BIO // ARCHIVE</span>
 </div>
-<p class="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">${esc(bio)}</p>
+${quote ? `<blockquote class="p-5 rounded-xl bg-cyber-darkBg/60 text-slate-300 text-sm sm:text-base leading-relaxed italic ${bio ? 'mb-5' : ''}"><span class="text-cyber-cyan text-xl not-italic">“</span>${esc(quote)}<span class="text-cyber-cyan text-xl not-italic">”</span></blockquote>` : ''}
+${bio ? `<p class="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">${esc(bio)}</p>` : ''}
 </div>` : ''}
 ${hasRight ? `<div class="${hasAbout ? 'lg:col-span-5' : 'lg:col-span-12'} rounded-2xl bg-cyber-surface border border-zinc-700 p-6 sm:p-8 flex flex-col justify-between gap-6">${fieldsBlock}${toolsBlock}</div>` : ''}
 </div>` : '';
@@ -308,5 +328,5 @@ ${hasRight ? `<div class="${hasAbout ? 'lg:col-span-5' : 'lg:col-span-12'} round
     return (data && data.length) ? data[0] : null;
   }
 
-  window.IFAI_CREATOR = { PLACEHOLDER, heroHtml, detailsHtml, pillHtml, wireShare, wirePlay, fetchCreator, esc };
+  window.IFAI_CREATOR = { PLACEHOLDER, heroHtml, headerHtml, detailsHtml, pillHtml, wireShare, wirePlay, fetchCreator, esc };
 })();

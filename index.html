@@ -1015,7 +1015,7 @@ setTimeout(function () { var el = document.getElementById('creator-hub-body'); i
 
   function renderCreatorHero(lang) {
     if (!creatorHero || !cachedCreator) return;
-    creatorHero.innerHTML = window.IFAI_CREATOR.heroHtml(cachedCreator, lang, { mode: 'home' });
+    creatorHero.innerHTML = window.IFAI_CREATOR.heroHtml(cachedCreator, lang);
     if (window.IFAI_I18N) window.IFAI_I18N.applyLanguage(lang, { silent: true });
   }
 
