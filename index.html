@@ -408,218 +408,20 @@
 </section>
 <!-- END: CommercialAndMusicShowcase -->
 <!-- BEGIN: CreatorHubSection -->
-<!-- PLACEHOLDER CONTENT: everything inside this section is hardcoded sample data (Raka Pratama / After The Rain) so the layout can be reviewed first. Once the admin "Creator Hub" tab is ready it gets replaced by admin-managed data, and this hardcoded copy is deleted. -->
+<!-- The homepage shows the creator's profile card only. The full profile (about, tools, featured work, share) lives on /creator. Content comes from the admin-managed "creator_spotlights" row; until one is featured it renders the sample PLACEHOLDER in js/creator-hub.js. -->
 <section class="scroll-mt-28 py-24 bg-cosmic-950 border-t border-b border-zinc-800" id="creator-hub">
 <div id="creator-hub-body" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 invisible">
-<!-- Section Header -->
 <header class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-zinc-700 pb-5">
 <div class="space-y-1.5">
-<div class="font-mono text-xs text-white tracking-wider uppercase">
-<span>Featured Creator // Spotlight</span>
-</div>
+<div class="font-mono text-xs text-white tracking-wider uppercase"><span>Featured Creator // Spotlight</span></div>
 <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">CREATOR HUB</h2>
 </div>
-<!-- Status Indicator -->
 <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyber-surface border border-cyber-border text-xs font-mono text-slate-300">
 <svg class="w-4 h-4 text-cyber-cyan" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M23 12l-2.44-2.79.34-3.69-3.61-.82-1.89-3.2L12 2.96 8.6 1.5 6.71 4.69 3.1 5.5l.34 3.7L1 12l2.44 2.79-.34 3.7 3.61.82L8.6 22.5l3.4-1.47 3.4 1.46 1.89-3.19 3.61-.82-.34-3.69L23 12zm-12.91 4.72l-3.8-3.81 1.48-1.48 2.32 2.33 5.85-5.87 1.48 1.48-7.33 7.35z"></path></svg>
 <span data-i18n="creator.status">VERIFIED IFAI FELLOW</span>
 </div>
 </header>
-
-<!-- Creator Hero Card -->
-<article class="relative rounded-2xl bg-cyber-surface border border-zinc-700 overflow-hidden shadow-2xl">
-<!-- Ambient Glow Behind Hero -->
-<div class="absolute -right-20 -top-20 w-96 h-96 bg-cyber-emerald/10 rounded-full blur-3xl pointer-events-none"></div>
-<div class="absolute left-1/4 -bottom-20 w-80 h-80 bg-cyber-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
-<div class="grid grid-cols-1 lg:grid-cols-12 min-h-[500px]">
-<!-- Left Column: Portrait and Typographic Overlay -->
-<div class="lg:col-span-6 relative group overflow-hidden bg-black flex items-end min-h-[380px] lg:min-h-full">
-<img alt="Raka Pratama - AI Filmmaker with camera in cinematic moody lighting" class="absolute inset-0 w-full h-full object-cover object-center filter grayscale contrast-110 group-hover:scale-105 transition-transform duration-700 ease-out opacity-85" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxIjTBTS4mTYOYAX6KKjc8EFVc5HEzWL6D6okV9c8b4vXTG8dqsqmLTHlHoa-HD1H0zeyYVl3Oq-xoh_4TZ--i3-8Q5lPeABkb5SsBeJ_Oweo9HLaNindBtSD6bGVzpwQU4FN_4D8R5XUG_Ylyo7PIqyB2A3o-82I5sLs2XNuLnHud76fpfjg0MDJvuWaBZK96eyFwiK-qpIidbRD2h-SxxFsz8Cs1nQtF65BKHLNl">
-<!-- Vignette Overlays -->
-<div class="absolute inset-0 bg-gradient-to-t from-cyber-surface via-cyber-darkBg/50 to-transparent"></div>
-<div class="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-cyber-surface/90 hidden lg:block"></div>
-</div>
-<!-- Right Column: Identity, Quote & Actions -->
-<div class="lg:col-span-6 p-6 sm:p-10 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-zinc-700 relative z-10">
-<div>
-<div class="flex items-center justify-between gap-4 mb-6">
-<span data-i18n="creator.profileBadge" class="text-[11px] font-mono px-2 py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30">
-                CREATOR PROFILE
-              </span>
-</div>
-<!-- Creator Name and Role -->
-<div class="space-y-2 mb-8">
-<h3 class="text-4xl sm:text-5xl font-bold uppercase tracking-tight text-white leading-none">
-                RAKA<br><span class="text-slate-100">PRATAMA</span>
-</h3>
-<div class="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs sm:text-sm text-cyber-muted pt-2">
-<span class="text-cyber-cyan tracking-wider font-semibold">AI FILMMAKER</span>
-<span>/</span>
-<span class="text-slate-300">VISUAL STORYTELLER</span>
-<span class="hidden sm:inline text-cyber-border">•</span>
-<span class="flex items-center gap-1 text-slate-400">
-<svg class="w-3.5 h-3.5 text-cyber-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-                  Jakarta, Indonesia
-                </span>
-</div>
-</div>
-<!-- Quote Block -->
-<blockquote class="p-5 rounded-xl bg-cyber-darkBg/60 text-slate-300 text-sm sm:text-base leading-relaxed italic mb-8">
-<span class="text-cyber-cyan text-xl not-italic">“</span><span data-i18n="creator.quote">AI is not a replacement for a storyteller. It gives us a new way to tell stories on a wider scale, yet every film still begins with human emotion and one question: what should the audience feel?</span><span class="text-cyber-cyan text-xl not-italic">”</span>
-</blockquote>
-</div>
-<!-- Share -->
-<div class="pt-4 flex items-center justify-end gap-3" id="creator-share-row">
-<a data-share="whatsapp" target="_blank" rel="noopener" title="WhatsApp" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
-<a data-share="facebook" target="_blank" rel="noopener" title="Facebook" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
-<a data-share="threads" target="_blank" rel="noopener" title="Threads" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-threads"></i></a>
-<a data-share="linkedin" target="_blank" rel="noopener" title="LinkedIn" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
-<button type="button" data-share-copy title="Copy link" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-solid fa-link"></i></button>
-</div>
-</div>
-</div>
-</article>
-
-<!-- Middle Grid: About + Fields/Tools -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-<!-- About the Creator -->
-<div class="lg:col-span-5 rounded-2xl bg-cyber-surface border border-zinc-700 p-6 sm:p-8 flex flex-col justify-between">
-<div>
-<div class="flex items-center justify-between mb-4">
-<h3 class="font-mono text-xs uppercase tracking-widest text-white font-bold flex items-center gap-2">
-<span class="w-1 h-3 bg-cyber-cyan inline-block"></span>
-<span data-i18n="creator.aboutTitle">About the Creator</span>
-</h3>
-<span class="font-mono text-[10px] text-slate-500">BIO // ARCHIVE</span>
-</div>
-<p data-i18n="creator.bio" class="text-slate-300 text-sm sm:text-base leading-relaxed font-normal mb-6">
-            Raka Pratama is a filmmaker and visual creator exploring how artificial intelligence can become a new language in cinema. Raka's work blends a cinematic approach with AI technology to create visual stories that still begin from human perspective and emotion.
-          </p>
-</div>
-<div>
-<!-- No destination yet: the creator detail page doesn't exist -->
-<a aria-disabled="true" class="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 hover:text-black transition-all duration-300 glow-white cursor-pointer">
-<span class="relative z-10" data-i18n="creator.moreAbout">More About Raka</span>
-<span class="relative z-10">→</span>
-<span class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-white transition-transform duration-300 ease-out"></span>
-</a>
-</div>
-</div>
-<!-- Creative Fields & Tools -->
-<div class="lg:col-span-7 rounded-2xl bg-cyber-surface border border-zinc-700 p-6 sm:p-8 flex flex-col justify-between gap-6">
-<div>
-<div class="flex items-center justify-between mb-3">
-<h3 class="font-mono text-xs uppercase tracking-widest text-white font-bold flex items-center gap-2">
-<span class="w-1 h-3 bg-cyber-cyan inline-block"></span>
-<span data-i18n="creator.fieldsTitle">Creative Fields</span>
-</h3>
-<span class="font-mono text-[10px] text-slate-500">EXPERTISE DOMAINS</span>
-</div>
-<div class="flex flex-wrap gap-2 pt-1">
-<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim border border-cyber-border text-xs font-medium text-slate-200">AI Film</span>
-<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim border border-cyber-border text-xs font-medium text-slate-200">Visual Storytelling</span>
-<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim border border-cyber-border text-xs font-medium text-slate-200">Generative Video</span>
-<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim border border-cyber-border text-xs font-medium text-slate-200">AI Art</span>
-<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim border border-cyber-border text-xs font-medium text-slate-200">Concept Design</span>
-</div>
-</div>
-<div class="border-t border-zinc-700 pt-5">
-<div class="flex items-center justify-between mb-3">
-<h3 class="font-mono text-xs uppercase tracking-widest text-white font-bold flex items-center gap-2">
-<span class="w-1 h-3 bg-cyber-cyan inline-block"></span>
-<span data-i18n="creator.toolsTitle">Tools Used</span>
-</h3>
-<span class="font-mono text-[10px] text-slate-500">NEURAL STACK</span>
-</div>
-<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5 pt-1">
-<!-- Midjourney -->
-<div class="flex flex-col items-center justify-center p-3 rounded-xl bg-cyber-surfaceDim border border-cyber-border">
-<div class="w-8 h-8 rounded-lg bg-black/40 flex items-center justify-center mb-1.5 text-cyber-cyan">
-<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
-</div>
-<span class="font-mono text-[11px] text-slate-300">Midjourney</span>
-</div>
-<!-- Runway -->
-<div class="flex flex-col items-center justify-center p-3 rounded-xl bg-cyber-surfaceDim border border-cyber-border">
-<div class="w-8 h-8 rounded-lg bg-black/40 flex items-center justify-center mb-1.5 text-cyber-emerald font-bold text-sm">
-                R:
-              </div>
-<span class="font-mono text-[11px] text-slate-300">Runway</span>
-</div>
-<!-- ComfyUI -->
-<div class="flex flex-col items-center justify-center p-3 rounded-xl bg-cyber-surfaceDim border border-cyber-border">
-<div class="w-8 h-8 rounded-lg bg-black/40 flex items-center justify-center mb-1.5 text-cyber-cyan">
-<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</div>
-<span class="font-mono text-[11px] text-slate-300">ComfyUI</span>
-</div>
-<!-- DaVinci Resolve -->
-<div class="flex flex-col items-center justify-center p-3 rounded-xl bg-cyber-surfaceDim border border-cyber-border">
-<div class="w-8 h-8 rounded-lg bg-black/40 flex items-center justify-center mb-1.5 text-amber-400">
-<div class="w-3.5 h-3.5 rounded-full border-2 border-dashed border-amber-400"></div>
-</div>
-<span class="font-mono text-[11px] text-slate-300 text-center leading-tight">DaVinci</span>
-</div>
-<!-- Suno -->
-<div class="flex flex-col items-center justify-center p-3 rounded-xl bg-cyber-surfaceDim border border-cyber-border">
-<div class="w-8 h-8 rounded-lg bg-black/40 flex items-center justify-center mb-1.5 text-cyber-cyan">
-<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"></path></svg>
-</div>
-<span class="font-mono text-[11px] text-slate-300">Suno</span>
-</div>
-<!-- Adobe Photoshop -->
-<div class="flex flex-col items-center justify-center p-3 rounded-xl bg-cyber-surfaceDim border border-cyber-border">
-<div class="w-8 h-8 rounded-lg bg-[#001e36] text-[#31a8ff] flex items-center justify-center mb-1.5 font-bold font-mono text-xs">
-                Ps
-              </div>
-<span class="font-mono text-[11px] text-slate-300 text-center leading-tight">Photoshop</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<!-- Featured Work -->
-<div class="space-y-4 pt-2">
-<div class="flex items-center gap-3">
-<h3 data-i18n="creator.featuredTitle" class="text-xl font-bold tracking-tight text-white uppercase">Featured Work</h3>
-<span data-i18n="creator.featuredBadge" class="px-2 py-0.5 rounded text-[10px] font-mono bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/30">MAIN SHOWCASE</span>
-</div>
-<article class="rounded-2xl bg-cyber-surface border border-zinc-700 overflow-hidden shadow-xl">
-<div class="grid grid-cols-1 lg:grid-cols-12">
-<!-- Visual pane (the video plays here once a YouTube link is set) -->
-<div data-work-media class="lg:col-span-7 relative group bg-black overflow-hidden aspect-video lg:aspect-auto lg:min-h-[360px]">
-<img alt="After The Rain - Lone silhouette overlooking flooded post-apocalyptic skyline at sunset" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcnxVPxKOOM9wdmIBkr6r5wWW0db_cfrmHqx7aLpeHEmOFD8rkePjVh_SbPQoJbGsH2C0B16OF3pemmUYxmKRr930O8PVh4OkzkXHWz_CjEZV5_Fe9B6jZ7vtnWX9HlViQo2qsC32fyAFJIRd0Cf5myZU9skXSYxtkGVgeVi0qTHSFiJs-dc9Z5AThsSVq5yczuOL7JHnxezV0lbDhPULyatJla7IBeZG9Aw308oX3">
-<div class="absolute inset-0 flex items-center justify-center">
-<button aria-label="Play: After The Rain" class="w-[68px] h-12 rounded-xl bg-[#FF0000] hover:bg-[#cc0000] text-white flex items-center justify-center shadow-lg shadow-black/40 hover:scale-110 transition-all duration-300" type="button">
-<svg class="w-6 h-6 fill-current -ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
-</button>
-</div>
-<div class="absolute bottom-4 left-4 font-mono text-xs text-white/80 bg-black/60 px-2 py-1 rounded border border-white/10">08:24</div>
-</div>
-<!-- Details pane -->
-<div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between">
-<div class="space-y-4">
-<div><span data-i18n="creator.filmMeta" class="inline-block text-[11px] font-mono uppercase px-2 py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30">SHORT FILM • 2024 • 8 MIN</span></div>
-<div>
-<h4 class="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-tight">After The Rain</h4>
-<p data-i18n="creator.filmDirector" class="font-mono text-xs text-white mt-1">Directed &amp; Created by Raka Pratama</p>
-</div>
-<p data-i18n="creator.filmSynopsis" class="text-slate-300 text-sm leading-relaxed font-normal">
-                A poetic exploration of memory, the post-rain urban landscape, and human inner calm in an age of automation. Every visual sequence was synthesized using custom latent diffusion, with photorealistic anamorphic lighting curation.
-              </p>
-</div>
-<div class="pt-6 mt-4 border-t border-zinc-700 flex justify-end">
-<button class="group relative inline-flex items-center justify-center gap-2 px-8 py-3 min-w-[200px] rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 hover:text-black transition-all duration-300 glow-white cursor-pointer" type="button">
-<svg class="relative z-10 w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
-<span class="relative z-10" data-i18n="creator.watchNow">Watch Now</span>
-<span class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-white transition-transform duration-300 ease-out"></span>
-</button>
-</div>
-</div>
-</div>
-</article>
-</div>
+<div id="creator-hub-hero"></div>
 </div>
 </section>
 <!-- END: CreatorHubSection -->
@@ -793,17 +595,11 @@ setTimeout(function () { var el = document.getElementById('creator-hub-body'); i
       'nav.showcase': 'Showcase', 'nav.journal': 'Journal', 'nav.creatorHub': 'Creator Hub',
       "creator.status": "VERIFIED IFAI FELLOW",
       "creator.profileBadge": "CREATOR PROFILE",
-      "creator.quote": "AI is not a replacement for a storyteller. It gives us a new way to tell stories on a wider scale, yet every film still begins with human emotion and one question: what should the audience feel?",
       "creator.aboutTitle": "About the Creator",
-      "creator.bio": "Raka Pratama is a filmmaker and visual creator exploring how artificial intelligence can become a new language in cinema. Raka's work blends a cinematic approach with AI technology to create visual stories that still begin from human perspective and emotion.",
-      "creator.moreAbout": "More About Raka",
       "creator.fieldsTitle": "Creative Fields",
       "creator.toolsTitle": "Tools Used",
       "creator.featuredTitle": "Featured Work",
       "creator.featuredBadge": "MAIN SHOWCASE",
-      "creator.filmMeta": "SHORT FILM • 2024 • 8 MIN",
-      "creator.filmDirector": "Directed & Created by Raka Pratama",
-      "creator.filmSynopsis": "A poetic exploration of memory, the post-rain urban landscape, and human inner calm in an age of automation. Every visual sequence was synthesized using custom latent diffusion, with photorealistic anamorphic lighting curation.",
       "creator.watchNow": "Watch Now",'nav.about': 'About',
       'nav.login': 'Log In', 'nav.join': 'Join Community',
       'auth.title': 'Join IFAI Community', 'auth.subtitle': 'Sign in to submit your work and join the community.', 'auth.google': 'Continue with Google', 'auth.or': 'or', 'auth.emailPlaceholder': 'you@email.com', 'auth.sendLink': 'Send Magic Link', 'auth.linkSent': 'Check your email for the login link.', 'auth.logout': 'Log Out',
@@ -839,17 +635,11 @@ setTimeout(function () { var el = document.getElementById('creator-hub-body'); i
       'nav.showcase': 'Etalase', 'nav.journal': 'Jurnal', 'nav.creatorHub': 'Creator Hub',
       "creator.status": "IFAI FELLOW TERVERIFIKASI",
       "creator.profileBadge": "PROFIL CREATOR",
-      "creator.quote": "AI bukan pengganti seorang storyteller. AI memberi cara baru untuk menceritakan kisah yang lebih luas, namun setiap film tetap berawal dari emosi manusia dan satu pertanyaan: apa yang ingin dirasakan penonton?",
       "creator.aboutTitle": "Tentang Creator",
-      "creator.bio": "Raka Pratama adalah filmmaker dan kreator visual yang mengeksplorasi bagaimana kecerdasan buatan dapat menjadi bahasa baru dalam sinema. Karyanya memadukan pendekatan sinematik dengan teknologi AI untuk menciptakan cerita visual yang tetap berangkat dari perspektif dan emosi manusia.",
-      "creator.moreAbout": "Lebih Banyak Tentang Raka",
       "creator.fieldsTitle": "Bidang Kreatif",
       "creator.toolsTitle": "Tools Yang Digunakan",
       "creator.featuredTitle": "Karya Pilihan",
       "creator.featuredBadge": "SHOWCASE UTAMA",
-      "creator.filmMeta": "FILM PENDEK • 2024 • 8 MENIT",
-      "creator.filmDirector": "Disutradarai & Direka oleh Raka Pratama",
-      "creator.filmSynopsis": "Eksplorasi puitis tentang memori, lanskap perkotaan pasca-hujan, dan ketenangan batin manusia di tengah era otomatisasi. Seluruh sekuens visual disintesis menggunakan custom latent diffusion dengan kurasi pencahayaan anamorfik fotorealistis.",
       "creator.watchNow": "Tonton Sekarang",'nav.about': 'Tentang',
       'nav.login': 'Masuk', 'nav.join': 'Gabung Komunitas',
       'auth.title': 'Gabung Komunitas IFAI', 'auth.subtitle': 'Masuk untuk mengirim karyamu dan bergabung dengan komunitas.', 'auth.google': 'Lanjutkan dengan Google', 'auth.or': 'atau', 'auth.emailPlaceholder': 'kamu@email.com', 'auth.sendLink': 'Kirim Link Masuk', 'auth.linkSent': 'Cek email kamu untuk link masuk.', 'auth.logout': 'Keluar',
@@ -973,6 +763,7 @@ setTimeout(function () { var el = document.getElementById('creator-hub-body'); i
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script src="js/auth.js"></script>
+<script src="js/creator-hub.js"></script>
 <script>
 (function () {
   const SUPABASE_URL = 'https://qayckglxfmtrjqtghitx.supabase.co';
@@ -1217,290 +1008,28 @@ setTimeout(function () { var el = document.getElementById('creator-hub-body'); i
 
   wireSignals();
 
-  // ---------- CREATOR HUB (admin-managed spotlight) ----------
-  // Renders the single featured row of "creator_spotlights". Until one exists
-  // (or if the fetch fails) the hardcoded placeholder already in the HTML stays.
+  // ---------- CREATOR HUB (profile card; the full profile lives on /creator) ----------
+  const creatorHero = document.getElementById('creator-hub-hero');
   const creatorBody = document.getElementById('creator-hub-body');
   let cachedCreator = null;
 
-  function chEsc(str) {
-    return String(str ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-  }
-
-  function safeUrl(u) { return /^https?:\/\//i.test(u || '') ? u : ''; }
-
-  function pickCreatorField(row, field, lang) {
-    return (lang === 'id' ? row[field + '_id'] : row[field + '_en']) || row[field + '_en'] || row[field + '_id'] || '';
-  }
-
-  // Tools the design has dedicated icons for; anything else gets an initials tile.
-  const CREATOR_TOOL_TILES = {
-    midjourney: { box: 'text-cyber-cyan', icon: '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>' },
-    runway: { box: 'text-cyber-emerald font-bold text-sm', icon: 'R:' },
-    comfyui: { box: 'text-cyber-cyan', icon: '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>' },
-    davinci: { box: 'text-amber-400', icon: '<div class="w-3.5 h-3.5 rounded-full border-2 border-dashed border-amber-400"></div>', center: true },
-    suno: { box: 'text-cyber-cyan', icon: '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"></path></svg>' },
-    photoshop: { boxBg: 'bg-[#001e36]', box: 'text-[#31a8ff] font-bold font-mono text-xs', icon: 'Ps', center: true }
-  };
-
-  function creatorToolTileHtml(name) {
-    const key = name.toLowerCase().replace(/[^a-z0-9]/g, '');
-    const hit = Object.keys(CREATOR_TOOL_TILES).find((k) => key.includes(k));
-    const letters = name.replace(/[^A-Za-z0-9]/g, '').slice(0, 2);
-    const t = hit ? CREATOR_TOOL_TILES[hit]
-      : { box: 'text-cyber-cyan font-bold font-mono text-xs', icon: chEsc(letters.charAt(0).toUpperCase() + letters.slice(1).toLowerCase()) };
-    return `
-<div class="flex flex-col items-center justify-center p-3 rounded-xl bg-cyber-surfaceDim border border-cyber-border">
-<div class="w-8 h-8 rounded-lg ${t.boxBg || 'bg-black/40'} flex items-center justify-center mb-1.5 ${t.box}">${t.icon}</div>
-<span class="font-mono text-[11px] text-slate-300${t.center ? ' text-center leading-tight' : ''}">${chEsc(name)}</span>
-</div>`;
-  }
-
-  function creatorHubHtml(c, lang) {
-    const isId = lang === 'id';
-    const name = c.name || '';
-    const nameParts = name.trim().split(/\s+/);
-    const nameHtml = nameParts.length > 1
-      ? `${chEsc(nameParts[0])}<br><span class="text-slate-100">${chEsc(nameParts.slice(1).join(' '))}</span>`
-      : chEsc(name);
-
-    const roleParts = (c.role || '').split('/').map((x) => x.trim()).filter(Boolean);
-    const roleHtml = roleParts.length
-      ? `<span class="text-cyber-cyan tracking-wider font-semibold uppercase">${chEsc(roleParts[0])}</span>`
-        + (roleParts.length > 1 ? `<span>/</span><span class="text-slate-300 uppercase">${chEsc(roleParts.slice(1).join(' / '))}</span>` : '')
-      : '';
-    const locationHtml = c.location
-      ? `${roleParts.length ? '<span class="hidden sm:inline text-cyber-border">•</span>' : ''}
-<span class="flex items-center gap-1 text-slate-400">
-<svg class="w-3.5 h-3.5 text-cyber-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-${chEsc(c.location)}
-</span>`
-      : '';
-
-    const quote = pickCreatorField(c, 'quote', lang);
-    const bio = pickCreatorField(c, 'bio', lang);
-    const photo = safeUrl(c.photo_url);
-    const profileUrl = safeUrl(c.profile_url);
-    const firstName = nameParts[0] || name;
-
-    const fields = (c.fields || []).filter(Boolean);
-    const tools = (c.tools || []).filter(Boolean);
-    const fieldsBlock = fields.length ? `
-<div>
-<div class="flex items-center justify-between mb-3">
-<h3 class="font-mono text-xs uppercase tracking-widest text-white font-bold flex items-center gap-2">
-<span class="w-1 h-3 bg-cyber-cyan inline-block"></span>
-<span data-i18n="creator.fieldsTitle">Creative Fields</span>
-</h3>
-<span class="font-mono text-[10px] text-slate-500">EXPERTISE DOMAINS</span>
-</div>
-<div class="flex flex-wrap gap-2 pt-1">
-${fields.map((f) => `<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim border border-cyber-border text-xs font-medium text-slate-200">${chEsc(f)}</span>`).join('')}
-</div>
-</div>` : '';
-    const toolsBlock = tools.length ? `
-<div class="${fields.length ? 'border-t border-zinc-700 pt-5' : ''}">
-<div class="flex items-center justify-between mb-3">
-<h3 class="font-mono text-xs uppercase tracking-widest text-white font-bold flex items-center gap-2">
-<span class="w-1 h-3 bg-cyber-cyan inline-block"></span>
-<span data-i18n="creator.toolsTitle">Tools Used</span>
-</h3>
-<span class="font-mono text-[10px] text-slate-500">NEURAL STACK</span>
-</div>
-<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5 pt-1">${tools.map(creatorToolTileHtml).join('')}</div>
-</div>` : '';
-
-    // Featured work (hidden entirely when it has no title)
-    let workBlock = '';
-    if (c.work_title) {
-      const watchUrl = safeUrl(c.work_watch_url);
-      const ytId = extractYouTubeId(watchUrl);
-      // No uploaded image? Fall back to the YouTube thumbnail.
-      const workImg = safeUrl(c.work_image_url) || (ytId ? `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg` : '');
-      const meta = pickCreatorField(c, 'work_meta', lang);
-      const synopsis = pickCreatorField(c, 'work_synopsis', lang);
-      const playLabel = chEsc('Play: ' + c.work_title);
-      const playCls = 'w-[68px] h-12 rounded-xl bg-[#FF0000] hover:bg-[#cc0000] text-white flex items-center justify-center shadow-lg shadow-black/40 hover:scale-110 transition-all duration-300';
-      const playIcon = '<svg class="w-6 h-6 fill-current -ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>';
-      const watchCls = 'group relative inline-flex items-center justify-center gap-2 px-8 py-3 min-w-[200px] rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 hover:text-black transition-all duration-300 glow-white cursor-pointer';
-      const watchInner = '<svg class="relative z-10 w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg><span class="relative z-10" data-i18n="creator.watchNow">Watch Now</span><span class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-white transition-transform duration-300 ease-out"></span>';
-      // YouTube links play in place; any other link opens in a new tab.
-      const playBtn = ytId
-        ? `<button type="button" data-play-video="${ytId}" aria-label="${playLabel}" class="${playCls}">${playIcon}</button>`
-        : (watchUrl ? `<a href="${chEsc(watchUrl)}" target="_blank" rel="noopener" aria-label="${playLabel}" class="${playCls}">${playIcon}</a>` : '');
-      const watchBtn = ytId
-        ? `<button type="button" data-play-video="${ytId}" class="${watchCls}">${watchInner}</button>`
-        : (watchUrl ? `<a href="${chEsc(watchUrl)}" target="_blank" rel="noopener" class="${watchCls}">${watchInner}</a>` : '');
-      workBlock = `
-<div class="space-y-4 pt-2">
-<div class="flex items-center gap-3">
-<h3 data-i18n="creator.featuredTitle" class="text-xl font-bold tracking-tight text-white uppercase">Featured Work</h3>
-<span data-i18n="creator.featuredBadge" class="px-2 py-0.5 rounded text-[10px] font-mono bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/30">MAIN SHOWCASE</span>
-</div>
-<article class="rounded-2xl bg-cyber-surface border border-zinc-700 overflow-hidden shadow-xl">
-<div class="grid grid-cols-1 lg:grid-cols-12">
-<div data-work-media data-title="${chEsc(c.work_title)}" class="lg:col-span-7 relative group bg-black overflow-hidden aspect-video lg:aspect-auto lg:min-h-[360px]">
-${workImg ? `<img alt="${chEsc(c.work_title)}" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" src="${chEsc(workImg)}"${ytId ? ` onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${ytId}/hqdefault.jpg'"` : ''}>` : ''}
-${playBtn ? `<div class="absolute inset-0 flex items-center justify-center">${playBtn}</div>` : ''}
-${c.work_duration ? `<div class="absolute bottom-4 left-4 font-mono text-xs text-white/80 bg-black/60 px-2 py-1 rounded border border-white/10">${chEsc(c.work_duration)}</div>` : ''}
-</div>
-<div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between">
-<div class="space-y-4">
-${meta ? `<div><span class="inline-block text-[11px] font-mono uppercase px-2 py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30">${chEsc(meta)}</span></div>` : ''}
-<div>
-<h4 class="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-tight">${chEsc(c.work_title)}</h4>
-<p class="font-mono text-xs text-white mt-1">${isId ? 'Oleh' : 'By'} ${chEsc(name)}</p>
-</div>
-${synopsis ? `<p class="text-slate-300 text-sm leading-relaxed font-normal">${chEsc(synopsis)}</p>` : ''}
-</div>
-${watchBtn ? `<div class="pt-6 mt-4 border-t border-zinc-700 flex justify-end">${watchBtn}</div>` : ''}
-</div>
-</div>
-</article>
-</div>`;
-    }
-
-    // About + fields/tools + featured work share one box.
-    const hasAbout = !!(bio || profileUrl);
-    const hasRight = !!(fieldsBlock || toolsBlock);
-    const topGrid = (hasAbout || hasRight) ? `<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-${hasAbout ? `<div class="${hasRight ? 'lg:col-span-5' : 'lg:col-span-12'} rounded-2xl bg-cyber-surface border border-zinc-700 p-6 sm:p-8 flex flex-col justify-between">
-<div>
-<div class="flex items-center justify-between mb-4">
-<h3 class="font-mono text-xs uppercase tracking-widest text-white font-bold flex items-center gap-2">
-<span class="w-1 h-3 bg-cyber-cyan inline-block"></span>
-<span data-i18n="creator.aboutTitle">About the Creator</span>
-</h3>
-<span class="font-mono text-[10px] text-slate-500">BIO // ARCHIVE</span>
-</div>
-${bio ? `<p class="text-slate-300 text-sm sm:text-base leading-relaxed font-normal mb-6">${chEsc(bio)}</p>` : ''}
-</div>
-${profileUrl ? `<div>
-<a href="${chEsc(profileUrl)}" target="_blank" rel="noopener" class="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 hover:text-black transition-all duration-300 glow-white cursor-pointer">
-<span class="relative z-10">${isId ? 'Lebih Banyak Tentang' : 'More About'} ${chEsc(firstName)}</span>
-<span class="relative z-10">→</span>
-<span class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-white transition-transform duration-300 ease-out"></span>
-</a>
-</div>` : ''}
-</div>` : ''}
-${hasRight ? `<div class="${hasAbout ? 'lg:col-span-7' : 'lg:col-span-12'} rounded-2xl bg-cyber-surface border border-zinc-700 p-6 sm:p-8 flex flex-col justify-between gap-6">${fieldsBlock}${toolsBlock}</div>` : ''}
-</div>` : '';
-    const detailsBox = topGrid + workBlock;
-
-    return `
-<header class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-zinc-700 pb-5">
-<div class="space-y-1.5">
-<div class="font-mono text-xs text-white tracking-wider uppercase"><span>Featured Creator // Spotlight</span></div>
-<h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">CREATOR HUB</h2>
-</div>
-<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyber-surface border border-cyber-border text-xs font-mono text-slate-300">
-<svg class="w-4 h-4 text-cyber-cyan" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M23 12l-2.44-2.79.34-3.69-3.61-.82-1.89-3.2L12 2.96 8.6 1.5 6.71 4.69 3.1 5.5l.34 3.7L1 12l2.44 2.79-.34 3.7 3.61.82L8.6 22.5l3.4-1.47 3.4 1.46 1.89-3.19 3.61-.82-.34-3.69L23 12zm-12.91 4.72l-3.8-3.81 1.48-1.48 2.32 2.33 5.85-5.87 1.48 1.48-7.33 7.35z"></path></svg>
-<span data-i18n="creator.status">VERIFIED IFAI FELLOW</span>
-</div>
-</header>
-
-<article class="relative rounded-2xl bg-cyber-surface border border-zinc-700 overflow-hidden shadow-2xl">
-<div class="absolute -right-20 -top-20 w-96 h-96 bg-cyber-emerald/10 rounded-full blur-3xl pointer-events-none"></div>
-<div class="absolute left-1/4 -bottom-20 w-80 h-80 bg-cyber-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
-<div class="grid grid-cols-1 lg:grid-cols-12 min-h-[500px]">
-<div class="lg:col-span-6 relative group overflow-hidden bg-black flex items-end min-h-[380px] lg:min-h-full">
-${photo ? `<img alt="${chEsc(name)}" class="absolute inset-0 w-full h-full object-cover object-center filter grayscale contrast-110 group-hover:scale-105 transition-transform duration-700 ease-out opacity-85" src="${chEsc(photo)}">` : ''}
-<div class="absolute inset-0 bg-gradient-to-t from-cyber-surface via-cyber-darkBg/50 to-transparent"></div>
-<div class="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-cyber-surface/90 hidden lg:block"></div>
-</div>
-<div class="lg:col-span-6 p-6 sm:p-10 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-zinc-700 relative z-10">
-<div>
-<div class="flex items-center justify-between gap-4 mb-6">
-<span data-i18n="creator.profileBadge" class="text-[11px] font-mono px-2 py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30">CREATOR PROFILE</span>
-</div>
-<div class="space-y-2 mb-8">
-<h3 class="text-4xl sm:text-5xl font-bold uppercase tracking-tight text-white leading-none">${nameHtml}</h3>
-<div class="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs sm:text-sm text-cyber-muted pt-2">${roleHtml}${locationHtml}</div>
-</div>
-${quote ? `<blockquote class="p-5 rounded-xl bg-cyber-darkBg/60 text-slate-300 text-sm sm:text-base leading-relaxed italic mb-8"><span class="text-cyber-cyan text-xl not-italic">“</span>${chEsc(quote)}<span class="text-cyber-cyan text-xl not-italic">”</span></blockquote>` : ''}
-</div>
-<div class="pt-4 flex items-center justify-end gap-3" id="creator-share-row">
-${['whatsapp:fa-brands fa-whatsapp:WhatsApp', 'facebook:fa-brands fa-facebook-f:Facebook', 'threads:fa-brands fa-threads:Threads', 'linkedin:fa-brands fa-linkedin-in:LinkedIn'].map((s) => {
-  const [key, icon, label] = s.split(':');
-  return `<a data-share="${key}" target="_blank" rel="noopener" title="${label}" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="${icon}"></i></a>`;
-}).join('\n')}
-<button type="button" data-share-copy title="Copy link" class="w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors"><i class="fa-solid fa-link"></i></button>
-</div>
-</div>
-</div>
-</article>
-
-${detailsBox}`;
-  }
-
-  function wireCreatorShare(title) {
-    const row = document.getElementById('creator-share-row');
-    if (!row) return;
-    const url = window.location.origin + '/#creator-hub';
-    const shareUrls = {
-      whatsapp: 'https://api.whatsapp.com/send?text=' + encodeURIComponent(title + ' | IFAI - ' + url),
-      facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url),
-      threads: 'https://www.threads.net/intent/post?text=' + encodeURIComponent(title + ' | IFAI - ' + url),
-      linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url)
-    };
-    row.querySelectorAll('[data-share]').forEach((el) => { el.href = shareUrls[el.getAttribute('data-share')]; });
-    const copyBtn = row.querySelector('[data-share-copy]');
-    if (copyBtn) {
-      copyBtn.addEventListener('click', async () => {
-        try {
-          await navigator.clipboard.writeText(url);
-          const icon = copyBtn.querySelector('i');
-          icon.className = 'fa-solid fa-check';
-          setTimeout(() => { icon.className = 'fa-solid fa-link'; }, 1500);
-        } catch (e) {
-          // clipboard API unavailable — nothing else to fall back to here
-        }
-      });
-    }
-  }
-
-  function renderCreatorHub(lang) {
-    if (!creatorBody || !cachedCreator) return;
-    creatorBody.innerHTML = creatorHubHtml(cachedCreator, lang);
+  function renderCreatorHero(lang) {
+    if (!creatorHero || !cachedCreator) return;
+    creatorHero.innerHTML = window.IFAI_CREATOR.heroHtml(cachedCreator, lang, { mode: 'home' });
     if (window.IFAI_I18N) window.IFAI_I18N.applyLanguage(lang, { silent: true });
-    wireCreatorShare((cachedCreator.name || '') + ' — IFAI Creator Hub');
   }
 
   async function wireCreatorHub() {
-    if (!creatorBody) return;
-    // Placeholder share row (until a real creator replaces it)
-    wireCreatorShare('Raka Pratama — IFAI Creator Hub');
+    if (!creatorHero) return;
     try {
-      const { data, error } = await sb
-        .from('creator_spotlights')
-        .select('*')
-        .eq('is_featured', true)
-        .eq('status', 'approved')
-        .limit(1);
-      if (error) {
-        console.error('IFAI: failed to load creator spotlight', error);
-      } else if (data && data.length) {
-        cachedCreator = data[0];
-        renderCreatorHub(window.IFAI_I18N ? window.IFAI_I18N.getLang() : 'en');
-        window.addEventListener('ifai:langchange', (e) => renderCreatorHub(e.detail.lang));
-      }
+      // Featured creator from the database, or the sample placeholder until one exists.
+      cachedCreator = (await window.IFAI_CREATOR.fetchCreator(sb)) || window.IFAI_CREATOR.PLACEHOLDER;
+      renderCreatorHero(window.IFAI_I18N ? window.IFAI_I18N.getLang() : 'en');
+      window.addEventListener('ifai:langchange', (e) => renderCreatorHero(e.detail.lang));
     } finally {
-      // Body starts hidden so the placeholder never flashes before real content swaps in.
-      creatorBody.classList.remove('invisible');
+      // Starts hidden so nothing flashes before the real content is in.
+      if (creatorBody) creatorBody.classList.remove('invisible');
     }
-  }
-
-  // Watch Now / big play button: swap the artwork for the YouTube player.
-  if (creatorBody) {
-    creatorBody.addEventListener('click', (e) => {
-      const btn = e.target.closest('[data-play-video]');
-      if (!btn) return;
-      const pane = creatorBody.querySelector('[data-work-media]');
-      if (!pane) return;
-      const id = btn.getAttribute('data-play-video');
-      pane.innerHTML = `<iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0" title="${chEsc(pane.getAttribute('data-title') || 'Video')}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
-      pane.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    });
   }
 
   wireCreatorHub();

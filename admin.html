@@ -469,10 +469,6 @@
             </button>
           </div>
         </div>
-        <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Link "More About" (opsional) <span class="normal-case text-zinc-500">(kosongkan untuk menyembunyikan tombol)</span></label>
-          <input type="text" id="ch-profile-url" placeholder="https://..." class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
-        </div>
 
         <h3 class="text-sm font-bold text-white uppercase tracking-wider pt-4 border-t border-zinc-800">Bidang Kreatif &amp; Tools</h3>
         <div class="flex flex-col gap-1.5">
@@ -1562,7 +1558,6 @@
       quote_en: orNull(chVal('ch-quote-en')),
       bio_id: orNull(chVal('ch-bio-id')),
       bio_en: orNull(chVal('ch-bio-en')),
-      profile_url: orNull(chVal('ch-profile-url')),
       fields: chList('ch-fields'),
       tools: chList('ch-tools'),
       work_title: orNull(chVal('ch-work-title')),
@@ -1648,7 +1643,6 @@
     set('ch-name', c.name); set('ch-role', c.role); set('ch-location', c.location);
     set('ch-quote-id', c.quote_id); set('ch-quote-en', c.quote_en);
     set('ch-bio-id', c.bio_id); set('ch-bio-en', c.bio_en);
-    set('ch-profile-url', c.profile_url);
     set('ch-fields', (c.fields || []).join(', ')); set('ch-tools', (c.tools || []).join(', '));
     set('ch-work-title', c.work_title); set('ch-work-duration', c.work_duration);
     set('ch-work-meta-id', c.work_meta_id); set('ch-work-meta-en', c.work_meta_en);
