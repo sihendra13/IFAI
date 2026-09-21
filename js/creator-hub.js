@@ -129,7 +129,6 @@ ${PILL_SLIDE}
 
     return `<article class="relative rounded-2xl bg-cyber-surface border border-zinc-700 overflow-hidden shadow-2xl">
 <div class="absolute -right-20 -top-20 w-96 h-96 bg-cyber-emerald/10 rounded-full blur-3xl pointer-events-none"></div>
-<div class="absolute left-1/4 -bottom-20 w-80 h-80 bg-cyber-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
 <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[500px]">
 <div class="creator-photo-fade lg:col-span-6 relative group overflow-hidden bg-black flex items-end min-h-[380px] lg:min-h-full">
 ${photo ? `<img alt="${esc(name)}" class="absolute inset-0 w-full h-full object-cover object-center filter grayscale contrast-110 group-hover:scale-105 transition-transform duration-700 ease-out opacity-85" src="${esc(photo)}">` : ''}
