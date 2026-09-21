@@ -150,7 +150,7 @@ ${footer}
     const photo = safeUrl(c.photo_url);
     const shareBtn = 'w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors';
     return `<div class="flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-8">
-${photo ? `<div class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border border-zinc-700 bg-black flex-shrink-0">
+${photo ? `<div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-zinc-700 bg-black flex-shrink-0">
 <img alt="${esc(c.name)}" class="w-full h-full object-cover object-center filter grayscale contrast-110 opacity-85" src="${esc(photo)}">
 </div>` : ''}
 <div class="flex-1 min-w-0">
@@ -239,6 +239,7 @@ ${fields.map((f) => `<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim bor
 <article class="rounded-2xl bg-cyber-surface border border-zinc-700 overflow-hidden shadow-xl">
 <div data-work-media data-title="${esc(c.work_title)}" class="relative group bg-black overflow-hidden aspect-video">
 ${workImg ? `<img alt="${esc(c.work_title)}" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" src="${esc(workImg)}"${ytId ? ` onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${ytId}/hqdefault.jpg'"` : ''}>` : ''}
+<div class="absolute inset-0 bg-gradient-to-t from-cyber-surface via-transparent to-black/30 pointer-events-none"></div>
 ${playBtn ? `<div class="absolute inset-0 flex items-center justify-center">${playBtn}</div>` : ''}
 ${c.work_duration ? `<div class="absolute bottom-4 left-4 font-mono text-xs text-white/80 bg-black/60 px-2 py-1 rounded border border-white/10">${esc(c.work_duration)}</div>` : ''}
 </div>
