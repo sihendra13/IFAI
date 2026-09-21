@@ -74,6 +74,13 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <style data-purpose="custom-typography-and-scroll">
+    /* Creator Hub profile card: the photo fades out towards the info panel on wide screens, so there is no hard edge between them. */
+    @media (min-width: 1024px) {
+      .creator-photo-fade {
+        -webkit-mask-image: linear-gradient(to right, #000 60%, transparent 100%);
+        mask-image: linear-gradient(to right, #000 60%, transparent 100%);
+      }
+    }
     html {
       scrollbar-gutter: stable;
     }
