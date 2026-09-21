@@ -121,9 +121,6 @@ ${esc(c.location)}
     const name = c.name || '';
     const nameParts = name.trim().split(/\s+/);
     const firstName = nameParts[0] || name;
-    const nameHtml = nameParts.length > 1
-      ? `${esc(nameParts[0])}<br><span class="text-slate-100">${esc(nameParts.slice(1).join(' '))}</span>`
-      : esc(name);
 
 
     const quote = excerpt(pick(c, 'bio', lang), 200);
@@ -145,13 +142,13 @@ ${photo ? `<img alt="${esc(name)}" class="absolute inset-0 w-full h-full object-
 <div class="absolute inset-0 bg-gradient-to-t from-cyber-surface via-cyber-darkBg/50 to-transparent"></div>
 <div class="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-cyber-surface/90 hidden lg:block"></div>
 </div>
-<div class="lg:col-span-6 p-6 sm:p-10 flex flex-col justify-between relative z-10">
-<div>
+<div class="lg:col-span-6 min-w-0 p-6 sm:p-10 flex flex-col justify-between relative z-10">
+<div class="min-w-0">
 <div class="flex items-center justify-between gap-4 mb-6">
 <span data-i18n="creator.profileBadge" class="text-[11px] font-mono px-2 py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30">CREATOR PROFILE</span>
 </div>
 <div class="space-y-2 mb-8">
-<h3 class="text-4xl sm:text-5xl font-bold uppercase tracking-tight text-white leading-none">${nameHtml}</h3>
+<h3 class="text-4xl sm:text-5xl font-bold uppercase tracking-tight text-white leading-none truncate">${esc(name)}</h3>
 <div class="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs sm:text-sm text-cyber-muted pt-2">${roleLocationHtml(c)}</div>
 </div>
 ${quote ? `<blockquote class="p-5 rounded-xl bg-cyber-darkBg/60 text-slate-300 text-sm sm:text-base leading-relaxed italic mb-8"><span class="text-cyber-cyan text-xl not-italic">“</span>${esc(quote)}<span class="text-cyber-cyan text-xl not-italic">”</span></blockquote>` : ''}
@@ -163,7 +160,7 @@ ${footer}
 
     // Below 1024px the card is laid out like an IFAI Signals card: photo on top (side by side
     // from 640px), padded body with badge, one-line name, role, 3-line excerpt, then a footer
-    // with the location and the "More About" button.
+    // with the "More About" button.
     const roleLine = (c.role || '').split('/').map((x) => x.trim()).filter(Boolean).join(' / ');
     const compact = `<article class="group relative rounded-3xl overflow-hidden border border-zinc-700 bg-cyber-surface flex flex-col sm:flex-row">
 <div class="flex-1 min-w-0 p-6 sm:p-8 flex flex-col justify-between gap-4 order-2 sm:order-1">
@@ -174,7 +171,6 @@ ${roleLine ? `<p class="text-xs font-mono font-semibold text-cyber-cyan uppercas
 ${quote ? `<p class="text-zinc-400 text-sm leading-relaxed line-clamp-3">“${esc(quote)}”</p>` : ''}
 </div>
 <div class="flex items-center gap-4 pt-4 border-t border-zinc-700">
-<span class="min-w-0 flex-1 text-xs font-mono text-zinc-400 truncate">${esc(c.location || '')}</span>
 <a href="${esc(detailHref(c))}" class="${PILL_CLS} flex-shrink-0 whitespace-nowrap">
 <span class="relative z-10">${isId ? 'Lebih Banyak Tentang' : 'More About'} ${esc(firstName)}</span>
 <span class="relative z-10">→</span>
