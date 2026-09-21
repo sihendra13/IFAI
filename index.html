@@ -42,7 +42,23 @@
               emerald: '#00FF9D',
               cyan: '#00E5FF',
               purple: '#A855F7',
+            },
+            // Creator Hub section palette
+            cyber: {
+              emerald: '#00F5A0',
+              cyan: '#00E5FF',
+              darkBg: '#0e0e12',
+              surface: '#131317',
+              surfaceDim: '#1a1a21',
+              surfaceBright: '#24242d',
+              border: '#23232a',
+              borderHover: '#393945',
+              muted: '#8e8e9f',
             }
+          },
+          boxShadow: {
+            'glow-emerald': '0 0 25px -5px rgba(0, 245, 160, 0.3)',
+            'glow-cyan': '0 0 25px -5px rgba(0, 229, 255, 0.25)',
           },
           fontFamily: {
             sans: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
@@ -123,8 +139,8 @@
 <!-- Primary Navigation Links -->
 <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide font-jakarta">
 <a data-i18n="nav.showcase" class="text-zinc-300 hover:text-[#f75500] transition-colors" href="#showcase">Showcase</a>
+<a data-i18n="nav.creatorHub" class="text-zinc-300 hover:text-[#f75500] transition-colors" href="#creator-hub">Creator Hub</a>
 <a data-i18n="nav.journal" class="text-zinc-300 hover:text-[#f75500] transition-colors" href="#journal">Journal</a>
-<a class="hidden text-zinc-300 hover:text-[#f75500] transition-colors" href="#manifesto">Creator Hub</a>
 <a data-i18n="nav.about" class="text-zinc-300 hover:text-[#f75500] transition-colors" href="#manifesto">About</a>
 </nav>
 <!-- Action Buttons -->
@@ -152,6 +168,7 @@
 <!-- Mobile Menu Panel -->
 <div id="mobile-menu-panel" class="hidden md:hidden fixed top-24 left-4 right-4 sm:left-6 sm:right-6 z-40 bg-cosmic-950/95 backdrop-blur-xl border border-zinc-700 rounded-3xl shadow-lg shadow-black/40 p-6 flex flex-col gap-4">
 <a data-i18n="nav.showcase" class="text-zinc-200 hover:text-[#f75500] transition-colors text-base font-medium" href="#showcase">Showcase</a>
+<a data-i18n="nav.creatorHub" class="text-zinc-200 hover:text-[#f75500] transition-colors text-base font-medium" href="#creator-hub">Creator Hub</a>
 <a data-i18n="nav.journal" class="text-zinc-200 hover:text-[#f75500] transition-colors text-base font-medium" href="#journal">Journal</a>
 <a data-i18n="nav.about" class="text-zinc-200 hover:text-[#f75500] transition-colors text-base font-medium" href="#manifesto">About</a>
 <div class="h-px bg-zinc-800 my-1"></div>
@@ -390,6 +407,297 @@
 </div>
 </section>
 <!-- END: CommercialAndMusicShowcase -->
+<!-- BEGIN: CreatorHubSection -->
+<!-- PLACEHOLDER CONTENT: everything inside this section is hardcoded sample data (Raka Pratama / After The Rain) so the layout can be reviewed first. Once the admin "Creator Hub" tab is ready it gets replaced by admin-managed data, and this hardcoded copy is deleted. -->
+<section class="scroll-mt-28 py-24 bg-cosmic-950 border-t border-b border-zinc-800" id="creator-hub">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+<!-- Section Header -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-cyber-border pb-5">
+<div class="space-y-1.5">
+<div class="flex items-center gap-2 font-mono text-xs text-cyber-cyan tracking-wider uppercase">
+<span class="inline-block w-2 h-2 rounded-full bg-cyber-cyan animate-pulse"></span>
+<span>Featured Creator // Spotlight</span>
+</div>
+<h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">CREATOR HUB</h2>
+</div>
+<!-- Status Indicator -->
+<div class="inline-flex items-center gap-3 px-3 py-1.5 rounded-full bg-cyber-surface border border-cyber-border text-xs font-mono text-slate-400">
+<span class="w-1.5 h-1.5 rounded-full bg-cyber-emerald"></span>
+<span data-i18n="creator.status">STATUS: VERIFIED IFAI FELLOW</span>
+<span class="text-cyber-border">|</span>
+<span class="text-slate-500">ID: RP-9024</span>
+</div>
+</header>
+
+<!-- Creator Hero Card -->
+<article class="relative rounded-2xl bg-cyber-surface border border-cyber-border overflow-hidden shadow-2xl">
+<!-- Ambient Glow Behind Hero -->
+<div class="absolute -right-20 -top-20 w-96 h-96 bg-cyber-emerald/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute left-1/4 -bottom-20 w-80 h-80 bg-cyber-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 min-h-[500px]">
+<!-- Left Column: Portrait and Typographic Overlay -->
+<div class="lg:col-span-6 relative group overflow-hidden bg-black flex items-end min-h-[380px] lg:min-h-full">
+<img alt="Raka Pratama - AI Filmmaker with camera in cinematic moody lighting" class="absolute inset-0 w-full h-full object-cover object-center filter grayscale contrast-110 group-hover:scale-105 transition-transform duration-700 ease-out opacity-85" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxIjTBTS4mTYOYAX6KKjc8EFVc5HEzWL6D6okV9c8b4vXTG8dqsqmLTHlHoa-HD1H0zeyYVl3Oq-xoh_4TZ--i3-8Q5lPeABkb5SsBeJ_Oweo9HLaNindBtSD6bGVzpwQU4FN_4D8R5XUG_Ylyo7PIqyB2A3o-82I5sLs2XNuLnHud76fpfjg0MDJvuWaBZK96eyFwiK-qpIidbRD2h-SxxFsz8Cs1nQtF65BKHLNl">
+<!-- Vignette Overlays -->
+<div class="absolute inset-0 bg-gradient-to-t from-cyber-surface via-cyber-darkBg/50 to-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-cyber-surface/90 hidden lg:block"></div>
+<div class="relative z-10 p-6 sm:p-8 w-full flex flex-col justify-between h-full">
+<div class="pt-4">
+<p class="italic font-medium text-3xl sm:text-4xl text-slate-100 drop-shadow-md -rotate-3 leading-tight select-none">
+                Good Stories<br>
+<span class="text-cyber-cyan">New Possibilities</span>
+</p>
+</div>
+<div class="border-l-2 border-cyber-emerald pl-3 mt-12 backdrop-blur-sm bg-black/40 py-1.5 pr-4 inline-block w-fit rounded-r">
+<span class="block font-mono text-[10px] tracking-[0.25em] text-cyber-emerald uppercase font-bold">
+                Creative People
+              </span>
+<span class="block font-mono text-xs tracking-[0.15em] text-slate-300 uppercase">
+                Brighter Tomorrow
+              </span>
+</div>
+</div>
+</div>
+<!-- Right Column: Identity, Quote & Actions -->
+<div class="lg:col-span-6 p-6 sm:p-10 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-cyber-border relative z-10">
+<div>
+<div class="flex items-center justify-between gap-4 mb-6">
+<span data-i18n="creator.profileBadge" class="px-2.5 py-1 text-[11px] font-mono font-semibold tracking-wider text-cyber-emerald bg-cyber-emerald/10 border border-cyber-emerald/30 rounded">
+                CREATOR PROFILE
+              </span>
+<!-- Quick Actions (visual only for now) -->
+<div class="flex items-center gap-2">
+<button aria-label="Follow" class="px-5 py-2 bg-cyber-emerald hover:bg-emerald-400 text-cyber-darkBg font-mono font-bold text-xs uppercase tracking-wider rounded-lg shadow-glow-emerald transition-all duration-200 transform active:scale-95 flex items-center gap-1.5" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span data-i18n="creator.follow">FOLLOW</span>
+</button>
+<button aria-label="Share profile" class="p-2 bg-cyber-surfaceDim hover:bg-cyber-surfaceBright border border-cyber-border text-slate-300 hover:text-white rounded-lg transition-colors" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<button aria-label="Save profile" class="p-2 bg-cyber-surfaceDim hover:bg-cyber-surfaceBright border border-cyber-border text-slate-300 hover:text-white rounded-lg transition-colors" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+</div>
+<!-- Creator Name and Role -->
+<div class="space-y-2 mb-8">
+<h3 class="text-4xl sm:text-5xl font-bold uppercase tracking-tight text-white leading-none">
+                RAKA<br><span class="text-slate-100">PRATAMA</span>
+</h3>
+<div class="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs sm:text-sm text-cyber-muted pt-2">
+<span class="text-cyber-cyan tracking-wider font-semibold">AI FILMMAKER</span>
+<span>/</span>
+<span class="text-slate-300">VISUAL STORYTELLER</span>
+<span class="hidden sm:inline text-cyber-border">•</span>
+<span class="flex items-center gap-1 text-slate-400">
+<svg class="w-3.5 h-3.5 text-cyber-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  Jakarta, Indonesia
+                </span>
+</div>
+</div>
+<!-- Quote Block -->
+<blockquote class="relative p-5 rounded-xl bg-cyber-darkBg/60 border-l-2 border-cyber-cyan border-y border-r border-cyber-border text-slate-300 text-sm sm:text-base leading-relaxed italic mb-8">
+<span class="text-cyber-cyan text-2xl absolute -top-2 left-2 opacity-40">“</span>
+<span data-i18n="creator.quote">AI is not a replacement for a storyteller. AI gives us a new way to tell stories on a wider scale.</span>
+</blockquote>
+</div>
+<!-- Bottom focus line -->
+<div class="pt-4 border-t border-cyber-border flex items-center font-mono text-[11px] text-cyber-muted">
+<span class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-cyber-emerald"></span>
+<span data-i18n="creator.focus">FOCUS: GENERATIVE CINEMA &amp; SYNTHETIC NARRATIVE</span>
+</span>
+</div>
+</div>
+</div>
+</article>
+
+<!-- Middle Grid: About + Fields/Tools -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Left Card: About the Creator -->
+<article class="lg:col-span-5 rounded-2xl bg-cyber-surface border border-cyber-border p-6 sm:p-8 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-mono text-xs uppercase tracking-widest text-cyber-emerald font-bold flex items-center gap-2">
+<span class="w-1 h-3 bg-cyber-emerald inline-block"></span>
+<span data-i18n="creator.aboutTitle">About the Creator</span>
+</h3>
+<span class="font-mono text-[10px] text-slate-500">BIO // ARCHIVE</span>
+</div>
+<p data-i18n="creator.bio" class="text-slate-300 text-sm sm:text-base leading-relaxed font-normal mb-6">
+            Raka Pratama is a filmmaker and visual creator exploring how artificial intelligence can become a new language in cinema. Raka's work blends a cinematic approach with AI technology to create visual stories that still begin from human perspective and emotion.
+          </p>
+</div>
+<div>
+<!-- No destination yet: the creator profile page doesn't exist -->
+<a aria-disabled="true" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-cyber-borderHover bg-cyber-surfaceDim hover:border-cyber-emerald text-slate-200 hover:text-cyber-emerald text-xs font-mono tracking-wider transition-all duration-300 group cursor-pointer">
+<span data-i18n="creator.moreAbout">More About Raka</span>
+<span class="transform group-hover:translate-x-1 transition-transform">→</span>
+</a>
+</div>
+</article>
+<!-- Right Card: Creative Fields & Tools -->
+<div class="lg:col-span-7 rounded-2xl bg-cyber-surface border border-cyber-border p-6 sm:p-8 flex flex-col justify-between gap-6">
+<!-- Creative Fields -->
+<div>
+<div class="flex items-center justify-between mb-3">
+<h3 class="font-mono text-xs uppercase tracking-widest text-slate-300 font-bold flex items-center gap-2">
+<span class="w-1 h-3 bg-cyber-cyan inline-block"></span>
+<span data-i18n="creator.fieldsTitle">Creative Fields</span>
+</h3>
+<span class="font-mono text-[10px] text-slate-500">EXPERTISE DOMAINS</span>
+</div>
+<div class="flex flex-wrap gap-2 pt-1">
+<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim border border-cyber-border text-xs font-medium text-slate-200 hover:border-cyber-emerald transition-colors">AI Film</span>
+<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim border border-cyber-border text-xs font-medium text-slate-200 hover:border-cyber-emerald transition-colors">Visual Storytelling</span>
+<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim border border-cyber-border text-xs font-medium text-slate-200 hover:border-cyber-emerald transition-colors">Generative Video</span>
+<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim border border-cyber-border text-xs font-medium text-slate-200 hover:border-cyber-emerald transition-colors">AI Art</span>
+<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim border border-cyber-border text-xs font-medium text-slate-200 hover:border-cyber-emerald transition-colors">Concept Design</span>
+</div>
+</div>
+<!-- Tools Used -->
+<div class="border-t border-cyber-border pt-5">
+<div class="flex items-center justify-between mb-3">
+<h3 class="font-mono text-xs uppercase tracking-widest text-slate-300 font-bold flex items-center gap-2">
+<span class="w-1 h-3 bg-cyber-emerald inline-block"></span>
+<span data-i18n="creator.toolsTitle">Tools Used</span>
+</h3>
+<span class="font-mono text-[10px] text-slate-500">NEURAL STACK</span>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5 pt-1">
+<!-- Midjourney -->
+<div class="flex flex-col items-center justify-center p-3 rounded-xl bg-cyber-surfaceDim border border-cyber-border hover:border-cyber-cyan transition-all group">
+<div class="w-8 h-8 rounded-lg bg-black/40 flex items-center justify-center mb-1.5 text-cyber-cyan group-hover:scale-110 transition-transform">
+<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+</div>
+<span class="font-mono text-[11px] text-slate-300 group-hover:text-white">Midjourney</span>
+</div>
+<!-- Runway -->
+<div class="flex flex-col items-center justify-center p-3 rounded-xl bg-cyber-surfaceDim border border-cyber-border hover:border-cyber-emerald transition-all group">
+<div class="w-8 h-8 rounded-lg bg-black/40 flex items-center justify-center mb-1.5 text-cyber-emerald group-hover:scale-110 transition-transform font-bold text-sm">
+                R:
+              </div>
+<span class="font-mono text-[11px] text-slate-300 group-hover:text-white">Runway</span>
+</div>
+<!-- ComfyUI -->
+<div class="flex flex-col items-center justify-center p-3 rounded-xl bg-cyber-surfaceDim border border-cyber-border hover:border-cyber-cyan transition-all group">
+<div class="w-8 h-8 rounded-lg bg-black/40 flex items-center justify-center mb-1.5 text-cyber-cyan group-hover:scale-110 transition-transform">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<span class="font-mono text-[11px] text-slate-300 group-hover:text-white">ComfyUI</span>
+</div>
+<!-- DaVinci Resolve -->
+<div class="flex flex-col items-center justify-center p-3 rounded-xl bg-cyber-surfaceDim border border-cyber-border hover:border-cyber-emerald transition-all group">
+<div class="w-8 h-8 rounded-lg bg-black/40 flex items-center justify-center mb-1.5 text-amber-400 group-hover:scale-110 transition-transform">
+<div class="w-3.5 h-3.5 rounded-full border-2 border-dashed border-amber-400"></div>
+</div>
+<span class="font-mono text-[11px] text-slate-300 group-hover:text-white text-center leading-tight">DaVinci</span>
+</div>
+<!-- Suno -->
+<div class="flex flex-col items-center justify-center p-3 rounded-xl bg-cyber-surfaceDim border border-cyber-border hover:border-cyber-cyan transition-all group">
+<div class="w-8 h-8 rounded-lg bg-black/40 flex items-center justify-center mb-1.5 text-cyber-cyan group-hover:scale-110 transition-transform">
+<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"></path></svg>
+</div>
+<span class="font-mono text-[11px] text-slate-300 group-hover:text-white">Suno</span>
+</div>
+<!-- Adobe Photoshop -->
+<div class="flex flex-col items-center justify-center p-3 rounded-xl bg-cyber-surfaceDim border border-cyber-border hover:border-blue-400 transition-all group">
+<div class="w-8 h-8 rounded-lg bg-[#001e36] text-[#31a8ff] flex items-center justify-center mb-1.5 font-bold font-mono text-xs group-hover:scale-110 transition-transform">
+                Ps
+              </div>
+<span class="font-mono text-[11px] text-slate-300 group-hover:text-white text-center leading-tight">Photoshop</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Featured Works -->
+<div class="space-y-4 pt-2">
+<div class="flex items-center justify-between border-b border-cyber-border pb-3">
+<div class="flex items-center gap-3">
+<h3 data-i18n="creator.featuredTitle" class="text-xl font-bold tracking-tight text-white uppercase">
+            Featured Works
+          </h3>
+<span data-i18n="creator.featuredBadge" class="px-2 py-0.5 rounded text-[10px] font-mono bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/30">
+            MAIN SHOWCASE
+          </span>
+</div>
+<!-- No destination yet: the creator's works page doesn't exist -->
+<a aria-disabled="true" class="group flex items-center gap-1.5 text-xs font-mono text-cyber-muted hover:text-cyber-emerald transition-colors cursor-pointer">
+<span data-i18n="creator.viewAllWorks">View All Works</span>
+<span class="transform group-hover:translate-x-1 transition-transform">→</span>
+</a>
+</div>
+<!-- Wide Cinema Focus Card: After The Rain -->
+<article class="rounded-2xl bg-cyber-surface border border-cyber-border overflow-hidden hover:border-cyber-borderHover transition-all duration-300 shadow-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12">
+<!-- Left Visual Pane -->
+<div class="lg:col-span-7 relative group bg-black overflow-hidden aspect-video lg:aspect-auto">
+<img alt="After The Rain - Lone silhouette overlooking flooded post-apocalyptic skyline at sunset" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcnxVPxKOOM9wdmIBkr6r5wWW0db_cfrmHqx7aLpeHEmOFD8rkePjVh_SbPQoJbGsH2C0B16OF3pemmUYxmKRr930O8PVh4OkzkXHWz_CjEZV5_Fe9B6jZ7vtnWX9HlViQo2qsC32fyAFJIRd0Cf5myZU9skXSYxtkGVgeVi0qTHSFiJs-dc9Z5AThsSVq5yczuOL7JHnxezV0lbDhPULyatJla7IBeZG9Aw308oX3">
+<div class="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
+<span class="px-2.5 py-1 rounded bg-black/70 backdrop-blur-md border border-cyber-emerald/40 text-cyber-emerald font-mono text-[10px] font-bold uppercase tracking-wider">
+                Featured Opus
+              </span>
+</div>
+<div class="absolute inset-0 flex items-center justify-center">
+<button aria-label="Watch teaser: After The Rain" class="w-16 h-16 rounded-full bg-cyber-darkBg/80 border-2 border-cyber-emerald text-cyber-emerald flex items-center justify-center backdrop-blur-sm shadow-glow-emerald hover:scale-110 hover:bg-cyber-emerald hover:text-cyber-darkBg transition-all duration-300" type="button">
+<svg class="w-6 h-6 fill-current ml-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+</button>
+</div>
+<div class="absolute bottom-4 left-4 font-mono text-xs text-white/80 bg-black/60 px-2 py-1 rounded border border-white/10">
+              08:24
+            </div>
+</div>
+<!-- Right Metadata Pane -->
+<div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between bg-cyber-surface">
+<div class="space-y-4">
+<div class="flex items-center justify-between font-mono text-xs text-cyber-emerald">
+<span data-i18n="creator.filmMeta" class="tracking-widest font-semibold uppercase">SHORT FILM • 2024 • 8 MIN</span>
+</div>
+<div>
+<h4 class="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-tight">
+                  After The Rain
+                </h4>
+<p data-i18n="creator.filmDirector" class="font-mono text-xs text-cyber-cyan mt-1">
+                  Directed &amp; Created by Raka Pratama
+                </p>
+</div>
+<p data-i18n="creator.filmSynopsis" class="text-slate-300 text-sm leading-relaxed font-normal">
+                A poetic exploration of memory, the post-rain urban landscape, and human inner calm in an age of automation. Every visual sequence was synthesized using custom latent diffusion, with photorealistic anamorphic lighting curation.
+              </p>
+<div class="bg-cyber-darkBg/70 p-3.5 rounded-xl border border-cyber-border space-y-2 font-mono text-xs">
+<div class="flex items-start gap-2">
+<span class="text-cyber-muted whitespace-nowrap">Pipeline:</span>
+<span class="text-slate-300">Runway Gen-3 Alpha • Midjourney v6 • DaVinci Resolve AI</span>
+</div>
+<div class="flex items-center gap-2">
+<span data-i18n="creator.curation" class="text-cyber-muted whitespace-nowrap">Curation:</span>
+<span class="text-cyber-emerald flex items-center gap-1">
+<svg class="w-3.5 h-3.5 text-cyber-emerald" fill="currentColor" viewBox="0 0 20 20"><path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path></svg>
+                    Official Selection IFAI 2025
+                  </span>
+</div>
+</div>
+</div>
+<!-- Call to Actions (visual only for now) -->
+<div class="pt-6 mt-4 border-t border-cyber-border flex flex-wrap sm:flex-nowrap gap-3">
+<button class="w-full sm:w-auto flex-1 px-5 py-3 bg-cyber-emerald hover:bg-emerald-400 text-cyber-darkBg font-mono font-bold text-xs uppercase tracking-wider rounded-lg shadow-glow-emerald transition-all duration-200 flex items-center justify-center gap-2" type="button">
+<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+<span data-i18n="creator.watchFilm">Watch Film</span>
+</button>
+<button class="w-full sm:w-auto px-5 py-3 rounded-lg border border-cyber-cyan/50 text-cyber-cyan hover:bg-cyber-cyan/10 font-mono text-xs uppercase tracking-wider transition-all duration-200 flex items-center justify-center gap-1.5 group" type="button">
+<span data-i18n="creator.workDetail">Work Details</span>
+<span class="transform group-hover:translate-x-0.5 transition-transform">→</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- END: CreatorHubSection -->
 <!-- BEGIN: ProgramsAndEventsSection -->
 <section class="py-24 border-b border-zinc-800 bg-cosmic-950" id="journal">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -553,7 +861,26 @@
   const LANG_KEY = 'ifai_lang';
   const DICT = {
     en: {
-      'nav.showcase': 'Showcase', 'nav.journal': 'Journal', 'nav.about': 'About',
+      'nav.showcase': 'Showcase', 'nav.journal': 'Journal', 'nav.creatorHub': 'Creator Hub',
+      "creator.status": "STATUS: VERIFIED IFAI FELLOW",
+      "creator.profileBadge": "CREATOR PROFILE",
+      "creator.follow": "FOLLOW",
+      "creator.quote": "AI is not a replacement for a storyteller. AI gives us a new way to tell stories on a wider scale.",
+      "creator.focus": "FOCUS: GENERATIVE CINEMA & SYNTHETIC NARRATIVE",
+      "creator.aboutTitle": "About the Creator",
+      "creator.bio": "Raka Pratama is a filmmaker and visual creator exploring how artificial intelligence can become a new language in cinema. Raka's work blends a cinematic approach with AI technology to create visual stories that still begin from human perspective and emotion.",
+      "creator.moreAbout": "More About Raka",
+      "creator.fieldsTitle": "Creative Fields",
+      "creator.toolsTitle": "Tools Used",
+      "creator.featuredTitle": "Featured Works",
+      "creator.featuredBadge": "MAIN SHOWCASE",
+      "creator.viewAllWorks": "View All Works",
+      "creator.filmMeta": "SHORT FILM • 2024 • 8 MIN",
+      "creator.filmDirector": "Directed & Created by Raka Pratama",
+      "creator.filmSynopsis": "A poetic exploration of memory, the post-rain urban landscape, and human inner calm in an age of automation. Every visual sequence was synthesized using custom latent diffusion, with photorealistic anamorphic lighting curation.",
+      "creator.curation": "Curation:",
+      "creator.watchFilm": "Watch Film",
+      "creator.workDetail": "Work Details", 'nav.about': 'About',
       'nav.login': 'Log In', 'nav.join': 'Join Community',
       'auth.title': 'Join IFAI Community', 'auth.subtitle': 'Sign in to submit your work and join the community.', 'auth.google': 'Continue with Google', 'auth.or': 'or', 'auth.emailPlaceholder': 'you@email.com', 'auth.sendLink': 'Send Magic Link', 'auth.linkSent': 'Check your email for the login link.', 'auth.logout': 'Log Out',
       'hero.title': 'Indonesia Future Arts & Intelligence',
@@ -585,7 +912,26 @@
       'footer.copyright': '© 2025 IFAI (Indonesia Future Arts & Intelligence). All rights reserved.',
     },
     id: {
-      'nav.showcase': 'Etalase', 'nav.journal': 'Jurnal', 'nav.about': 'Tentang',
+      'nav.showcase': 'Etalase', 'nav.journal': 'Jurnal', 'nav.creatorHub': 'Creator Hub',
+      "creator.status": "STATUS: IFAI FELLOW TERVERIFIKASI",
+      "creator.profileBadge": "PROFIL CREATOR",
+      "creator.follow": "IKUTI",
+      "creator.quote": "AI bukan pengganti seorang storyteller. AI memberi kita cara baru untuk menceritakan kisah yang lebih luas.",
+      "creator.focus": "FOKUS: GENERATIVE CINEMA & SYNTHETIC NARRATIVE",
+      "creator.aboutTitle": "Tentang Creator",
+      "creator.bio": "Raka Pratama adalah filmmaker dan kreator visual yang mengeksplorasi bagaimana kecerdasan buatan dapat menjadi bahasa baru dalam sinema. Karyanya memadukan pendekatan sinematik dengan teknologi AI untuk menciptakan cerita visual yang tetap berangkat dari perspektif dan emosi manusia.",
+      "creator.moreAbout": "Lebih Banyak Tentang Raka",
+      "creator.fieldsTitle": "Bidang Kreatif",
+      "creator.toolsTitle": "Tools Yang Digunakan",
+      "creator.featuredTitle": "Karya Pilihan",
+      "creator.featuredBadge": "SHOWCASE UTAMA",
+      "creator.viewAllWorks": "Lihat Semua Karya",
+      "creator.filmMeta": "FILM PENDEK • 2024 • 8 MENIT",
+      "creator.filmDirector": "Disutradarai & Direka oleh Raka Pratama",
+      "creator.filmSynopsis": "Eksplorasi puitis tentang memori, lanskap perkotaan pasca-hujan, dan ketenangan batin manusia di tengah era otomatisasi. Seluruh sekuens visual disintesis menggunakan custom latent diffusion dengan kurasi pencahayaan anamorfik fotorealistis.",
+      "creator.curation": "Kurasi:",
+      "creator.watchFilm": "Tonton Film",
+      "creator.workDetail": "Detail Karya", 'nav.about': 'Tentang',
       'nav.login': 'Masuk', 'nav.join': 'Gabung Komunitas',
       'auth.title': 'Gabung Komunitas IFAI', 'auth.subtitle': 'Masuk untuk mengirim karyamu dan bergabung dengan komunitas.', 'auth.google': 'Lanjutkan dengan Google', 'auth.or': 'atau', 'auth.emailPlaceholder': 'kamu@email.com', 'auth.sendLink': 'Kirim Link Masuk', 'auth.linkSent': 'Cek email kamu untuk link masuk.', 'auth.logout': 'Keluar',
       'hero.title': 'Indonesia Future Arts & Intelligence',
