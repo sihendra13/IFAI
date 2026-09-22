@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTA Animations Playground</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .spotlight-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 1.5rem;
+            background: radial-gradient(600px circle at var(--mouse-x, -1000px) var(--mouse-y, -1000px), rgba(255, 255, 255, 0.15), transparent 40%);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .bg-cosmic-950 { background-color: #030305; }
+        .bg-cosmic-800 { background-color: #0f111a; }
+        .bg-cosmic-850 { background-color: #0a0b10; }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cosmic: { 800: '#0f111a', 850: '#0a0b10', 950: '#030305' },
+                        cyber: { cyan: '#00f0ff' }
+                    },
+                    keyframes: {
+                        scanline: { '0%': { transform: 'translateY(-100%)' }, '100%': { transform: 'translateY(800%)' } },
+                        float: { '0%, 100%': { transform: 'translateY(0px) translateX(0px)' }, '50%': { transform: 'translateY(-20px) translateX(15px)' } },
+                        spinSlow: { '0%': { transform: 'rotate(0deg)' }, '100%': { transform: 'rotate(360deg)' } },
+                        
+                        /* Animasi baru: Cepat lalu lambat lalu cepat */
+                        spinVaried: {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '35%': { transform: 'rotate(180deg)' }, /* Fase cepat (180 derajat dalam 35% waktu) */
+                            '75%': { transform: 'rotate(270deg)' }, /* Fase lambat (90 derajat dalam 40% waktu) */
+                            '100%': { transform: 'rotate(360deg)' } /* Fase cepat lagi ke awal */
+                        }
+                    },
+                    animation: {
+                        'scanline': 'scanline 3s linear infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'spin-slow': 'spinSlow 10s linear infinite',
+                        'spin-varied': 'spinVaried 5s ease-in-out infinite' /* Menggunakan custom keyframe dengan transisi halus */
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-cosmic-950 text-white min-h-screen p-10 font-sans antialiased space-y-16">
+
+    <div class="max-w-4xl mx-auto space-y-24 pb-20">
+        
+        <div class="text-center mb-12">
+            <h1 class="text-3xl font-bold mb-2">Variasi 1 - Custom Speed</h1>
+            <p class="text-zinc-400">Silakan refresh. Animasi putaran pada kotak pertama sekarang dibuat "cepat - lambat - cepat".</p>
+        </div>
+
+        <!-- VARIANT 1: Aura Glow (UPDATED DYNAMIC SPEED) -->
+        <section>
+            <h2 class="text-cyber-cyan text-sm font-mono mb-4">1. Animated Aura (Speed: Cepat -> Lambat -> Cepat)</h2>
+            <div class="relative group overflow-hidden rounded-[2rem] p-1">
+                <!-- Rotating gradient border background, UPDATED TO ANIMATE-SPIN-VARIED -->
+                <div class="absolute inset-[-50%] bg-[conic-gradient(from_0deg,transparent,rgba(0,240,255,0.8),rgba(168,85,247,0.8),transparent)] animate-spin-varied opacity-80"></div>
+                <!-- Card Content -->
+                <div class="relative p-8 rounded-3xl bg-cosmic-950 flex flex-col md:flex-row items-center justify-between gap-6 overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-r from-cyan-900/10 to-purple-900/10 pointer-events-none"></div>
+                    <div class="relative z-10">
+                        <h4 class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-300">Join the Indonesian AI Vanguard</h4>
+                        <p class="text-xs sm:text-sm text-zinc-400 mt-1">Submit your autonomous films, commercial work, or neural compositions for upcoming seasonal curations.</p>
+                    </div>
+                    <button class="relative z-10 group/btn inline-flex items-center justify-center px-8 py-3.5 rounded-full text-xs font-mono font-bold tracking-wider uppercase overflow-hidden border border-cyan-500/40 text-cyan-50 bg-cosmic-950 hover:bg-cyan-900/30 hover:border-cyan-400 transition-all duration-300 shadow-[0_0_15px_rgba(0,240,255,0)] hover:shadow-[0_0_20px_rgba(0,240,255,0.3)]">
+                        <span>Contact Admin →</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Variasi lain disembunyikan / dikurangi fokusnya untuk preview ini -->
+        <div class="opacity-30 pointer-events-none">
+            <p class="text-center text-sm font-mono mt-20">Variasi lainnya ada di bawah (dikaburkan karena kita fokus ke No 1)</p>
+        </div>
+    </div>
+</body>
+</html>
