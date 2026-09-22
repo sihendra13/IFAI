@@ -194,22 +194,29 @@ ${row.image_url ? `<div class="w-full aspect-video rounded-2xl overflow-hidden b
 <span class="text-sm text-slate-200 text-right">${value}</span>
 </div>`).join('');
 
-    const open = row.registration_open !== false && !row.__placeholder;
+    const isPlaceholder = !!row.__placeholder;
+    const isClosed = !isPlaceholder && row.registration_open === false;
     const ctaTitle = isId ? 'Daftar Sekarang' : 'Register Now';
-    const ctaLine = row.__placeholder
+    const ctaLine = isPlaceholder
       ? (isId ? 'Ini contoh program. Tombol daftar aktif begitu admin menambahkan program sungguhan.' : 'This is a sample program. The join button activates once the admin adds a real one.')
-      : open
-        ? (isId ? 'Isi form singkat untuk mengamankan tempatmu di program ini.' : 'Fill out a short form to secure your spot in this program.')
-        : (isId ? 'Pendaftaran untuk program ini sudah ditutup.' : 'Registration for this program is now closed.');
-    const btnLabel = isId ? 'Daftar / Join →' : 'Join / Register →';
+      : isClosed
+        ? (isId ? 'Pendaftaran untuk program ini sudah ditutup.' : 'Registration for this program is now closed.')
+        : (isId ? 'Isi form singkat untuk mengamankan tempatmu di program ini.' : 'Fill out a short form to secure your spot in this program.');
 
-    const closedLabel = row.__placeholder ? (isId ? 'Contoh Program' : 'Sample Program') : (isId ? 'Pendaftaran Ditutup' : 'Registration Closed');
-    const joinBtn = open
-      ? `<button type="button" data-program-join class="group relative w-full inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 hover:text-black transition-all duration-300 glow-white cursor-pointer">
-<span class="relative z-10">${btnLabel}</span>
-<span class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-white transition-transform duration-300 ease-out"></span>
-</button>`
-      : `<button type="button" disabled class="w-full inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full text-xs font-mono font-semibold border border-zinc-700 text-zinc-500 bg-cosmic-900 cursor-not-allowed">${closedLabel}</button>`;
+    // Same pill style as "See Detail" on the cards, for both the real button and the
+    // placeholder's — the placeholder one just has no data-program-join, so it looks
+    // and feels like a normal button but does nothing when clicked (there's no real
+    // program id behind it to register against yet).
+    const activePillCls = 'group relative w-full inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 hover:text-black transition-all duration-300 glow-white cursor-pointer';
+    const pillFill = '<span class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-white transition-transform duration-300 ease-out"></span>';
+    const btnLabel = isId ? 'Daftar / Join →' : 'Join / Register →';
+    const sampleLabel = isId ? 'Daftar →' : 'Register →';
+
+    const joinBtn = isPlaceholder
+      ? `<button type="button" class="${activePillCls}"><span class="relative z-10">${sampleLabel}</span>${pillFill}</button>`
+      : isClosed
+        ? `<button type="button" disabled class="w-full inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full text-xs font-mono font-semibold border border-zinc-700 text-zinc-500 bg-cosmic-900 cursor-not-allowed">${isId ? 'Pendaftaran Ditutup' : 'Registration Closed'}</button>`
+        : `<button type="button" data-program-join class="${activePillCls}"><span class="relative z-10">${btnLabel}</span>${pillFill}</button>`;
 
     return `<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 <div class="lg:col-span-7 rounded-2xl bg-cyber-surface border border-zinc-700 p-6 sm:p-8">
