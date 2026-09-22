@@ -193,14 +193,20 @@ ${photo ? `<img alt="${esc(name)}" class="absolute inset-0 w-full h-full object-
   function headerHtml(c) {
     const photo = safeUrl(c.photo_url);
     const shareBtn = 'w-9 h-9 rounded-full bg-cosmic-800 border border-zinc-700 hover:border-[#f75500] flex items-center justify-center text-zinc-300 hover:text-[#f75500] transition-colors';
-    return `<div class="flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-8">
-${photo ? `<div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-[1.5px] border-zinc-700 bg-black flex-shrink-0">
+    // Below 640px, the photo sits beside the badge/name/role block (its own row); the
+    // share icons stay a separate full-width row underneath. "sm:contents" drops this
+    // wrapper's own box at 640px+ so the photo and text block rejoin the desktop row
+    // (photo | text | share) unchanged.
+    return `<div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-8">
+<div class="flex items-start gap-4 sm:contents">
+${photo ? `<div class="w-16 h-16 sm:w-28 sm:h-28 rounded-full overflow-hidden border-[1.5px] border-zinc-700 bg-black flex-shrink-0">
 <img alt="${esc(c.name)}" class="w-full h-full object-cover object-center filter grayscale contrast-110 opacity-85" src="${esc(photo)}">
 </div>` : ''}
 <div class="flex-1 min-w-0">
-<span data-i18n="creator.profileBadge" class="inline-block text-[11px] font-mono px-2 py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30 mb-3">CREATOR PROFILE</span>
-<h1 class="text-3xl sm:text-5xl font-bold uppercase tracking-tight text-white leading-none">${esc(c.name)}</h1>
-<div class="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs sm:text-sm text-cyber-muted pt-3">${roleLocationHtml(c)}</div>
+<span data-i18n="creator.profileBadge" class="inline-block text-[11px] font-mono px-2 py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30 mb-2 sm:mb-3">CREATOR PROFILE</span>
+<h1 class="text-xl sm:text-5xl font-bold uppercase tracking-tight text-white leading-tight sm:leading-none truncate">${esc(c.name)}</h1>
+<div class="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs sm:text-sm text-cyber-muted pt-1.5 sm:pt-3">${roleLocationHtml(c)}</div>
+</div>
 </div>
 <div class="flex items-center gap-3 sm:self-end" id="creator-share-row">
 ${['whatsapp:fa-brands fa-whatsapp:WhatsApp', 'facebook:fa-brands fa-facebook-f:Facebook', 'threads:fa-brands fa-threads:Threads', 'linkedin:fa-brands fa-linkedin-in:LinkedIn'].map((s) => {
