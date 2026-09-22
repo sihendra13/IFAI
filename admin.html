@@ -103,6 +103,9 @@
       <button type="button" id="tab-btn-creator" class="admin-tab-btn px-4 py-2.5 text-sm font-semibold text-zinc-400 border-b-2 border-transparent hover:text-white transition-colors">
         Creator Hub
       </button>
+      <button type="button" id="tab-btn-program" class="admin-tab-btn px-4 py-2.5 text-sm font-semibold text-zinc-400 border-b-2 border-transparent hover:text-white transition-colors">
+        Program
+      </button>
     </div>
 
     <div id="tab-panel-works" class="flex flex-col gap-10">
@@ -558,6 +561,184 @@
     </div>
     <!-- /tab-panel-creator -->
 
+    <div id="tab-panel-program" class="hidden flex-col gap-10">
+
+    <!-- Program Form -->
+    <div id="form-program-container" class="p-6 rounded-2xl bg-cosmic-850 border border-zinc-800 transition-colors">
+      <div id="program-edit-mode-banner" hidden class="mb-5 px-4 py-3 rounded-lg bg-[#f75500]/15 border border-[#f75500] flex items-center gap-2 text-sm text-[#f75500] font-semibold">
+        <span>✏️</span>
+        <span>Mode Edit — kamu sedang mengubah program yang sudah ada, bukan membuat program baru.</span>
+      </div>
+      <h2 id="program-form-title" class="text-lg font-bold text-white mb-6">+ Post Program Baru</h2>
+      <form id="form-program" class="flex flex-col gap-5">
+        <input type="hidden" id="program-id"/>
+
+        <!-- Label EN/ID (event type) -->
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Jenis Acara * <span class="normal-case text-zinc-500">(contoh: Workshop / Kelas Online / Roadshow)</span></label>
+          <div class="flex flex-col gap-1.5 p-3 rounded-lg bg-cosmic-900 border border-zinc-800">
+            <span class="text-[11px] text-zinc-500">🇮🇩 Jenis Acara (Bahasa Indonesia)</span>
+            <input type="text" id="program-label-id" placeholder="Workshop" class="bg-transparent border-b border-zinc-700 pb-1.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+          </div>
+          <div class="flex items-end gap-2 p-3 rounded-lg bg-cosmic-900 border border-zinc-800">
+            <div class="flex-1 flex flex-col gap-1.5">
+              <span class="text-[11px] text-zinc-500">🇬🇧 Event Type (English)</span>
+              <input type="text" id="program-label-en" placeholder="Workshop" class="bg-transparent border-b border-zinc-700 pb-1.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+            </div>
+            <button type="button" data-translate-from="program-label-id" data-translate-to="program-label-en" class="btn-translate text-[11px] font-mono-code px-3 py-1.5 rounded-md bg-cosmic-800 border border-zinc-700 text-[#f75500] hover:border-[#f75500] transition-colors whitespace-nowrap">
+              Translate
+            </button>
+          </div>
+        </div>
+
+        <!-- Title EN/ID -->
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Judul Program *</label>
+          <div class="flex flex-col gap-1.5 p-3 rounded-lg bg-cosmic-900 border border-zinc-800">
+            <span class="text-[11px] text-zinc-500">🇮🇩 Judul (Bahasa Indonesia)</span>
+            <input type="text" id="program-title-id" class="bg-transparent border-b border-zinc-700 pb-1.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+          </div>
+          <div class="flex items-end gap-2 p-3 rounded-lg bg-cosmic-900 border border-zinc-800">
+            <div class="flex-1 flex flex-col gap-1.5">
+              <span class="text-[11px] text-zinc-500">🇬🇧 Title (English)</span>
+              <input type="text" id="program-title-en" class="bg-transparent border-b border-zinc-700 pb-1.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+            </div>
+            <button type="button" data-translate-from="program-title-id" data-translate-to="program-title-en" class="btn-translate text-[11px] font-mono-code px-3 py-1.5 rounded-md bg-cosmic-800 border border-zinc-700 text-[#f75500] hover:border-[#f75500] transition-colors whitespace-nowrap">
+              Translate
+            </button>
+          </div>
+        </div>
+
+        <!-- Description EN/ID -->
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Deskripsi</label>
+          <div class="flex flex-col gap-1.5 p-3 rounded-lg bg-cosmic-900 border border-zinc-800">
+            <span class="text-[11px] text-zinc-500">🇮🇩 Deskripsi (Bahasa Indonesia)</span>
+            <textarea id="program-desc-id" rows="4" class="bg-transparent border-b border-zinc-700 pb-1.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500] resize-y"></textarea>
+          </div>
+          <div class="flex items-end gap-2 p-3 rounded-lg bg-cosmic-900 border border-zinc-800">
+            <div class="flex-1 flex flex-col gap-1.5">
+              <span class="text-[11px] text-zinc-500">🇬🇧 Description (English)</span>
+              <textarea id="program-desc-en" rows="4" class="bg-transparent border-b border-zinc-700 pb-1.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500] resize-y"></textarea>
+            </div>
+            <button type="button" data-translate-from="program-desc-id" data-translate-to="program-desc-en" class="btn-translate text-[11px] font-mono-code px-3 py-1.5 rounded-md bg-cosmic-800 border border-zinc-700 text-[#f75500] hover:border-[#f75500] transition-colors whitespace-nowrap">
+              Translate
+            </button>
+          </div>
+        </div>
+
+        <!-- Image + Date -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Gambar / Poster</label>
+            <div class="flex items-center gap-3">
+              <img id="program-image-preview" hidden class="w-16 h-16 rounded-lg object-cover border border-zinc-700"/>
+              <div id="program-image-placeholder" class="w-16 h-16 rounded-lg bg-cosmic-800 border border-zinc-700 flex items-center justify-center text-zinc-600 text-[10px] text-center leading-tight">No<br/>Image</div>
+              <input type="file" id="program-image-file" accept="image/*" class="flex-1 text-xs text-zinc-400 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border file:border-zinc-700 file:bg-cosmic-850 file:text-zinc-300 file:text-xs hover:file:border-[#f75500] hover:file:text-[#f75500] file:cursor-pointer"/>
+            </div>
+            <input type="hidden" id="program-image-current"/>
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Tanggal (opsional)</label>
+            <input type="date" id="program-date" class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+          </div>
+        </div>
+
+        <!-- Time + Location -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Waktu <span class="normal-case text-zinc-500">(bebas, contoh: 19:00 WIB)</span></label>
+            <input type="text" id="program-time" placeholder="19:00 WIB" class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Lokasi <span class="normal-case text-zinc-500">(alamat, atau "Online")</span></label>
+            <input type="text" id="program-location" placeholder="Jakarta" class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+          </div>
+        </div>
+
+        <!-- Online Link + Quota -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Link Online <span class="normal-case text-zinc-500">(Zoom/Meet, opsional)</span></label>
+            <input type="text" id="program-online-url" placeholder="https://..." class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-mono-code text-zinc-400 uppercase tracking-wider">Kuota <span class="normal-case text-zinc-500">(bebas, opsional)</span></label>
+            <input type="text" id="program-quota" placeholder="30 peserta" class="bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]"/>
+          </div>
+        </div>
+
+        <label class="flex items-center gap-3 p-3 rounded-lg bg-cosmic-900 border border-zinc-800 cursor-pointer">
+          <input type="checkbox" id="program-registration-open" checked class="w-4 h-4 accent-[#f75500]"/>
+          <span class="text-sm text-zinc-200">Pendaftaran dibuka <span class="text-zinc-500">(lepas centang untuk menutup pendaftaran tanpa menghapus program)</span></span>
+        </label>
+
+        <p id="program-error" hidden class="text-xs text-red-400"></p>
+        <p id="program-success" hidden class="text-xs text-[#f75500]"></p>
+
+        <div class="flex items-center gap-3">
+          <button type="submit" id="btn-submit-program" class="py-2.5 px-6 rounded-lg bg-[#f75500] text-white font-semibold text-sm hover:shadow-[0_0_20px_rgba(247,85,0,0.5)] transition-all">
+            Post Program
+          </button>
+          <button type="button" id="btn-cancel-program-edit" hidden class="py-2.5 px-6 rounded-lg border border-zinc-700 text-zinc-300 text-sm hover:border-zinc-500 transition-colors">
+            Batal Edit
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Program List -->
+    <div>
+      <h2 class="text-lg font-bold text-white mb-4">Semua Program</h2>
+      <div class="overflow-x-auto rounded-2xl border border-zinc-800">
+        <table class="w-full text-sm">
+          <thead class="bg-cosmic-850 text-zinc-400 text-xs font-mono-code uppercase tracking-wider">
+            <tr>
+              <th class="text-left px-4 py-3">Judul</th>
+              <th class="text-left px-4 py-3">Jenis</th>
+              <th class="text-left px-4 py-3">Tanggal</th>
+              <th class="text-left px-4 py-3">Pendaftaran</th>
+              <th class="text-right px-4 py-3">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="program-table-body" class="divide-y divide-zinc-800/80"></tbody>
+        </table>
+        <p id="program-empty" hidden class="text-center text-sm text-zinc-500 py-8">Belum ada program yang diposting.</p>
+      </div>
+    </div>
+
+    <!-- Registrants viewer -->
+    <div>
+      <h2 class="text-lg font-bold text-white mb-4">Pendaftar Program</h2>
+      <div class="p-6 rounded-2xl bg-cosmic-850 border border-zinc-800 flex flex-col gap-4">
+        <div class="flex flex-col sm:flex-row gap-3">
+          <select id="program-registrants-select" class="flex-1 bg-cosmic-900 border border-zinc-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-0 focus:border-[#f75500]">
+            <option value="">Pilih program...</option>
+          </select>
+          <button type="button" id="btn-load-registrants" class="py-2.5 px-6 rounded-lg border border-zinc-700 text-zinc-300 text-sm hover:border-[#f75500] hover:text-[#f75500] transition-colors whitespace-nowrap">
+            Lihat Pendaftar
+          </button>
+        </div>
+        <div class="overflow-x-auto rounded-2xl border border-zinc-800">
+          <table class="w-full text-sm">
+            <thead class="bg-cosmic-900 text-zinc-400 text-xs font-mono-code uppercase tracking-wider">
+              <tr>
+                <th class="text-left px-4 py-3">Nama</th>
+                <th class="text-left px-4 py-3">Email</th>
+                <th class="text-left px-4 py-3">WhatsApp</th>
+                <th class="text-left px-4 py-3">Waktu Daftar</th>
+              </tr>
+            </thead>
+            <tbody id="program-registrants-body" class="divide-y divide-zinc-800/80"></tbody>
+          </table>
+          <p id="program-registrants-empty" hidden class="text-center text-sm text-zinc-500 py-8">Belum ada pendaftar untuk program ini.</p>
+        </div>
+      </div>
+    </div>
+
+    </div>
+    <!-- /tab-panel-program -->
+
   </section>
 </main>
 
@@ -664,6 +845,7 @@
     await loadWorks();
     await loadSignals();
     await loadCreatorSpotlights();
+    await loadPrograms();
   }
 
   document.getElementById('btn-toggle-password').addEventListener('click', () => {
@@ -1753,11 +1935,267 @@
     await loadCreatorSpotlights();
   }
 
-  // ---------- ADMIN TABS (Karya / IFAI Signals / Creator Hub) ----------
+  // ---------- PROGRAM (Workshop / Kelas Online / Roadshow) ----------
+  const programImagePreview = document.getElementById('program-image-preview');
+  const programImagePlaceholder = document.getElementById('program-image-placeholder');
+  const programImageFile = document.getElementById('program-image-file');
+  const PROGRAM_IMAGE_MAX_BYTES = 4 * 1024 * 1024; // 4MB
+
+  function setProgramImagePreview(url) {
+    if (url) {
+      programImagePreview.src = url;
+      programImagePreview.hidden = false;
+      programImagePlaceholder.hidden = true;
+    } else {
+      programImagePreview.hidden = true;
+      programImagePlaceholder.hidden = false;
+    }
+  }
+
+  programImageFile.addEventListener('change', () => {
+    const file = programImageFile.files[0];
+    if (!file) return;
+    const errEl = document.getElementById('program-error');
+    if (file.size > PROGRAM_IMAGE_MAX_BYTES) {
+      errEl.textContent = 'Ukuran gambar maksimal 4MB. File kamu ' + (file.size / 1024 / 1024).toFixed(1) + 'MB.';
+      errEl.hidden = false;
+      programImageFile.value = '';
+      return;
+    }
+    errEl.hidden = true;
+    setProgramImagePreview(URL.createObjectURL(file));
+  });
+
+  // Uploads to the existing public "signal-images" bucket under "program/".
+  async function uploadProgramImageIfSelected() {
+    const file = programImageFile.files[0];
+    const currentUrl = document.getElementById('program-image-current').value || null;
+    if (!file) return currentUrl;
+    if (file.size > PROGRAM_IMAGE_MAX_BYTES) throw new Error('Ukuran gambar maksimal 4MB.');
+    const ext = file.name.split('.').pop();
+    const path = `program/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+    const { error } = await sb.storage.from('signal-images').upload(path, file);
+    if (error) throw new Error('Gagal upload gambar: ' + error.message);
+    const { data } = sb.storage.from('signal-images').getPublicUrl(path);
+    return data.publicUrl;
+  }
+
+  const formProgram = document.getElementById('form-program');
+  const programFormTitle = document.getElementById('program-form-title');
+  const btnCancelProgramEdit = document.getElementById('btn-cancel-program-edit');
+  const btnSubmitProgram = document.getElementById('btn-submit-program');
+
+  function resetProgramForm() {
+    formProgram.reset();
+    document.getElementById('program-id').value = '';
+    document.getElementById('program-image-current').value = '';
+    document.getElementById('program-registration-open').checked = true;
+    setProgramImagePreview(null);
+    programFormTitle.textContent = '+ Post Program Baru';
+    btnSubmitProgram.textContent = 'Post Program';
+    btnCancelProgramEdit.hidden = true;
+    document.getElementById('program-edit-mode-banner').hidden = true;
+    document.getElementById('form-program-container').classList.remove('border-[#f75500]');
+  }
+  btnCancelProgramEdit.addEventListener('click', resetProgramForm);
+
+  formProgram.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const errEl = document.getElementById('program-error');
+    const okEl = document.getElementById('program-success');
+    errEl.hidden = true; okEl.hidden = true;
+
+    const id = document.getElementById('program-id').value;
+    const titleId = document.getElementById('program-title-id').value.trim();
+    const titleEn = document.getElementById('program-title-en').value.trim();
+    if (!titleId && !titleEn) {
+      errEl.textContent = 'Judul wajib diisi minimal 1 bahasa.';
+      errEl.hidden = false;
+      return;
+    }
+    const labelId = document.getElementById('program-label-id').value.trim();
+    const labelEn = document.getElementById('program-label-en').value.trim();
+    if (!labelId && !labelEn) {
+      errEl.textContent = 'Jenis acara wajib diisi minimal 1 bahasa.';
+      errEl.hidden = false;
+      return;
+    }
+
+    let imageUrl;
+    try {
+      imageUrl = await uploadProgramImageIfSelected();
+    } catch (err) {
+      errEl.textContent = err.message;
+      errEl.hidden = false;
+      return;
+    }
+
+    const payload = {
+      label_id: labelId || labelEn,
+      label_en: labelEn || labelId,
+      title_id: titleId || null,
+      title_en: titleEn || null,
+      description_id: document.getElementById('program-desc-id').value.trim() || null,
+      description_en: document.getElementById('program-desc-en').value.trim() || null,
+      image_url: imageUrl || null,
+      event_date: document.getElementById('program-date').value || null,
+      event_time: document.getElementById('program-time').value.trim() || null,
+      location_text: document.getElementById('program-location').value.trim() || null,
+      online_url: document.getElementById('program-online-url').value.trim() || null,
+      quota: document.getElementById('program-quota').value.trim() || null,
+      registration_open: document.getElementById('program-registration-open').checked
+    };
+
+    let result;
+    if (id) {
+      result = await sb.from('programs').update(payload).eq('id', id);
+    } else {
+      result = await sb.from('programs').insert(payload);
+    }
+
+    if (result.error) {
+      errEl.textContent = 'Gagal menyimpan: ' + result.error.message;
+      errEl.hidden = false;
+      return;
+    }
+
+    okEl.textContent = id ? 'Program berhasil diupdate.' : 'Program berhasil diposting.';
+    okEl.hidden = false;
+    resetProgramForm();
+    await loadPrograms();
+  });
+
+  let cachedPrograms = [];
+
+  async function loadPrograms() {
+    const { data, error } = await sb
+      .from('programs')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    const tbody = document.getElementById('program-table-body');
+    const emptyEl = document.getElementById('program-empty');
+    const registrantsSelect = document.getElementById('program-registrants-select');
+    if (error) { console.error(error); return; }
+
+    cachedPrograms = data || [];
+
+    if (!cachedPrograms.length) {
+      tbody.innerHTML = '';
+      emptyEl.hidden = false;
+    } else {
+      emptyEl.hidden = true;
+      tbody.innerHTML = cachedPrograms.map(p => `
+        <tr class="hover:bg-cosmic-850/60">
+          <td class="px-4 py-3 text-white">${escapeHtml(p.title_id || p.title_en || '(tanpa judul)')}</td>
+          <td class="px-4 py-3 text-zinc-400">${escapeHtml(p.label_id || p.label_en || '-')}</td>
+          <td class="px-4 py-3 text-zinc-400">${p.event_date ? escapeHtml(p.event_date) : '-'}</td>
+          <td class="px-4 py-3">${p.registration_open
+            ? '<span class="text-xs px-2 py-0.5 rounded bg-[#f75500]/15 text-[#f75500] border border-[#f75500]/40">Dibuka</span>'
+            : '<span class="text-xs text-zinc-500">Ditutup</span>'}</td>
+          <td class="px-4 py-3 text-right whitespace-nowrap">
+            <button class="btn-edit-program text-xs text-[#f75500] hover:underline mr-3" data-id="${p.id}">Edit</button>
+            <button class="btn-delete-program text-xs text-red-400 hover:underline" data-id="${p.id}">Hapus</button>
+          </td>
+        </tr>
+      `).join('');
+
+      tbody.querySelectorAll('.btn-edit-program').forEach(btn => {
+        btn.addEventListener('click', () => editProgram(cachedPrograms.find(p => p.id === btn.dataset.id)));
+      });
+      tbody.querySelectorAll('.btn-delete-program').forEach(btn => {
+        btn.addEventListener('click', () => deleteProgram(btn.dataset.id));
+      });
+    }
+
+    // Keep the currently-selected registrants filter if it's still valid.
+    const prevSelected = registrantsSelect.value;
+    registrantsSelect.innerHTML = '<option value="">Pilih program...</option>' +
+      cachedPrograms.map(p => `<option value="${p.id}">${escapeHtml(p.title_id || p.title_en || '(tanpa judul)')}</option>`).join('');
+    if (cachedPrograms.some(p => p.id === prevSelected)) registrantsSelect.value = prevSelected;
+  }
+
+  function editProgram(program) {
+    document.getElementById('program-id').value = program.id;
+    document.getElementById('program-label-id').value = program.label_id || '';
+    document.getElementById('program-label-en').value = program.label_en || '';
+    document.getElementById('program-title-id').value = program.title_id || '';
+    document.getElementById('program-title-en').value = program.title_en || '';
+    document.getElementById('program-desc-id').value = program.description_id || '';
+    document.getElementById('program-desc-en').value = program.description_en || '';
+    document.getElementById('program-date').value = program.event_date || '';
+    document.getElementById('program-time').value = program.event_time || '';
+    document.getElementById('program-location').value = program.location_text || '';
+    document.getElementById('program-online-url').value = program.online_url || '';
+    document.getElementById('program-quota').value = program.quota || '';
+    document.getElementById('program-registration-open').checked = program.registration_open !== false;
+    document.getElementById('program-image-current').value = program.image_url || '';
+    setProgramImagePreview(program.image_url || null);
+    programImageFile.value = '';
+
+    programFormTitle.textContent = 'Edit Program';
+    btnSubmitProgram.textContent = 'Update Program';
+    btnCancelProgramEdit.hidden = false;
+    document.getElementById('program-edit-mode-banner').hidden = false;
+    document.getElementById('form-program-container').classList.add('border-[#f75500]');
+    document.getElementById('form-program-container').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  async function deleteProgram(id) {
+    if (!confirm('Yakin mau hapus program ini? Semua data pendaftar untuk program ini juga akan ikut terhapus. Tidak bisa dibatalkan.')) return;
+    const { error } = await sb.from('programs').delete().eq('id', id);
+    if (error) { alert('Gagal hapus: ' + error.message); return; }
+    await loadPrograms();
+  }
+
+  // ---------- Registrants viewer (admin-only read of program_registrations) ----------
+  document.getElementById('btn-load-registrants').addEventListener('click', async () => {
+    const programId = document.getElementById('program-registrants-select').value;
+    const tbody = document.getElementById('program-registrants-body');
+    const emptyEl = document.getElementById('program-registrants-empty');
+    if (!programId) {
+      tbody.innerHTML = '';
+      emptyEl.hidden = false;
+      emptyEl.textContent = 'Pilih program dulu untuk melihat pendaftarnya.';
+      return;
+    }
+
+    const { data, error } = await sb
+      .from('program_registrations')
+      .select('*')
+      .eq('program_id', programId)
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      tbody.innerHTML = '';
+      emptyEl.hidden = false;
+      emptyEl.textContent = 'Gagal memuat pendaftar: ' + error.message;
+      return;
+    }
+
+    if (!data.length) {
+      tbody.innerHTML = '';
+      emptyEl.hidden = false;
+      emptyEl.textContent = 'Belum ada pendaftar untuk program ini.';
+      return;
+    }
+    emptyEl.hidden = true;
+    tbody.innerHTML = data.map(r => `
+      <tr class="hover:bg-cosmic-850/60">
+        <td class="px-4 py-3 text-white">${escapeHtml(r.name)}</td>
+        <td class="px-4 py-3 text-zinc-400">${escapeHtml(r.email)}</td>
+        <td class="px-4 py-3 text-zinc-400">${escapeHtml(r.phone || '-')}</td>
+        <td class="px-4 py-3 text-zinc-400">${new Date(r.created_at).toLocaleString('id-ID')}</td>
+      </tr>
+    `).join('');
+  });
+
+  // ---------- ADMIN TABS (Karya / IFAI Signals / Creator Hub / Program) ----------
   const adminTabs = {
     works: { btn: document.getElementById('tab-btn-works'), panel: document.getElementById('tab-panel-works') },
     signals: { btn: document.getElementById('tab-btn-signals'), panel: document.getElementById('tab-panel-signals') },
-    creator: { btn: document.getElementById('tab-btn-creator'), panel: document.getElementById('tab-panel-creator') }
+    creator: { btn: document.getElementById('tab-btn-creator'), panel: document.getElementById('tab-panel-creator') },
+    program: { btn: document.getElementById('tab-btn-program'), panel: document.getElementById('tab-panel-program') }
   };
 
   function setActiveTab(tab) {

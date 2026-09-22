@@ -148,6 +148,7 @@
 <a data-i18n="nav.showcase" class="text-zinc-300 hover:text-[#f75500] transition-colors" href="#showcase">Showcase</a>
 <a data-i18n="nav.creatorHub" class="text-zinc-300 hover:text-[#f75500] transition-colors" href="#creator-hub">Creator Hub</a>
 <a data-i18n="nav.journal" class="text-zinc-300 hover:text-[#f75500] transition-colors" href="#journal">Journal</a>
+<a data-i18n="nav.program" class="text-zinc-300 hover:text-[#f75500] transition-colors" href="#program">Program</a>
 <a data-i18n="nav.about" class="text-zinc-300 hover:text-[#f75500] transition-colors" href="#manifesto">About</a>
 </nav>
 <!-- Action Buttons -->
@@ -177,6 +178,7 @@
 <a data-i18n="nav.showcase" class="text-zinc-200 hover:text-[#f75500] transition-colors text-base font-medium" href="#showcase">Showcase</a>
 <a data-i18n="nav.creatorHub" class="text-zinc-200 hover:text-[#f75500] transition-colors text-base font-medium" href="#creator-hub">Creator Hub</a>
 <a data-i18n="nav.journal" class="text-zinc-200 hover:text-[#f75500] transition-colors text-base font-medium" href="#journal">Journal</a>
+<a data-i18n="nav.program" class="text-zinc-200 hover:text-[#f75500] transition-colors text-base font-medium" href="#program">Program</a>
 <a data-i18n="nav.about" class="text-zinc-200 hover:text-[#f75500] transition-colors text-base font-medium" href="#manifesto">About</a>
 <div class="h-px bg-zinc-800 my-1"></div>
 <div class="flex items-center justify-between">
@@ -454,6 +456,26 @@ setTimeout(function () { var el = document.getElementById('creator-hub-body'); i
 </div>
 </section>
 <!-- END: ProgramsAndEventsSection -->
+<!-- BEGIN: ProgramHubSection -->
+<!-- Workshop / Kelas Online / Roadshow, etc. Cards are styled identically to the
+     IFAI Signals cards above. Content comes from the admin-managed "programs"
+     table; until it exists or has rows, 2 sample PLACEHOLDER_PROGRAMS render
+     instead (js/program-hub.js) — delete that fallback once real programs are live. -->
+<section class="py-24 bg-cosmic-950" id="program">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+<div>
+<span data-i18n="program.eyebrow" class="text-xs font-mono text-white tracking-widest uppercase">Workshop &amp; Roadshow</span>
+<h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-1">PROGRAM</h2>
+</div>
+<a id="program-view-all" style="display:none;" data-i18n="program.viewAll" class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] flex items-center gap-1.5 transition-colors" href="program">
+            View All Program →
+          </a>
+</div>
+<div id="program-grid" class="flex gap-8 overflow-x-auto snap-x snap-mandatory pb-2 -mx-4 px-4 lg:grid lg:grid-cols-2 lg:overflow-visible lg:mx-0 lg:px-0 lg:pb-0"></div>
+</div>
+</section>
+<!-- END: ProgramHubSection -->
 <!-- BEGIN: ManifestoAndAboutSection -->
 <section class="py-24 bg-cosmic-900 relative" id="manifesto">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -599,7 +621,7 @@ setTimeout(function () { var el = document.getElementById('creator-hub-body'); i
   const LANG_KEY = 'ifai_lang';
   const DICT = {
     en: {
-      'nav.showcase': 'Showcase', 'nav.journal': 'Journal', 'nav.creatorHub': 'Creator Hub',
+      'nav.showcase': 'Showcase', 'nav.journal': 'Journal', 'nav.creatorHub': 'Creator Hub', 'nav.program': 'Program',
       "creator.status": "VERIFIED IFAI FELLOW",
       "creator.profileBadge": "CREATOR PROFILE",
       "creator.aboutTitle": "About the Creator",
@@ -629,6 +651,7 @@ setTimeout(function () { var el = document.getElementById('creator-hub-body'); i
       'cta.subtitle': 'Submit your autonomous films, commercial work, or neural compositions for upcoming seasonal curations.',
       'cta.button': 'Submit Your Creation →',
       'programs.eyebrow': 'Incubation & Keynotes', 'programs.viewAll': 'View All Journal →',
+      'program.eyebrow': 'Workshop & Roadshow', 'program.viewAll': 'View All Program →',
       'manifesto.eyebrow': 'Manifesto & Ecosystem', 'manifesto.title': 'Where Art and Intelligence Converge.',
       'manifesto.body': "Indonesia Future Arts & Intelligence (IFAI) is a non-profit foundation and movement creating a sanctuary for local creators to showcase, learn, and sculpt tomorrow's digital heritage. We believe artificial intelligence is not a replacement for human soul, but an infinitely expandable medium.",
       'footer.brandDesc': "Indonesia Future Arts & Intelligence is Indonesia's leading platform for AI-driven creativity, bridging art, technology, and human imagination through films, visuals, and synthetic music.",
@@ -639,7 +662,7 @@ setTimeout(function () { var el = document.getElementById('creator-hub-body'); i
       'footer.copyright': '© 2025 IFAI (Indonesia Future Arts & Intelligence). All rights reserved.',
     },
     id: {
-      'nav.showcase': 'Etalase', 'nav.journal': 'Jurnal', 'nav.creatorHub': 'Creator Hub',
+      'nav.showcase': 'Etalase', 'nav.journal': 'Jurnal', 'nav.creatorHub': 'Creator Hub', 'nav.program': 'Program',
       "creator.status": "IFAI FELLOW TERVERIFIKASI",
       "creator.profileBadge": "PROFIL CREATOR",
       "creator.aboutTitle": "Tentang Creator",
@@ -669,6 +692,7 @@ setTimeout(function () { var el = document.getElementById('creator-hub-body'); i
       'cta.subtitle': 'Kirim film otonom, karya iklan, atau komposisi neural kamu untuk kurasi musiman mendatang.',
       'cta.button': 'Kirim Karya Kamu →',
       'programs.eyebrow': 'Inkubasi & Sesi Utama', 'programs.viewAll': 'Lihat Semua Jurnal →',
+      'program.eyebrow': 'Workshop & Roadshow', 'program.viewAll': 'Lihat Semua Program →',
       'manifesto.eyebrow': 'Manifesto & Ekosistem', 'manifesto.title': 'Tempat Seni dan Kecerdasan Bertemu.',
       'manifesto.body': 'Indonesia Future Arts & Intelligence (IFAI) adalah yayasan nirlaba dan gerakan yang menciptakan ruang bagi kreator lokal untuk menampilkan karya, belajar, dan membentuk warisan digital masa depan. Kami percaya kecerdasan buatan bukan pengganti jiwa manusia, melainkan medium yang dapat berkembang tanpa batas.',
       'footer.brandDesc': 'Indonesia Future Arts & Intelligence adalah platform terdepan Indonesia untuk kreativitas berbasis AI, menjembatani seni, teknologi, dan imajinasi manusia lewat film, visual, dan musik sintetis.',
@@ -771,6 +795,7 @@ setTimeout(function () { var el = document.getElementById('creator-hub-body'); i
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script src="js/auth.js?v=20260921"></script>
 <script src="js/creator-hub.js?v=20260922b"></script>
+<script src="js/program-hub.js?v=20260922a"></script>
 <script>
 (function () {
   const SUPABASE_URL = 'https://qayckglxfmtrjqtghitx.supabase.co';
@@ -1040,6 +1065,31 @@ setTimeout(function () { var el = document.getElementById('creator-hub-body'); i
   }
 
   wireCreatorHub();
+
+  // ---------- PROGRAM (Workshop / Kelas Online / Roadshow) ----------
+  const programGrid = document.getElementById('program-grid');
+  let cachedPrograms = [];
+
+  function renderPrograms(lang) {
+    if (!programGrid || !cachedPrograms.length) return;
+    programGrid.innerHTML = cachedPrograms.map((p) => window.IFAI_PROGRAM.programCardHtml(p, lang)).join('');
+    if (window.IFAI_I18N) window.IFAI_I18N.applyLanguage(lang, { silent: true });
+  }
+
+  async function wirePrograms() {
+    if (!programGrid) return;
+    programGrid.innerHTML = window.IFAI_PROGRAM.cardSkeletonHtml(2);
+    const { rows, count, isPlaceholder } = await window.IFAI_PROGRAM.fetchPrograms(sb, 2);
+    cachedPrograms = rows;
+    renderPrograms(window.IFAI_I18N ? window.IFAI_I18N.getLang() : 'en');
+
+    const viewAllLink = document.getElementById('program-view-all');
+    if (viewAllLink && !isPlaceholder && count > 2) viewAllLink.style.display = '';
+
+    window.addEventListener('ifai:langchange', (e) => renderPrograms(e.detail.lang));
+  }
+
+  wirePrograms();
 })();
 </script>
 <script>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Program | IFAI</title>
+<link rel="icon" type="image/x-icon" href="/image/favicon.ico"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/image/favicon-16x16.png"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/image/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="192x192" href="/image/favicon-192x192.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/image/apple-touch-icon.png"/>
+<meta name="description" content="Indonesia Future Arts &amp; Intelligence is Indonesia's leading platform for AI-driven creativity, bridging art, technology, and human imagination through films, visuals, and synthetic music."/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="IFAI"/>
+<meta property="og:title" content="IFAI — Indonesia Future Arts &amp; Intelligence"/>
+<meta property="og:description" content="Indonesia Future Arts &amp; Intelligence is Indonesia's leading platform for AI-driven creativity, bridging art, technology, and human imagination through films, visuals, and synthetic music."/>
+<meta property="og:image" content="https://www.myifai.com/image/og-image.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.myifai.com/image/og-image.png"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- Tailwind CSS CDN with forms & container queries plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            cosmic: {
+              950: '#050507',
+              900: '#0a0a0c',
+              850: '#101116',
+              800: '#161820',
+              700: '#222533',
+            },
+            neon: {
+              emerald: '#00FF9D',
+              cyan: '#00E5FF',
+              purple: '#A855F7',
+            },
+            // Creator Hub palette
+            cyber: {
+              emerald: '#00F5A0',
+              cyan: '#00E5FF',
+              darkBg: '#0e0e12',
+              surface: '#131317',
+              surfaceDim: '#1a1a21',
+              surfaceBright: '#24242d',
+              border: '#23232a',
+              borderHover: '#393945',
+              muted: '#8e8e9f',
+            }
+          },
+          boxShadow: {
+            'glow-emerald': '0 0 25px -5px rgba(0, 245, 160, 0.3)',
+            'glow-cyan': '0 0 25px -5px rgba(0, 229, 255, 0.25)',
+          },
+          fontFamily: {
+            sans: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+            jakarta: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<!-- Google Fonts: Space Grotesk & JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style data-purpose="custom-typography-and-scroll">
+    html {
+      scrollbar-gutter: stable;
+    }
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background-color: #0a0a0c;
+      color: #f3f4f6;
+      overflow-x: hidden;
+    }
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .glow-cyan {
+      box-shadow: 0 0 25px -4px rgba(0, 229, 255, 0.35);
+    }
+    .glow-emerald {
+      box-shadow: 0 0 25px -4px rgba(0, 255, 157, 0.35);
+    }
+    .glow-orange {
+      box-shadow: 0 0 25px -4px rgba(247, 85, 0, 0.45);
+    }
+    .glow-white {
+      box-shadow: 0 0 25px -4px rgba(255, 255, 255, 0.35);
+    }
+  </style>
+</head>
+<body class="bg-cosmic-900 text-zinc-100 antialiased selection:bg-neon-emerald selection:text-black">
+<!-- BEGIN: MainHeader -->
+<header id="main-header" class="fixed top-4 left-0 right-0 mx-auto max-w-7xl z-50 bg-cosmic-950/60 backdrop-blur-xl border border-zinc-700 rounded-full shadow-lg shadow-black/40 transition-all duration-500">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+<!-- Brand Logo -->
+<a class="flex items-center group focus:outline-none rounded" href="/">
+<img src="image/logo.png" alt="IFAI Future Arts Logo" class="h-4 sm:h-5 object-contain" />
+</a>
+<!-- Primary Navigation Links -->
+<nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide font-jakarta">
+<a data-i18n="nav.showcase" class="text-zinc-300 hover:text-[#f75500] transition-colors" href="/#showcase">Showcase</a>
+<a data-i18n="nav.creatorHub" class="text-zinc-300 hover:text-[#f75500] transition-colors" href="/#creator-hub">Creator Hub</a>
+<a data-i18n="nav.journal" class="text-zinc-300 hover:text-[#f75500] transition-colors" href="/#journal">Journal</a>
+<a data-i18n="nav.program" class="text-zinc-300 hover:text-[#f75500] transition-colors" href="/#program">Program</a>
+<a data-i18n="nav.about" class="text-zinc-300 hover:text-[#f75500] transition-colors" href="/#manifesto">About</a>
+</nav>
+<!-- Action Buttons -->
+<div class="flex items-center gap-4">
+<button type="button" id="lang-toggle" class="hidden sm:flex items-center gap-1 text-[11px] font-mono text-zinc-400 hover:text-white uppercase tracking-wider transition-colors border border-zinc-700 hover:border-zinc-500 rounded-full px-2.5 py-1 focus:outline-none focus-visible:ring-1 focus-visible:ring-zinc-500" aria-label="Switch language">
+<span data-lang-btn="en" class="px-1">EN</span>
+<span class="text-zinc-600">/</span>
+<span data-lang-btn="id" class="px-1">ID</span>
+</button>
+<a id="auth-logout-desktop" style="display:none;" class="hidden sm:inline-block text-xs font-mono text-zinc-300 hover:text-[#f75500] uppercase tracking-wider transition-colors min-w-[48px] text-center cursor-pointer">
+          Log Out
+        </a>
+<button type="button" id="join-community-btn" class="relative group inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase overflow-hidden border border-[#f75500]/50 text-white bg-cosmic-800/80 hover:bg-[#f75500] hover:text-black transition-all duration-300 glow-orange min-w-[172px] text-center">
+<img id="join-community-avatar" class="hidden relative z-10 w-5 h-5 rounded-full object-cover" alt="">
+<span id="join-community-label" class="relative z-10" style="font-family: 'Space Grotesk', sans-serif;">Join Community</span>
+<div class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-[#f75500] transition-transform duration-300 ease-out"></div>
+</button>
+<button type="button" id="mobile-menu-toggle" class="md:hidden flex items-center justify-center w-9 h-9 rounded-full border border-zinc-700 hover:border-zinc-500 text-zinc-300 hover:text-white transition-colors focus:outline-none" aria-label="Open menu" aria-expanded="false">
+<svg id="mobile-menu-icon-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+<svg id="mobile-menu-icon-close" class="hidden w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+</button>
+</div>
+</div>
+</header>
+<!-- Mobile Menu Panel -->
+<div id="mobile-menu-panel" class="hidden md:hidden fixed top-24 left-4 right-4 sm:left-6 sm:right-6 z-40 bg-cosmic-950/95 backdrop-blur-xl border border-zinc-700 rounded-3xl shadow-lg shadow-black/40 p-6 flex flex-col gap-4">
+<a data-i18n="nav.showcase" class="text-zinc-200 hover:text-[#f75500] transition-colors text-base font-medium" href="/#showcase">Showcase</a>
+<a data-i18n="nav.creatorHub" class="text-zinc-200 hover:text-[#f75500] transition-colors text-base font-medium" href="/#creator-hub">Creator Hub</a>
+<a data-i18n="nav.journal" class="text-zinc-200 hover:text-[#f75500] transition-colors text-base font-medium" href="/#journal">Journal</a>
+<a data-i18n="nav.program" class="text-zinc-200 hover:text-[#f75500] transition-colors text-base font-medium" href="/#program">Program</a>
+<a data-i18n="nav.about" class="text-zinc-200 hover:text-[#f75500] transition-colors text-base font-medium" href="/#manifesto">About</a>
+<div class="h-px bg-zinc-800 my-1"></div>
+<div class="flex items-center justify-between">
+<button type="button" id="lang-toggle-mobile" class="flex items-center gap-1 text-xs font-mono text-zinc-400 hover:text-white uppercase tracking-wider transition-colors border border-zinc-700 hover:border-zinc-500 rounded-full px-3 py-1.5 focus:outline-none" aria-label="Switch language">
+<span data-lang-btn="en" class="px-1">EN</span>
+<span class="text-zinc-600">/</span>
+<span data-lang-btn="id" class="px-1">ID</span>
+</button>
+<a id="auth-logout-mobile" style="display:none;" class="text-xs font-mono text-zinc-300 hover:text-[#f75500] uppercase tracking-wider transition-colors cursor-pointer">Log Out</a>
+</div>
+</div>
+<!-- END: MainHeader -->
+<!-- Auth Modal (Join Community / Log In) -->
+<div id="auth-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4">
+<div id="auth-modal-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+<div class="relative w-full max-w-sm rounded-3xl bg-cosmic-900 border border-zinc-700 p-8 shadow-2xl">
+<button type="button" id="auth-modal-close" class="absolute top-4 right-4 text-zinc-500 hover:text-white transition-colors" aria-label="Close">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+</button>
+<h3 data-i18n="auth.title" class="text-xl font-bold text-white mb-1">Join IFAI Community</h3>
+<p data-i18n="auth.subtitle" class="text-sm text-zinc-400 mb-6">Sign in to submit your work and join the community.</p>
+<div id="google-signin-btn" class="w-full flex justify-center min-h-[44px]"></div>
+<div class="flex items-center gap-3 my-5">
+<div class="h-px bg-zinc-800 flex-1"></div>
+<span data-i18n="auth.or" class="text-xs text-zinc-500 font-mono uppercase">or</span>
+<div class="h-px bg-zinc-800 flex-1"></div>
+</div>
+<form id="auth-email-form" class="flex flex-col gap-3">
+<input id="auth-email-input" type="email" required placeholder="you@email.com" data-i18n-placeholder="auth.emailPlaceholder" class="w-full px-4 py-3 rounded-xl bg-cosmic-800 border border-zinc-700 text-white text-sm placeholder-zinc-500 focus:outline-none focus:border-[#f75500] transition-colors">
+<button type="submit" id="auth-email-submit" class="w-full px-5 py-3 rounded-full border border-[#f75500]/50 text-white bg-cosmic-800/80 hover:bg-[#f75500] hover:text-black font-semibold text-sm transition-all duration-300">
+<span data-i18n="auth.sendLink">Send Magic Link</span>
+</button>
+</form>
+<p id="auth-status-msg" class="hidden text-xs text-center mt-4"></p>
+</div>
+</div>
+
+<main class="pt-32 pb-24 min-h-screen bg-cosmic-950">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Back link -->
+<a data-i18n="program.detailBack" href="/#program" class="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] transition-colors mb-6">← Back to Program</a>
+
+<!-- Breadcrumb -->
+<div class="flex items-center gap-2 text-xs font-mono text-zinc-500 mb-8">
+<a data-i18n="program.detailCrumbHome" href="/" class="hover:text-[#f75500] transition-colors">Home</a>
+<span>/</span>
+<a data-i18n="nav.program" href="/#program" class="hover:text-[#f75500] transition-colors">Program</a>
+<span>/</span>
+<span id="program-crumb" class="text-zinc-300">Loading…</span>
+</div>
+
+<!-- Program -->
+<div id="program-detail-body" class="space-y-8">
+<div class="rounded-2xl bg-cyber-surface border border-zinc-800 h-24 animate-pulse" aria-hidden="true"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 animate-pulse" aria-hidden="true">
+<div class="lg:col-span-7 rounded-2xl bg-cyber-surface border border-zinc-800 h-56"></div>
+<div class="lg:col-span-5 rounded-2xl bg-cyber-surface border border-zinc-800 h-56"></div>
+</div>
+<div class="rounded-2xl bg-cyber-surface border border-zinc-800 h-24 animate-pulse" aria-hidden="true"></div>
+</div>
+
+<!-- Not found -->
+<div id="program-not-found" hidden class="text-center py-24">
+<p data-i18n="program.notFound" class="text-zinc-500 text-sm">This program could not be found.</p>
+</div>
+</div>
+</main>
+
+<!-- BEGIN: MainFooter -->
+<footer class="bg-cosmic-950 text-zinc-400 text-xs border-t border-zinc-800 pt-16 pb-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Top Grid -->
+<div class="grid grid-cols-1 md:grid-cols-5 gap-12 pb-12 border-b border-zinc-850">
+<!-- Brand Info -->
+<div class="md:col-span-2 space-y-4">
+<a class="flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-emerald rounded" href="/">
+<img src="image/logo.png" alt="IFAI Future Arts Logo" class="h-4 sm:h-5 object-contain" />
+</a>
+<p data-i18n="footer.brandDesc" class="text-xs text-zinc-400 leading-relaxed max-w-sm">
+            Indonesia Future Arts &amp; Intelligence is Indonesia's leading platform for AI-driven creativity, bridging art, technology, and human imagination through films, visuals, and synthetic music.
+          </p>
+<div data-i18n="footer.location" class="text-[11px] text-zinc-500 font-mono pt-2">
+            Based in Jakarta, Indonesia • Empowering Nationwide Creators
+          </div>
+</div>
+<!-- Links Column 1 -->
+<div>
+<h5 data-i18n="footer.col1.title" class="text-white font-mono uppercase text-xs tracking-wider mb-4">Explore</h5>
+<ul class="space-y-2.5">
+<li><a data-i18n="footer.col1.link1" class="hover:text-[#f75500] transition-colors" href="/#showcase">AI Film Showcase</a></li>
+<li><a data-i18n="footer.col1.link2" class="hover:text-[#f75500] transition-colors" href="/#showcase">Commercial Video</a></li>
+<li><a data-i18n="footer.col1.link3" class="hover:text-[#f75500] transition-colors" href="/#showcase">Neural Soundscapes</a></li>
+<li><a data-i18n="footer.col1.link4" class="hover:text-[#f75500] transition-colors" href="/#journal">Summits &amp; Events</a></li>
+<li><a data-i18n="footer.col1.link5" class="hover:text-[#f75500] transition-colors" href="/">Archive 2025</a></li>
+</ul>
+</div>
+<!-- Links Column 2 -->
+<div>
+<h5 data-i18n="footer.col2.title" class="text-white font-mono uppercase text-xs tracking-wider mb-4">Resources</h5>
+<ul class="space-y-2.5">
+<li><a data-i18n="footer.col2.link1" class="hover:text-[#f75500] transition-colors" href="#">Journal &amp; Essays</a></li>
+<li><a data-i18n="footer.col2.link2" class="hover:text-[#f75500] transition-colors" href="#">Prompt Tutorials</a></li>
+<li><a data-i18n="footer.col2.link3" class="hover:text-[#f75500] transition-colors" href="#">AI Tools Directory</a></li>
+<li><a data-i18n="footer.col2.link4" class="hover:text-[#f75500] transition-colors" href="#">Case Studies</a></li>
+<li><a data-i18n="footer.col2.link5" class="hover:text-[#f75500] transition-colors" href="#">Press Kit &amp; Brand</a></li>
+</ul>
+</div>
+<!-- Links Column 3 -->
+<div>
+<h5 data-i18n="footer.col3.title" class="text-white font-mono uppercase text-xs tracking-wider mb-4">Connect</h5>
+<ul class="space-y-2.5">
+<li><a data-i18n="footer.col3.link1" class="hover:text-[#f75500] transition-colors" href="#">Contact Curators</a></li>
+<li><a data-i18n="footer.col3.link2" class="hover:text-[#f75500] transition-colors" href="#">Join Discord Community</a></li>
+<li><a data-i18n="footer.col3.link3" class="hover:text-[#f75500] transition-colors" href="#">Partner With Us</a></li>
+<li><a data-i18n="footer.col3.link4" class="hover:text-[#f75500] transition-colors" href="#">Newsletter Signup</a></li>
+<li><a data-i18n="footer.col3.link5" class="hover:text-[#f75500] transition-colors" href="#">Terms &amp; Privacy</a></li>
+</ul>
+</div>
+</div>
+<!-- Bottom Credits & Social -->
+<div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-zinc-500 text-[11px] font-mono">
+<div data-i18n="footer.copyright">
+          © 2025 IFAI (Indonesia Future Arts &amp; Intelligence). All rights reserved.
+        </div>
+<div class="flex items-center gap-6">
+<a class="hover:text-white transition-colors text-base" href="https://www.linkedin.com/in/ifai-indonesia-future-art-and-intelligence-156699437/?skipRedirect=true" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+<a class="hover:text-white transition-colors text-base" href="https://www.instagram.com/ifai.official/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+<a class="hover:text-white transition-colors text-base" href="https://www.youtube.com/@myifai" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: MainFooter -->
+
+<!-- ============================================================
+     LANGUAGE SWITCHER (EN default / ID) — mirrors index.html so
+     the toggle stays in sync (same localStorage key) across pages.
+     ============================================================ -->
+<script>
+(function () {
+  const LANG_KEY = 'ifai_lang';
+  const DICT = {
+    en: {
+      'nav.showcase': 'Showcase', 'nav.journal': 'Journal', 'nav.creatorHub': 'Creator Hub', 'nav.program': 'Program', 'nav.about': 'About',
+      'nav.login': 'Log In', 'nav.join': 'Join Community',
+      'auth.title': 'Join IFAI Community', 'auth.subtitle': 'Sign in to submit your work and join the community.', 'auth.google': 'Continue with Google', 'auth.or': 'or', 'auth.emailPlaceholder': 'you@email.com', 'auth.sendLink': 'Send Magic Link', 'auth.linkSent': 'Check your email for the login link.', 'auth.logout': 'Log Out',
+      'journal.back': '← Back to Journal',
+      'programs.eyebrow': 'Incubation & Keynotes',
+      'journal.crumbHome': 'Home',
+      'journal.empty': 'No journal entries published yet.',
+      'program.detailBack': '← Back to Program', 'program.detailCrumbHome': 'Home', 'program.notFound': 'This program could not be found.',
+      'footer.brandDesc': "Indonesia Future Arts & Intelligence is Indonesia's leading platform for AI-driven creativity, bridging art, technology, and human imagination through films, visuals, and synthetic music.",
+      'footer.location': 'Based in Jakarta, Indonesia • Empowering Nationwide Creators',
+      'footer.col1.title': 'Explore', 'footer.col1.link1': 'AI Film Showcase', 'footer.col1.link2': 'Commercial Video', 'footer.col1.link3': 'Neural Soundscapes', 'footer.col1.link4': 'Summits & Events', 'footer.col1.link5': 'Archive 2025',
+      'footer.col2.title': 'Resources', 'footer.col2.link1': 'Journal & Essays', 'footer.col2.link2': 'Prompt Tutorials', 'footer.col2.link3': 'AI Tools Directory', 'footer.col2.link4': 'Case Studies', 'footer.col2.link5': 'Press Kit & Brand',
+      'footer.col3.title': 'Connect', 'footer.col3.link1': 'Contact Curators', 'footer.col3.link2': 'Join Discord Community', 'footer.col3.link3': 'Partner With Us', 'footer.col3.link4': 'Newsletter Signup', 'footer.col3.link5': 'Terms & Privacy',
+      'footer.copyright': '© 2025 IFAI (Indonesia Future Arts & Intelligence). All rights reserved.',
+    },
+    id: {
+      'nav.showcase': 'Etalase', 'nav.journal': 'Jurnal', 'nav.creatorHub': 'Creator Hub', 'nav.program': 'Program', 'nav.about': 'Tentang',
+      'nav.login': 'Masuk', 'nav.join': 'Gabung Komunitas',
+      'auth.title': 'Gabung Komunitas IFAI', 'auth.subtitle': 'Masuk untuk mengirim karyamu dan bergabung dengan komunitas.', 'auth.google': 'Lanjutkan dengan Google', 'auth.or': 'atau', 'auth.emailPlaceholder': 'kamu@email.com', 'auth.sendLink': 'Kirim Link Masuk', 'auth.linkSent': 'Cek email kamu untuk link masuk.', 'auth.logout': 'Keluar',
+      'journal.back': '← Kembali ke Jurnal',
+      'programs.eyebrow': 'Inkubasi & Sesi Utama',
+      'journal.crumbHome': 'Beranda',
+      'journal.empty': 'Belum ada jurnal yang dipublikasikan.',
+      'program.detailBack': '← Kembali ke Program', 'program.detailCrumbHome': 'Beranda', 'program.notFound': 'Program ini tidak ditemukan.',
+      'footer.brandDesc': 'Indonesia Future Arts & Intelligence adalah platform terdepan Indonesia untuk kreativitas berbasis AI, menjembatani seni, teknologi, dan imajinasi manusia lewat film, visual, dan musik sintetis.',
+      'footer.location': 'Berbasis di Jakarta, Indonesia • Memberdayakan Kreator Seluruh Nusantara',
+      'footer.col1.title': 'Jelajahi', 'footer.col1.link1': 'Etalase Film AI', 'footer.col1.link2': 'Video Iklan', 'footer.col1.link3': 'Lanskap Suara Neural', 'footer.col1.link4': 'Summit & Acara', 'footer.col1.link5': 'Arsip 2025',
+      'footer.col2.title': 'Sumber Daya', 'footer.col2.link1': 'Jurnal & Esai', 'footer.col2.link2': 'Tutorial Prompt', 'footer.col2.link3': 'Direktori Alat AI', 'footer.col2.link4': 'Studi Kasus', 'footer.col2.link5': 'Press Kit & Brand',
+      'footer.col3.title': 'Terhubung', 'footer.col3.link1': 'Hubungi Kurator', 'footer.col3.link2': 'Gabung Discord', 'footer.col3.link3': 'Jadi Mitra Kami', 'footer.col3.link4': 'Daftar Newsletter', 'footer.col3.link5': 'Ketentuan & Privasi',
+      'footer.copyright': '© 2025 IFAI (Indonesia Future Arts & Intelligence). Hak cipta dilindungi.',
+    },
+  };
+
+  function getLang() { return localStorage.getItem(LANG_KEY) || 'en'; }
+
+  function applyLanguage(lang, opts) {
+    opts = opts || {};
+    document.documentElement.setAttribute('lang', lang);
+    const dict = DICT[lang] || DICT.en;
+    document.querySelectorAll('[data-i18n]').forEach((el) => {
+      const val = dict[el.getAttribute('data-i18n')];
+      if (val != null) el.textContent = val;
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+      const val = dict[el.getAttribute('data-i18n-placeholder')];
+      if (val != null) el.setAttribute('placeholder', val);
+    });
+    document.querySelectorAll('[data-lang-btn]').forEach((btn) => {
+      const active = btn.getAttribute('data-lang-btn') === lang;
+      btn.classList.toggle('text-white', active);
+      btn.classList.toggle('text-zinc-600', !active);
+    });
+    if (!opts.silent) {
+      window.dispatchEvent(new CustomEvent('ifai:langchange', { detail: { lang } }));
+    }
+  }
+
+  function setLang(lang) {
+    localStorage.setItem(LANG_KEY, lang);
+    applyLanguage(lang);
+  }
+
+  window.IFAI_I18N = { getLang, setLang, applyLanguage, dict: DICT };
+
+  document.querySelectorAll('#lang-toggle, #lang-toggle-mobile').forEach((btn) => {
+    btn.addEventListener('click', () => setLang(getLang() === 'en' ? 'id' : 'en'));
+  });
+
+  applyLanguage(getLang());
+
+  // ---------- Mobile menu toggle ----------
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+  const mobileMenuIconOpen = document.getElementById('mobile-menu-icon-open');
+  const mobileMenuIconClose = document.getElementById('mobile-menu-icon-close');
+  function closeMobileMenu() {
+    mobileMenuPanel.classList.add('hidden');
+    mobileMenuIconOpen.classList.remove('hidden');
+    mobileMenuIconClose.classList.add('hidden');
+    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+  }
+  if (mobileMenuToggle && mobileMenuPanel) {
+    mobileMenuToggle.addEventListener('click', () => {
+      const isHidden = mobileMenuPanel.classList.contains('hidden');
+      if (isHidden) {
+        mobileMenuPanel.classList.remove('hidden');
+        mobileMenuIconOpen.classList.add('hidden');
+        mobileMenuIconClose.classList.remove('hidden');
+        mobileMenuToggle.setAttribute('aria-expanded', 'true');
+      } else {
+        closeMobileMenu();
+      }
+    });
+    mobileMenuPanel.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMobileMenu));
+  }
+})();
+</script>
+
+<!-- ============================================================
+     PROGRAM DETAIL LOADER — /program-detail?id=<id>. A program has no
+     "featured/default" concept like Creator Hub, so a missing or unknown
+     id always lands on the not-found state.
+     ============================================================ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="js/auth.js?v=20260921"></script>
+<script src="js/program-hub.js?v=20260922a"></script>
+<script>
+(function () {
+  const SUPABASE_URL = 'https://qayckglxfmtrjqtghitx.supabase.co';
+  const SUPABASE_ANON_KEY = 'sb_publishable_qf2j0vC_6D63ziteKUflCQ_u-rYaIgd';
+  const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  // See js/auth.js for why: closes this client's cross-tab auth
+  // BroadcastChannel before the page is parked/unloaded so it doesn't
+  // block Chrome's back/forward cache.
+  window.addEventListener('pagehide', function () {
+    try { sb.auth.broadcastChannel && sb.auth.broadcastChannel.close(); } catch (e) {}
+  });
+
+  const P = window.IFAI_PROGRAM;
+  const body = document.getElementById('program-detail-body');
+  const crumb = document.getElementById('program-crumb');
+  const notFound = document.getElementById('program-not-found');
+  const id = new URLSearchParams(window.location.search).get('id');
+  let program = null;
+
+  function render(lang) {
+    if (!program) return;
+    body.innerHTML = P.headerHtml(program, lang) + P.detailsHtml(program, lang);
+    const title = P.pick(program, 'title', lang);
+    document.title = `${title} | IFAI Program`;
+    crumb.textContent = title;
+    if (window.IFAI_I18N) window.IFAI_I18N.applyLanguage(lang, { silent: true });
+    if (!document.getElementById('program-join-modal')) {
+      document.body.insertAdjacentHTML('beforeend', P.modalHtml());
+    }
+    P.wireProgramModal(sb, program, body);
+  }
+
+  async function loadProgram() {
+    program = await P.fetchProgramById(sb, id);
+    if (!program) {
+      body.innerHTML = '';
+      crumb.textContent = '404';
+      notFound.hidden = false;
+      if (window.IFAI_I18N) window.IFAI_I18N.applyLanguage(window.IFAI_I18N.getLang(), { silent: true });
+      return;
+    }
+    render(window.IFAI_I18N ? window.IFAI_I18N.getLang() : 'en');
+    window.addEventListener('ifai:langchange', (e) => render(e.detail.lang));
+  }
+
+  loadProgram();
+})();
+</script>
+</body>
+</html>
