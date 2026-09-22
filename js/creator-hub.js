@@ -198,8 +198,8 @@ ${photo ? `<img alt="${esc(name)}" class="absolute inset-0 w-full h-full object-
     // wrapper's own box at 640px+ so the photo and text block rejoin the desktop row
     // (photo | text | share) unchanged.
     return `<div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-8">
-<div class="flex items-start gap-4 sm:contents">
-${photo ? `<div class="w-16 h-16 sm:w-28 sm:h-28 rounded-full overflow-hidden border-[1.5px] border-zinc-700 bg-black flex-shrink-0">
+<div class="flex items-center gap-4 sm:contents">
+${photo ? `<div class="w-[72px] h-[72px] sm:w-28 sm:h-28 rounded-full overflow-hidden border-[1.5px] border-zinc-700 bg-black flex-shrink-0">
 <img alt="${esc(c.name)}" class="w-full h-full object-cover object-center filter grayscale contrast-110 opacity-85" src="${esc(photo)}">
 </div>` : ''}
 <div class="flex-1 min-w-0">
