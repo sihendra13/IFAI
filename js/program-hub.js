@@ -100,6 +100,12 @@
     const title = pick(row, 'title', lang);
     const description = pick(row, 'description', lang);
     const dateStr = formatDate(row.event_date, lang);
+    // Placeholders have no real registration_open field — only a real,
+    // admin-closed program should ever show the closed badge.
+    const isClosed = !row.__placeholder && row.registration_open === false;
+    const closedBadge = isClosed
+      ? `<span class="absolute top-3 right-3 z-10 inline-block px-3 py-1 rounded-full text-xs font-mono uppercase bg-black/70 border border-zinc-500 text-zinc-300 backdrop-blur-sm">${lang === 'id' ? 'Pendaftaran Ditutup' : 'Registration Closed'}</span>`
+      : '';
 
     return `
 <a href="${detailHref(row)}" class="group relative rounded-3xl overflow-hidden border border-zinc-700 bg-cosmic-850 hover:border-[#E3A85F]/50 hover:shadow-[0_0_40px_6px_rgba(227,168,95,0.3)] transition-all duration-300 flex flex-col sm:flex-row w-[85vw] lg:w-auto flex-shrink-0 lg:flex-shrink snap-start">
@@ -120,6 +126,7 @@
 <div class="relative w-full sm:w-2/5 aspect-[16/9] sm:aspect-auto order-1 sm:order-2">
 <img src="${row.image_url || ''}" class="absolute inset-0 w-full h-full object-cover" alt="${esc(title)}">
 <div class="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-cosmic-850 from-0% via-transparent via-5% to-transparent to-100%"></div>
+${closedBadge}
 </div>
 </a>`;
   }
