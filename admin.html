@@ -749,6 +749,21 @@
   // the public site, so logging in here also showed the admin's email in the public navbar.
   const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { auth: { storageKey: 'ifai-admin-auth' } });
 
+  // Best-effort delete of a previously-uploaded file once it's been replaced,
+  // so swapping an image doesn't leave the old one behind as orphaned storage.
+  // Silently no-ops on any URL that isn't a recognizable Supabase Storage
+  // public URL for this bucket (e.g. empty, or from a bucket that was never
+  // used) — a failed cleanup must never block the save that already succeeded.
+  async function deleteOldStorageFile(bucket, oldUrl) {
+    if (!oldUrl) return;
+    const marker = `/storage/v1/object/public/${bucket}/`;
+    const idx = oldUrl.indexOf(marker);
+    if (idx === -1) return;
+    const path = oldUrl.slice(idx + marker.length);
+    if (!path) return;
+    try { await sb.storage.from(bucket).remove([path]); } catch {}
+  }
+
   const screens = {
     login: document.getElementById('screen-login'),
     notAdmin: document.getElementById('screen-not-admin'),
@@ -953,6 +968,7 @@
     const { error } = await sb.storage.from('creator-avatars').upload(path, file);
     if (error) throw new Error('Gagal upload foto: ' + error.message);
     const { data } = sb.storage.from('creator-avatars').getPublicUrl(path);
+    deleteOldStorageFile('creator-avatars', currentUrl);
     return data.publicUrl;
   }
 
@@ -1466,6 +1482,7 @@
     const { error } = await sb.storage.from('signal-images').upload(path, file);
     if (error) throw new Error('Gagal upload gambar: ' + error.message);
     const { data } = sb.storage.from('signal-images').getPublicUrl(path);
+    deleteOldStorageFile('signal-images', currentUrl);
     return data.publicUrl;
   }
 
@@ -1711,6 +1728,7 @@
     const { error } = await sb.storage.from('signal-images').upload(path, file);
     if (error) throw new Error('Gagal upload gambar: ' + error.message);
     const { data } = sb.storage.from('signal-images').getPublicUrl(path);
+    deleteOldStorageFile('signal-images', currentUrl);
     return data.publicUrl;
   }
 
@@ -1977,6 +1995,7 @@
     const { error } = await sb.storage.from('signal-images').upload(path, file);
     if (error) throw new Error('Gagal upload gambar: ' + error.message);
     const { data } = sb.storage.from('signal-images').getPublicUrl(path);
+    deleteOldStorageFile('signal-images', currentUrl);
     return data.publicUrl;
   }
 
