@@ -195,12 +195,15 @@
 
 <!-- Program -->
 <div id="program-detail-body" class="space-y-8">
-<div class="rounded-2xl bg-cyber-surface border border-zinc-800 h-24 animate-pulse" aria-hidden="true"></div>
+<div class="rounded-2xl bg-cyber-surface border border-zinc-800 aspect-video animate-pulse" aria-hidden="true"></div>
+<div class="rounded-2xl bg-cyber-surface border border-zinc-800 h-16 animate-pulse" aria-hidden="true"></div>
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 animate-pulse" aria-hidden="true">
 <div class="lg:col-span-7 rounded-2xl bg-cyber-surface border border-zinc-800 h-56"></div>
-<div class="lg:col-span-5 rounded-2xl bg-cyber-surface border border-zinc-800 h-56"></div>
+<div class="lg:col-span-5 flex flex-col gap-6">
+<div class="rounded-2xl bg-cyber-surface border border-zinc-800 h-40"></div>
+<div class="rounded-2xl bg-cyber-surface border border-zinc-800 h-32"></div>
 </div>
-<div class="rounded-2xl bg-cyber-surface border border-zinc-800 h-24 animate-pulse" aria-hidden="true"></div>
+</div>
 </div>
 
 <!-- Not found -->
@@ -391,7 +394,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script src="js/auth.js?v=20260921"></script>
-<script src="js/program-hub.js?v=20260922a"></script>
+<script src="js/program-hub.js?v=20260922b"></script>
 <script>
 (function () {
   const SUPABASE_URL = 'https://qayckglxfmtrjqtghitx.supabase.co';

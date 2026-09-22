@@ -148,9 +148,8 @@
   }
 
   // ---------------------------------------------------------------------
-  // Detail page header — same pattern as the Creator Hub header (photo
-  // beside the badge/title/meta block on mobile, sm:contents rejoins the
-  // desktop row).
+  // Detail page header — full-width 16:9 poster on top (like a work detail
+  // page's hero), badge/title/meta below it.
   // ---------------------------------------------------------------------
   function headerHtml(row, lang) {
     const label = pick(row, 'label', lang);
@@ -162,16 +161,14 @@
       : `<span class="text-slate-300">${esc(p)}</span>`
     ).join('<span class="text-zinc-600">•</span>');
 
-    return `<div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-8">
-<div class="flex items-center gap-4 sm:contents">
-${row.image_url ? `<div class="w-[72px] h-[72px] sm:w-28 sm:h-28 rounded-2xl overflow-hidden border-[1.5px] border-zinc-700 bg-black flex-shrink-0">
+    return `<div class="space-y-5">
+${row.image_url ? `<div class="w-full aspect-video rounded-2xl overflow-hidden border border-zinc-700 bg-black">
 <img alt="${esc(title)}" class="w-full h-full object-cover object-center" src="${esc(row.image_url)}">
 </div>` : ''}
-<div class="flex-1 min-w-0">
-<span class="inline-block text-[11px] font-mono px-2 py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30 mb-2 sm:mb-3">${esc(label || 'PROGRAM')}</span>
-<h1 class="text-xl sm:text-4xl font-bold uppercase tracking-tight text-white leading-tight sm:leading-none">${esc(title)}</h1>
-<div class="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs sm:text-sm text-cyber-muted pt-1.5 sm:pt-3">${metaHtml}</div>
-</div>
+<div>
+<span class="inline-block text-[11px] font-mono px-2 py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30 mb-3">${esc(label || 'PROGRAM')}</span>
+<h1 class="text-2xl sm:text-4xl font-bold uppercase tracking-tight text-white leading-tight sm:leading-none">${esc(title)}</h1>
+<div class="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs sm:text-sm text-cyber-muted pt-3">${metaHtml}</div>
 </div>
 </div>`;
   }
@@ -208,11 +205,11 @@ ${row.image_url ? `<div class="w-[72px] h-[72px] sm:w-28 sm:h-28 rounded-2xl ove
 
     const closedLabel = row.__placeholder ? (isId ? 'Contoh Program' : 'Sample Program') : (isId ? 'Pendaftaran Ditutup' : 'Registration Closed');
     const joinBtn = open
-      ? `<button type="button" data-program-join class="group relative inline-flex items-center justify-center gap-2 px-8 py-3 min-w-[200px] rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 hover:text-black transition-all duration-300 glow-white cursor-pointer">
+      ? `<button type="button" data-program-join class="group relative w-full inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 hover:text-black transition-all duration-300 glow-white cursor-pointer">
 <span class="relative z-10">${btnLabel}</span>
 <span class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-white transition-transform duration-300 ease-out"></span>
 </button>`
-      : `<button type="button" disabled class="inline-flex items-center justify-center gap-2 px-8 py-3 min-w-[200px] rounded-full text-xs font-mono font-semibold border border-zinc-700 text-zinc-500 bg-cosmic-900 cursor-not-allowed">${closedLabel}</button>`;
+      : `<button type="button" disabled class="w-full inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full text-xs font-mono font-semibold border border-zinc-700 text-zinc-500 bg-cosmic-900 cursor-not-allowed">${closedLabel}</button>`;
 
     return `<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 <div class="lg:col-span-7 rounded-2xl bg-cyber-surface border border-zinc-700 p-6 sm:p-8">
@@ -225,7 +222,8 @@ ${row.image_url ? `<div class="w-[72px] h-[72px] sm:w-28 sm:h-28 rounded-2xl ove
 </div>
 ${description ? `<p class="text-slate-300 text-sm sm:text-base leading-relaxed break-words">${linkify(description)}</p>` : ''}
 </div>
-<div class="lg:col-span-5 rounded-2xl bg-cyber-surface border border-zinc-700 p-6 sm:p-8">
+<div class="lg:col-span-5 flex flex-col gap-6">
+<div class="rounded-2xl bg-cyber-surface border border-zinc-700 p-6 sm:p-8">
 <div class="flex items-center justify-between mb-4">
 <h3 class="font-mono text-xs uppercase tracking-widest text-white font-bold flex items-center gap-2">
 <span class="w-1 h-3 bg-cyber-cyan inline-block"></span>
@@ -235,13 +233,14 @@ ${description ? `<p class="text-slate-300 text-sm sm:text-base leading-relaxed b
 </div>
 ${infoRows || `<p class="text-sm text-zinc-500">${isId ? 'Belum ada detail jadwal.' : 'No schedule details yet.'}</p>`}
 </div>
-</div>
-<div class="rounded-2xl bg-cyber-surface border border-zinc-700 p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+<div class="rounded-2xl bg-cyber-surface border border-zinc-700 p-6 sm:p-8 flex flex-col gap-4">
 <div>
 <h3 class="text-xl font-bold tracking-tight text-white uppercase mb-1">${ctaTitle}</h3>
 <p class="text-sm text-zinc-400">${ctaLine}</p>
 </div>
 ${joinBtn}
+</div>
+</div>
 </div>`;
   }
 
