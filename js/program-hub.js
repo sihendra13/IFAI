@@ -117,7 +117,7 @@
 </span>
 </div>
 </div>
-<div class="relative w-full sm:w-3/5 aspect-[16/9] sm:aspect-auto order-1 sm:order-2">
+<div class="relative w-full sm:w-2/5 aspect-[16/9] sm:aspect-auto order-1 sm:order-2">
 <img src="${row.image_url || ''}" class="w-full h-full object-cover" alt="${esc(title)}">
 <div class="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-cosmic-850 from-0% via-transparent via-5% to-transparent to-100%"></div>
 </div>
