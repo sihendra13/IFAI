@@ -36,6 +36,7 @@ export async function onRequestPost(context) {
   const phone = (body.phone || '').trim();
   const programTitle = (body.program_title || '').trim();
   const programId = (body.program_id || '').trim();
+  const isId = body.lang !== 'en';
 
   if (!name || !email || !programTitle) {
     return json({ error: 'Missing name, email, or program_title.' }, 400);
@@ -69,6 +70,35 @@ export async function onRequestPost(context) {
   if (!resendRes.ok) {
     const detail = await resendRes.text();
     return json({ error: 'Resend request failed.', detail }, resendRes.status);
+  }
+
+  // Best-effort confirmation to the registrant themselves. Sent only if the
+  // sending domain is verified (RESEND_FROM set) — the sandbox sender can't
+  // deliver to arbitrary addresses, so skip it rather than fail silently.
+  if (env.RESEND_FROM) {
+    fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: fromAddress,
+        to: [email],
+        subject: isId ? `Pendaftaran diterima: ${programTitle}` : `Registration received: ${programTitle}`,
+        html: isId ? `
+          <p>Hai ${esc(name)},</p>
+          <p>Pendaftaranmu untuk <strong>${esc(programTitle)}</strong> sudah kami terima. Tim IFAI akan menghubungimu melalui email atau WhatsApp yang kamu daftarkan jika ada informasi lebih lanjut.</p>
+          <p><a href="${esc(pageUrl)}">Lihat halaman program</a></p>
+          <p>Terima kasih,<br>Tim IFAI</p>
+        ` : `
+          <p>Hi ${esc(name)},</p>
+          <p>Your registration for <strong>${esc(programTitle)}</strong> has been received. The IFAI team will reach out by email or WhatsApp if there's anything further.</p>
+          <p><a href="${esc(pageUrl)}">View program page</a></p>
+          <p>Thanks,<br>IFAI Team</p>
+        `,
+      }),
+    }).catch(() => {});
   }
 
   return json({ ok: true });

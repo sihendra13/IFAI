@@ -345,7 +345,7 @@ Daftar
         fetch('/api/register-program', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, phone, program_id: program.id, program_title: title }),
+          body: JSON.stringify({ name, email, phone, program_id: program.id, program_title: title, lang: isId ? 'id' : 'en' }),
         }).catch(() => {});
 
         form.hidden = true;
