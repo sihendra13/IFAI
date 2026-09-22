@@ -118,7 +118,7 @@
 </div>
 </div>
 <div class="relative w-full sm:w-2/5 aspect-[16/9] sm:aspect-auto order-1 sm:order-2">
-<img src="${row.image_url || ''}" class="w-full h-full object-cover" alt="${esc(title)}">
+<img src="${row.image_url || ''}" class="absolute inset-0 w-full h-full object-cover" alt="${esc(title)}">
 <div class="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-cosmic-850 from-0% via-transparent via-5% to-transparent to-100%"></div>
 </div>
 </a>`;
@@ -162,8 +162,8 @@
     ).join('<span class="text-zinc-600">•</span>');
 
     return `<div class="space-y-5">
-${row.image_url ? `<div class="w-full aspect-video rounded-2xl overflow-hidden border border-zinc-700 bg-black">
-<img alt="${esc(title)}" class="w-full h-full object-contain object-center" src="${esc(row.image_url)}">
+${row.image_url ? `<div class="relative w-full aspect-video rounded-2xl overflow-hidden border border-zinc-700 bg-black">
+<img alt="${esc(title)}" class="absolute inset-0 w-full h-full object-contain object-center" src="${esc(row.image_url)}">
 </div>` : ''}
 <div>
 <span class="inline-block text-[11px] font-mono px-2 py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30 mb-3">${esc(label || 'PROGRAM')}</span>
