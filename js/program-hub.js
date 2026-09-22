@@ -108,8 +108,13 @@
       : '';
 
     return `
-<a href="${detailHref(row)}" class="group relative rounded-3xl overflow-hidden border border-zinc-700 bg-cosmic-850 hover:border-[#E3A85F]/50 hover:shadow-[0_0_40px_6px_rgba(227,168,95,0.3)] transition-all duration-300 flex flex-col sm:flex-row w-[85vw] lg:w-auto flex-shrink-0 lg:flex-shrink snap-start">
-<div class="flex-1 p-6 sm:p-8 flex flex-col justify-between gap-4 order-2 sm:order-1">
+<a href="${detailHref(row)}" class="group relative rounded-3xl overflow-hidden border border-zinc-700 bg-cosmic-850 hover:border-[#E3A85F]/50 hover:shadow-[0_0_40px_6px_rgba(227,168,95,0.3)] transition-all duration-300 flex flex-col w-[85vw] lg:w-auto flex-shrink-0 lg:flex-shrink snap-start">
+<div class="relative w-full aspect-video overflow-hidden">
+<img src="${row.image_url || ''}" class="absolute inset-0 w-full h-full object-cover" alt="${esc(title)}">
+<div class="absolute inset-0 bg-gradient-to-t from-cosmic-850 via-transparent to-black/30"></div>
+${closedBadge}
+</div>
+<div class="flex-1 p-6 sm:p-8 flex flex-col justify-between gap-4">
 <div>
 <span class="inline-block px-3 py-1 rounded-full text-xs font-mono uppercase bg-[#00e5ff]/10 border border-[#00e5ff]/30 text-[#00e5ff] mb-3">${esc(label)}</span>
 <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-[#E3A85F] transition-colors mb-2 line-clamp-3">${esc(title)}</h3>
@@ -123,11 +128,6 @@
 </span>
 </div>
 </div>
-<div class="relative w-full sm:w-2/5 aspect-[16/9] sm:aspect-auto order-1 sm:order-2">
-<img src="${row.image_url || ''}" class="absolute inset-0 w-full h-full object-cover" alt="${esc(title)}">
-<div class="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-cosmic-850 from-0% via-transparent via-5% to-transparent to-100%"></div>
-${closedBadge}
-</div>
 </a>`;
   }
 
@@ -135,8 +135,9 @@ ${closedBadge}
     let out = '';
     for (let i = 0; i < count; i++) {
       out += `
-<div class="relative rounded-3xl overflow-hidden border border-zinc-800 bg-cosmic-850/80 flex flex-col sm:flex-row w-[85vw] lg:w-auto flex-shrink-0 lg:flex-shrink snap-start animate-pulse pointer-events-none select-none" aria-hidden="true">
-<div class="flex-1 p-6 sm:p-8 flex flex-col justify-between gap-4 order-2 sm:order-1">
+<div class="relative rounded-3xl overflow-hidden border border-zinc-800 bg-cosmic-850/80 flex flex-col w-[85vw] lg:w-auto flex-shrink-0 lg:flex-shrink snap-start animate-pulse pointer-events-none select-none" aria-hidden="true">
+<div class="relative w-full aspect-video bg-zinc-800/40"></div>
+<div class="flex-1 p-6 sm:p-8 flex flex-col justify-between gap-4">
 <div class="space-y-3">
 <div class="w-20 h-5 rounded-full bg-zinc-800/70"></div>
 <div class="h-6 bg-zinc-700/50 rounded-md w-4/5"></div>
@@ -148,7 +149,6 @@ ${closedBadge}
 <div class="w-24 h-8 bg-zinc-800/60 rounded-full"></div>
 </div>
 </div>
-<div class="relative w-full sm:w-2/5 aspect-[16/9] sm:aspect-auto order-1 sm:order-2 bg-zinc-800/40 min-h-[160px]"></div>
 </div>`;
     }
     return out;
