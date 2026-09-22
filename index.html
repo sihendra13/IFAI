@@ -438,6 +438,26 @@
 // Failsafe: reveal the Creator Hub even if the data loader below never runs.
 setTimeout(function () { var el = document.getElementById('creator-hub-body'); if (el) el.classList.remove('invisible'); }, 6000);
 </script>
+<!-- BEGIN: ProgramHubSection -->
+<!-- Workshop / Kelas Online / Roadshow, etc. Cards are styled identically to the
+     IFAI Signals cards below. Content comes from the admin-managed "programs"
+     table; until it exists or has rows, 2 sample PLACEHOLDER_PROGRAMS render
+     instead (js/program-hub.js) — delete that fallback once real programs are live. -->
+<section class="py-24 bg-cosmic-950" id="program">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+<div>
+<span data-i18n="program.eyebrow" class="text-xs font-mono text-white tracking-widest uppercase">Workshop &amp; Roadshow</span>
+<h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-1">PROGRAM</h2>
+</div>
+<a id="program-view-all" style="display:none;" data-i18n="program.viewAll" class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] flex items-center gap-1.5 transition-colors" href="program">
+            View All Program →
+          </a>
+</div>
+<div id="program-grid" class="flex gap-8 overflow-x-auto snap-x snap-mandatory pb-2 -mx-4 px-4 lg:grid lg:grid-cols-2 lg:overflow-visible lg:mx-0 lg:px-0 lg:pb-0"></div>
+</div>
+</section>
+<!-- END: ProgramHubSection -->
 <!-- BEGIN: ProgramsAndEventsSection -->
 <section class="py-24 bg-cosmic-950" id="journal">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -456,26 +476,6 @@ setTimeout(function () { var el = document.getElementById('creator-hub-body'); i
 </div>
 </section>
 <!-- END: ProgramsAndEventsSection -->
-<!-- BEGIN: ProgramHubSection -->
-<!-- Workshop / Kelas Online / Roadshow, etc. Cards are styled identically to the
-     IFAI Signals cards above. Content comes from the admin-managed "programs"
-     table; until it exists or has rows, 2 sample PLACEHOLDER_PROGRAMS render
-     instead (js/program-hub.js) — delete that fallback once real programs are live. -->
-<section class="py-24 bg-cosmic-950" id="program">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
-<div>
-<span data-i18n="program.eyebrow" class="text-xs font-mono text-white tracking-widest uppercase">Workshop &amp; Roadshow</span>
-<h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-1">PROGRAM</h2>
-</div>
-<a id="program-view-all" style="display:none;" data-i18n="program.viewAll" class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] flex items-center gap-1.5 transition-colors" href="program">
-            View All Program →
-          </a>
-</div>
-<div id="program-grid" class="flex gap-8 overflow-x-auto snap-x snap-mandatory pb-2 -mx-4 px-4 lg:grid lg:grid-cols-2 lg:overflow-visible lg:mx-0 lg:px-0 lg:pb-0"></div>
-</div>
-</section>
-<!-- END: ProgramHubSection -->
 <!-- BEGIN: ManifestoAndAboutSection -->
 <section class="py-24 bg-cosmic-900 relative" id="manifesto">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -795,7 +795,7 @@ setTimeout(function () { var el = document.getElementById('creator-hub-body'); i
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script src="js/auth.js?v=20260921"></script>
 <script src="js/creator-hub.js?v=20260922b"></script>
-<script src="js/program-hub.js?v=20260922d"></script>
+<script src="js/program-hub.js?v=20260922e"></script>
 <script>
 (function () {
   const SUPABASE_URL = 'https://qayckglxfmtrjqtghitx.supabase.co';
