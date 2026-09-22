@@ -266,11 +266,11 @@ ${joinBtn}
 <h3 id="program-join-title" class="text-xl font-bold text-white mb-1">Join Program</h3>
 <p id="program-join-subtitle" class="text-sm text-zinc-400 mb-6"></p>
 <form id="program-join-form" class="flex flex-col gap-3">
-<input id="program-join-name" type="text" required placeholder="Nama lengkap" class="w-full px-4 py-3 rounded-xl bg-cosmic-800 border border-zinc-700 text-white text-sm placeholder-zinc-500 focus:outline-none focus:border-[#f75500] transition-colors">
-<input id="program-join-email" type="email" required placeholder="you@email.com" class="w-full px-4 py-3 rounded-xl bg-cosmic-800 border border-zinc-700 text-white text-sm placeholder-zinc-500 focus:outline-none focus:border-[#f75500] transition-colors">
-<input id="program-join-phone" type="tel" placeholder="No. WhatsApp (opsional)" class="w-full px-4 py-3 rounded-xl bg-cosmic-800 border border-zinc-700 text-white text-sm placeholder-zinc-500 focus:outline-none focus:border-[#f75500] transition-colors">
-<button type="submit" id="program-join-submit" class="w-full px-5 py-3 rounded-full border border-[#f75500]/50 text-white bg-cosmic-800/80 hover:bg-[#f75500] hover:text-black font-semibold text-sm transition-all duration-300">
-Daftar
+<input id="program-join-name" type="text" required placeholder="Nama lengkap" class="w-full px-4 py-3 rounded-xl bg-cosmic-800 border border-zinc-700 text-white text-sm placeholder-zinc-500 focus:outline-none focus:border-[#f75500] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+<input id="program-join-email" type="email" required placeholder="you@email.com" class="w-full px-4 py-3 rounded-xl bg-cosmic-800 border border-zinc-700 text-white text-sm placeholder-zinc-500 focus:outline-none focus:border-[#f75500] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+<input id="program-join-phone" type="tel" placeholder="No. WhatsApp (opsional)" class="w-full px-4 py-3 rounded-xl bg-cosmic-800 border border-zinc-700 text-white text-sm placeholder-zinc-500 focus:outline-none focus:border-[#f75500] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+<button type="submit" id="program-join-submit" class="w-full px-5 py-3 rounded-full border border-[#f75500]/50 text-white bg-cosmic-800/80 hover:bg-[#f75500] hover:text-black font-semibold text-sm transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:bg-cosmic-800/80 disabled:hover:text-white">
+<span id="program-join-submit-label" class="inline-flex items-center justify-center gap-2 w-full">Daftar</span>
 </button>
 </form>
 <p id="program-join-error" hidden class="text-xs text-red-400 mt-4"></p>
@@ -297,19 +297,32 @@ Daftar
     const errorEl = document.getElementById('program-join-error');
     const successEl = document.getElementById('program-join-success');
     const submitBtn = document.getElementById('program-join-submit');
+    const submitLabel = document.getElementById('program-join-submit-label');
+    const nameInput = document.getElementById('program-join-name');
+    const emailInput = document.getElementById('program-join-email');
+    const phoneInput = document.getElementById('program-join-phone');
+    const fields = [nameInput, emailInput, phoneInput];
     // Read the language fresh each time, not once at wire-time, so the modal
     // still switches correctly if the visitor toggles EN/ID while it's closed.
     const currentIsId = () => (window.IFAI_I18N ? window.IFAI_I18N.getLang() : 'en') === 'id';
+    const SPINNER_SVG = '<svg class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>';
+
+    function setBusy(isBusy, label) {
+      submitBtn.disabled = isBusy;
+      fields.forEach((f) => { f.disabled = isBusy; });
+      submitLabel.innerHTML = isBusy ? `${SPINNER_SVG}<span>${label}</span>` : label;
+    }
 
     function openModal() {
       const isId = currentIsId();
       document.getElementById('program-join-title').textContent = isId ? 'Daftar Program' : 'Register for Program';
       document.getElementById('program-join-subtitle').textContent = pick(program, 'title', isId ? 'id' : 'en');
-      submitBtn.textContent = isId ? 'Daftar' : 'Register';
+      form.style.display = '';
       form.hidden = false;
       errorEl.hidden = true;
       successEl.hidden = true;
       form.reset();
+      setBusy(false, isId ? 'Daftar' : 'Register');
       modal.classList.remove('hidden');
     }
     function closeModal() { modal.classList.add('hidden'); }
@@ -324,14 +337,13 @@ Daftar
       e.preventDefault();
       const isId = currentIsId();
       errorEl.hidden = true;
-      const name = document.getElementById('program-join-name').value.trim();
-      const email = document.getElementById('program-join-email').value.trim();
-      const phone = document.getElementById('program-join-phone').value.trim();
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+      const phone = phoneInput.value.trim();
       if (!name || !email) return;
 
       const title = pick(program, 'title', isId ? 'id' : 'en');
-      submitBtn.disabled = true;
-      submitBtn.textContent = isId ? 'Mengirim...' : 'Sending...';
+      setBusy(true, isId ? 'Mengirim...' : 'Sending...');
       try {
         // Source of truth: the registration itself, written directly (RLS lets
         // anon insert but never read back — see supabase_programs_migration.sql).
@@ -348,14 +360,15 @@ Daftar
           body: JSON.stringify({ name, email, phone, program_id: program.id, program_title: title, lang: isId ? 'id' : 'en' }),
         }).catch(() => {});
 
-        form.hidden = true;
+        // `form.hidden` alone doesn't hide it here: the form's own `flex`
+        // utility class overrides the browser's `[hidden] { display: none }`
+        // rule, so an inline style is used instead to guarantee it disappears.
+        form.style.display = 'none';
         successEl.hidden = false;
       } catch (err) {
         errorEl.textContent = (isId ? 'Gagal mendaftar: ' : 'Registration failed: ') + err.message;
         errorEl.hidden = false;
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = isId ? 'Daftar' : 'Register';
+        setBusy(false, isId ? 'Daftar' : 'Register');
       }
     });
   }
