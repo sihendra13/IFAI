@@ -902,7 +902,7 @@
     if (error) { console.error(error); return; }
     categoriesCache = data;
     const select = document.getElementById('work-category');
-    select.innerHTML = data.map(c => `<option value="${c.id}">${c.name_id || c.name_en}</option>`).join('');
+    select.innerHTML = data.map(c => `<option value="${c.id}">${escapeHtml(c.name_id || c.name_en)}</option>`).join('');
   }
 
   // ---------- CREATORS ----------

@@ -537,7 +537,7 @@
     return `
 <a href="signal?id=${encodeURIComponent(signal.id)}" class="group flex flex-col rounded-2xl bg-[#1b1b20] border border-zinc-700 overflow-hidden hover:bg-[#202026] transition-all duration-300 shadow-lg w-[85vw] md:w-auto flex-shrink-0 md:flex-shrink snap-start">
 <div class="aspect-video w-full relative overflow-hidden bg-cosmic-950">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${escapeHtml(title)}" src="${signal.image_url || ''}">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${escapeHtml(title)}" src="${escapeHtml(signal.image_url || '')}">
 ${label ? `<div class="absolute bottom-3 right-3"><span class="text-xs font-mono uppercase px-2 py-0.5 rounded bg-black/70 backdrop-blur-md text-[#e4e1e8]">${escapeHtml(label)}</span></div>` : ''}
 </div>
 <div class="p-4 flex flex-col flex-1 justify-between gap-4">

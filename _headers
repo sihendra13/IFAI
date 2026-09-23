@@ -1,3 +1,14 @@
+# Baseline security headers. No CSP here: this site runs mostly inline
+# <script> across every page (no build step), so a script-src strict enough
+# to matter would need a nonce/hash on every inline block to avoid breaking
+# the site — not attempted here. These headers cost nothing to add and don't
+# depend on enumerating every external resource the site loads.
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
 # Cloudflare Pages: always revalidate our own scripts, so a deploy reaches returning
 # visitors immediately (the default is a 4 hour browser cache).
 /js/*
