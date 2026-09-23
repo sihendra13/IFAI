@@ -292,22 +292,22 @@
 <!-- Metric KPI Stats Bar -->
 <div class="relative z-10 bg-cosmic-950 px-4 pb-20 pt-8">
   <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-7xl mx-auto">
-    <div class="bg-cosmic-850/70 backdrop-blur border border-zinc-700 p-6 rounded-xl hover:border-zinc-600 transition">
+    <div class="kpi-card opacity-0 translate-y-8 transition-all duration-700 ease-out bg-cosmic-850/70 backdrop-blur border border-zinc-700 p-6 rounded-xl hover:border-zinc-600">
       <div id="kpi-categories-value" class="text-3xl sm:text-4xl font-mono font-bold text-neon-emerald mb-1">&mdash;</div>
       <div data-i18n="kpi.1.label" class="text-xs uppercase font-mono tracking-wider text-zinc-400">Core Disciplines</div>
       <p data-i18n="kpi.1.desc" class="text-xs text-zinc-500 mt-2">Film, Commercial, Digital Canvas, &amp; Neural Audio</p>
     </div>
-    <div class="bg-cosmic-850/70 backdrop-blur border border-zinc-700 p-6 rounded-xl hover:border-zinc-600 transition">
+    <div class="kpi-card opacity-0 translate-y-8 transition-all duration-700 ease-out bg-cosmic-850/70 backdrop-blur border border-zinc-700 p-6 rounded-xl hover:border-zinc-600">
       <div id="kpi-creators-value" class="text-3xl sm:text-4xl font-mono font-bold text-neon-cyan mb-1">&mdash;</div>
       <div data-i18n="kpi.2.label" class="text-xs uppercase font-mono tracking-wider text-zinc-400">Creators Onboarded</div>
       <p data-i18n="kpi.2.desc" class="text-xs text-zinc-500 mt-2">Real creators who have joined and showcased work with IFAI</p>
     </div>
-    <div class="bg-cosmic-850/70 backdrop-blur border border-zinc-700 p-6 rounded-xl hover:border-zinc-600 transition">
+    <div class="kpi-card opacity-0 translate-y-8 transition-all duration-700 ease-out bg-cosmic-850/70 backdrop-blur border border-zinc-700 p-6 rounded-xl hover:border-zinc-600">
       <div id="kpi-works-value" class="text-3xl sm:text-4xl font-mono font-bold text-white mb-1">&mdash;</div>
       <div data-i18n="kpi.3.label" class="text-xs uppercase font-mono tracking-wider text-zinc-400">AI Works Showcased</div>
       <p data-i18n="kpi.3.desc" class="text-xs text-zinc-500 mt-2">Archived in IFAI permanent national intelligence repository</p>
     </div>
-    <div class="bg-gradient-to-br from-cosmic-800 to-cosmic-950 border border-zinc-700 p-6 rounded-xl flex flex-col justify-between">
+    <div class="kpi-card opacity-0 translate-y-8 transition-all duration-700 ease-out bg-gradient-to-br from-cosmic-800 to-cosmic-950 border border-zinc-700 p-6 rounded-xl flex flex-col justify-between">
       <div>
         <span data-i18n="kpi.4.label" class="text-xs font-mono uppercase text-neon-cyan tracking-wider">Curated Archive</span>
         <p data-i18n="kpi.4.desc" class="text-xs text-zinc-300 mt-1">Explore the fusion of generative computation, culture, and human direction.</p>
@@ -955,6 +955,22 @@ setTimeout(function () { var el = document.getElementById('creator-hub-body'); i
   wireShowcase();
 
   // ---------- KPI stats bar: real counts instead of hardcoded numbers ----------
+  function animateValue(obj, start, end, duration, suffix = "") {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const easeOut = 1 - Math.pow(1 - progress, 4); // ease out effect
+      obj.innerHTML = Math.floor(easeOut * (end - start) + start) + suffix;
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      } else {
+        obj.innerHTML = end + suffix;
+      }
+    };
+    window.requestAnimationFrame(step);
+  }
+
   async function wireKpiStats() {
     const [categories, creators, works] = await Promise.all([
       sb.from('categories').select('*', { count: 'exact', head: true }),
@@ -964,9 +980,47 @@ setTimeout(function () { var el = document.getElementById('creator-hub-body'); i
     const categoriesEl = document.getElementById('kpi-categories-value');
     const creatorsEl = document.getElementById('kpi-creators-value');
     const worksEl = document.getElementById('kpi-works-value');
-    if (categoriesEl && !categories.error && categories.count != null) categoriesEl.textContent = categories.count;
-    if (creatorsEl && !creators.error && creators.count != null) creatorsEl.textContent = creators.count;
-    if (worksEl && !works.error && works.count != null) worksEl.textContent = works.count + '+';
+
+    const kpiCards = document.querySelectorAll('.kpi-card');
+    const observer = new IntersectionObserver((entries, obs) => {
+      let delay = 0;
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const card = entry.target;
+          setTimeout(() => {
+            // Reveal card (Slide up & fade in)
+            card.classList.remove('opacity-0', 'translate-y-8');
+            
+            // Check if card has a number element to animate
+            const numEl = card.querySelector('[data-count]');
+            if (numEl) {
+              const endVal = parseInt(numEl.dataset.count, 10);
+              const suffix = numEl.dataset.suffix || "";
+              if (!isNaN(endVal)) {
+                animateValue(numEl, 0, endVal, 2000, suffix);
+              }
+            }
+          }, delay);
+          delay += 150; // Stagger next card by 150ms
+          
+          obs.unobserve(card);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    if (categoriesEl && !categories.error && categories.count != null) {
+      categoriesEl.dataset.count = categories.count;
+    }
+    if (creatorsEl && !creators.error && creators.count != null) {
+      creatorsEl.dataset.count = creators.count;
+    }
+    if (worksEl && !works.error && works.count != null) {
+      worksEl.dataset.count = works.count;
+      worksEl.dataset.suffix = "+";
+    }
+
+    // Observe all cards to trigger slide-up, regardless of whether they have numbers
+    kpiCards.forEach(card => observer.observe(card));
   }
   wireKpiStats();
 
@@ -1033,7 +1087,7 @@ setTimeout(function () { var el = document.getElementById('creator-hub-body'); i
 </div>
 </div>
 <div class="relative w-full sm:w-2/5 aspect-[16/9] sm:aspect-auto order-1 sm:order-2">
-<img src="${signal.image_url}" class="absolute inset-0 w-full h-full object-cover" alt="${escapeHtml(title)}">
+<img src="${escapeHtml(signal.image_url)}" class="absolute inset-0 w-full h-full object-cover" alt="${escapeHtml(title)}">
 <div class="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-cosmic-850 from-0% via-transparent via-10% to-transparent to-100%"></div>
 </div>
 </a>`;

@@ -41,6 +41,12 @@ export async function onRequestPost(context) {
   if (!name || !email || !programTitle) {
     return json({ error: 'Missing name, email, or program_title.' }, 400);
   }
+  // Basic shape check so obviously-malformed input doesn't get relayed as a
+  // "confirmation" email to an arbitrary address (this is defense in depth,
+  // not a substitute for real rate limiting on this public endpoint).
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || name.length > 200 || programTitle.length > 300) {
+    return json({ error: 'Invalid input.' }, 400);
+  }
 
   const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const fromAddress = env.RESEND_FROM || 'IFAI <onboarding@resend.dev>';

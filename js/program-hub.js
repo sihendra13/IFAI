@@ -110,7 +110,7 @@
     return `
 <a href="${detailHref(row)}" class="group relative rounded-3xl overflow-hidden border border-zinc-700 bg-cosmic-850 hover:border-[#E3A85F]/50 hover:shadow-[0_0_40px_6px_rgba(227,168,95,0.3)] transition-all duration-300 flex flex-col w-[85vw] lg:w-auto flex-shrink-0 lg:flex-shrink snap-start">
 <div class="relative w-full aspect-video overflow-hidden">
-<img src="${row.image_url || ''}" class="absolute inset-0 w-full h-full object-cover" alt="${esc(title)}">
+<img src="${esc(row.image_url || '')}" class="absolute inset-0 w-full h-full object-cover" alt="${esc(title)}">
 <div class="absolute inset-0 bg-gradient-to-t from-cosmic-850 via-transparent to-black/30"></div>
 ${closedBadge}
 </div>
