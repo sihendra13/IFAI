@@ -293,17 +293,17 @@
 <div class="relative z-10 bg-cosmic-950 px-4 pb-20 pt-8">
   <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-7xl mx-auto">
     <div class="bg-cosmic-850/70 backdrop-blur border border-zinc-700 p-6 rounded-xl hover:border-zinc-600 transition">
-      <div class="text-3xl sm:text-4xl font-mono font-bold text-neon-emerald mb-1">4</div>
+      <div id="kpi-categories-value" class="text-3xl sm:text-4xl font-mono font-bold text-neon-emerald mb-1">&mdash;</div>
       <div data-i18n="kpi.1.label" class="text-xs uppercase font-mono tracking-wider text-zinc-400">Core Disciplines</div>
       <p data-i18n="kpi.1.desc" class="text-xs text-zinc-500 mt-2">Film, Commercial, Digital Canvas, &amp; Neural Audio</p>
     </div>
     <div class="bg-cosmic-850/70 backdrop-blur border border-zinc-700 p-6 rounded-xl hover:border-zinc-600 transition">
-      <div class="text-3xl sm:text-4xl font-mono font-bold text-neon-cyan mb-1">90%</div>
-      <div data-i18n="kpi.2.label" class="text-xs uppercase font-mono tracking-wider text-zinc-400">Creators Empowered</div>
-      <p data-i18n="kpi.2.desc" class="text-xs text-zinc-500 mt-2">Pioneering new synthetic workflows across archipelago</p>
+      <div id="kpi-creators-value" class="text-3xl sm:text-4xl font-mono font-bold text-neon-cyan mb-1">&mdash;</div>
+      <div data-i18n="kpi.2.label" class="text-xs uppercase font-mono tracking-wider text-zinc-400">Creators Onboarded</div>
+      <p data-i18n="kpi.2.desc" class="text-xs text-zinc-500 mt-2">Real creators who have joined and showcased work with IFAI</p>
     </div>
     <div class="bg-cosmic-850/70 backdrop-blur border border-zinc-700 p-6 rounded-xl hover:border-zinc-600 transition">
-      <div class="text-3xl sm:text-4xl font-mono font-bold text-white mb-1">200+</div>
+      <div id="kpi-works-value" class="text-3xl sm:text-4xl font-mono font-bold text-white mb-1">&mdash;</div>
       <div data-i18n="kpi.3.label" class="text-xs uppercase font-mono tracking-wider text-zinc-400">AI Works Showcased</div>
       <p data-i18n="kpi.3.desc" class="text-xs text-zinc-500 mt-2">Archived in IFAI permanent national intelligence repository</p>
     </div>
@@ -446,7 +446,6 @@
 <div class="relative overflow-hidden rounded-[2rem] p-[2px]">
 <div class="absolute inset-[-50%] bg-[conic-gradient(from_0deg,transparent,rgba(0,240,255,0.8),rgba(192,132,252,0.9),transparent)] animate-spin-varied opacity-80 pointer-events-none"></div>
 <div class="relative p-8 rounded-[1.9rem] bg-gradient-to-r from-cosmic-800 via-cosmic-850 to-cosmic-800 border border-zinc-700 flex flex-col md:flex-row items-center justify-between gap-6">
-<div class="absolute inset-0 bg-gradient-to-r from-cyan-900/10 to-purple-500/15 pointer-events-none rounded-[1.9rem]"></div>
 <div class="relative z-10">
 <h4 data-i18n="cta.title" class="text-xl font-bold text-white">Join the Indonesian AI Vanguard</h4>
 <p data-i18n="cta.subtitle" class="text-xs sm:text-sm text-zinc-400 mt-1">Submit your autonomous films, commercial work, or neural compositions for upcoming seasonal curations.</p>
@@ -653,7 +652,7 @@ setTimeout(function () { var el = document.getElementById('creator-hub-body'); i
       'hero.cta': 'Explore',
       'partners.label': 'AI Translation Related',
       'kpi.1.label': 'Core Disciplines', 'kpi.1.desc': 'Film, Commercial, Digital Canvas, & Neural Audio',
-      'kpi.2.label': 'Creators Empowered', 'kpi.2.desc': 'Pioneering new synthetic workflows across archipelago',
+      'kpi.2.label': 'Creators Onboarded', 'kpi.2.desc': 'Real creators who have joined and showcased work with IFAI',
       'kpi.3.label': 'AI Works Showcased', 'kpi.3.desc': 'Archived in IFAI permanent national intelligence repository',
       'kpi.4.label': 'Curated Archive', 'kpi.4.desc': 'Explore the fusion of generative computation, culture, and human direction.',
       'kpi.4.cta': 'View Curations →',
@@ -694,7 +693,7 @@ setTimeout(function () { var el = document.getElementById('creator-hub-body'); i
       'hero.cta': 'Jelajahi',
       'partners.label': 'Terkait Kecerdasan Buatan',
       'kpi.1.label': 'Disiplin Utama', 'kpi.1.desc': 'Film, Iklan, Kanvas Digital, & Audio Neural',
-      'kpi.2.label': 'Kreator Diberdayakan', 'kpi.2.desc': 'Merintis alur kerja sintetis baru di seluruh nusantara',
+      'kpi.2.label': 'Kreator Bergabung', 'kpi.2.desc': 'Kreator asli yang telah bergabung dan berkarya bersama IFAI',
       'kpi.3.label': 'Karya AI Ditampilkan', 'kpi.3.desc': 'Diarsipkan secara permanen di repositori kecerdasan nasional IFAI',
       'kpi.4.label': 'Arsip Terkurasi', 'kpi.4.desc': 'Jelajahi perpaduan komputasi generatif, budaya, dan arahan manusia.',
       'kpi.4.cta': 'Lihat Kurasi →',
@@ -954,6 +953,22 @@ setTimeout(function () { var el = document.getElementById('creator-hub-body'); i
   }
 
   wireShowcase();
+
+  // ---------- KPI stats bar: real counts instead of hardcoded numbers ----------
+  async function wireKpiStats() {
+    const [categories, creators, works] = await Promise.all([
+      sb.from('categories').select('*', { count: 'exact', head: true }),
+      sb.from('creators').select('*', { count: 'exact', head: true }),
+      sb.from('works').select('*', { count: 'exact', head: true }).eq('status', 'approved'),
+    ]);
+    const categoriesEl = document.getElementById('kpi-categories-value');
+    const creatorsEl = document.getElementById('kpi-creators-value');
+    const worksEl = document.getElementById('kpi-works-value');
+    if (categoriesEl && !categories.error && categories.count != null) categoriesEl.textContent = categories.count;
+    if (creatorsEl && !creators.error && creators.count != null) creatorsEl.textContent = creators.count;
+    if (worksEl && !works.error && works.count != null) worksEl.textContent = works.count + '+';
+  }
+  wireKpiStats();
 
   // ---------- IFAI SIGNALS (image + short article cards) ----------
   function signalsSkeletonCardsHtml(count = 2) {
