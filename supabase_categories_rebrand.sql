@@ -10,3 +10,6 @@ update public.categories set name_en = 'Commercial Showcase', name_id = 'Iklan S
 update public.categories set name_en = 'Animation Showcase', name_id = 'Animasi Showcase' where slug = 'animation';
 update public.categories set name_en = 'Music & Vocal Showcase', name_id = 'Musik & Vocal Showcase' where slug = 'music';
 update public.categories set name_en = 'Visual Art Showcase', name_id = 'Visual Art Showcase' where slug = 'visual-art';
+
+-- Follow-up: Animation category renamed to "Character Animation Showcase"
+update public.categories set name_en = 'Character Animation Showcase', name_id = 'Karakter Animasi Showcase' where slug = 'animation';
