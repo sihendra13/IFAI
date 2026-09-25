@@ -116,7 +116,7 @@ ${closedBadge}
 </div>
 <div class="flex-1 p-6 sm:p-8 flex flex-col justify-between gap-4">
 <div>
-<span class="inline-block px-3 py-1 rounded-full text-xs font-mono uppercase bg-[#00e5ff]/10 border border-[#00e5ff]/30 text-[#00e5ff] mb-3">${esc(label)}</span>
+<span class="inline-block px-3 py-1 rounded-full text-xs font-mono uppercase bg-[#f75500]/10 border border-[#f75500]/30 text-[#f75500] mb-3">${esc(label)}</span>
 <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-[#E3A85F] transition-colors mb-2 line-clamp-3">${esc(title)}</h3>
 <p class="text-zinc-400 text-sm leading-relaxed line-clamp-3">${esc(description)}</p>
 </div>
@@ -173,7 +173,7 @@ ${row.image_url ? `<div class="relative w-full aspect-video rounded-2xl overflow
 <img alt="${esc(title)}" class="absolute inset-0 w-full h-full object-contain object-center" src="${esc(row.image_url)}">
 </div>` : ''}
 <div>
-<span class="inline-block text-[11px] font-mono px-2 py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30 mb-3">${esc(label || 'PROGRAM')}</span>
+<span class="inline-block text-[11px] font-mono px-2 py-1 rounded bg-[#f75500]/10 text-[#f75500] border border-[#f75500]/30 mb-3">${esc(label || 'PROGRAM')}</span>
 <h1 class="text-2xl sm:text-4xl font-bold uppercase tracking-tight text-white leading-tight sm:leading-none">${esc(title)}</h1>
 <div class="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs sm:text-sm text-cyber-muted pt-3">${metaHtml}</div>
 </div>
