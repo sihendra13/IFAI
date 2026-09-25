@@ -106,6 +106,9 @@
       <button type="button" id="tab-btn-program" class="admin-tab-btn px-4 py-2.5 text-sm font-semibold text-zinc-400 border-b-2 border-transparent hover:text-white transition-colors">
         Program
       </button>
+      <button type="button" id="tab-btn-community" class="admin-tab-btn px-4 py-2.5 text-sm font-semibold text-zinc-400 border-b-2 border-transparent hover:text-white transition-colors">
+        Community Member
+      </button>
     </div>
 
     <div id="tab-panel-works" class="flex flex-col gap-10">
@@ -739,6 +742,34 @@
     </div>
     <!-- /tab-panel-program -->
 
+    <div id="tab-panel-community" class="hidden flex-col gap-10">
+
+    <div>
+      <h2 class="text-lg font-bold text-white mb-4">Community Member</h2>
+      <div class="p-6 rounded-2xl bg-cosmic-850 border border-zinc-800 flex flex-col gap-4">
+        <div class="flex items-baseline gap-3">
+          <span id="community-count" class="text-4xl font-bold text-[#f75500] font-mono">&mdash;</span>
+          <span class="text-sm text-zinc-400">total member yang sudah gabung komunitas</span>
+        </div>
+        <div class="overflow-x-auto rounded-2xl border border-zinc-800">
+          <table class="w-full text-sm">
+            <thead class="bg-cosmic-900 text-zinc-400 text-xs font-mono-code uppercase tracking-wider">
+              <tr>
+                <th class="text-left px-4 py-3">Nama</th>
+                <th class="text-left px-4 py-3">Email</th>
+                <th class="text-left px-4 py-3">Tanggal Gabung</th>
+              </tr>
+            </thead>
+            <tbody id="community-table-body" class="divide-y divide-zinc-800/80"></tbody>
+          </table>
+          <p id="community-empty" hidden class="text-center text-sm text-zinc-500 py-8">Belum ada member yang gabung komunitas.</p>
+        </div>
+      </div>
+    </div>
+
+    </div>
+    <!-- /tab-panel-community -->
+
   </section>
 </main>
 
@@ -861,6 +892,40 @@
     await loadSignals();
     await loadCreatorSpotlights();
     await loadPrograms();
+    await loadCommunityMembers();
+  }
+
+  // ---------- COMMUNITY MEMBERS (read-only: who has joined via Join Community) ----------
+  let cachedCommunityMembers = [];
+  async function loadCommunityMembers() {
+    const { data, error } = await sb
+      .from('community_members')
+      .select('*, profiles(role)')
+      .order('created_at', { ascending: false });
+
+    const tbody = document.getElementById('community-table-body');
+    const emptyEl = document.getElementById('community-empty');
+    const countEl = document.getElementById('community-count');
+    if (error) { console.error(error); return; }
+
+    // Exclude admin accounts from the community count/list — an admin
+    // logging in isn't a "community member" for this purpose.
+    cachedCommunityMembers = (data || []).filter(m => m.profiles?.role !== 'admin');
+    countEl.textContent = cachedCommunityMembers.length;
+
+    if (!cachedCommunityMembers.length) {
+      tbody.innerHTML = '';
+      emptyEl.hidden = false;
+    } else {
+      emptyEl.hidden = true;
+      tbody.innerHTML = cachedCommunityMembers.map(m => `
+        <tr class="hover:bg-cosmic-850/60">
+          <td class="px-4 py-3 text-white">${escapeHtml(m.display_name || '-')}</td>
+          <td class="px-4 py-3 text-zinc-400">${escapeHtml(m.email)}</td>
+          <td class="px-4 py-3 text-zinc-400">${new Date(m.created_at).toLocaleString('id-ID')}</td>
+        </tr>
+      `).join('');
+    }
   }
 
   document.getElementById('btn-toggle-password').addEventListener('click', () => {
@@ -2214,7 +2279,8 @@
     works: { btn: document.getElementById('tab-btn-works'), panel: document.getElementById('tab-panel-works') },
     signals: { btn: document.getElementById('tab-btn-signals'), panel: document.getElementById('tab-panel-signals') },
     creator: { btn: document.getElementById('tab-btn-creator'), panel: document.getElementById('tab-panel-creator') },
-    program: { btn: document.getElementById('tab-btn-program'), panel: document.getElementById('tab-panel-program') }
+    program: { btn: document.getElementById('tab-btn-program'), panel: document.getElementById('tab-panel-program') },
+    community: { btn: document.getElementById('tab-btn-community'), panel: document.getElementById('tab-panel-community') }
   };
 
   function setActiveTab(tab) {
