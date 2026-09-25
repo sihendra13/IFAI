@@ -145,7 +145,7 @@ ${photo ? `<img alt="${esc(name)}" class="absolute inset-0 w-full h-full object-
 <div class="lg:col-span-6 min-w-0 p-6 sm:p-10 flex flex-col justify-between relative z-10">
 <div class="min-w-0">
 <div class="flex items-center justify-between gap-4 mb-6">
-<span data-i18n="creator.profileBadge" class="text-[11px] font-mono px-2 py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30">CREATOR PROFILE</span>
+<span data-i18n="creator.profileBadge" class="text-[11px] font-mono px-2 py-1 rounded bg-[#f75500]/10 text-[#f75500] border border-[#f75500]/30">CREATOR PROFILE</span>
 </div>
 <div class="space-y-2 mb-8">
 <h3 class="text-4xl sm:text-5xl font-bold uppercase tracking-tight text-white leading-none truncate">${esc(name)}</h3>
@@ -165,7 +165,7 @@ ${footer}
     const compact = `<article class="group relative rounded-3xl overflow-hidden border border-zinc-700 bg-cyber-surface flex flex-col sm:flex-row">
 <div class="flex-1 min-w-0 p-6 sm:p-8 flex flex-col justify-between gap-4 order-2 sm:order-1">
 <div class="min-w-0">
-<span data-i18n="creator.profileBadge" class="inline-block px-3 py-1 rounded-full text-xs font-mono uppercase bg-[#00e5ff]/10 border border-[#00e5ff]/30 text-[#00e5ff] mb-3">CREATOR PROFILE</span>
+<span data-i18n="creator.profileBadge" class="inline-block px-3 py-1 rounded-full text-xs font-mono uppercase bg-[#f75500]/10 border border-[#f75500]/30 text-[#f75500] mb-3">CREATOR PROFILE</span>
 <h3 class="text-xl font-bold text-white uppercase truncate mb-1">${esc(name)}</h3>
 ${roleLine ? `<p class="text-xs font-mono font-semibold text-cyber-cyan uppercase truncate mb-2">${esc(roleLine)}</p>` : ''}
 ${quote ? `<p class="text-zinc-400 text-sm leading-relaxed line-clamp-3">“${esc(quote)}”</p>` : ''}
@@ -203,7 +203,7 @@ ${photo ? `<div class="w-[72px] h-[72px] sm:w-28 sm:h-28 rounded-full overflow-h
 <img alt="${esc(c.name)}" class="w-full h-full object-cover object-center filter grayscale contrast-110 opacity-85" src="${esc(photo)}">
 </div>` : ''}
 <div class="flex-1 min-w-0">
-<span data-i18n="creator.profileBadge" class="inline-block text-[11px] font-mono px-2 py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30 mb-2 sm:mb-3">CREATOR PROFILE</span>
+<span data-i18n="creator.profileBadge" class="inline-block text-[11px] font-mono px-2 py-1 rounded bg-[#f75500]/10 text-[#f75500] border border-[#f75500]/30 mb-2 sm:mb-3">CREATOR PROFILE</span>
 <h1 class="text-xl sm:text-5xl font-bold uppercase tracking-tight text-white leading-tight sm:leading-none truncate">${esc(c.name)}</h1>
 <div class="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs sm:text-sm text-cyber-muted pt-1.5 sm:pt-3">${roleLocationHtml(c)}</div>
 </div>
@@ -287,7 +287,7 @@ ${playBtn ? `<div class="absolute inset-0 flex items-center justify-center">${pl
 ${c.work_duration ? `<div class="absolute bottom-4 left-4 font-mono text-xs text-white/80 bg-black/60 px-2 py-1 rounded border border-white/10">${esc(c.work_duration)}</div>` : ''}
 </div>
 <div class="p-6 sm:p-8 space-y-4">
-${meta ? `<div><span class="inline-block text-[11px] font-mono uppercase px-2 py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30">${esc(meta)}</span></div>` : ''}
+${meta ? `<div><span class="inline-block text-[11px] font-mono uppercase px-2 py-1 rounded bg-[#f75500]/10 text-[#f75500] border border-[#f75500]/30">${esc(meta)}</span></div>` : ''}
 <div>
 <h4 class="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-tight">${esc(c.work_title)}</h4>
 <p class="font-mono text-xs text-white mt-1">${isId ? 'Oleh' : 'By'} ${esc(name)}</p>

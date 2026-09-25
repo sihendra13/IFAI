@@ -717,7 +717,7 @@ ${duration ? `<div class="absolute bottom-3 right-3"><span class="font-label-cod
     const tagsEl = document.getElementById('dp-tags');
     if (tagsEl) {
       const tagPills = (work.tags || []).map(t =>
-        `<span class="font-label-meta text-label-meta px-space-xs py-1 rounded bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30">${escapeHtmlDp(t.toUpperCase())}</span>`
+        `<span class="font-label-meta text-label-meta px-space-xs py-1 rounded bg-[#f75500]/10 text-[#f75500] border border-[#f75500]/30">${escapeHtmlDp(t.toUpperCase())}</span>`
       ).join('');
       const durationPill = work.duration
         ? `<span class="font-label-meta text-label-meta px-space-xs py-1 rounded bg-surface-container-high text-outline">${escapeHtmlDp(work.duration)} MIN</span>`
