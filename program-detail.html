@@ -117,9 +117,9 @@
 <!-- Action Buttons -->
 <div class="flex items-center gap-4">
 <button type="button" id="lang-toggle" class="hidden sm:flex items-center gap-1 text-[11px] font-mono text-zinc-400 hover:text-white uppercase tracking-wider transition-colors border border-zinc-700 hover:border-zinc-500 rounded-full px-2.5 py-1 focus:outline-none focus-visible:ring-1 focus-visible:ring-zinc-500" aria-label="Switch language">
-<span data-lang-btn="en" class="px-1">EN</span>
-<span class="text-zinc-600">/</span>
 <span data-lang-btn="id" class="px-1">ID</span>
+<span class="text-zinc-600">/</span>
+<span data-lang-btn="en" class="px-1">EN</span>
 </button>
 <a id="auth-logout-desktop" style="display:none;" class="hidden sm:inline-block text-xs font-mono text-zinc-300 hover:text-[#f75500] uppercase tracking-wider transition-colors min-w-[48px] text-center cursor-pointer">
           Log Out
@@ -146,9 +146,9 @@
 <div class="h-px bg-zinc-800 my-1"></div>
 <div class="flex items-center justify-between">
 <button type="button" id="lang-toggle-mobile" class="flex items-center gap-1 text-xs font-mono text-zinc-400 hover:text-white uppercase tracking-wider transition-colors border border-zinc-700 hover:border-zinc-500 rounded-full px-3 py-1.5 focus:outline-none" aria-label="Switch language">
-<span data-lang-btn="en" class="px-1">EN</span>
-<span class="text-zinc-600">/</span>
 <span data-lang-btn="id" class="px-1">ID</span>
+<span class="text-zinc-600">/</span>
+<span data-lang-btn="en" class="px-1">EN</span>
 </button>
 <a id="auth-logout-mobile" style="display:none;" class="text-xs font-mono text-zinc-300 hover:text-[#f75500] uppercase tracking-wider transition-colors cursor-pointer">Log Out</a>
 </div>
@@ -321,7 +321,7 @@
     },
   };
 
-  function getLang() { return localStorage.getItem(LANG_KEY) || 'en'; }
+  function getLang() { return localStorage.getItem(LANG_KEY) || 'id'; }
 
   function applyLanguage(lang, opts) {
     opts = opts || {};
