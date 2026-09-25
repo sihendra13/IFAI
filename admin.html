@@ -900,7 +900,7 @@
   async function loadCommunityMembers() {
     const { data, error } = await sb
       .from('community_members')
-      .select('*, profiles(role)')
+      .select('*')
       .order('created_at', { ascending: false });
 
     const tbody = document.getElementById('community-table-body');
@@ -908,9 +908,11 @@
     const countEl = document.getElementById('community-count');
     if (error) { console.error(error); return; }
 
-    // Exclude admin accounts from the community count/list — an admin
-    // logging in isn't a "community member" for this purpose.
-    cachedCommunityMembers = (data || []).filter(m => m.profiles?.role !== 'admin');
+    // Exclude the admin's own account from the count/list — logging in as
+    // yourself isn't a "community member" for this purpose. This table has
+    // no link back to profiles.role (Google joins never get a profiles row
+    // at all), so this is a direct email check instead of a join.
+    cachedCommunityMembers = (data || []).filter(m => m.email !== 'ifai.space@gmail.com');
     countEl.textContent = cachedCommunityMembers.length;
 
     if (!cachedCommunityMembers.length) {
