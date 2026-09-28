@@ -188,7 +188,7 @@ export function renderCategoryPage(page, category) {
   const name = category.name_id || category.name_en || 'Archive';
   return rewriteMeta(page, {
     title: `${name} | IFAI Archive`,
-    description: `${name}: karya berbasis AI dari kreator Indonesia, dikurasi oleh IFAI — Indonesia Future Arts & Intelligence.`,
+    description: `Jelajahi ${name} di IFAI: karya berbasis AI dari kreator Indonesia yang dipilih dan dikurasi oleh tim IFAI.`,
     url: SITE + categoryPath(category.slug),
     headHtml: paramMeta('slug', category.slug),
     jsonLd: breadcrumbs([[name, SITE + categoryPath(category.slug)]]),
