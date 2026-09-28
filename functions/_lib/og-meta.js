@@ -29,10 +29,41 @@ class RemoveElement {
   element(el) { el.remove(); }
 }
 
-// meta: { title, description, image, url }. Any field left undefined keeps
-// whatever the static HTML already had for that tag.
+export function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+class AppendToHead {
+  constructor(html) { this.html = html; }
+  element(el) { el.append(this.html, { html: true }); }
+}
+
+class InnerContent {
+  constructor(content, html) { this.content = content; this.html = html; }
+  element(el) { el.setInnerContent(this.content, { html: this.html }); }
+}
+
+// meta: { title, description, image, url, text, html }. Any field left
+// undefined keeps whatever the static HTML already had for that tag.
+// `url` also becomes the page's <link rel="canonical">. `text` / `html` map a
+// CSS selector to visible content to fill in server-side (text is escaped,
+// html is inserted as-is and must already be escaped), so crawlers that don't
+// run JS see the real title/synopsis instead of "Loading…"; our client JS
+// overwrites the same elements once it runs.
 export function rewriteMeta(response, meta) {
   const rewriter = new HTMLRewriter();
+
+  if (meta.url) {
+    rewriter.on('head', new AppendToHead(`<link rel="canonical" href="${escapeHtml(meta.url)}"/>`));
+  }
+  for (const [selector, content] of Object.entries(meta.text || {})) {
+    if (content) rewriter.on(selector, new InnerContent(content, false));
+  }
+  for (const [selector, content] of Object.entries(meta.html || {})) {
+    if (content) rewriter.on(selector, new InnerContent(content, true));
+  }
 
   if (meta.title) {
     rewriter.on('title', new TitleRewriter(meta.title));

@@ -5,7 +5,7 @@
 // of which run our client-side JS) show the actual work instead of the
 // generic site-wide fallback baked into the HTML file.
 
-import { rewriteMeta, truncate } from './_lib/og-meta.js';
+import { rewriteMeta, truncate, escapeHtml } from './_lib/og-meta.js';
 
 const SUPABASE_URL = 'https://qayckglxfmtrjqtghitx.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_qf2j0vC_6D63ziteKUflCQ_u-rYaIgd';
@@ -45,10 +45,21 @@ export async function onRequest(context) {
     ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
     : 'https://www.myifai.com/image/og-image.png';
 
+  // Same paragraph markup detail.html's client JS renders, so there's no
+  // visible jump when it takes over.
+  const fullDescription = work.description_en || work.description_id || '';
+  const descriptionHtml = fullDescription
+    .split('\n')
+    .filter((p) => p.trim())
+    .map((p) => `<p class="text-[14px] leading-relaxed text-on-surface-variant leading-relaxed">${escapeHtml(p)}</p>`)
+    .join('');
+
   return rewriteMeta(response, {
     title: `${title} | IFAI`,
     description,
     image,
-    url: `https://www.myifai.com/detail?id=${encodeURIComponent(id)}`
+    url: `https://www.myifai.com/detail?id=${encodeURIComponent(id)}`,
+    text: { '#dp-title': title, '#dp-title-crumb': title },
+    html: { '#dp-description': descriptionHtml }
   });
 }
