@@ -4,9 +4,10 @@
 // can't discover these pages otherwise: their links only exist after our
 // client-side JS has fetched the data.
 
+import { SITE, workPath } from './_lib/work-url.js';
+
 const SUPABASE_URL = 'https://qayckglxfmtrjqtghitx.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_qf2j0vC_6D63ziteKUflCQ_u-rYaIgd';
-const SITE = 'https://www.myifai.com';
 
 // /signal and /creator without an ?id= aren't real list pages (a not-found
 // message and a copy of the featured creator), so only their ?id= URLs go in.
@@ -37,7 +38,7 @@ function urlEntry(path, lastmod) {
 export async function onRequest() {
   const [categories, works, signals, programs, creators] = await Promise.all([
     fetchRows('categories?select=slug'),
-    fetchRows('works?status=eq.approved&select=id,created_at&order=created_at.desc'),
+    fetchRows('works?status=eq.approved&select=id,title_id,title_en,created_at&order=created_at.desc'),
     fetchRows('signals?select=id,created_at&order=created_at.desc'),
     fetchRows('programs?select=id,created_at&order=created_at.desc'),
     fetchRows('creators?select=id')
@@ -46,7 +47,7 @@ export async function onRequest() {
   const entries = [
     ...STATIC_PATHS.map((p) => urlEntry(p)),
     ...categories.filter((c) => c.slug).map((c) => urlEntry(`/category?slug=${encodeURIComponent(c.slug)}`)),
-    ...works.map((w) => urlEntry(`/detail?id=${encodeURIComponent(w.id)}`, w.created_at)),
+    ...works.map((w) => urlEntry(workPath(w), w.created_at)),
     ...signals.map((s) => urlEntry(`/signal?id=${encodeURIComponent(s.id)}`, s.created_at)),
     ...programs.map((p) => urlEntry(`/program-detail?id=${encodeURIComponent(p.id)}`, p.created_at)),
     ...creators.map((c) => urlEntry(`/creator?id=${encodeURIComponent(c.id)}`))

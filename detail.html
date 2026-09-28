@@ -20,12 +20,13 @@
       text-shadow: 0 0 16px rgba(0, 255, 157, 0.45);
     }
     </style>
-    </head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container"><!-- BEGIN: MainHeader -->
+    <script src="/js/work-url.js?v=20260928"></script>
+</head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container"><!-- BEGIN: MainHeader -->
 <header id="main-header" class="fixed top-4 left-0 right-0 mx-auto max-w-7xl z-50 bg-cosmic-950/60 backdrop-blur-xl border border-zinc-800/80 rounded-full shadow-lg shadow-black/40 transition-all duration-500">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
 <!-- Brand Logo -->
 <a class="flex items-center group focus:outline-none rounded" href="/">
-<img src="image/logo.png" alt="IFAI Future Arts Logo" class="h-4 sm:h-5 object-contain" />
+<img src="/image/logo.png" alt="IFAI Future Arts Logo" class="h-4 sm:h-5 object-contain" />
 </a>
 <!-- Primary Navigation Links -->
 <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide font-body-md">
@@ -343,7 +344,7 @@ document.getElementById('cinema-player').parentElement.classList.add('animate-pu
 <!-- Brand Info -->
 <div class="md:col-span-2 space-y-4">
 <a class="flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-emerald rounded" href="/">
-<img src="image/logo.png" alt="IFAI Future Arts Logo" class="h-4 sm:h-5 object-contain" />
+<img src="/image/logo.png" alt="IFAI Future Arts Logo" class="h-4 sm:h-5 object-contain" />
 </a>
 <div data-i18n="footer.brandName" class="text-sm font-semibold text-white">Indonesia Future Arts &amp; Intelligence</div>
 <p data-i18n="footer.brandDesc" class="text-xs text-zinc-400 leading-relaxed max-w-sm">
@@ -515,7 +516,7 @@ document.getElementById('cinema-player').parentElement.classList.add('animate-pu
      ============================================================ -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
-<script src="js/auth.js?v=20260921"></script>
+<script src="/js/auth.js?v=20260921"></script>
 <script>
 (function () {
   const SUPABASE_URL = 'https://qayckglxfmtrjqtghitx.supabase.co';
@@ -532,7 +533,13 @@ document.getElementById('cinema-player').parentElement.classList.add('animate-pu
   // The video is hidden synchronously by an inline <script> placed right
   // after the iframe (runs before this file even finishes loading), so it's
   // already blanked by the time we get here.
-  const initialWorkId = new URLSearchParams(window.location.search).get('id');
+  // /karya/<slug> pages get the id from a meta tag the server adds
+  // (functions/_lib/work-page.js); old /detail?id= URLs still carry it inline.
+  function getWorkId() {
+    const meta = document.querySelector('meta[name="ifai-work-id"]');
+    return new URLSearchParams(window.location.search).get('id') || (meta && meta.getAttribute('content')) || null;
+  }
+  const initialWorkId = getWorkId();
   const cinemaPlayer = document.getElementById('cinema-player');
   if (initialWorkId && cinemaPlayer) {
     cinemaPlayer.style.opacity = '0';
@@ -573,7 +580,7 @@ document.getElementById('cinema-player').parentElement.classList.add('animate-pu
   }
 
   async function loadWorkFromUrl() {
-    const workId = new URLSearchParams(window.location.search).get('id');
+    const workId = getWorkId();
     if (!workId) { showNotFound(); return; }
 
     const { data: work, error } = await sb
@@ -622,7 +629,7 @@ document.getElementById('cinema-player').parentElement.classList.add('animate-pu
   async function loadRelatedWorks(work, lang) {
     const catSlug = work.categories?.slug;
     const archiveLink = document.getElementById('dp-view-archive');
-    if (archiveLink) archiveLink.href = catSlug ? `category?slug=${encodeURIComponent(catSlug)}` : '/#showcase';
+    if (archiveLink) archiveLink.href = catSlug ? `/category?slug=${encodeURIComponent(catSlug)}` : '/#showcase';
 
     const grid = document.getElementById('dp-related-grid');
     if (grid) grid.innerHTML = relatedSkeletonCardsHtml(3);
@@ -652,7 +659,7 @@ document.getElementById('cinema-player').parentElement.classList.add('animate-pu
     const duration = work.duration ? `${escapeHtmlDp(work.duration)} MIN` : '';
 
     return `
-<a href="detail?id=${encodeURIComponent(work.id)}" class="group flex flex-col rounded-2xl bg-surface-container-low border border-zinc-700 overflow-hidden hover:bg-surface-container transition-all duration-300 shadow-lg w-[85vw] md:w-auto flex-shrink-0 md:flex-shrink snap-start">
+<a href="${escapeHtmlDp(window.IFAI_workUrl(work))}" class="group flex flex-col rounded-2xl bg-surface-container-low border border-zinc-700 overflow-hidden hover:bg-surface-container transition-all duration-300 shadow-lg w-[85vw] md:w-auto flex-shrink-0 md:flex-shrink snap-start">
 <div class="aspect-video w-full relative overflow-hidden bg-surface-container-lowest">
 <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${escapeHtmlDp(title)}" src="${thumb}">
 ${duration ? `<div class="absolute bottom-3 right-3"><span class="font-label-code text-label-code px-space-xs py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-md text-on-surface">${duration}</span></div>` : ''}
