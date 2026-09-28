@@ -8,7 +8,9 @@ const SUPABASE_URL = 'https://qayckglxfmtrjqtghitx.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_qf2j0vC_6D63ziteKUflCQ_u-rYaIgd';
 const SITE = 'https://www.myifai.com';
 
-const STATIC_PATHS = ['/', '/program', '/journal', '/signal', '/creator'];
+// /signal and /creator without an ?id= aren't real list pages (a not-found
+// message and a copy of the featured creator), so only their ?id= URLs go in.
+const STATIC_PATHS = ['/', '/program', '/journal'];
 
 async function fetchRows(query) {
   try {
