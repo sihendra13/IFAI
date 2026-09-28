@@ -783,6 +783,33 @@
   // the public site, so logging in here also showed the admin's email in the public navbar.
   const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { auth: { storageKey: 'ifai-admin-auth' } });
 
+  // Re-encodes an uploaded image as WebP before it goes to Storage: cover
+  // images were being stored as ~2MB PNGs, which made them the slowest thing
+  // on article/program pages. Keeps the full resolution unless the longest side
+  // is over `maxSide` (then scales down to it), at quality 0.9 (visually
+  // indistinguishable). Falls back to the original file for GIF/SVG, when the
+  // browser can't encode WebP, or when the original is already smaller.
+  // Returns { file, ext }.
+  async function optimizeImage(file, maxSide) {
+    const original = { file, ext: file.name.split('.').pop().toLowerCase() };
+    if (!/^image\/(png|jpeg|webp|bmp)$/.test(file.type)) return original;
+    try {
+      const bitmap = await createImageBitmap(file);
+      const scale = Math.min(1, maxSide / Math.max(bitmap.width, bitmap.height));
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.round(bitmap.width * scale);
+      canvas.height = Math.round(bitmap.height * scale);
+      canvas.getContext('2d').drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+      bitmap.close();
+      const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/webp', 0.9));
+      // Safari < 17 silently returns a PNG instead of WebP; keep the original then.
+      if (!blob || blob.type !== 'image/webp' || blob.size >= file.size) return original;
+      return { file: blob, ext: 'webp' };
+    } catch {
+      return original;
+    }
+  }
+
   // Best-effort delete of a previously-uploaded file once it's been replaced,
   // so swapping an image doesn't leave the old one behind as orphaned storage.
   // Silently no-ops on any URL that isn't a recognizable Supabase Storage
@@ -1032,10 +1059,10 @@
     const file = avatarFileInput.files[0];
     const currentUrl = document.getElementById('creator-avatar-current').value || null;
     if (!file) return currentUrl;
-    if (file.size > AVATAR_MAX_BYTES) throw new Error('Ukuran foto maksimal 2MB.');
-    const ext = file.name.split('.').pop();
+    const { file: upload, ext } = await optimizeImage(file, 1080);
+    if (upload.size > AVATAR_MAX_BYTES) throw new Error('Ukuran foto maksimal 2MB.');
     const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-    const { error } = await sb.storage.from('creator-avatars').upload(path, file);
+    const { error } = await sb.storage.from('creator-avatars').upload(path, upload, { contentType: upload.type || undefined });
     if (error) throw new Error('Gagal upload foto: ' + error.message);
     const { data } = sb.storage.from('creator-avatars').getPublicUrl(path);
     deleteOldStorageFile('creator-avatars', currentUrl);
@@ -1546,10 +1573,10 @@
     const file = signalImageFile.files[0];
     const currentUrl = document.getElementById('signal-image-current').value || null;
     if (!file) return currentUrl;
-    if (file.size > SIGNAL_IMAGE_MAX_BYTES) throw new Error('Ukuran gambar maksimal 4MB.');
-    const ext = file.name.split('.').pop();
+    const { file: upload, ext } = await optimizeImage(file, 1920);
+    if (upload.size > SIGNAL_IMAGE_MAX_BYTES) throw new Error('Ukuran gambar maksimal 4MB.');
     const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-    const { error } = await sb.storage.from('signal-images').upload(path, file);
+    const { error } = await sb.storage.from('signal-images').upload(path, upload, { contentType: upload.type || undefined });
     if (error) throw new Error('Gagal upload gambar: ' + error.message);
     const { data } = sb.storage.from('signal-images').getPublicUrl(path);
     deleteOldStorageFile('signal-images', currentUrl);
@@ -1792,10 +1819,10 @@
     const file = document.getElementById(prefix + '-file').files[0];
     const currentUrl = document.getElementById(prefix + '-current').value || null;
     if (!file) return currentUrl;
-    if (file.size > CH_IMAGE_MAX_BYTES) throw new Error('Ukuran gambar maksimal 4MB.');
-    const ext = file.name.split('.').pop();
+    const { file: upload, ext } = await optimizeImage(file, 1920);
+    if (upload.size > CH_IMAGE_MAX_BYTES) throw new Error('Ukuran gambar maksimal 4MB.');
     const path = `creator/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-    const { error } = await sb.storage.from('signal-images').upload(path, file);
+    const { error } = await sb.storage.from('signal-images').upload(path, upload, { contentType: upload.type || undefined });
     if (error) throw new Error('Gagal upload gambar: ' + error.message);
     const { data } = sb.storage.from('signal-images').getPublicUrl(path);
     deleteOldStorageFile('signal-images', currentUrl);
@@ -2059,10 +2086,10 @@
     const file = programImageFile.files[0];
     const currentUrl = document.getElementById('program-image-current').value || null;
     if (!file) return currentUrl;
-    if (file.size > PROGRAM_IMAGE_MAX_BYTES) throw new Error('Ukuran gambar maksimal 4MB.');
-    const ext = file.name.split('.').pop();
+    const { file: upload, ext } = await optimizeImage(file, 1920);
+    if (upload.size > PROGRAM_IMAGE_MAX_BYTES) throw new Error('Ukuran gambar maksimal 4MB.');
     const path = `program/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-    const { error } = await sb.storage.from('signal-images').upload(path, file);
+    const { error } = await sb.storage.from('signal-images').upload(path, upload, { contentType: upload.type || undefined });
     if (error) throw new Error('Gagal upload gambar: ' + error.message);
     const { data } = sb.storage.from('signal-images').getPublicUrl(path);
     deleteOldStorageFile('signal-images', currentUrl);
