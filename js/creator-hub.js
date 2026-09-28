@@ -88,7 +88,7 @@
   const PILL_CLS = 'group relative inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono font-semibold overflow-hidden border border-white/50 text-white bg-cosmic-800/80 hover:text-black transition-all duration-300 glow-white cursor-pointer';
   const PILL_SLIDE = '<span class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-white transition-transform duration-300 ease-out"></span>';
 
-  function detailHref(c) { return c.id ? 'creator?id=' + encodeURIComponent(c.id) : 'creator'; }
+  function detailHref(c) { return window.IFAI_URL.creator(c); }
 
   // Small "verified" pill shown next to the section / page title.
   function pillHtml() {

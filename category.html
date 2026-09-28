@@ -81,7 +81,7 @@
       box-shadow: 0 0 25px -4px rgba(255, 255, 255, 0.35);
     }
   </style>
-<script src="/js/work-url.js?v=20260928"></script>
+<script src="/js/urls.js?v=20260928"></script>
 </head>
 <body class="bg-cosmic-900 text-zinc-100 antialiased selection:bg-neon-emerald selection:text-black">
 <!-- BEGIN: MainHeader -->
@@ -89,7 +89,7 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
 <!-- Brand Logo -->
 <a class="flex items-center group focus:outline-none rounded" href="/">
-<img src="image/logo.png" alt="IFAI Future Arts Logo" class="h-4 sm:h-5 object-contain" />
+<img src="/image/logo.png" alt="IFAI Future Arts Logo" class="h-4 sm:h-5 object-contain" />
 </a>
 <!-- Primary Navigation Links -->
 <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide font-jakarta">
@@ -202,7 +202,7 @@
 <!-- Brand Info -->
 <div class="md:col-span-2 space-y-4">
 <a class="flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-emerald rounded" href="/">
-<img src="image/logo.png" alt="IFAI Future Arts Logo" class="h-4 sm:h-5 object-contain" />
+<img src="/image/logo.png" alt="IFAI Future Arts Logo" class="h-4 sm:h-5 object-contain" />
 </a>
 <div data-i18n="footer.brandName" class="text-sm font-semibold text-white">Indonesia Future Arts &amp; Intelligence</div>
 <p data-i18n="footer.brandDesc" class="text-xs text-zinc-400 leading-relaxed max-w-sm">
@@ -380,7 +380,7 @@
      ============================================================ -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
-<script src="js/auth.js?v=20260921"></script>
+<script src="/js/auth.js?v=20260921"></script>
 <script>
 (function () {
   const SUPABASE_URL = 'https://qayckglxfmtrjqtghitx.supabase.co';
@@ -452,7 +452,7 @@
 <img alt="${escapeHtml(title)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${thumb}"/>
 <div class="absolute inset-0 bg-gradient-to-t from-cosmic-950 via-transparent to-black/30"></div>
 <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full backdrop-blur border ${style.badgeClass}">${escapeHtml(style.label)}</span>
-<a href="${escapeHtml(window.IFAI_workUrl(work))}" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-white hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white whitespace-nowrap transition-colors duration-200">
+<a href="${escapeHtml(window.IFAI_URL.work(work))}" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-white hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white whitespace-nowrap transition-colors duration-200">
 <span data-i18n="card.exploreReel">Explore Reel →</span>
 </a>
 </div>
@@ -503,7 +503,7 @@
 
   async function loadArchive() {
     const params = new URLSearchParams(window.location.search);
-    const slug = params.get('slug') || 'film';
+    const slug = window.IFAI_URL.param('slug') || 'film';
     currentSlug = slug;
 
     // Back link returns to this category's row on the homepage (Film's row
@@ -545,7 +545,7 @@
 
     const { data: works, error } = await sb
       .from('works')
-      .select('*, creators(name)')
+      .select('*, creators(name), categories(slug)')
       .eq('category_id', category.id)
       .eq('status', 'approved')
       .order('created_at', { ascending: false });

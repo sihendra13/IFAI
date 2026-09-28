@@ -34,7 +34,7 @@
     return d.toLocaleDateString(lang === 'id' ? 'id-ID' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' });
   }
 
-  function detailHref(row) { return 'program-detail?id=' + encodeURIComponent(row.id); }
+  function detailHref(row) { return window.IFAI_URL.program(row); }
 
   // Sample content shown until real programs exist in the "programs" table (or if
   // the fetch fails). Delete this once the admin has posted real programs.

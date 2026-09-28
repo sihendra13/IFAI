@@ -20,7 +20,7 @@
       text-shadow: 0 0 16px rgba(0, 255, 157, 0.45);
     }
     </style>
-    <script src="/js/work-url.js?v=20260928"></script>
+<script src="/js/urls.js?v=20260928"></script>
 </head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container"><!-- BEGIN: MainHeader -->
 <header id="main-header" class="fixed top-4 left-0 right-0 mx-auto max-w-7xl z-50 bg-cosmic-950/60 backdrop-blur-xl border border-zinc-800/80 rounded-full shadow-lg shadow-black/40 transition-all duration-500">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -533,12 +533,9 @@ document.getElementById('cinema-player').parentElement.classList.add('animate-pu
   // The video is hidden synchronously by an inline <script> placed right
   // after the iframe (runs before this file even finishes loading), so it's
   // already blanked by the time we get here.
-  // /karya/<slug> pages get the id from a meta tag the server adds
-  // (functions/_lib/work-page.js); old /detail?id= URLs still carry it inline.
-  function getWorkId() {
-    const meta = document.querySelector('meta[name="ifai-work-id"]');
-    return new URLSearchParams(window.location.search).get('id') || (meta && meta.getAttribute('content')) || null;
-  }
+  // Readable work URLs have no ?id=; the server passes it as a meta tag
+  // (IFAI_URL.param reads either).
+  function getWorkId() { return window.IFAI_URL.param('id'); }
   const initialWorkId = getWorkId();
   const cinemaPlayer = document.getElementById('cinema-player');
   if (initialWorkId && cinemaPlayer) {
@@ -629,7 +626,7 @@ document.getElementById('cinema-player').parentElement.classList.add('animate-pu
   async function loadRelatedWorks(work, lang) {
     const catSlug = work.categories?.slug;
     const archiveLink = document.getElementById('dp-view-archive');
-    if (archiveLink) archiveLink.href = catSlug ? `/category?slug=${encodeURIComponent(catSlug)}` : '/#showcase';
+    if (archiveLink) archiveLink.href = catSlug ? window.IFAI_URL.category(catSlug) : '/#showcase';
 
     const grid = document.getElementById('dp-related-grid');
     if (grid) grid.innerHTML = relatedSkeletonCardsHtml(3);
@@ -637,7 +634,7 @@ document.getElementById('cinema-player').parentElement.classList.add('animate-pu
     if (!work.category_id) { if (grid) grid.innerHTML = ''; return; }
     const { data: related, error } = await sb
       .from('works')
-      .select('*, creators(name)')
+      .select('*, creators(name), categories(slug)')
       .eq('category_id', work.category_id)
       .eq('status', 'approved')
       .neq('id', work.id)
@@ -659,7 +656,7 @@ document.getElementById('cinema-player').parentElement.classList.add('animate-pu
     const duration = work.duration ? `${escapeHtmlDp(work.duration)} MIN` : '';
 
     return `
-<a href="${escapeHtmlDp(window.IFAI_workUrl(work))}" class="group flex flex-col rounded-2xl bg-surface-container-low border border-zinc-700 overflow-hidden hover:bg-surface-container transition-all duration-300 shadow-lg w-[85vw] md:w-auto flex-shrink-0 md:flex-shrink snap-start">
+<a href="${escapeHtmlDp(window.IFAI_URL.work(work))}" class="group flex flex-col rounded-2xl bg-surface-container-low border border-zinc-700 overflow-hidden hover:bg-surface-container transition-all duration-300 shadow-lg w-[85vw] md:w-auto flex-shrink-0 md:flex-shrink snap-start">
 <div class="aspect-video w-full relative overflow-hidden bg-surface-container-lowest">
 <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${escapeHtmlDp(title)}" src="${thumb}">
 ${duration ? `<div class="absolute bottom-3 right-3"><span class="font-label-code text-label-code px-space-xs py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-md text-on-surface">${duration}</span></div>` : ''}
@@ -713,6 +710,7 @@ ${duration ? `<div class="absolute bottom-3 right-3"><span class="font-label-cod
 
     const catEl = document.getElementById('dp-category');
     if (catEl) catEl.textContent = categoryName;
+    if (catEl && work.categories?.slug) catEl.href = window.IFAI_URL.category(work.categories.slug);
     const crumbEl = document.getElementById('dp-title-crumb');
     if (crumbEl) crumbEl.textContent = title;
     const titleEl = document.getElementById('dp-title');

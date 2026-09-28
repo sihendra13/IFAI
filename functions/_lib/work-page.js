@@ -1,30 +1,19 @@
-// Shared by functions/detail.js and functions/karya/[slug].js: loads an
+// Shared by functions/detail.js and functions/kategori/[cat]/[slug].js: loads an
 // approved work from Supabase and rewrites detail.html's meta tags, visible
 // title/synopsis and VideoObject structured data for that work server-side,
 // so link unfurlers (WhatsApp, Facebook, Threads, etc.) and crawlers that
 // don't run our client-side JS see the actual work.
 
 import { rewriteMeta, truncate, escapeHtml } from './og-meta.js';
-import { SITE, workPath } from './work-url.js';
+import { SITE, workPath } from './urls.js';
+import { fetchRows } from './supabase.js';
 
-const SUPABASE_URL = 'https://qayckglxfmtrjqtghitx.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_qf2j0vC_6D63ziteKUflCQ_u-rYaIgd';
-
-const WORK_FIELDS = 'id,title_en,title_id,description_en,description_id,youtube_url,duration,created_at,creators(name)';
+const WORK_FIELDS = 'id,title_en,title_id,description_en,description_id,youtube_url,duration,created_at,creators(name),categories(slug)';
 
 // `filter` is a PostgREST query fragment, e.g. "id=eq.<uuid>". Returns the
 // approved rows (oldest first), or null if Supabase couldn't be reached.
-export async function fetchWorks(filter) {
-  try {
-    const apiRes = await fetch(
-      `${SUPABASE_URL}/rest/v1/works?${filter}&status=eq.approved&select=${WORK_FIELDS}&order=created_at.asc`,
-      { headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` } }
-    );
-    const rows = await apiRes.json();
-    return Array.isArray(rows) ? rows : null;
-  } catch (err) {
-    return null;
-  }
+export function fetchWorks(filter) {
+  return fetchRows(`works?${filter}&status=eq.approved&select=${WORK_FIELDS}&order=created_at.asc`);
 }
 
 // "1:48" / "1:02:30" (as entered in admin) -> ISO 8601 "PT1M48S"; null if unparseable.
@@ -96,9 +85,9 @@ export function renderWorkPage(response, work) {
     image,
     url: pageUrl,
     jsonLd,
-    // Lets detail.html's client JS find the work on /karya/... URLs, which
-    // have no ?id= to read.
-    headHtml: `<meta name="ifai-work-id" content="${escapeHtml(work.id)}"/>`,
+    // Lets detail.html's client JS (IFAI_URL.param) find the work on the
+    // readable URL, which has no ?id= to read.
+    headHtml: `<meta name="ifai-param-id" content="${escapeHtml(work.id)}"/>`,
     text: { '#dp-title': title, '#dp-title-crumb': title },
     html: { '#dp-description': descriptionHtml }
   });

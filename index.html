@@ -176,7 +176,7 @@
     }
 
   </style>
-<script src="/js/work-url.js?v=20260928"></script>
+<script src="/js/urls.js?v=20260928"></script>
 </head>
 <body class="bg-cosmic-900 text-zinc-100 antialiased selection:bg-neon-emerald selection:text-black">
 <!-- BEGIN: MainHeader -->
@@ -184,7 +184,7 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
 <!-- Brand Logo -->
 <a class="flex items-center group focus:outline-none rounded" href="/">
-<img src="image/logo.png" alt="IFAI Future Arts Logo" class="h-4 sm:h-5 object-contain" />
+<img src="/image/logo.png" alt="IFAI Future Arts Logo" class="h-4 sm:h-5 object-contain" />
 </a>
 <!-- Primary Navigation Links -->
 <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide font-jakarta">
@@ -264,8 +264,8 @@
 <!-- Full Screen AI Video Background -->
 <!-- src/poster are set by the script below for the one video that matches the
      screen, so the browser never downloads the other (~13 MB) file. -->
-<video data-hero-video data-hero-mq="(max-width: 767px)" data-src="image/hero-mobile-optimized.mp4" data-poster="image/hero-mobile-poster.jpg" autoplay loop muted playsinline preload="auto" class="md:hidden absolute top-0 left-0 w-full h-full object-cover opacity-100 pointer-events-none" style="z-index: 0;"></video>
-<video data-hero-video data-hero-mq="(min-width: 768px)" data-src="image/hero-optimized.mp4" data-poster="image/hero-poster.jpg" autoplay loop muted playsinline preload="auto" class="hidden md:block absolute top-0 left-0 w-full h-full object-cover opacity-100 pointer-events-none" style="z-index: 0;"></video>
+<video data-hero-video data-hero-mq="(max-width: 767px)" data-src="/image/hero-mobile-optimized.mp4" data-poster="image/hero-mobile-poster.jpg" autoplay loop muted playsinline preload="auto" class="md:hidden absolute top-0 left-0 w-full h-full object-cover opacity-100 pointer-events-none" style="z-index: 0;"></video>
+<video data-hero-video data-hero-mq="(min-width: 768px)" data-src="/image/hero-optimized.mp4" data-poster="image/hero-poster.jpg" autoplay loop muted playsinline preload="auto" class="hidden md:block absolute top-0 left-0 w-full h-full object-cover opacity-100 pointer-events-none" style="z-index: 0;"></video>
 <script>
   (function () {
     document.querySelectorAll('video[data-hero-video]').forEach(function (video) {
@@ -315,26 +315,26 @@
 <div class="relative overflow-hidden w-full max-w-full flex">
 <div class="animate-marquee flex items-center gap-12 sm:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-300 whitespace-nowrap">
 <a href="https://openai.com" target="_blank" rel="noopener" aria-label="OpenAI" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><svg viewBox="0 0 24 24" fill="currentColor" class="h-6 sm:h-7 w-auto"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg></a>
-<a href="https://chatgpt.com" target="_blank" rel="noopener" aria-label="ChatGPT" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><img src="image/logos/chatgpt.png" alt="ChatGPT" class="h-6 sm:h-7 w-auto object-contain"/></a>
+<a href="https://chatgpt.com" target="_blank" rel="noopener" aria-label="ChatGPT" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><img src="/image/logos/chatgpt.png" alt="ChatGPT" class="h-6 sm:h-7 w-auto object-contain"/></a>
 <a href="https://claude.ai" target="_blank" rel="noopener" aria-label="Claude" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><svg viewBox="0 0 24 24" fill="currentColor" class="h-6 sm:h-7 w-auto"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg></a>
 <a href="https://gemini.google.com" target="_blank" rel="noopener" aria-label="Gemini" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><svg viewBox="0 0 24 24" fill="currentColor" class="h-6 sm:h-7 w-auto"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg></a>
-<a href="https://www.midjourney.com" target="_blank" rel="noopener" aria-label="Midjourney" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><img src="image/logos/midjourney.png" alt="Midjourney" class="h-6 sm:h-7 w-auto object-contain"/></a>
-<a href="https://runwayml.com" target="_blank" rel="noopener" aria-label="Runway" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><img src="image/logos/runway.png" alt="Runway" class="h-6 sm:h-7 w-auto object-contain"/></a>
-<a href="https://klingai.com" target="_blank" rel="noopener" aria-label="Kling" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><img src="image/logos/kling.png" alt="Kling" class="h-6 sm:h-7 w-auto object-contain"/></a>
-<a href="https://seed.bytedance.com" target="_blank" rel="noopener" aria-label="Seedance" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><img src="image/logos/seedance.png" alt="Seedance" class="h-6 sm:h-7 w-auto object-contain"/></a>
-<a href="https://higgsfield.ai" target="_blank" rel="noopener" aria-label="Higgsfield" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><img src="image/logos/higgsfield.png" alt="Higgsfield" class="h-6 sm:h-7 w-auto object-contain"/></a>
+<a href="https://www.midjourney.com" target="_blank" rel="noopener" aria-label="Midjourney" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><img src="/image/logos/midjourney.png" alt="Midjourney" class="h-6 sm:h-7 w-auto object-contain"/></a>
+<a href="https://runwayml.com" target="_blank" rel="noopener" aria-label="Runway" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><img src="/image/logos/runway.png" alt="Runway" class="h-6 sm:h-7 w-auto object-contain"/></a>
+<a href="https://klingai.com" target="_blank" rel="noopener" aria-label="Kling" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><img src="/image/logos/kling.png" alt="Kling" class="h-6 sm:h-7 w-auto object-contain"/></a>
+<a href="https://seed.bytedance.com" target="_blank" rel="noopener" aria-label="Seedance" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><img src="/image/logos/seedance.png" alt="Seedance" class="h-6 sm:h-7 w-auto object-contain"/></a>
+<a href="https://higgsfield.ai" target="_blank" rel="noopener" aria-label="Higgsfield" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><img src="/image/logos/higgsfield.png" alt="Higgsfield" class="h-6 sm:h-7 w-auto object-contain"/></a>
 <a href="https://suno.com" target="_blank" rel="noopener" aria-label="Suno" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><svg viewBox="0 0 24 24" fill="currentColor" class="h-6 sm:h-7 w-auto"><path d="M16.5 0C20.642 0 24 5.373 24 12h-9c0 6.627-3.358 12-7.5 12C3.358 24 0 18.627 0 12h9c0-6.627 3.358-12 7.5-12Z"/></svg></a>
 <a href="https://elevenlabs.io" target="_blank" rel="noopener" aria-label="ElevenLabs" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><svg viewBox="0 0 24 24" fill="currentColor" class="h-6 sm:h-7 w-auto"><path d="M4.6035 0v24h4.9317V0zm9.8613 0v24h4.9317V0z"/></svg></a>
 <!-- DUPLICATE FOR INFINITE LOOP -->
 <a href="https://openai.com" target="_blank" rel="noopener" aria-label="OpenAI" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><svg viewBox="0 0 24 24" fill="currentColor" class="h-6 sm:h-7 w-auto"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg></a>
-<a href="https://chatgpt.com" target="_blank" rel="noopener" aria-label="ChatGPT" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><img src="image/logos/chatgpt.png" alt="ChatGPT" class="h-6 sm:h-7 w-auto object-contain"/></a>
+<a href="https://chatgpt.com" target="_blank" rel="noopener" aria-label="ChatGPT" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><img src="/image/logos/chatgpt.png" alt="ChatGPT" class="h-6 sm:h-7 w-auto object-contain"/></a>
 <a href="https://claude.ai" target="_blank" rel="noopener" aria-label="Claude" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><svg viewBox="0 0 24 24" fill="currentColor" class="h-6 sm:h-7 w-auto"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg></a>
 <a href="https://gemini.google.com" target="_blank" rel="noopener" aria-label="Gemini" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><svg viewBox="0 0 24 24" fill="currentColor" class="h-6 sm:h-7 w-auto"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg></a>
-<a href="https://www.midjourney.com" target="_blank" rel="noopener" aria-label="Midjourney" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><img src="image/logos/midjourney.png" alt="Midjourney" class="h-6 sm:h-7 w-auto object-contain"/></a>
-<a href="https://runwayml.com" target="_blank" rel="noopener" aria-label="Runway" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><img src="image/logos/runway.png" alt="Runway" class="h-6 sm:h-7 w-auto object-contain"/></a>
-<a href="https://klingai.com" target="_blank" rel="noopener" aria-label="Kling" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><img src="image/logos/kling.png" alt="Kling" class="h-6 sm:h-7 w-auto object-contain"/></a>
-<a href="https://seed.bytedance.com" target="_blank" rel="noopener" aria-label="Seedance" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><img src="image/logos/seedance.png" alt="Seedance" class="h-6 sm:h-7 w-auto object-contain"/></a>
-<a href="https://higgsfield.ai" target="_blank" rel="noopener" aria-label="Higgsfield" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><img src="image/logos/higgsfield.png" alt="Higgsfield" class="h-6 sm:h-7 w-auto object-contain"/></a>
+<a href="https://www.midjourney.com" target="_blank" rel="noopener" aria-label="Midjourney" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><img src="/image/logos/midjourney.png" alt="Midjourney" class="h-6 sm:h-7 w-auto object-contain"/></a>
+<a href="https://runwayml.com" target="_blank" rel="noopener" aria-label="Runway" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><img src="/image/logos/runway.png" alt="Runway" class="h-6 sm:h-7 w-auto object-contain"/></a>
+<a href="https://klingai.com" target="_blank" rel="noopener" aria-label="Kling" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><img src="/image/logos/kling.png" alt="Kling" class="h-6 sm:h-7 w-auto object-contain"/></a>
+<a href="https://seed.bytedance.com" target="_blank" rel="noopener" aria-label="Seedance" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><img src="/image/logos/seedance.png" alt="Seedance" class="h-6 sm:h-7 w-auto object-contain"/></a>
+<a href="https://higgsfield.ai" target="_blank" rel="noopener" aria-label="Higgsfield" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><img src="/image/logos/higgsfield.png" alt="Higgsfield" class="h-6 sm:h-7 w-auto object-contain"/></a>
 <a href="https://suno.com" target="_blank" rel="noopener" aria-label="Suno" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><svg viewBox="0 0 24 24" fill="currentColor" class="h-6 sm:h-7 w-auto"><path d="M16.5 0C20.642 0 24 5.373 24 12h-9c0 6.627-3.358 12-7.5 12C3.358 24 0 18.627 0 12h9c0-6.627 3.358-12 7.5-12Z"/></svg></a>
 <a href="https://elevenlabs.io" target="_blank" rel="noopener" aria-label="ElevenLabs" class="flex items-center shrink-0 text-zinc-300 hover:text-white transition-colors whitespace-nowrap"><svg viewBox="0 0 24 24" fill="currentColor" class="h-6 sm:h-7 w-auto"><path d="M4.6035 0v24h4.9317V0zm9.8613 0v24h4.9317V0z"/></svg></a>
 </div>
@@ -384,7 +384,7 @@
 <h2 data-i18n="cat.film.title" class="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-2 uppercase">Film Showcase</h2>
 </div>
 <div class="flex items-center gap-4">
-<a class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] flex items-center gap-1.5 transition-colors" href="category?slug=film">
+<a class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] flex items-center gap-1.5 transition-colors" href="/kategori/film">
               <span data-i18n="cat.film.view">View All Films →</span>
             </a>
 <!-- Carousel Control Arrows (temporarily hidden — not wired up yet) -->
@@ -417,7 +417,7 @@
 </div>
 <h2 data-i18n="cat.commercial.title" class="text-3xl font-bold tracking-tight text-white mt-2 uppercase">Commercial Showcase</h2>
 </div>
-<a class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] flex items-center gap-1.5 transition-colors" href="category?slug=commercial">
+<a class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] flex items-center gap-1.5 transition-colors" href="/kategori/iklan">
               <span data-i18n="cat.commercial.view">View All Commercials →</span>
             </a>
 </div>
@@ -434,7 +434,7 @@
 </div>
 <h2 data-i18n="cat.animation.title" class="text-3xl font-bold tracking-tight text-white mt-2 uppercase">Character Animation Showcase</h2>
 </div>
-<a class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] flex items-center gap-1.5 transition-colors" href="category?slug=animation">
+<a class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] flex items-center gap-1.5 transition-colors" href="/kategori/animasi">
               <span data-i18n="cat.animation.view">View Animations →</span>
             </a>
 </div>
@@ -451,7 +451,7 @@
 </div>
 <h2 data-i18n="cat.music.title" class="text-3xl font-bold tracking-tight text-white mt-2 uppercase">Music &amp; Vocal Showcase</h2>
 </div>
-<a class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] flex items-center gap-1.5 transition-colors" href="category?slug=music">
+<a class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] flex items-center gap-1.5 transition-colors" href="/kategori/musik">
               <span data-i18n="cat.music.view">Listen Full Tracks →</span>
             </a>
 </div>
@@ -468,7 +468,7 @@
       </div>
       <h2 data-i18n="cat.visualart.title" class="text-3xl font-bold tracking-tight text-white mt-2 uppercase">Visual Art Showcase</h2>
     </div>
-    <a class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] flex items-center gap-1.5 transition-colors" href="category?slug=visual-art">
+    <a class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] flex items-center gap-1.5 transition-colors" href="/kategori/seni-visual">
       <span data-i18n="cat.visualart.view">View All Visual Art →</span>
     </a>
   </div>
@@ -526,7 +526,7 @@ setTimeout(function () { var el = document.getElementById('creator-hub-body'); i
 <span data-i18n="program.eyebrow" class="text-xs font-mono text-white tracking-widest uppercase">Workshop &amp; Roadshow</span>
 <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-1">IFAI LABS</h2>
 </div>
-<a id="program-view-all" style="display:none;" data-i18n="program.viewAll" class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] flex items-center gap-1.5 transition-colors" href="program">
+<a id="program-view-all" style="display:none;" data-i18n="program.viewAll" class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] flex items-center gap-1.5 transition-colors" href="/program">
             View All Program →
           </a>
 </div>
@@ -542,7 +542,7 @@ setTimeout(function () { var el = document.getElementById('creator-hub-body'); i
 <span data-i18n="programs.eyebrow" class="text-xs font-mono text-white tracking-widest uppercase">Incubation &amp; Keynotes</span>
 <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-1">IFAI SIGNALS</h2>
 </div>
-<a id="signals-view-all" style="display:none;" data-i18n="programs.viewAll" class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] flex items-center gap-1.5 transition-colors" href="/journal">
+<a id="signals-view-all" style="display:none;" data-i18n="programs.viewAll" class="text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-[#f75500] flex items-center gap-1.5 transition-colors" href="/jurnal">
             View All Journal →
           </a>
 </div>
@@ -635,7 +635,7 @@ Today, we keep opening that space to more creators, brands, and anyone curious a
 <!-- Brand Info -->
 <div class="md:col-span-2 space-y-4">
 <a class="flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-emerald rounded" href="#">
-<img src="image/logo.png" alt="IFAI Future Arts Logo" class="h-4 sm:h-5 object-contain" />
+<img src="/image/logo.png" alt="IFAI Future Arts Logo" class="h-4 sm:h-5 object-contain" />
 </a>
 <div data-i18n="footer.brandName" class="text-sm font-semibold text-white">Indonesia Future Arts &amp; Intelligence</div>
 <p data-i18n="footer.brandDesc" class="text-xs text-zinc-400 leading-relaxed max-w-sm">
@@ -880,9 +880,9 @@ Today, we keep opening that space to more creators, brands, and anyone curious a
      ============================================================ -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
-<script src="js/auth.js?v=20260921"></script>
-<script src="js/creator-hub.js?v=20260922c"></script>
-<script src="js/program-hub.js?v=20260922j"></script>
+<script src="/js/auth.js?v=20260921"></script>
+<script src="/js/creator-hub.js?v=20260922c"></script>
+<script src="/js/program-hub.js?v=20260922j"></script>
 <script>
 (function () {
   const SUPABASE_URL = 'https://qayckglxfmtrjqtghitx.supabase.co';
@@ -937,7 +937,7 @@ Today, we keep opening that space to more creators, brands, and anyone curious a
 <img alt="${escapeHtml(title)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${thumb}"/>
 <div class="absolute inset-0 bg-gradient-to-t from-cosmic-950 via-transparent to-black/30"></div>
 <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full backdrop-blur border ${style.badgeClass}">${escapeHtml(style.label)}</span>
-<a href="${escapeHtml(window.IFAI_workUrl(work))}" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-white hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white whitespace-nowrap transition-colors duration-200">
+<a href="${escapeHtml(window.IFAI_URL.work(work))}" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-white hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white whitespace-nowrap transition-colors duration-200">
 <span data-i18n="card.exploreReel">Explore Reel →</span>
 </a>
 </div>
@@ -1008,7 +1008,7 @@ Today, we keep opening that space to more creators, brands, and anyone curious a
 
       const { data: works, error } = await sb
         .from('works')
-        .select('*, creators(name)')
+        .select('*, creators(name), categories(slug)')
         .eq('category_id', cat.id)
         .eq('status', 'approved')
         .order('created_at', { ascending: false })
@@ -1143,7 +1143,7 @@ Today, we keep opening that space to more creators, brands, and anyone curious a
     const dateStr = formatSignalDate(signal.event_date, lang);
 
     return `
-<a href="signal?id=${encodeURIComponent(signal.id)}" class="group relative rounded-3xl overflow-hidden border border-zinc-700 bg-cosmic-850 hover:border-[#E3A85F]/50 hover:shadow-[0_0_40px_6px_rgba(227,168,95,0.3)] transition-all duration-300 flex flex-col sm:flex-row w-[85vw] lg:w-auto flex-shrink-0 lg:flex-shrink snap-start">
+<a href="${escapeHtml(window.IFAI_URL.signal(signal))}" class="group relative rounded-3xl overflow-hidden border border-zinc-700 bg-cosmic-850 hover:border-[#E3A85F]/50 hover:shadow-[0_0_40px_6px_rgba(227,168,95,0.3)] transition-all duration-300 flex flex-col sm:flex-row w-[85vw] lg:w-auto flex-shrink-0 lg:flex-shrink snap-start">
 <div class="flex-1 p-6 sm:p-8 flex flex-col justify-between gap-4 order-2 sm:order-1">
 <div>
 <span class="inline-block px-3 py-1 rounded-full text-xs font-mono uppercase bg-[#f75500]/10 border border-[#f75500]/30 text-[#f75500] mb-3">${escapeHtml(label)}</span>

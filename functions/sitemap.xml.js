@@ -4,14 +4,14 @@
 // can't discover these pages otherwise: their links only exist after our
 // client-side JS has fetched the data.
 
-import { SITE, workPath } from './_lib/work-url.js';
+import { SITE, workPath, categoryPath, signalPath, programPath, creatorPath } from './_lib/urls.js';
 
 const SUPABASE_URL = 'https://qayckglxfmtrjqtghitx.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_qf2j0vC_6D63ziteKUflCQ_u-rYaIgd';
 
-// /signal and /creator without an ?id= aren't real list pages (a not-found
-// message and a copy of the featured creator), so only their ?id= URLs go in.
-const STATIC_PATHS = ['/', '/program', '/journal'];
+// Bare /creator is just a copy of the featured creator's /kreator/ page, so
+// only the /kreator/ URL goes in.
+const STATIC_PATHS = ['/', '/program', '/jurnal'];
 
 async function fetchRows(query) {
   try {
@@ -38,21 +38,21 @@ function urlEntry(path, lastmod) {
 export async function onRequest() {
   const [categories, works, signals, programs, creators] = await Promise.all([
     fetchRows('categories?select=slug'),
-    fetchRows('works?status=eq.approved&select=id,title_id,title_en,created_at&order=created_at.desc'),
-    fetchRows('signals?select=id,created_at&order=created_at.desc'),
-    fetchRows('programs?select=id,created_at&order=created_at.desc'),
+    fetchRows('works?status=eq.approved&select=id,title_id,title_en,created_at,categories(slug)&order=created_at.desc'),
+    fetchRows('signals?select=id,title_id,title_en,created_at&order=created_at.desc'),
+    fetchRows('programs?select=id,title_id,title_en,created_at&order=created_at.desc'),
     // Profile pages read creator_spotlights (js/creator-hub.js fetchCreator),
     // not the creators table, and only show featured + approved ones.
-    fetchRows('creator_spotlights?is_featured=eq.true&status=eq.approved&select=id')
+    fetchRows('creator_spotlights?is_featured=eq.true&status=eq.approved&select=id,name')
   ]);
 
   const entries = [
     ...STATIC_PATHS.map((p) => urlEntry(p)),
-    ...categories.filter((c) => c.slug).map((c) => urlEntry(`/category?slug=${encodeURIComponent(c.slug)}`)),
+    ...categories.filter((c) => c.slug).map((c) => urlEntry(categoryPath(c.slug))),
     ...works.map((w) => urlEntry(workPath(w), w.created_at)),
-    ...signals.map((s) => urlEntry(`/signal?id=${encodeURIComponent(s.id)}`, s.created_at)),
-    ...programs.map((p) => urlEntry(`/program-detail?id=${encodeURIComponent(p.id)}`, p.created_at)),
-    ...creators.map((c) => urlEntry(`/creator?id=${encodeURIComponent(c.id)}`))
+    ...signals.map((s) => urlEntry(signalPath(s), s.created_at)),
+    ...programs.map((p) => urlEntry(programPath(p), p.created_at)),
+    ...creators.map((c) => urlEntry(creatorPath(c)))
   ];
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
