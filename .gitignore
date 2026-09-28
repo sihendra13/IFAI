@@ -1,2 +1,5 @@
 .DS_Store
 .wrangler/
+node_modules/
+dist/
+myifai.com-audit/

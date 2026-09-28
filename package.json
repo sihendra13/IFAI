@@ -1,0 +1,13 @@
+{
+  "name": "ifai-landing-page",
+  "private": true,
+  "description": "Static site for myifai.com. `npm run build` compiles the Tailwind CSS and assembles the deployable site in dist/ (Cloudflare Pages build output).",
+  "scripts": {
+    "build": "node scripts/build.mjs"
+  },
+  "devDependencies": {
+    "@tailwindcss/container-queries": "0.1.1",
+    "@tailwindcss/forms": "0.5.10",
+    "tailwindcss": "3.4.17"
+  }
+}

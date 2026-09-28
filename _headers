@@ -19,3 +19,8 @@
   X-Robots-Tag: noindex, nofollow
 /cta-playground
   X-Robots-Tag: noindex, nofollow
+
+# Compiled Tailwind CSS (scripts/build.mjs): file names carry a content hash,
+# so they can be cached forever.
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
