@@ -13,3 +13,9 @@
 # visitors immediately (the default is a 4 hour browser cache).
 /js/*
   Cache-Control: no-cache
+
+# Internal pages — keep out of search results.
+/admin
+  X-Robots-Tag: noindex, nofollow
+/cta-playground
+  X-Robots-Tag: noindex, nofollow
