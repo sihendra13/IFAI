@@ -25,6 +25,18 @@ function unavailable() {
   return new Response('Service temporarily unavailable', { status: 503, headers: { 'Retry-After': '30' } });
 }
 
+// schema.org BreadcrumbList mirroring the visible breadcrumb, so Google can
+// show "myifai.com › Kategori › Judul" in results. `trail` is [name, url] pairs
+// after Beranda.
+export function breadcrumbs(trail) {
+  const items = [['Beranda', SITE + '/'], ...trail];
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map(([name, item], i) => ({ '@type': 'ListItem', position: i + 1, name, item }))
+  };
+}
+
 function paramMeta(name, value) {
   return `<meta name="ifai-param-${name}" content="${escapeHtml(value)}"/>`;
 }
@@ -82,7 +94,7 @@ export function renderSignalPage(page, signal) {
     image,
     url: pageUrl,
     headHtml: paramMeta('id', signal.id),
-    jsonLd: {
+    jsonLd: [breadcrumbs([['Jurnal', SITE + '/jurnal'], [title, pageUrl]]), {
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',
       headline: title,
@@ -93,7 +105,7 @@ export function renderSignalPage(page, signal) {
       mainEntityOfPage: pageUrl,
       author: PUBLISHER,
       publisher: PUBLISHER
-    },
+    }],
     text: { '#signal-title': title, '#signal-title-crumb': title, '#signal-label': label },
     html: { '#signal-description': paragraphsHtml(body) }
   });
@@ -148,7 +160,7 @@ export function renderProgramPage(page, program) {
     image,
     url: pageUrl,
     headHtml: paramMeta('id', program.id),
-    jsonLd
+    jsonLd: [breadcrumbs([['Program', SITE + '/program'], [title, pageUrl]]), jsonLd]
   });
 }
 
@@ -179,6 +191,7 @@ export function renderCategoryPage(page, category) {
     description: `${name}: karya berbasis AI dari kreator Indonesia, dikurasi oleh IFAI — Indonesia Future Arts & Intelligence.`,
     url: SITE + categoryPath(category.slug),
     headHtml: paramMeta('slug', category.slug),
+    jsonLd: breadcrumbs([[name, SITE + categoryPath(category.slug)]]),
     text: { '#archive-category-title': name, '#archive-category-name': name }
   });
 }

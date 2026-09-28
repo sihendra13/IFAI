@@ -5,10 +5,11 @@
 // don't run our client-side JS see the actual work.
 
 import { rewriteMeta, truncate, escapeHtml } from './og-meta.js';
-import { SITE, workPath } from './urls.js';
+import { SITE, workPath, categoryPath } from './urls.js';
+import { breadcrumbs } from './pages.js';
 import { fetchRows } from './supabase.js';
 
-const WORK_FIELDS = 'id,title_en,title_id,description_en,description_id,youtube_url,duration,created_at,creators(name),categories(slug)';
+const WORK_FIELDS = 'id,title_en,title_id,description_en,description_id,youtube_url,duration,created_at,creators(name),categories(slug,name_id,name_en)';
 
 // `filter` is a PostgREST query fragment, e.g. "id=eq.<uuid>". Returns the
 // approved rows (oldest first), or null if Supabase couldn't be reached.
@@ -28,6 +29,15 @@ function toIsoDuration(value) {
 function extractYouTubeId(url) {
   const match = (url || '').match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([A-Za-z0-9_-]{11})/);
   return match ? match[1] : null;
+}
+
+// Beranda › <kategori> › <judul>, matching the page's visible breadcrumb.
+function workBreadcrumbs(work, title, pageUrl) {
+  const cat = work.categories;
+  const trail = cat && cat.slug
+    ? [[cat.name_id || cat.name_en || cat.slug, SITE + categoryPath(cat.slug)], [title, pageUrl]]
+    : [[title, pageUrl]];
+  return breadcrumbs(trail);
 }
 
 export function renderWorkPage(response, work) {
@@ -85,7 +95,7 @@ export function renderWorkPage(response, work) {
     description,
     image,
     url: pageUrl,
-    jsonLd,
+    jsonLd: [workBreadcrumbs(work, title, pageUrl), jsonLd],
     // Lets detail.html's client JS (IFAI_URL.param) find the work on the
     // readable URL, which has no ?id= to read.
     headHtml: `<meta name="ifai-param-id" content="${escapeHtml(work.id)}"/>`,

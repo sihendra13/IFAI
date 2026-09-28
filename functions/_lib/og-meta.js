@@ -51,7 +51,7 @@ class InnerContent {
 // CSS selector to visible content to fill in server-side (text is escaped,
 // html is inserted as-is and must already be escaped), so crawlers that don't
 // run JS see the real title/synopsis instead of "Loading…"; our client JS
-// overwrites the same elements once it runs. `jsonLd` is added to <head> as
+// overwrites the same elements once it runs. `jsonLd` (one object or an array) is added to <head> as
 // structured data (schema.org) for search engines; `headHtml` is appended to
 // <head> as-is (must already be escaped).
 export function rewriteMeta(response, meta) {
@@ -63,9 +63,9 @@ export function rewriteMeta(response, meta) {
   if (meta.headHtml) {
     rewriter.on('head', new AppendToHead(meta.headHtml));
   }
-  if (meta.jsonLd) {
+  for (const item of [].concat(meta.jsonLd || []).filter(Boolean)) {
     // "<" escaped so a title/description can never close the <script> early.
-    const json = JSON.stringify(meta.jsonLd).replace(/</g, '\\u003c');
+    const json = JSON.stringify(item).replace(/</g, '\\u003c');
     rewriter.on('head', new AppendToHead(`<script type="application/ld+json">${json}</script>`));
   }
   for (const [selector, content] of Object.entries(meta.text || {})) {
