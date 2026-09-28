@@ -45,18 +45,24 @@ class InnerContent {
   element(el) { el.setInnerContent(this.content, { html: this.html }); }
 }
 
-// meta: { title, description, image, url, text, html }. Any field left
+// meta: { title, description, image, url, text, html, jsonLd }. Any field left
 // undefined keeps whatever the static HTML already had for that tag.
 // `url` also becomes the page's <link rel="canonical">. `text` / `html` map a
 // CSS selector to visible content to fill in server-side (text is escaped,
 // html is inserted as-is and must already be escaped), so crawlers that don't
 // run JS see the real title/synopsis instead of "Loading…"; our client JS
-// overwrites the same elements once it runs.
+// overwrites the same elements once it runs. `jsonLd` is added to <head> as
+// structured data (schema.org) for search engines.
 export function rewriteMeta(response, meta) {
   const rewriter = new HTMLRewriter();
 
   if (meta.url) {
     rewriter.on('head', new AppendToHead(`<link rel="canonical" href="${escapeHtml(meta.url)}"/>`));
+  }
+  if (meta.jsonLd) {
+    // "<" escaped so a title/description can never close the <script> early.
+    const json = JSON.stringify(meta.jsonLd).replace(/</g, '\\u003c');
+    rewriter.on('head', new AppendToHead(`<script type="application/ld+json">${json}</script>`));
   }
   for (const [selector, content] of Object.entries(meta.text || {})) {
     if (content) rewriter.on(selector, new InnerContent(content, false));
