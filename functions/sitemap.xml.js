@@ -40,7 +40,9 @@ export async function onRequest() {
     fetchRows('works?status=eq.approved&select=id,created_at&order=created_at.desc'),
     fetchRows('signals?select=id,created_at&order=created_at.desc'),
     fetchRows('programs?select=id,created_at&order=created_at.desc'),
-    fetchRows('creators?select=id')
+    // Profile pages read creator_spotlights (js/creator-hub.js fetchCreator),
+    // not the creators table, and only show featured + approved ones.
+    fetchRows('creator_spotlights?is_featured=eq.true&status=eq.approved&select=id')
   ]);
 
   const entries = [
