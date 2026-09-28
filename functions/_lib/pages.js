@@ -37,6 +37,13 @@ export function breadcrumbs(trail) {
   };
 }
 
+// Starts the page's main image downloading straight away, in parallel with
+// our JS, instead of only once the client script has fetched the row from
+// Supabase and inserted the <img> (which was costing ~4s of LCP on mobile).
+export function preloadImage(url) {
+  return url ? `<link rel="preload" as="image" href="${escapeHtml(url)}" fetchpriority="high"/>` : '';
+}
+
 function paramMeta(name, value) {
   return `<meta name="ifai-param-${name}" content="${escapeHtml(value)}"/>`;
 }
@@ -93,7 +100,8 @@ export function renderSignalPage(page, signal) {
     description: truncate(body),
     image,
     url: pageUrl,
-    headHtml: paramMeta('id', signal.id),
+    headHtml: preloadImage(signal.image_url) + paramMeta('id', signal.id),
+    attrs: { '#signal-image': { src: signal.image_url, alt: title, fetchpriority: 'high' } },
     jsonLd: [breadcrumbs([['Jurnal', SITE + '/jurnal'], [title, pageUrl]]), {
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',
@@ -159,7 +167,7 @@ export function renderProgramPage(page, program) {
     description: truncate(description),
     image,
     url: pageUrl,
-    headHtml: paramMeta('id', program.id),
+    headHtml: preloadImage(program.image_url) + paramMeta('id', program.id),
     jsonLd: [breadcrumbs([['Program', SITE + '/program'], [title, pageUrl]]), jsonLd]
   });
 }

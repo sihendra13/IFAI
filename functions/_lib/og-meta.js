@@ -40,12 +40,17 @@ class AppendToHead {
   element(el) { el.append(this.html, { html: true }); }
 }
 
+class SetAttributes {
+  constructor(attrs) { this.attrs = attrs; }
+  element(el) { for (const [name, value] of Object.entries(this.attrs)) if (value) el.setAttribute(name, value); }
+}
+
 class InnerContent {
   constructor(content, html) { this.content = content; this.html = html; }
   element(el) { el.setInnerContent(this.content, { html: this.html }); }
 }
 
-// meta: { title, description, image, url, text, html, jsonLd, headHtml }. Any field left
+// meta: { title, description, image, url, text, html, attrs, jsonLd, headHtml }. Any field left
 // undefined keeps whatever the static HTML already had for that tag.
 // `url` also becomes the page's <link rel="canonical">. `text` / `html` map a
 // CSS selector to visible content to fill in server-side (text is escaped,
@@ -53,7 +58,8 @@ class InnerContent {
 // run JS see the real title/synopsis instead of "Loading…"; our client JS
 // overwrites the same elements once it runs. `jsonLd` (one object or an array) is added to <head> as
 // structured data (schema.org) for search engines; `headHtml` is appended to
-// <head> as-is (must already be escaped).
+// <head> as-is (must already be escaped); `attrs` maps a selector to
+// attributes to set on it (values are escaped by HTMLRewriter).
 export function rewriteMeta(response, meta) {
   const rewriter = new HTMLRewriter();
 
@@ -67,6 +73,9 @@ export function rewriteMeta(response, meta) {
     // "<" escaped so a title/description can never close the <script> early.
     const json = JSON.stringify(item).replace(/</g, '\\u003c');
     rewriter.on('head', new AppendToHead(`<script type="application/ld+json">${json}</script>`));
+  }
+  for (const [selector, attrs] of Object.entries(meta.attrs || {})) {
+    rewriter.on(selector, new SetAttributes(attrs));
   }
   for (const [selector, content] of Object.entries(meta.text || {})) {
     if (content) rewriter.on(selector, new InnerContent(content, false));
