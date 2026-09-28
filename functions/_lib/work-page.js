@@ -31,8 +31,9 @@ function extractYouTubeId(url) {
 }
 
 export function renderWorkPage(response, work) {
-  const title = work.title_en || work.title_id || 'IFAI';
-  const description = truncate(work.description_en || work.description_id || '');
+  // Indonesian first: it's the site's default language and what visitors see.
+  const title = work.title_id || work.title_en || 'IFAI';
+  const description = truncate(work.description_id || work.description_en || '');
   const videoId = extractYouTubeId(work.youtube_url);
   const image = videoId
     ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
@@ -40,7 +41,7 @@ export function renderWorkPage(response, work) {
 
   // Same paragraph markup detail.html's client JS renders, so there's no
   // visible jump when it takes over.
-  const fullDescription = work.description_en || work.description_id || '';
+  const fullDescription = work.description_id || work.description_en || '';
   const descriptionHtml = fullDescription
     .split('\n')
     .filter((p) => p.trim())
