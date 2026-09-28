@@ -10,5 +10,5 @@ export async function onRequest(context) {
   const page = await context.env.ASSETS.fetch(new URL('/journal', context.request.url));
   const rows = await fetchRows('signals?select=image_url&order=created_at.desc&limit=1');
   const image = rows && rows[0] && rows[0].image_url;
-  return image ? rewriteMeta(page, { headHtml: preloadImage(image) }) : page;
+  return image ? rewriteMeta(page, { headStartHtml: preloadImage(image) }) : page;
 }

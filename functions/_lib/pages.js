@@ -100,7 +100,8 @@ export function renderSignalPage(page, signal) {
     description: truncate(body),
     image,
     url: pageUrl,
-    headHtml: preloadImage(signal.image_url) + paramMeta('id', signal.id),
+    headStartHtml: preloadImage(signal.image_url),
+    headHtml: paramMeta('id', signal.id),
     attrs: { '#signal-image': { src: signal.image_url, alt: title, fetchpriority: 'high' } },
     jsonLd: [breadcrumbs([['Jurnal', SITE + '/jurnal'], [title, pageUrl]]), {
       '@context': 'https://schema.org',
@@ -167,7 +168,8 @@ export function renderProgramPage(page, program) {
     description: truncate(description),
     image,
     url: pageUrl,
-    headHtml: preloadImage(program.image_url) + paramMeta('id', program.id),
+    headStartHtml: preloadImage(program.image_url),
+    headHtml: paramMeta('id', program.id),
     jsonLd: [breadcrumbs([['Program', SITE + '/program'], [title, pageUrl]]), jsonLd]
   });
 }

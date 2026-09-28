@@ -35,6 +35,11 @@ export function escapeHtml(s) {
     .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
+class PrependToHead {
+  constructor(html) { this.html = html; }
+  element(el) { el.prepend(this.html, { html: true }); }
+}
+
 class AppendToHead {
   constructor(html) { this.html = html; }
   element(el) { el.append(this.html, { html: true }); }
@@ -50,7 +55,7 @@ class InnerContent {
   element(el) { el.setInnerContent(this.content, { html: this.html }); }
 }
 
-// meta: { title, description, image, url, text, html, attrs, jsonLd, headHtml }. Any field left
+// meta: { title, description, image, url, text, html, attrs, jsonLd, headHtml, headStartHtml }. Any field left
 // undefined keeps whatever the static HTML already had for that tag.
 // `url` also becomes the page's <link rel="canonical">. `text` / `html` map a
 // CSS selector to visible content to fill in server-side (text is escaped,
@@ -58,7 +63,8 @@ class InnerContent {
 // run JS see the real title/synopsis instead of "Loading…"; our client JS
 // overwrites the same elements once it runs. `jsonLd` (one object or an array) is added to <head> as
 // structured data (schema.org) for search engines; `headHtml` is appended to
-// <head> as-is (must already be escaped); `attrs` maps a selector to
+// <head> as-is (must already be escaped), `headStartHtml` likewise but first in
+// <head> (for preloads, so they start before the page's other resources); `attrs` maps a selector to
 // attributes to set on it (values are escaped by HTMLRewriter).
 export function rewriteMeta(response, meta) {
   const rewriter = new HTMLRewriter();
@@ -68,6 +74,9 @@ export function rewriteMeta(response, meta) {
   }
   if (meta.headHtml) {
     rewriter.on('head', new AppendToHead(meta.headHtml));
+  }
+  if (meta.headStartHtml) {
+    rewriter.on('head', new PrependToHead(meta.headStartHtml));
   }
   for (const item of [].concat(meta.jsonLd || []).filter(Boolean)) {
     // "<" escaped so a title/description can never close the <script> early.
