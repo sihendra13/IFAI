@@ -138,7 +138,7 @@ ${PILL_SLIDE}
 <div class="absolute -right-20 -top-20 w-96 h-96 bg-cyber-emerald/10 rounded-full blur-3xl pointer-events-none"></div>
 <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[500px]">
 <div class="creator-photo-fade lg:col-span-6 relative group overflow-hidden bg-black flex items-end min-h-[380px] lg:min-h-full">
-${photo ? `<img alt="${esc(name)}" class="absolute inset-0 w-full h-full object-cover object-center filter grayscale contrast-110 group-hover:scale-105 transition-transform duration-700 ease-out opacity-85" src="${esc(photo)}">` : ''}
+${photo ? `<img loading="lazy" decoding="async" alt="${esc(name)}" class="absolute inset-0 w-full h-full object-cover object-center filter grayscale contrast-110 group-hover:scale-105 transition-transform duration-700 ease-out opacity-85" src="${esc(photo)}">` : ''}
 <div class="absolute inset-0 bg-gradient-to-t from-cyber-surface via-cyber-darkBg/50 to-transparent"></div>
 <div class="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-cyber-surface/90 hidden lg:block"></div>
 </div>
@@ -179,7 +179,7 @@ ${PILL_SLIDE}
 </div>
 </div>
 <div class="relative w-full sm:w-2/5 aspect-[16/9] sm:aspect-auto order-1 sm:order-2 bg-black">
-${photo ? `<img alt="${esc(name)}" class="absolute inset-0 w-full h-full object-cover object-center filter grayscale contrast-110 opacity-85" src="${esc(photo)}">` : ''}
+${photo ? `<img loading="lazy" decoding="async" alt="${esc(name)}" class="absolute inset-0 w-full h-full object-cover object-center filter grayscale contrast-110 opacity-85" src="${esc(photo)}">` : ''}
 <div class="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-cyber-surface from-0% via-transparent via-10% to-transparent to-100% pointer-events-none"></div>
 </div>
 </article>`;
@@ -281,7 +281,7 @@ ${fields.map((f) => `<span class="px-3 py-1.5 rounded-lg bg-cyber-surfaceDim bor
 </div>
 <article class="rounded-2xl bg-cyber-surface border border-zinc-700 overflow-hidden shadow-xl">
 <div data-work-media data-title="${esc(c.work_title)}" class="relative group bg-black overflow-hidden aspect-video">
-${workImg ? `<img alt="${esc(c.work_title)}" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" src="${esc(workImg)}"${ytId ? ` onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${ytId}/hqdefault.jpg'"` : ''}>` : ''}
+${workImg ? `<img loading="lazy" decoding="async" alt="${esc(c.work_title)}" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" src="${esc(workImg)}"${ytId ? ` onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${ytId}/hqdefault.jpg'"` : ''}>` : ''}
 <div class="absolute inset-0 bg-gradient-to-t from-cyber-surface via-transparent to-black/30 pointer-events-none"></div>
 ${playBtn ? `<div class="absolute inset-0 flex items-center justify-center">${playBtn}</div>` : ''}
 ${c.work_duration ? `<div class="absolute bottom-4 left-4 font-mono text-xs text-white/80 bg-black/60 px-2 py-1 rounded border border-white/10">${esc(c.work_duration)}</div>` : ''}

@@ -658,7 +658,7 @@ document.getElementById('cinema-player').parentElement.classList.add('animate-pu
     return `
 <a href="${escapeHtmlDp(window.IFAI_URL.work(work))}" class="group flex flex-col rounded-2xl bg-surface-container-low border border-zinc-700 overflow-hidden hover:bg-surface-container transition-all duration-300 shadow-lg w-[85vw] md:w-auto flex-shrink-0 md:flex-shrink snap-start">
 <div class="aspect-video w-full relative overflow-hidden bg-surface-container-lowest">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${escapeHtmlDp(title)}" src="${thumb}">
+<img loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${escapeHtmlDp(title)}" src="${thumb}">
 ${duration ? `<div class="absolute bottom-3 right-3"><span class="font-label-code text-label-code px-space-xs py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-md text-on-surface">${duration}</span></div>` : ''}
 </div>
 <div class="p-space-md flex flex-col flex-1 justify-between gap-space-md">

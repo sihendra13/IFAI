@@ -450,7 +450,7 @@
     return `
 <article class="group relative rounded-2xl overflow-hidden bg-cosmic-850 border border-zinc-700 hover:border-[#E3A85F]/50 hover:shadow-[0_0_40px_6px_rgba(227,168,95,0.3)] transition-all duration-300 flex flex-col h-full">
 <div class="relative aspect-video w-full overflow-hidden bg-zinc-900">
-<img alt="${escapeHtml(title)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${thumb}"/>
+<img loading="lazy" decoding="async" alt="${escapeHtml(title)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${thumb}"/>
 <div class="absolute inset-0 bg-gradient-to-t from-cosmic-950 via-transparent to-black/30"></div>
 <span class="absolute top-3 right-3 text-[10px] font-mono px-2 py-0.5 rounded-full backdrop-blur border ${style.badgeClass}">${escapeHtml(style.label)}</span>
 <a href="${escapeHtml(window.IFAI_URL.work(work))}" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity px-4 py-1.5 rounded-full bg-white/10 hover:bg-white hover:text-black backdrop-blur-md border border-white/20 text-xs font-mono text-white whitespace-nowrap transition-colors duration-200">
