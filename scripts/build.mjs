@@ -29,6 +29,22 @@ const PUBLIC_DIRS = ['image', 'js'];
 const PUBLIC_FILES = ['favicon.ico', 'robots.txt', '_headers'];
 const KEEP_CDN = new Set(['admin.html', 'cta-playground.html']);
 
+// Google Analytics 4 (property "myifai.com", stream "IFAI Website"). Added in
+// dist/ to every page except internal ones (admin, playground) and the 404
+// page, so admin visits don't count as traffic. It goes at the end of <head>
+// and loads async, so LCP preloads and the CSS start first.
+const GA_MEASUREMENT_ID = 'G-FZQJD0VS2F';
+const NO_ANALYTICS = new Set(['admin.html', 'cta-playground.html', '404.html']);
+const GA_SNIPPET = `<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '${GA_MEASUREMENT_ID}');
+</script>
+`;
+
 // Every page and script is scanned for class names, so a class used anywhere
 // (including ones only assembled in client JS or Functions) gets generated.
 const CONTENT = [
@@ -112,6 +128,8 @@ function main() {
     } else {
       console.log(`${page} (copied as is)`);
     }
+
+    if (!NO_ANALYTICS.has(page)) html = html.replace('</head>', GA_SNIPPET + '</head>');
 
     fs.writeFileSync(path.join(DIST, page), html);
   }
